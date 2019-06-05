@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Jose Enrique Pons">
+    <meta name="description" content="Jose Enrique Pons&#39;s personal website">
+    <meta name="keywords" content="blog,developer,personal,ai,ml,artificial intelligence, machine learning">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Short Administration guide for passenger"/>
+<meta name="twitter:description" content="Hi, I&rsquo;m working on several projects with Phusion Passenger software. The administration is not really well documented and also is not so powerful.
+There are some tools to analyze the memory usage like passenger-memory-stats. In my system the output is something like:
+passenger-memory-stats Version: 4.0.59 Date : 2015-05-12 16:07:11 &#43;0200 ------------- Apache processes ------------- *** WARNING: The Apache executable cannot be found. Please set the APXS2 environment variable to your &#39;apxs2&#39; executable&#39;s filename, or set the HTTPD environment variable to your &#39;httpd&#39; or &#39;apache2&#39; executable&#39;s filename."/>
+
+    <meta property="og:title" content="Short Administration guide for passenger" />
+<meta property="og:description" content="Hi, I&rsquo;m working on several projects with Phusion Passenger software. The administration is not really well documented and also is not so powerful.
+There are some tools to analyze the memory usage like passenger-memory-stats. In my system the output is something like:
+passenger-memory-stats Version: 4.0.59 Date : 2015-05-12 16:07:11 &#43;0200 ------------- Apache processes ------------- *** WARNING: The Apache executable cannot be found. Please set the APXS2 environment variable to your &#39;apxs2&#39; executable&#39;s filename, or set the HTTPD environment variable to your &#39;httpd&#39; or &#39;apache2&#39; executable&#39;s filename." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jpons.es/2015/06/short-administration-guide-for-passenger/" />
+<meta property="article:published_time" content="2015-06-08T00:09:12&#43;02:00"/>
+<meta property="article:modified_time" content="2015-06-08T00:09:12&#43;02:00"/>
+
+
+    
+      <base href="https://jpons.es/2015/06/short-administration-guide-for-passenger/">
+    
+    <title>
+  Short Administration guide for passenger · Jose Enrique Pons Personal Site
+</title>
+
+    
+      <link rel="canonical" href="https://jpons.es/2015/06/short-administration-guide-for-passenger/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://jpons.es/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.55.6" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://jpons.es/">
+      Jose Enrique Pons Personal Site
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jpons.es/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jpons.es/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jpons.es/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jpons.es/contact/">Contact me</a>
+          </li>
+        
+      
+      
+        
+        
+        
+          
+        
+          
+            
+              <li class="navigation-item menu-separator">
+                <span>|</span>
+              </li>
+              
+            
+            <li class="navigation-item">
+              <a href="https://jpons.es/es/">Español</a>
+            </li>
+          
+        
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Short Administration guide for passenger</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2015-06-08T00:09:12&#43;02:00'>
+                June 8, 2015
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              3 minutes read
+            </span>
+          </div>
+          
+          
+        </div>
+      </header>
+
+      <div>
+        <p>Hi, I&rsquo;m working on several projects with Phusion Passenger software.
+The administration is not really well documented and also is not so powerful.</p>
+
+<p>There are some tools to analyze the memory usage like passenger-memory-stats.
+In my system the output is something like:</p>
+
+<pre class="theme:dark-terminal lang:sh decode:true " >passenger-memory-stats
+Version: 4.0.59
+Date   : 2015-05-12 16:07:11 +0200
+------------- Apache processes -------------
+*** WARNING: The Apache executable cannot be found.
+Please set the APXS2 environment variable to your 'apxs2' executable's filename,                                                              or set the HTTPD environment variable to your 'httpd' or 'apache2' executable's                                                              filename.
+
+
+---------- Nginx processes ----------
+PID    PPID   VMSize   Private  Name
+-------------------------------------
+20463  1      24.3 MB  ?        nginx: master process /usr/sbin/nginx -c /etc/ng                                                             inx/nginx.conf
+26826  20463  30.5 MB  ?        nginx: worker process
+### Processes: 2
+### Total private dirty RSS: 0.00 MB (?)
+
+
+------ Passenger processes -------
+PID    VMSize     Private    Name
+----------------------------------
+12284  83.5 MB    0.3 MB     PassengerWatchdog
+12287  117.9 MB   1.1 MB     PassengerHelperAgent
+12292  26.7 MB    0.5 MB     PassengerLoggingAgent
+12302  26.0 MB    0.2 MB     PassengerWebHelper: master process /home/project                                                            1/.passenger-enterprise/standalone/4.0.59/webhelper-1.6.2-x86_64-linux/Passenger                                                             WebHelper -c /tmp/passenger-standalone.1r1zr19/config -p /tmp/passenger-standalo                                                             ne.1r1zr19/
+
+15170  26.4 MB    0.6 MB     PassengerWebHelper: worker process
+16390  504.5 MB   230.2 MB   Passenger RackApp: /home/myproject/curren                                                      
+16676  438.2 MB   260.4 MB   Passenger RackApp: /home/test/curren                                                            
+                                                          
+### Processes: 95
+### Total private dirty RSS: 8074.19 MB
+*** WARNING: Please run this tool with sudo. Otherwise the private dirty RSS (a                                                              reliable metric for real memory usage) of processes cannot be determined.</pre> 
+
+<p>The other tool for the administration is passenger-status:</p>
+
+<pre class="theme:dark-terminal lang:sh decode:true " >passenger-status
+It appears that multiple Passenger instances are running. Please select a
+specific one by running:
+
+  passenger-status &lt;PID&gt;
+
+The following Passenger instances are running:
+  PID: 12494
+  PID: 14656
+  PID: 12302
+  PID: 15169
+  PID: 13833
+  PID: 15000
+  PID: 13441
+  PID: 12370
+  PID: 12896
+  PID: 12656
+  PID: 14192
+  PID: 14018
+  PID: 13672
+  PID: 13614
+  PID: 14395
+  PID: 12438</pre> 
+Once you select the passenger process, you can dig in deeper:
+
+ 
+<pre class="theme:dark-terminal lang:sh decode:true " >passenger-status 12494 --verbose
+Version : 4.0.59
+Date    : 2015-05-12 16:15:21 +0200
+Instance: 12494
+----------- General information -----------
+Max pool size : 3
+Processes     : 1
+Requests in top-level queue : 0
+
+----------- Application groups -----------
+/homeproject/current#default:
+  App root: /home/myproject/current
+  Requests in queue: 0
+  * PID: 17563   Sessions: 0       Processed: 30      Uptime: 4h 0m 31s
+    CPU: 0%      Memory  : 235M    Last used: 19m 10s a
+    URL     : http://127.0.0.1:53765
+    Password: DTwE2g0zvvELqdDyviXrzi3FvNADc0PVc1l03TX084R
+
+localhost:~&gt; curl -H "X-Passenger-Connect-Password: DTwE2g0zvvELqdDyviXrzi3FvNADc0PVc1l03TX084R" http://127.0.0.1:53765</pre> 
+
+<p>you can connect to the administration console, via curl. If you don&rsquo;t get any answer, that means that your server is frozen. If you want to see a trace in the logs, you need to kill it sending one of those signals: SIGQUIT, SIGTERM.</p>
+
+<p>You can find more information about this on the following sites:</p>
+
+<p><a href="https://www.phusionpassenger.com/documentation/Users%20guide%20Apache.html" target="_blank"><a href="https://www.phusionpassenger.com/documentation/Users%20guide%20Apache.html">https://www.phusionpassenger.com/documentation/Users%20guide%20Apache.html</a></a>
+On Point 9: 9. Analysis and system maintenance</p>
+
+<p>URL scheme
+<a href="http://en.wikipedia.org/wiki/URI_scheme" target="_blank"><a href="http://en.wikipedia.org/wiki/URI_scheme">http://en.wikipedia.org/wiki/URI_scheme</a></a></p>
+
+<p>Passenger optimization guide:
+<a href="https://www.phusionpassenger.com/documentation/ServerOptimizationGuide.html" target="_blank"><a href="https://www.phusionpassenger.com/documentation/ServerOptimizationGuide.html">https://www.phusionpassenger.com/documentation/ServerOptimizationGuide.html</a></a></p>
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Welcome to my personal site</p>
+    
+     © 2019
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

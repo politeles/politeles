@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Jose Enrique Pons">
+    <meta name="description" content="Jose Enrique Pons&#39;s personal website">
+    <meta name="keywords" content="blog,developer,personal,ai,ml,artificial intelligence, machine learning">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to automate folder creation and folders&#39; structure creation on windows"/>
+<meta name="twitter:description" content="In this post I&rsquo;m going to show some script files using the old batch scripting style that works perfectly on windows 7 an on. You will find very good books and reviews on the internet likeWindows_Batch_Scripting.
+In my case we need to automate the creation of the following folder structure:  Main Folder  Sub Folder  Sub Sub Folder  Folder 1 Folder 2 Folder 3 Folder n        So I developed the following a small batch script to create interfaces."/>
+
+    <meta property="og:title" content="How to automate folder creation and folders&#39; structure creation on windows" />
+<meta property="og:description" content="In this post I&rsquo;m going to show some script files using the old batch scripting style that works perfectly on windows 7 an on. You will find very good books and reviews on the internet likeWindows_Batch_Scripting.
+In my case we need to automate the creation of the following folder structure:  Main Folder  Sub Folder  Sub Sub Folder  Folder 1 Folder 2 Folder 3 Folder n        So I developed the following a small batch script to create interfaces." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jpons.es/2015/05/how-to-automate-folder-creation-and-folders-structure-creation-on-windows/" />
+<meta property="article:published_time" content="2015-05-07T00:09:12&#43;02:00"/>
+<meta property="article:modified_time" content="2015-05-07T00:09:12&#43;02:00"/>
+
+
+    
+      <base href="https://jpons.es/2015/05/how-to-automate-folder-creation-and-folders-structure-creation-on-windows/">
+    
+    <title>
+  How to automate folder creation and folders&#39; structure creation on windows · Jose Enrique Pons Personal Site
+</title>
+
+    
+      <link rel="canonical" href="https://jpons.es/2015/05/how-to-automate-folder-creation-and-folders-structure-creation-on-windows/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://jpons.es/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.55.6" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://jpons.es/">
+      Jose Enrique Pons Personal Site
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jpons.es/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jpons.es/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jpons.es/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jpons.es/contact/">Contact me</a>
+          </li>
+        
+      
+      
+        
+        
+        
+          
+        
+          
+            
+              <li class="navigation-item menu-separator">
+                <span>|</span>
+              </li>
+              
+            
+            <li class="navigation-item">
+              <a href="https://jpons.es/es/">Español</a>
+            </li>
+          
+        
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">How to automate folder creation and folders&#39; structure creation on windows</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2015-05-07T00:09:12&#43;02:00'>
+                May 7, 2015
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2 minutes read
+            </span>
+          </div>
+          
+          
+        </div>
+      </header>
+
+      <div>
+        <p>In this post I&rsquo;m going to show some script files using the old batch scripting style that works perfectly on windows 7 an on. You will find very good books and reviews on the internet like<a href="http://en.wikibooks.org/wiki/Windows_Batch_Scripting" target="_blank">Windows_Batch_Scripting</a>.</p>
+
+<p>In my case we need to automate the creation of the following folder structure:
+<ul>
+    <li>Main Folder
+<ul>
+    <li>Sub Folder
+<ul>
+    <li>Sub Sub Folder
+<ul>
+    <li>Folder 1</li>
+    <li>Folder 2</li>
+    <li>Folder 3</li>
+    <li>Folder n</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+So I developed the following a small batch script to create interfaces. First I check the arguments and set some initial variables, like the starting folder and so.
+<pre class="lang:batch decode:true " title="Script start">@ECHO OFF
+REM Create folders for a new interface
+REM Parameters: Folder SubFolder SubSubfolder</p>
+
+<p>set basefolder=c:<br />
+set folders=(folder1 folder2 folder3 foldern)</p>
+
+<dl>
+<dt>for %%x in (%*) do Set /A argC+=1</dt>
+</dl>
+
+<dl>
+<dt>A argC+=1</dt>
+</dl>
+
+<dl>
+<dt><pre class="lang:batch decode:true " title="Loop">echo Creating folder interfaces:</dt>
+</dl>
+
+<dl>
+<dt><pre class="lang:batch decode:true " title="Loop">echo Creating folder interfaces:</dt>
+</dl>
+
+<dl>
+<dt>e=&ldquo;Loop&rdquo;&gt;echo Creating folder interfaces:</dt>
+</dl>
+
+<p>:folderloop
+for %%i in %folders% do (
+echo  mkdir %basefolder%\%1\%2\%3\%%i
+mkdir %basefolder%\%1\%2\%3\%%i
+)
+goto :end</pre>
+Finally I handle wrong calls with the following code:
+<pre class="lang:batch decode:true" title="Wrong call handling">:wrongcall</p>
+
+<p>echo Wrong call.
+echo %0 Folder SubFolder SubSubFolder
+echo Where
+echo Folder : Is the main folder
+echo SubFolder : Is the secondary folder
+echo SubSubFolder Is the SubSubFolder
+echo sample usage:
+echo %0 folder1 sfmt int12</pre></p>
+
+<p>Finally I automated the creation of folders with a call from an external batch file, so I can create multiple folders:</p>
+
+<pre class="lang:batch mark:6,11 decode:true " title="Main Script" >@ECHO OFF
+REM Create folders sets
+
+set argC=0
+for %%x in (%*) do Set /A argC+=1
+:parametercheck
+if -%argC%- lss 1 (
+goto :wrongcall
+)
+
+for /F "tokens=*" %%A in (%1) do CALL new_itf.bat %%A
+
+goto :end
+
+:wrongcall
+
+echo Wrong call.
+echo %0 config_file
+echo Where
+echo config_file: configuration file
+echo sample usage:
+echo %0 folders.txt
+:end</pre> 
+Where new_itf.bat is the name I gave to the other batch file. 
+The aspect of the configuration file is quite simple:
+
+ 
+<pre class="theme:dark-terminal lang:sh decode:true " title="Configuration file" >Folder SubFolder SubSubFolder1
+Folder SubFolder SubSubFolder2
+Folder SubFolder SubSubFolder3
+Folder SubFolder SubSubFolder4</pre> 
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Welcome to my personal site</p>
+    
+     © 2019
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Jose Enrique Pons Personal Site</title>
+    <link>https://jpons.es/posts/</link>
+    <description>Recent content in Posts on Jose Enrique Pons Personal Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 05 Jun 2019 00:09:12 +0200</lastBuildDate>
+    
+	<atom:link href="https://jpons.es/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AI and ML position</title>
+      <link>https://jpons.es/2019/06/ai-and-ml-position/</link>
+      <pubDate>Wed, 05 Jun 2019 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2019/06/ai-and-ml-position/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Installing caffe in Ubuntu 16.04</title>
+      <link>https://jpons.es/2017/01/installing-caffe-in-ubuntu-16.04/</link>
+      <pubDate>Tue, 03 Jan 2017 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2017/01/installing-caffe-in-ubuntu-16.04/</guid>
+      <description>Caffe is a library used in deep learning and specific to computer vision. They provide an installation guide, which is quite nice. But I experienced problems during the install. You can download the source code in https://github.com/BVLC/caffe
+First follow the installation instructions.
+I had installed cuda 8 library directly from Nvidia and not from ubuntu default repos.
+Then install the following packages: sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler sudo apt-get install &amp;ndash;no-install-recommends libboost-all-dev</description>
+    </item>
+    
+    <item>
+      <title>Getting started with docker in Ubuntu 14.04 LTS</title>
+      <link>https://jpons.es/2016/09/getting-started-with-docker-in-ubuntu-14.04-lts/</link>
+      <pubDate>Sat, 10 Sep 2016 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2016/09/getting-started-with-docker-in-ubuntu-14.04-lts/</guid>
+      <description>Getting started with docker in Ubuntu 14.04 LTS I&amp;rsquo;m trying to install a small lab system based on Ubuntu. The Docker project is a new step on the virtualization world, which reduces the amount of resources used by the &amp;lsquo;guest O.S&amp;rsquo; since there is no such O.S.
+To get an overview on Docker, I recommend to get to the project page and get the resources and the free (an really good) training from there (https://www.</description>
+    </item>
+    
+    <item>
+      <title>Create an SSL certificate with openSSL</title>
+      <link>https://jpons.es/2016/09/create-an-ssl-certificate-with-openssl/</link>
+      <pubDate>Mon, 05 Sep 2016 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2016/09/create-an-ssl-certificate-with-openssl/</guid>
+      <description>Create an SSL certificate with openSSL Create a selfsigned SSL certificate
+With openssl.
+openssl req -x509 -nodes -days 7300 -newkey rsa:2048 -keyout /etc/ssl/certs/vsftpd.pem -out /etc/ssl/certs/vsftpd.pem</description>
+    </item>
+    
+    <item>
+      <title>Testing PAM service authentication</title>
+      <link>https://jpons.es/2016/08/testing-pam-service-authentication/</link>
+      <pubDate>Tue, 30 Aug 2016 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2016/08/testing-pam-service-authentication/</guid>
+      <description>Testing PAM service authentication #include &amp;lt;stdio.h&amp;gt;#include &amp;lt;security/pam_appl.h&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;#include &amp;lt;string.h&amp;gt;struct pam_response *reply;// //function used to get user inputint function_conversation(int num_msg, const struct pam_message **msg, struct pam_response **resp, void *appdata_ptr){*resp = reply;return PAM_SUCCESS;}int authenticate_system(const char *username, const char *password, const char *service_name) {const struct pam_conv local_conversation = { function_conversation, NULL };pam_handle_t *local_auth_handle = NULL; // this gets set by pam_startint retval;retval = pam_start(service_name , username, &amp;amp;local_conversation, &amp;amp;local_auth_handle);if (retval !</description>
+    </item>
+    
+    <item>
+      <title>Read and write your contacts from your SIM mobile card</title>
+      <link>https://jpons.es/2016/08/read-and-write-your-contacts-from-your-sim-mobile-card/</link>
+      <pubDate>Fri, 26 Aug 2016 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2016/08/read-and-write-your-contacts-from-your-sim-mobile-card/</guid>
+      <description>Read and write your contacts from your SIM mobile card If you have a smart card reader, you can read the contacts from your SIM card from your mobile phone. http://www.mono-project.com/docs/getting-started/install/linux/</description>
+    </item>
+    
+    <item>
+      <title>Working with Vsftpd as ftp server with virtual users and SSL certificates</title>
+      <link>https://jpons.es/2016/08/working-with-vsftpd-as-ftp-server-with-virtual-users-and-ssl-certificates/</link>
+      <pubDate>Fri, 26 Aug 2016 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2016/08/working-with-vsftpd-as-ftp-server-with-virtual-users-and-ssl-certificates/</guid>
+      <description>Working with Vsftpd as ftp server with virtual users and SSL certificates Installation and configuration of Vsftpd with virtual users and SSL certificates. Hi, on this post, I&amp;rsquo;m going to explain how to configure the very secure FTP daemon, vsftpd
+We want to install a ftp server with virtual users and SSL certificates. Virtual users allow us to define users that are not on the underlying unix system. There are several configuration files that we need to configure.</description>
+    </item>
+    
+    <item>
+      <title>Upload and download files to FTPs using C#</title>
+      <link>https://jpons.es/2016/07/upload-and-download-files-to-ftps-using-c/</link>
+      <pubDate>Tue, 26 Jul 2016 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2016/07/upload-and-download-files-to-ftps-using-c/</guid>
+      <description>Upload and download files to FTPs using C Some useful links: Check if a file exists: https://msdn.microsoft.com/es-es/library/system.io.file.exists%28v=vs.110%29.aspx
+How to write to a text file: https://msdn.microsoft.com/es-es/library/8bh11f1k.aspx
+How to download files from FTP: https://msdn.microsoft.com/es-es/library/ms229711(v=vs.110).aspx
+How to sleep a thread: https://msdn.microsoft.com/es-es/library/d00bd51t(v=vs.110).aspx
+Problems related to FTP with SSL: Ignore SSL validation for certificates: http://stackoverflow.com/questions/12506575/how-to-ignore-the-certificate-check-when-ssl
+Configure FTP over SSL http://stackoverflow.com/questions/1355341/ftp-over-ssl-for-c-sharp
+Ignore web certificates: http://weblog.west-wind.com/posts/2011/Feb/11/HttpWebRequest-and-Ignoring-SSL-Certificate-Errors
+Library for FTPs on C# http://netftp.codeplex.com/</description>
+    </item>
+    
+    <item>
+      <title>Big Data Lab</title>
+      <link>https://jpons.es/2016/06/big-data-lab/</link>
+      <pubDate>Wed, 08 Jun 2016 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2016/06/big-data-lab/</guid>
+      <description>Big Data Lab Setting up your (small) Big Data Laboratory
+I want to learn and work with some of the newest &amp;lsquo;Big Data&amp;rsquo; tools, like Hadoop, Mahout, Flume, Elastic, etc. But how to do that? Which tecnology should I work with? Is there like a faction of people that only work with Apache products, other just with Amazon. To choose, and experiment with those technologies I&amp;rsquo;m going to set up a budget lab at home.</description>
+    </item>
+    
+    <item>
+      <title>SSH authentication with keys</title>
+      <link>https://jpons.es/2016/06/ssh-authentication-with-keys/</link>
+      <pubDate>Wed, 08 Jun 2016 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2016/06/ssh-authentication-with-keys/</guid>
+      <description>SSH authentication with keys Handling errors on ssh authentication.
+If you have ssh authentication with public / private keys, sometimes you might face the issue, that even when the authorized_keys contains your public key on the target host, the system is asking the password.
+Some things you can try: - Copy your public key by using ssh-copy-id command. - Check permissions: the target home folder should be at least 75x, so the group can&amp;rsquo;t write.</description>
+    </item>
+    
+    <item>
+      <title>Install java development tools &gt;= 8 on ubuntu linux &gt;= 14.04</title>
+      <link>https://jpons.es/2016/05/install-java-development-tools-8-on-ubuntu-linux-14.04/</link>
+      <pubDate>Sat, 28 May 2016 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2016/05/install-java-development-tools-8-on-ubuntu-linux-14.04/</guid>
+      <description>Hi there, I&amp;rsquo;m trying to install java development tools on my ubuntu, I skim through several guides, but none of them convinced me. All links I saw just consist on adding a repository to your apt, and then install with apt from there. But I prefer to have a deep understanding. So I went to the official download page for Java 8. And I downloaded the image called linux-x64.tar.gz The release instructions are here.</description>
+    </item>
+    
+    <item>
+      <title>Compass not running with Grunt on Windows 7</title>
+      <link>https://jpons.es/2016/02/compass-not-running-with-grunt-on-windows-7/</link>
+      <pubDate>Fri, 19 Feb 2016 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2016/02/compass-not-running-with-grunt-on-windows-7/</guid>
+      <description>I faced the issue that compass was not working on windows 7 64 bits and I solved by installing ruby and then the compass gem. Depending on your system, you can download ruby here: http://rubyinstaller.org/downloads/ Then don&amp;rsquo;t forget to set up the environment variables on windows I think you can do that directly from the installer, but also from Computer -&amp;gt; Control Panel -&amp;gt; Edit Environment Variables. Then on System Variables, add to the Path variable the ruby path,  Finally open a CMD terminal and write:</description>
+    </item>
+    
+    <item>
+      <title>Problems when using webservice from Javascript: CORS</title>
+      <link>https://jpons.es/2015/08/problems-when-using-webservice-from-javascript-cors/</link>
+      <pubDate>Wed, 26 Aug 2015 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2015/08/problems-when-using-webservice-from-javascript-cors/</guid>
+      <description>Hi, I&amp;rsquo;ve been fighting the whole day for the security constraint that makes your browser blocks your JS code when trying to reach an external server. Thas was solved on the standard Cross Origin Resource Sharing. (CORS for short). In my node JS server code I had to adapt the following:
+//enable Cross Origin Resource Sharingapp.use(function(req, res, next) {res.header(&amp;#34;Access-Control-Allow-Origin&amp;#34;, &amp;#34;*&amp;#34;);res.header(&amp;#39;Access-Control-Allow-Methods&amp;#39;, &amp;#39;GET,PUT,POST,DELETE,OPTIONS&amp;#39;);res.header(&amp;#34;Access-Control-Allow-Headers&amp;#34;, &amp;#34;Origin, X-Requested-With, Content-Type, Accept&amp;#34;);next();});  and on my Jquery I did:</description>
+    </item>
+    
+    <item>
+      <title>Using Git as SCM and exclude configuration files</title>
+      <link>https://jpons.es/2015/08/using-git-as-scm-and-exclude-configuration-files/</link>
+      <pubDate>Tue, 25 Aug 2015 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2015/08/using-git-as-scm-and-exclude-configuration-files/</guid>
+      <description>Hi, this post is devoted to explain how do I deal with configuration files when I post them to GIT. There are very sofisticated proposals: Git Tools - Interactive Staging when you have secret key in your project, how can pushing to GitHub be possible?
+But the working thing to me is the following: 1. First push the empty config file to your repo. 1. Then tell git to ignore the updates on that file</description>
+    </item>
+    
+    <item>
+      <title>Firsts steps with MongoDB &#43; mongoose</title>
+      <link>https://jpons.es/2015/08/firsts-steps-with-mongodb-mongoose/</link>
+      <pubDate>Mon, 24 Aug 2015 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2015/08/firsts-steps-with-mongodb-mongoose/</guid>
+      <description>Basically I want to create a database for my JSON documents. Documents have the following format.
+{&amp;#34;userId&amp;#34;:&amp;#34;userIdValue&amp;#34;,answers:[{&amp;#34;idUser&amp;#34;:1111,&amp;#34;testNo&amp;#34;:1,&amp;#34;answerNo&amp;#34;:2,&amp;#34;answerValue&amp;#34;:&amp;#34;answer1&amp;#34;},{&amp;#34;idUser&amp;#34;:1111,&amp;#34;testNo&amp;#34;:1,&amp;#34;answerNo&amp;#34;:2,&amp;#34;answerValue&amp;#34;:&amp;#34;answer1&amp;#34;}]}  The steps to be able to store documents on my mongoDB are the following:  Create a collection for my docs.(It&amp;rsquo;s created implicitly) Create a power user on that collection Do basic CRUD operations on the database to test. i&amp;rsquo;ll create the collection &amp;ldquo;answers&amp;rdquo; and insert a test document.</description>
+    </item>
+    
+    <item>
+      <title>Install MongoDB 3.0&#43; on Windows</title>
+      <link>https://jpons.es/2015/08/install-mongodb-3.0-on-windows/</link>
+      <pubDate>Sat, 22 Aug 2015 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2015/08/install-mongodb-3.0-on-windows/</guid>
+      <description>Hi again, this is going to be a small configuration guide for mongo DB on windows. There are a few steps missing on the official instalation guide. To sum up the steps are the following:  Download the installer. Depending on your version. I have chosen 64-bit. Install Windows hot fix on your system After the installation, create the configuration and data folders on your system. To keep it simple, I created on the same program folder</description>
+    </item>
+    
+    <item>
+      <title>Indexing a website using javascript search engine</title>
+      <link>https://jpons.es/2015/06/indexing-a-website-using-javascript-search-engine/</link>
+      <pubDate>Mon, 15 Jun 2015 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2015/06/indexing-a-website-using-javascript-search-engine/</guid>
+      <description>Hi, today I&amp;rsquo;m going to talk about an implementation on Javascript, called tipue search. There are 2 possibilities, one is to perform the search online, that is, to lookup the files and do the search while querying. This is reported as not being as efficient as do an offline index.
+So I build an index, based on json, using a python script.
+Basically the json I wanted to create looks like this:</description>
+    </item>
+    
+    <item>
+      <title>Scripting with Python</title>
+      <link>https://jpons.es/2015/06/scripting-with-python/</link>
+      <pubDate>Mon, 08 Jun 2015 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2015/06/scripting-with-python/</guid>
+      <description>Hi, today I&amp;rsquo;m going to show you the power of python. I&amp;rsquo;m working on windows platform, so, I use Idle environment, you can check more here: https://www.python.org/downloads/windows/ I wanted to create a script to read a lot of html files and write the title tag to a txt document, I&amp;rsquo;ll use that document to do an index later.
+But, it looks like there are no standard functions to parse html files, so I found BeautifulSoup library to process html entities http://www.</description>
+    </item>
+    
+    <item>
+      <title>Short Administration guide for passenger</title>
+      <link>https://jpons.es/2015/06/short-administration-guide-for-passenger/</link>
+      <pubDate>Mon, 08 Jun 2015 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2015/06/short-administration-guide-for-passenger/</guid>
+      <description>Hi, I&amp;rsquo;m working on several projects with Phusion Passenger software. The administration is not really well documented and also is not so powerful.
+There are some tools to analyze the memory usage like passenger-memory-stats. In my system the output is something like:
+passenger-memory-stats Version: 4.0.59 Date : 2015-05-12 16:07:11 +0200 ------------- Apache processes ------------- *** WARNING: The Apache executable cannot be found. Please set the APXS2 environment variable to your &#39;apxs2&#39; executable&#39;s filename, or set the HTTPD environment variable to your &#39;httpd&#39; or &#39;apache2&#39; executable&#39;s filename.</description>
+    </item>
+    
+    <item>
+      <title>More on operations with folders on Linux and Windows</title>
+      <link>https://jpons.es/2015/05/more-on-operations-with-folders-on-linux-and-windows/</link>
+      <pubDate>Mon, 25 May 2015 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2015/05/more-on-operations-with-folders-on-linux-and-windows/</guid>
+      <description>Hi, recently I&amp;rsquo;ve been working on some issues dealing with folders on windows and on linux. For instance, Replicate Folder Structure on Windows  With robocopy is really easy:
+robocopy &#34;Source&#34; &#34;Target&#34; /e /xf * For example: robocopy &#34;C:\JiveCopy&#34; . /e /xf * Replicate folder structure on Linux This requires a little bit of scripting, on bash it would be something like:
+cd TARGET &amp;amp;&amp;amp; (cd SOURCE; find . -type d !</description>
+    </item>
+    
+    <item>
+      <title>Working with dates in Java</title>
+      <link>https://jpons.es/2015/05/working-with-dates-in-java/</link>
+      <pubDate>Mon, 11 May 2015 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2015/05/working-with-dates-in-java/</guid>
+      <description>I recovered an old post from 2012 on my previous blog. Here I translated and updated the post.
+Working with dates is not an easy task in a programming language. Usually, because there is no standard (like it happens on databases) or sometimes, the standard is not implemented. On 2012 I talked that joda time was planned to be the new data standard on Java, and in fact, in 2015, Joda time is the facto standard ( as they claim on their site): Joda-Time is the de facto standard date and time library for Java.</description>
+    </item>
+    
+    <item>
+      <title>Configure logging on C# project with Visual Studio</title>
+      <link>https://jpons.es/2015/05/configure-logging-on-c#-project-with-visual-studio/</link>
+      <pubDate>Fri, 08 May 2015 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2015/05/configure-logging-on-c#-project-with-visual-studio/</guid>
+      <description>In this post I&amp;rsquo;m going to talk about the configuration of two loggers for a Visual Studio 2013 C# project. I work with the free community edition. In this case we want one log for errors and another one for the actions that our program will be doing.
+The first thing to do is to download and install the Apache log4net library. You can follow the instructions on the project&amp;rsquo;s page.</description>
+    </item>
+    
+    <item>
+      <title>How to automate folder creation and folders&#39; structure creation on windows</title>
+      <link>https://jpons.es/2015/05/how-to-automate-folder-creation-and-folders-structure-creation-on-windows/</link>
+      <pubDate>Thu, 07 May 2015 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2015/05/how-to-automate-folder-creation-and-folders-structure-creation-on-windows/</guid>
+      <description>In this post I&amp;rsquo;m going to show some script files using the old batch scripting style that works perfectly on windows 7 an on. You will find very good books and reviews on the internet likeWindows_Batch_Scripting.
+In my case we need to automate the creation of the following folder structure:  Main Folder  Sub Folder  Sub Sub Folder  Folder 1 Folder 2 Folder 3 Folder n        So I developed the following a small batch script to create interfaces.</description>
+    </item>
+    
+    <item>
+      <title>How to create and modify admin users in Mongo db</title>
+      <link>https://jpons.es/2015/05/how-to-create-and-modify-admin-users-in-mongo-db/</link>
+      <pubDate>Wed, 06 May 2015 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2015/05/how-to-create-and-modify-admin-users-in-mongo-db/</guid>
+      <description>Today&amp;rsquo;s post is related to some repetitive administrative tasks related to database administration like the setup of a user and grant some permissions on Mongo db. I will perform all activities onthe Javascript shell for Mongo.
+First of all, it&amp;rsquo;s important to know whether mongo server is running or not. In windows, you may run it as a service. But in this case, I&amp;rsquo;ll run it in foreground: C:\Users\JoseEnriqueP&amp;amp;gt;mongod &amp;ndash;dbpath .</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Jose Enrique Pons">
+    <meta name="description" content="Jose Enrique Pons&#39;s personal website">
+    <meta name="keywords" content="blog,developer,personal,ai,ml,artificial intelligence, machine learning">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Scripting with Python"/>
+<meta name="twitter:description" content="Hi, today I&rsquo;m going to show you the power of python. I&rsquo;m working on windows platform, so, I use Idle environment, you can check more here: https://www.python.org/downloads/windows/ I wanted to create a script to read a lot of html files and write the title tag to a txt document, I&rsquo;ll use that document to do an index later.
+But, it looks like there are no standard functions to parse html files, so I found BeautifulSoup library to process html entities http://www."/>
+
+    <meta property="og:title" content="Scripting with Python" />
+<meta property="og:description" content="Hi, today I&rsquo;m going to show you the power of python. I&rsquo;m working on windows platform, so, I use Idle environment, you can check more here: https://www.python.org/downloads/windows/ I wanted to create a script to read a lot of html files and write the title tag to a txt document, I&rsquo;ll use that document to do an index later.
+But, it looks like there are no standard functions to parse html files, so I found BeautifulSoup library to process html entities http://www." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jpons.es/2015/06/scripting-with-python/" />
+<meta property="article:published_time" content="2015-06-08T00:09:12&#43;02:00"/>
+<meta property="article:modified_time" content="2015-06-08T00:09:12&#43;02:00"/>
+
+
+    
+      <base href="https://jpons.es/2015/06/scripting-with-python/">
+    
+    <title>
+  Scripting with Python · Jose Enrique Pons Personal Site
+</title>
+
+    
+      <link rel="canonical" href="https://jpons.es/2015/06/scripting-with-python/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://jpons.es/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.55.6" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://jpons.es/">
+      Jose Enrique Pons Personal Site
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jpons.es/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jpons.es/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jpons.es/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jpons.es/contact/">Contact me</a>
+          </li>
+        
+      
+      
+        
+        
+        
+          
+        
+          
+            
+              <li class="navigation-item menu-separator">
+                <span>|</span>
+              </li>
+              
+            
+            <li class="navigation-item">
+              <a href="https://jpons.es/es/">Español</a>
+            </li>
+          
+        
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Scripting with Python</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2015-06-08T00:09:12&#43;02:00'>
+                June 8, 2015
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              One minute read
+            </span>
+          </div>
+          
+          
+        </div>
+      </header>
+
+      <div>
+        <p>Hi, today I&rsquo;m going to show you the power of python.
+I&rsquo;m working on windows platform, so, I use Idle environment, you can check more here: <a href="https://www.python.org/downloads/windows/" target="_blank"><a href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a></a>
+I wanted to create a script to read a lot of html files and write the title tag to a txt document, I&rsquo;ll use that document to do an index later.</p>
+
+<p>But, it looks like there are no standard functions to parse html files, so I found BeautifulSoup library to process html entities
+<a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/" target="_blank"><a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/">http://www.crummy.com/software/BeautifulSoup/bs4/doc/</a></a>
+I also used the following resources:
+Reading unicode characters:
+<a href="http://stackoverflow.com/questions/147741/character-reading-from-file-in-python" target="_blank"><a href="http://stackoverflow.com/questions/147741/character-reading-from-file-in-python">http://stackoverflow.com/questions/147741/character-reading-from-file-in-python</a></a></p>
+
+<p>Installing python modules:
+<a href="https://docs.python.org/2/install/" target="_blank"><a href="https://docs.python.org/2/install/">https://docs.python.org/2/install/</a></a></p>
+
+<p>Extracting text from html tree:
+<a href="http://stackoverflow.com/questions/328356/extracting-text-from-html-file-using-python" target="_blank"><a href="http://stackoverflow.com/questions/328356/extracting-text-from-html-file-using-python">http://stackoverflow.com/questions/328356/extracting-text-from-html-file-using-python</a></a></p>
+
+<p>Get a list of files on a directory:
+<a href="http://stackoverflow.com/questions/2225564/get-a-filtered-list-of-files-in-a-directory" target="_blank"><a href="http://stackoverflow.com/questions/2225564/get-a-filtered-list-of-files-in-a-directory">http://stackoverflow.com/questions/2225564/get-a-filtered-list-of-files-in-a-directory</a></a>
+<a href="http://stackoverflow.com/questions/3964681/find-all-files-in-directory-with-extension-txt-with-python" target="_blank"><a href="http://stackoverflow.com/questions/3964681/find-all-files-in-directory-with-extension-txt-with-python">http://stackoverflow.com/questions/3964681/find-all-files-in-directory-with-extension-txt-with-python</a></a></p>
+
+<p>URLlib2 python:
+<a href="https://docs.python.org/2/library/urllib2.html" target="_blank"><a href="https://docs.python.org/2/library/urllib2.html">https://docs.python.org/2/library/urllib2.html</a></a></p>
+
+<p>With that I could write the following script to get the title from each filename that contains a pattern:</p>
+
+<pre class="lang:python decode:true " title="my small script on python" >#import urllib2.request
+import glob, os
+import codecs
+from bs4 import BeautifulSoup
+os.chdir("C:\mydocs")
+for file in glob.glob("DOC-[0-9][0-9][0-9][0-9].html"):
+    f = codecs.open(file,encoding='utf-8')
+    doc = BeautifulSoup(f.read())    
+    print(file)
+    print(doc.title.string)
+</pre> 
+
+      </div>
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>Welcome to my personal site</p>
+    
+     © 2019
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>
