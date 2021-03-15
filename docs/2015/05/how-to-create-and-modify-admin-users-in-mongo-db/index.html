@@ -11,16 +11,16 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="How to create and modify admin users in Mongo db"/>
-<meta name="twitter:description" content="Today&rsquo;s post is related to some repetitive administrative tasks related to database administration like the setup of a user and grant some permissions on Mongo db. I will perform all activities onthe Javascript shell for Mongo.
-First of all, it&rsquo;s important to know whether mongo server is running or not. In windows, you may run it as a service. But in this case, I&rsquo;ll run it in foreground: C:\Users\JoseEnriqueP&amp;gt;mongod &ndash;dbpath ."/>
+<meta name="twitter:description" content="Today&rsquo;s post is related to some repetitive administrative tasks related to database administration like the setup of a user and grant some permissions on Mongo db. I will perform all activities onthe Javascript shell for Mongo.First of all, it&rsquo;s important to know whether mongo server is running or not. In windows, you may run it as a service. But in this case, I&rsquo;ll run it in foreground:
+Connect to mongo in the usual way:"/>
 
     <meta property="og:title" content="How to create and modify admin users in Mongo db" />
-<meta property="og:description" content="Today&rsquo;s post is related to some repetitive administrative tasks related to database administration like the setup of a user and grant some permissions on Mongo db. I will perform all activities onthe Javascript shell for Mongo.
-First of all, it&rsquo;s important to know whether mongo server is running or not. In windows, you may run it as a service. But in this case, I&rsquo;ll run it in foreground: C:\Users\JoseEnriqueP&amp;gt;mongod &ndash;dbpath ." />
+<meta property="og:description" content="Today&rsquo;s post is related to some repetitive administrative tasks related to database administration like the setup of a user and grant some permissions on Mongo db. I will perform all activities onthe Javascript shell for Mongo.First of all, it&rsquo;s important to know whether mongo server is running or not. In windows, you may run it as a service. But in this case, I&rsquo;ll run it in foreground:
+Connect to mongo in the usual way:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jpons.es/2015/05/how-to-create-and-modify-admin-users-in-mongo-db/" />
-<meta property="article:published_time" content="2015-05-06T00:09:12&#43;02:00"/>
-<meta property="article:modified_time" content="2015-05-06T00:09:12&#43;02:00"/>
+<meta property="article:published_time" content="2015-05-06T00:09:12+02:00" />
+<meta property="article:modified_time" content="2015-05-06T00:09:12+02:00" />
 
 
     
@@ -55,7 +55,7 @@ First of all, it&rsquo;s important to know whether mongo server is running or no
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.65.3" />
   </head>
 
   <body class=" ">
@@ -125,7 +125,7 @@ First of all, it&rsquo;s important to know whether mongo server is running or no
             </span>
             <span class="reading-time">
               <i class="fas fa-clock"></i>
-              2 minutes read
+              One minute read
             </span>
           </div>
           
@@ -134,61 +134,29 @@ First of all, it&rsquo;s important to know whether mongo server is running or no
       </header>
 
       <div>
-        <p>Today&rsquo;s post is related to some repetitive administrative tasks related to database administration like the setup of a user and grant some permissions on Mongo db. I will perform all activities on<a href="http://docs.mongodb.org/manual/reference/mongo-shell/" target="_blank"> the Javascript shell for Mongo.</a></p>
-
-<p>First of all, it&rsquo;s important to know whether mongo server is running or not. In windows, you may run it as a <a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/#begin-using-mongodb" target="_blank">service</a>. But in this case, I&rsquo;ll run it in foreground:
-<pre class="theme:dark-terminal striped:false marking:false ranges:false nums:false nums-toggle:false lang:batch highlight:0 decode:true " title="Start up mongo db " >
-C:\Users\JoseEnriqueP&amp;gt;mongod &ndash;dbpath .
-2015-05-06T23:05:03.205+0200
-2015-05-06T23:05:03.222+0200 warning: 32-bit servers don&rsquo;t have journaling enabled by default. Please use &ndash;journal if you want durability.</pre></p>
-
-<p>Connect to mongo in the usual way:
-<pre class="theme:dark-terminal striped:false marking:false ranges:false nums:false nums-toggle:false lang:batch highlight:0 decode:true " title="Start up mongo db " >
-C:\Users\JoseEnriqueP&gt;mongo
-MongoDB shell version: 2.6.5
-connecting to: test
-</pre>
-Change to use the administration database and create an administration user.</p>
-
-<p>In this link you will see how to <a href="http://docs.mongodb.org/manual/tutorial/add-user-administrator/" target="_blank">create an admin user in Mongo DB</a> and also how to <a href="http://docs.mongodb.org/manual/administration/security-user-role-management/" target="_blank">manage roles and user profiles in mongo</a>.
-<pre class="theme:dark-terminal striped:false marking:false ranges:false nums:false nums-toggle:false lang:batch highlight:0 decode:true " title="Start up mongo db " >
-&gt; use admin;
-switched to db admin
- db.createUser(
-   {
-    user: &ldquo;admin&rdquo;,
-    pwd: &ldquo;yourPasswordHere&rdquo;,
-    roles:
-    [
-    {
-        role: &ldquo;dbOwner&rdquo;,
-        db: &ldquo;admin&rdquo;
-    }
-    ]
-   }
- )
-</pre>
-Note that the user is now the owner of that db. You will get a confirmation that the user was created successfully:
-<pre class="theme:dark-terminal striped:false marking:false ranges:false nums:false nums-toggle:false lang:batch highlight:0 decode:true " title="Start up mongo db " >
-Successfully added user: {
-        &ldquo;user&rdquo; : &ldquo;admin&rdquo;,
-        &ldquo;roles&rdquo; : [
-                {
-                        &ldquo;role&rdquo; : &ldquo;dbOwner&rdquo;,
-                        &ldquo;db&rdquo; : &ldquo;admin&rdquo;
-                }
-        ]
-}
-</pre>
-In this <a href="http://docs.mongodb.org/manual/reference/security/" target="_blank">link</a> you have a complete reference for all users related operations that can be done on Mongo DB.</p>
-
-<p>To change the password of a given user in Mongo DB you need an administrative user. After that, you log into the database and change the password in the following way:
-<pre class="theme:dark-terminal striped:false marking:false ranges:false nums:false nums-toggle:false lang:batch highlight:0 decode:true " title="Start up mongo db " >db.changeUserPassword(&lsquo;user&rsquo;,&lsquo;newpassword&rsquo;);
-</pre>
-You won&rsquo;t get any notification that the password was changed, but try to log with the new password and you should get a &lsquo;1&rsquo;:
-<pre class="theme:dark-terminal striped:false marking:false ranges:false nums:false nums-toggle:false lang:batch highlight:0 decode:true " title="Start up mongo db " >&gt; db.auth(&lsquo;admin&rsquo;,&lsquo;newpass&rsquo;);
-1
-</pre></p>
+        <p>Today&rsquo;s post is related to some repetitive administrative tasks related to database administration like the setup of a user and grant some permissions on Mongo db. I will perform all activities on<!-- raw HTML omitted --> the Javascript shell for Mongo.<!-- raw HTML omitted --></p>
+<p>First of all, it&rsquo;s important to know whether mongo server is running or not. In windows, you may run it as a <!-- raw HTML omitted -->service<!-- raw HTML omitted -->. But in this case, I&rsquo;ll run it in foreground:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Connect to mongo in the usual way:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Change to use the administration database and create an administration user.</p>
+<p>In this link you will see how to <!-- raw HTML omitted -->create an admin user in Mongo DB<!-- raw HTML omitted --> and also how to <!-- raw HTML omitted -->manage roles and user profiles in mongo<!-- raw HTML omitted -->.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Note that the user is now the owner of that db. You will get a confirmation that the user was created successfully:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>In this <!-- raw HTML omitted -->link<!-- raw HTML omitted --> you have a complete reference for all users related operations that can be done on Mongo DB.</p>
+<p>To change the password of a given user in Mongo DB you need an administrative user. After that, you log into the database and change the password in the following way:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>You won&rsquo;t get any notification that the password was changed, but try to log with the new password and you should get a &lsquo;1&rsquo;:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<blockquote>
+</blockquote>
 
       </div>
 
@@ -229,7 +197,7 @@ You won&rsquo;t get any notification that the password was changed, but try to l
     
       <p>Welcome to my personal site</p>
     
-     © 2020
+     © 2021
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.

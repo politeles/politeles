@@ -13,16 +13,20 @@
 <meta name="twitter:title" content="Short Administration guide for passenger"/>
 <meta name="twitter:description" content="Hi, I&rsquo;m working on several projects with Phusion Passenger software. The administration is not really well documented and also is not so powerful.
 There are some tools to analyze the memory usage like passenger-memory-stats. In my system the output is something like:
-passenger-memory-stats Version: 4.0.59 Date : 2015-05-12 16:07:11 &#43;0200 ------------- Apache processes ------------- *** WARNING: The Apache executable cannot be found. Please set the APXS2 environment variable to your &#39;apxs2&#39; executable&#39;s filename, or set the HTTPD environment variable to your &#39;httpd&#39; or &#39;apache2&#39; executable&#39;s filename."/>
+The other tool for the administration is passenger-status:
+Once you select the passenger process, you can dig in deeper:
+you can connect to the administration console, via curl. If you don&rsquo;t get any answer, that means that your server is frozen."/>
 
     <meta property="og:title" content="Short Administration guide for passenger" />
 <meta property="og:description" content="Hi, I&rsquo;m working on several projects with Phusion Passenger software. The administration is not really well documented and also is not so powerful.
 There are some tools to analyze the memory usage like passenger-memory-stats. In my system the output is something like:
-passenger-memory-stats Version: 4.0.59 Date : 2015-05-12 16:07:11 &#43;0200 ------------- Apache processes ------------- *** WARNING: The Apache executable cannot be found. Please set the APXS2 environment variable to your &#39;apxs2&#39; executable&#39;s filename, or set the HTTPD environment variable to your &#39;httpd&#39; or &#39;apache2&#39; executable&#39;s filename." />
+The other tool for the administration is passenger-status:
+Once you select the passenger process, you can dig in deeper:
+you can connect to the administration console, via curl. If you don&rsquo;t get any answer, that means that your server is frozen." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jpons.es/2015/06/short-administration-guide-for-passenger/" />
-<meta property="article:published_time" content="2015-06-08T00:09:12&#43;02:00"/>
-<meta property="article:modified_time" content="2015-06-08T00:09:12&#43;02:00"/>
+<meta property="article:published_time" content="2015-06-08T00:09:12+02:00" />
+<meta property="article:modified_time" content="2015-06-08T00:09:12+02:00" />
 
 
     
@@ -57,7 +61,7 @@ passenger-memory-stats Version: 4.0.59 Date : 2015-05-12 16:07:11 &#43;0200 ----
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.65.3" />
   </head>
 
   <body class=" ">
@@ -127,7 +131,7 @@ passenger-memory-stats Version: 4.0.59 Date : 2015-05-12 16:07:11 &#43;0200 ----
             </span>
             <span class="reading-time">
               <i class="fas fa-clock"></i>
-              3 minutes read
+              One minute read
             </span>
           </div>
           
@@ -138,103 +142,24 @@ passenger-memory-stats Version: 4.0.59 Date : 2015-05-12 16:07:11 &#43;0200 ----
       <div>
         <p>Hi, I&rsquo;m working on several projects with Phusion Passenger software.
 The administration is not really well documented and also is not so powerful.</p>
-
 <p>There are some tools to analyze the memory usage like passenger-memory-stats.
 In my system the output is something like:</p>
-
-<pre class="theme:dark-terminal lang:sh decode:true " >passenger-memory-stats
-Version: 4.0.59
-Date   : 2015-05-12 16:07:11 +0200
-------------- Apache processes -------------
-*** WARNING: The Apache executable cannot be found.
-Please set the APXS2 environment variable to your 'apxs2' executable's filename,                                                              or set the HTTPD environment variable to your 'httpd' or 'apache2' executable's                                                              filename.
-
-
----------- Nginx processes ----------
-PID    PPID   VMSize   Private  Name
--------------------------------------
-20463  1      24.3 MB  ?        nginx: master process /usr/sbin/nginx -c /etc/ng                                                             inx/nginx.conf
-26826  20463  30.5 MB  ?        nginx: worker process
-### Processes: 2
-### Total private dirty RSS: 0.00 MB (?)
-
-
------- Passenger processes -------
-PID    VMSize     Private    Name
-----------------------------------
-12284  83.5 MB    0.3 MB     PassengerWatchdog
-12287  117.9 MB   1.1 MB     PassengerHelperAgent
-12292  26.7 MB    0.5 MB     PassengerLoggingAgent
-12302  26.0 MB    0.2 MB     PassengerWebHelper: master process /home/project                                                            1/.passenger-enterprise/standalone/4.0.59/webhelper-1.6.2-x86_64-linux/Passenger                                                             WebHelper -c /tmp/passenger-standalone.1r1zr19/config -p /tmp/passenger-standalo                                                             ne.1r1zr19/
-
-15170  26.4 MB    0.6 MB     PassengerWebHelper: worker process
-16390  504.5 MB   230.2 MB   Passenger RackApp: /home/myproject/curren                                                      
-16676  438.2 MB   260.4 MB   Passenger RackApp: /home/test/curren                                                            
-                                                          
-### Processes: 95
-### Total private dirty RSS: 8074.19 MB
-*** WARNING: Please run this tool with sudo. Otherwise the private dirty RSS (a                                                              reliable metric for real memory usage) of processes cannot be determined.</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>The other tool for the administration is passenger-status:</p>
-
-<pre class="theme:dark-terminal lang:sh decode:true " >passenger-status
-It appears that multiple Passenger instances are running. Please select a
-specific one by running:
-
-  passenger-status &lt;PID&gt;
-
-The following Passenger instances are running:
-  PID: 12494
-  PID: 14656
-  PID: 12302
-  PID: 15169
-  PID: 13833
-  PID: 15000
-  PID: 13441
-  PID: 12370
-  PID: 12896
-  PID: 12656
-  PID: 14192
-  PID: 14018
-  PID: 13672
-  PID: 13614
-  PID: 14395
-  PID: 12438</pre> 
-Once you select the passenger process, you can dig in deeper:
-
- 
-<pre class="theme:dark-terminal lang:sh decode:true " >passenger-status 12494 --verbose
-Version : 4.0.59
-Date    : 2015-05-12 16:15:21 +0200
-Instance: 12494
------------ General information -----------
-Max pool size : 3
-Processes     : 1
-Requests in top-level queue : 0
-
------------ Application groups -----------
-/homeproject/current#default:
-  App root: /home/myproject/current
-  Requests in queue: 0
-  * PID: 17563   Sessions: 0       Processed: 30      Uptime: 4h 0m 31s
-    CPU: 0%      Memory  : 235M    Last used: 19m 10s a
-    URL     : http://127.0.0.1:53765
-    Password: DTwE2g0zvvELqdDyviXrzi3FvNADc0PVc1l03TX084R
-
-localhost:~&gt; curl -H "X-Passenger-Connect-Password: DTwE2g0zvvELqdDyviXrzi3FvNADc0PVc1l03TX084R" http://127.0.0.1:53765</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Once you select the passenger process, you can dig in deeper:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>you can connect to the administration console, via curl. If you don&rsquo;t get any answer, that means that your server is frozen. If you want to see a trace in the logs, you need to kill it sending one of those signals: SIGQUIT, SIGTERM.</p>
-
 <p>You can find more information about this on the following sites:</p>
-
-<p><a href="https://www.phusionpassenger.com/documentation/Users%20guide%20Apache.html" target="_blank"><a href="https://www.phusionpassenger.com/documentation/Users%20guide%20Apache.html">https://www.phusionpassenger.com/documentation/Users%20guide%20Apache.html</a></a>
+<p><!-- raw HTML omitted --><a href="https://www.phusionpassenger.com/documentation/Users%20guide%20Apache.html">https://www.phusionpassenger.com/documentation/Users%20guide%20Apache.html</a><!-- raw HTML omitted -->
 On Point 9: 9. Analysis and system maintenance</p>
-
 <p>URL scheme
-<a href="http://en.wikipedia.org/wiki/URI_scheme" target="_blank"><a href="http://en.wikipedia.org/wiki/URI_scheme">http://en.wikipedia.org/wiki/URI_scheme</a></a></p>
-
+<!-- raw HTML omitted --><a href="http://en.wikipedia.org/wiki/URI_scheme">http://en.wikipedia.org/wiki/URI_scheme</a><!-- raw HTML omitted --></p>
 <p>Passenger optimization guide:
-<a href="https://www.phusionpassenger.com/documentation/ServerOptimizationGuide.html" target="_blank"><a href="https://www.phusionpassenger.com/documentation/ServerOptimizationGuide.html">https://www.phusionpassenger.com/documentation/ServerOptimizationGuide.html</a></a></p>
+<!-- raw HTML omitted --><a href="https://www.phusionpassenger.com/documentation/ServerOptimizationGuide.html">https://www.phusionpassenger.com/documentation/ServerOptimizationGuide.html</a><!-- raw HTML omitted --></p>
 
       </div>
 
@@ -275,7 +200,7 @@ On Point 9: 9. Analysis and system maintenance</p>
     
       <p>Welcome to my personal site</p>
     
-     © 2020
+     © 2021
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.

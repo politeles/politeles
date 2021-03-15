@@ -12,15 +12,17 @@
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Firsts steps with MongoDB &#43; mongoose"/>
 <meta name="twitter:description" content="Basically I want to create a database for my JSON documents. Documents have the following format.
-{&#34;userId&#34;:&#34;userIdValue&#34;,answers:[{&#34;idUser&#34;:1111,&#34;testNo&#34;:1,&#34;answerNo&#34;:2,&#34;answerValue&#34;:&#34;answer1&#34;},{&#34;idUser&#34;:1111,&#34;testNo&#34;:1,&#34;answerNo&#34;:2,&#34;answerValue&#34;:&#34;answer1&#34;}]}  The steps to be able to store documents on my mongoDB are the following:  Create a collection for my docs.(It&rsquo;s created implicitly) Create a power user on that collection Do basic CRUD operations on the database to test. i&rsquo;ll create the collection &ldquo;answers&rdquo; and insert a test document."/>
+{&#34;userId&#34;:&#34;userIdValue&#34;, answers:[ {&#34;idUser&#34;:1111,&#34;testNo&#34;:1,&#34;answerNo&#34;:2,&#34;answerValue&#34;:&#34;answer1&#34;}, {&#34;idUser&#34;:1111,&#34;testNo&#34;:1,&#34;answerNo&#34;:2,&#34;answerValue&#34;:&#34;answer1&#34;} ]}  The steps to be able to store documents on my mongoDB are the following:
+db.answers.insert( { &#34;userId&#34;:&#34;userIdValue&#34;, answers:[ {&#34;idUser&#34;:1111,&#34;testNo&#34;:1,&#34;answerNo&#34;:2,&#34;answerValue&#34;:&#34;answer1&#34;}, {&#34;idUser&#34;:1111,&#34;testNo&#34;:1,&#34;answerNo&#34;:2,&#34;answerValue&#34;:&#34;answer1&#34;} ] } )  2015-08-22T10:56:22.477&#43;0200 I ACCESS [conn17] Failed to authenticate adminUse r@users with mechanism MONGODB-CR: AuthenticationFailed MONGODB-CR credentials m issing in the user document 2015-08-22T10:56:22.477&#43;0200 I ACCESS [conn18] authenticate db: users { authe nticate: 1, user: &#34;adminUser&#34;, nonce: &#34;xxx&#34;, key: &#34;xxx&#34; }  The solution is simple, first check the admin user has the role userAdminAnyDatabase."/>
 
     <meta property="og:title" content="Firsts steps with MongoDB &#43; mongoose" />
 <meta property="og:description" content="Basically I want to create a database for my JSON documents. Documents have the following format.
-{&#34;userId&#34;:&#34;userIdValue&#34;,answers:[{&#34;idUser&#34;:1111,&#34;testNo&#34;:1,&#34;answerNo&#34;:2,&#34;answerValue&#34;:&#34;answer1&#34;},{&#34;idUser&#34;:1111,&#34;testNo&#34;:1,&#34;answerNo&#34;:2,&#34;answerValue&#34;:&#34;answer1&#34;}]}  The steps to be able to store documents on my mongoDB are the following:  Create a collection for my docs.(It&rsquo;s created implicitly) Create a power user on that collection Do basic CRUD operations on the database to test. i&rsquo;ll create the collection &ldquo;answers&rdquo; and insert a test document." />
+{&#34;userId&#34;:&#34;userIdValue&#34;, answers:[ {&#34;idUser&#34;:1111,&#34;testNo&#34;:1,&#34;answerNo&#34;:2,&#34;answerValue&#34;:&#34;answer1&#34;}, {&#34;idUser&#34;:1111,&#34;testNo&#34;:1,&#34;answerNo&#34;:2,&#34;answerValue&#34;:&#34;answer1&#34;} ]}  The steps to be able to store documents on my mongoDB are the following:
+db.answers.insert( { &#34;userId&#34;:&#34;userIdValue&#34;, answers:[ {&#34;idUser&#34;:1111,&#34;testNo&#34;:1,&#34;answerNo&#34;:2,&#34;answerValue&#34;:&#34;answer1&#34;}, {&#34;idUser&#34;:1111,&#34;testNo&#34;:1,&#34;answerNo&#34;:2,&#34;answerValue&#34;:&#34;answer1&#34;} ] } )  2015-08-22T10:56:22.477&#43;0200 I ACCESS [conn17] Failed to authenticate adminUse r@users with mechanism MONGODB-CR: AuthenticationFailed MONGODB-CR credentials m issing in the user document 2015-08-22T10:56:22.477&#43;0200 I ACCESS [conn18] authenticate db: users { authe nticate: 1, user: &#34;adminUser&#34;, nonce: &#34;xxx&#34;, key: &#34;xxx&#34; }  The solution is simple, first check the admin user has the role userAdminAnyDatabase." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jpons.es/2015/08/firsts-steps-with-mongodb-mongoose/" />
-<meta property="article:published_time" content="2015-08-24T00:09:12&#43;02:00"/>
-<meta property="article:modified_time" content="2015-08-24T00:09:12&#43;02:00"/>
+<meta property="article:published_time" content="2015-08-24T00:09:12+02:00" />
+<meta property="article:modified_time" content="2015-08-24T00:09:12+02:00" />
 
 
     
@@ -55,7 +57,7 @@
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.65.3" />
   </head>
 
   <body class=" ">
@@ -135,20 +137,14 @@
 
       <div>
         <p>Basically I want to create a database for my JSON documents. Documents have the following format.</p>
-
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"> {<span style="color:#0ff;font-weight:bold">&#34;userId&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;userIdValue&#34;</span>,
  answers:[
  {<span style="color:#0ff;font-weight:bold">&#34;idUser&#34;</span>:<span style="color:#ff0;font-weight:bold">1111</span>,<span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span>:<span style="color:#ff0;font-weight:bold">1</span>,<span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span>:<span style="color:#ff0;font-weight:bold">2</span>,<span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;answer1&#34;</span>},
  {<span style="color:#0ff;font-weight:bold">&#34;idUser&#34;</span>:<span style="color:#ff0;font-weight:bold">1111</span>,<span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span>:<span style="color:#ff0;font-weight:bold">1</span>,<span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span>:<span style="color:#ff0;font-weight:bold">2</span>,<span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;answer1&#34;</span>}
  ]}
 </code></pre></div>
-
-<p>The steps to be able to store documents on my mongoDB are the following:
-<ol>
-    <li>Create a collection for my docs.(It&rsquo;s created implicitly)</li>
-    <li><a href="http://jpons.es/2015/05/06/how-to-create-and-modify-admin-users-in-mongo-db/" target="_blank">Create a power user on that collection</a></li>
-    <li>Do basic CRUD operations on the database to test. i&rsquo;ll create the collection &ldquo;answers&rdquo; and insert a test document.</p>
-
+<p>The steps to be able to store documents on my mongoDB are the following:</p>
+<!-- raw HTML omitted -->
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">db.answers.insert(
 	{
 		<span style="color:#0ff;font-weight:bold">&#34;userId&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;userIdValue&#34;</span>,
@@ -159,30 +155,21 @@
 	}
  )
 </code></pre></div>
-
-<p></li>
-    <li>Configure the connection in the adapter for your app. In my case I will configure mongoose, I&rsquo;m using Node JS to connect to MongoDB.
-Watch out! <a href="http://docs.mongodb.org/manual/core/authentication/" target="_blank">As of version 3.0, the authentication mechanism by default changed</a>
-So I was getting this error, mainly due to an old mongoose lib:</p>
-
+<!-- raw HTML omitted -->
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff0;font-weight:bold">2015</span>-<span style="color:#ff0;font-weight:bold">08</span>-<span style="color:#ff0;font-weight:bold">22</span>T10:<span style="color:#ff0;font-weight:bold">56</span>:<span style="color:#ff0;font-weight:bold">22.477</span>+<span style="color:#ff0;font-weight:bold">0200</span> I ACCESS   [conn17] Failed to authenticate adminUse
 r<span style="color:#f00">@</span>users <span style="color:#fff;font-weight:bold">with</span> mechanism MONGODB-CR: AuthenticationFailed MONGODB-CR credentials m
 issing <span style="color:#fff;font-weight:bold">in</span> the user <span style="color:#fff;font-weight:bold">document</span>
 <span style="color:#ff0;font-weight:bold">2015</span>-<span style="color:#ff0;font-weight:bold">08</span>-<span style="color:#ff0;font-weight:bold">22</span>T10:<span style="color:#ff0;font-weight:bold">56</span>:<span style="color:#ff0;font-weight:bold">22.477</span>+<span style="color:#ff0;font-weight:bold">0200</span> I ACCESS   [conn18]  authenticate db: users { authe
 nticate: <span style="color:#ff0;font-weight:bold">1</span>, user: <span style="color:#0ff;font-weight:bold">&#34;adminUser&#34;</span>, nonce: <span style="color:#0ff;font-weight:bold">&#34;xxx&#34;</span>, key: <span style="color:#0ff;font-weight:bold">&#34;xxx&#34;</span> }
 </code></pre></div>
-
 <p>The solution is simple, first check the admin user has the role userAdminAnyDatabase. If you already created it:</p>
-
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">use admin;
 db.updateUser(
 <span style="color:#0ff;font-weight:bold">&#34;admin&#34;</span>,
 {roles: [ { role: <span style="color:#0ff;font-weight:bold">&#34;userAdminAnyDatabase&#34;</span>, db: <span style="color:#0ff;font-weight:bold">&#34;admin&#34;</span> } ]  }
 )
 </code></pre></div>
-
 <p>update to the lastest mongoose client library, on nodeJS update your package.json:</p>
-
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
     <span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;node-server&#34;</span>,
     <span style="color:#0ff;font-weight:bold">&#34;main&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;server.js&#34;</span>,
@@ -193,17 +180,13 @@ db.updateUser(
     }
 }
 </code></pre></div>
-
 <p>Now you will see your client can authenticate:</p>
-
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ff0;font-weight:bold">2015</span>-08-22T11:31:53.914+0200 I NETWORK  [initandlisten] connection accepted from
- <span style="color:#ff0;font-weight:bold">127</span>.0.0.1:51726 <span style="color:#007f7f">#32 (2 connections now open)</span>
-<span style="color:#ff0;font-weight:bold">2015</span>-08-22T11:31:54.426+0200 I ACCESS   [conn32] Successfully authenticated as p
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">2015-08-22T11:31:53.914+0200 I NETWORK  [initandlisten] connection accepted from
+ 127.0.0.1:51726 <span style="color:#007f7f">#32 (2 connections now open)</span>
+2015-08-22T11:31:54.426+0200 I ACCESS   [conn32] Successfully authenticated as p
 rincipal adminUser on users</code></pre></div>
-
 <p>Now let&rsquo;s test the user storage:
 On your nodeJS code:</p>
-
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">	<span style="color:#fff;font-weight:bold">var</span> user = <span style="color:#fff;font-weight:bold">new</span> User(req.body);
 		<span style="color:#007f7f">//try to save the user:
 </span><span style="color:#007f7f"></span>		user.save(<span style="color:#fff;font-weight:bold">function</span> (err){
@@ -214,37 +197,33 @@ On your nodeJS code:</p>
 			}
 		})
 </code></pre></div>
-
 <p>Notice that the user is stored on database users, on collection users:</p>
-
 <p><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&amp;gt; db.users.find();
-{ <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d841a60f8123581f590c58&#34;</span>), <span style="color:#0ff;font-weight:bold">&#34;userId&#34;</span> : <span style="color:#ff0;font-weight:bold">1254</span>, <span style="color:#0ff;font-weight:bold">&#34;answers&#34;</span> : [ {
- <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer1&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55
-</span><span style="color:#0ff;font-weight:bold">d841a60f8123581f590c5e&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Mya
-</span><span style="color:#0ff;font-weight:bold">nswer2&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d841a60f8123581f590c5d&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;answer
-</span><span style="color:#0ff;font-weight:bold">No&#34;</span> : <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer3&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d841a60f8123581f590c5c
-</span><span style="color:#0ff;font-weight:bold">&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : <span style="color:#ff0;font-weight:bold">4</span>, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer4&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : Objec
-tId(<span style="color:#0ff;font-weight:bold">&#34;55d841a60f8123581f590c5b&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : <span style="color:#ff0;font-weight:bold">5</span>, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span>
- : <span style="color:#0ff;font-weight:bold">&#34;Myanswer5&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d841a60f8123581f590c5a&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : <span style="color:#ff0;font-weight:bold">1</span>,
-<span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : <span style="color:#ff0;font-weight:bold">6</span>, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer6&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d841a60f8123581
+{ <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d841a60f8123581f590c58&#34;</span>), <span style="color:#0ff;font-weight:bold">&#34;userId&#34;</span> : 1254, <span style="color:#0ff;font-weight:bold">&#34;answers&#34;</span> : [ {
+ <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : 1, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : 1, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer1&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55
+</span><span style="color:#0ff;font-weight:bold">d841a60f8123581f590c5e&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : 1, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : 2, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Mya
+</span><span style="color:#0ff;font-weight:bold">nswer2&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d841a60f8123581f590c5d&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : 1, <span style="color:#0ff;font-weight:bold">&#34;answer
+</span><span style="color:#0ff;font-weight:bold">No&#34;</span> : 3, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer3&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d841a60f8123581f590c5c
+</span><span style="color:#0ff;font-weight:bold">&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : 1, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : 4, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer4&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : Objec
+tId(<span style="color:#0ff;font-weight:bold">&#34;55d841a60f8123581f590c5b&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : 1, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : 5, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span>
+ : <span style="color:#0ff;font-weight:bold">&#34;Myanswer5&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d841a60f8123581f590c5a&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : 1,
+<span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : 6, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer6&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d841a60f8123581
 </span><span style="color:#0ff;font-weight:bold">f590c59&#34;</span>) } ], <span style="color:#0ff;font-weight:bold">&#34;__v&#34;</span> : <span style="color:#ff0;font-weight:bold">0</span> }
-{ <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d845a52b4672c819cc32c6&#34;</span>), <span style="color:#0ff;font-weight:bold">&#34;userId&#34;</span> : <span style="color:#ff0;font-weight:bold">1254</span>, <span style="color:#0ff;font-weight:bold">&#34;answers&#34;</span> : [ {
- <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer1&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55
-</span><span style="color:#0ff;font-weight:bold">d845a52b4672c819cc32cc&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Mya
-</span><span style="color:#0ff;font-weight:bold">nswer2&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d845a52b4672c819cc32cb&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;answer
-</span><span style="color:#0ff;font-weight:bold">No&#34;</span> : <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer3&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d845a52b4672c819cc32ca
-</span><span style="color:#0ff;font-weight:bold">&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : <span style="color:#ff0;font-weight:bold">4</span>, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer4&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : Objec
-tId(<span style="color:#0ff;font-weight:bold">&#34;55d845a52b4672c819cc32c9&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : <span style="color:#ff0;font-weight:bold">5</span>, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span>
- : <span style="color:#0ff;font-weight:bold">&#34;Myanswer5&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d845a52b4672c819cc32c8&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : <span style="color:#ff0;font-weight:bold">1</span>,
-<span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : <span style="color:#ff0;font-weight:bold">6</span>, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer6&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d845a52b4672c81
+{ <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d845a52b4672c819cc32c6&#34;</span>), <span style="color:#0ff;font-weight:bold">&#34;userId&#34;</span> : 1254, <span style="color:#0ff;font-weight:bold">&#34;answers&#34;</span> : [ {
+ <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : 1, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : 1, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer1&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55
+</span><span style="color:#0ff;font-weight:bold">d845a52b4672c819cc32cc&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : 1, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : 2, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Mya
+</span><span style="color:#0ff;font-weight:bold">nswer2&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d845a52b4672c819cc32cb&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : 1, <span style="color:#0ff;font-weight:bold">&#34;answer
+</span><span style="color:#0ff;font-weight:bold">No&#34;</span> : 3, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer3&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d845a52b4672c819cc32ca
+</span><span style="color:#0ff;font-weight:bold">&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : 1, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : 4, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer4&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : Objec
+tId(<span style="color:#0ff;font-weight:bold">&#34;55d845a52b4672c819cc32c9&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : 1, <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : 5, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span>
+ : <span style="color:#0ff;font-weight:bold">&#34;Myanswer5&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d845a52b4672c819cc32c8&#34;</span>) }, { <span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span> : 1,
+<span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span> : 6, <span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;Myanswer6&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span> : ObjectId(<span style="color:#0ff;font-weight:bold">&#34;55d845a52b4672c81
 </span><span style="color:#0ff;font-weight:bold">9cc32c7&#34;</span>) } ], <span style="color:#0ff;font-weight:bold">&#34;__v&#34;</span> : <span style="color:#ff0;font-weight:bold">0</span> }</code></pre></div>
 On my nodeJS server I&rsquo;ve also set the output of the object, so I can see the MongoID!!</p>
-
 <p><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007f7f">// show json  request:
 </span><span style="color:#007f7f"></span>		console.log(<span style="color:#0ff;font-weight:bold">&#34;Request: &#34;</span>+JSON.stringify(user));
 </code></pre></div>
 On the console output:</p>
-
 <p><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">Request: {<span style="color:#0ff;font-weight:bold">&#34;userId&#34;</span>:<span style="color:#ff0;font-weight:bold">1254</span>,<span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;55d84608b0bef9841e7bf5f9&#34;</span>,<span style="color:#0ff;font-weight:bold">&#34;answers&#34;</span>:[{<span style="color:#0ff;font-weight:bold">&#34;testNo&#34;</span>:<span style="color:#ff0;font-weight:bold">1</span>,
 <span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span>:<span style="color:#ff0;font-weight:bold">1</span>,<span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;Myanswer1&#34;</span>,<span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;55d84608b0bef9841e7bf5ff&#34;</span>},{<span style="color:#0ff;font-weight:bold">&#34;testN
 </span><span style="color:#0ff;font-weight:bold">o&#34;</span>:<span style="color:#ff0;font-weight:bold">1</span>,<span style="color:#0ff;font-weight:bold">&#34;answerNo&#34;</span>:<span style="color:#ff0;font-weight:bold">2</span>,<span style="color:#0ff;font-weight:bold">&#34;answerValue&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;Myanswer2&#34;</span>,<span style="color:#0ff;font-weight:bold">&#34;_id&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;55d84608b0bef9841e7bf5fe&#34;</span>},{<span style="color:#0ff;font-weight:bold">&#34;
@@ -255,10 +234,8 @@ On the console output:</p>
 </span><span style="color:#0ff;font-weight:bold">0bef9841e7bf5fa&#34;</span>}]}
 </code></pre></div>
 So I got this _id: &ldquo;_id&rdquo;:&ldquo;55d84608b0bef9841e7bf5f9&rdquo;</p>
-
-<p></li></p>
-
-<p></ol></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 
       </div>
 
@@ -299,7 +276,7 @@ So I got this _id: &ldquo;_id&rdquo;:&ldquo;55d84608b0bef9841e7bf5f9&rdquo;</p>
     
       <p>Welcome to my personal site</p>
     
-     © 2020
+     © 2021
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.

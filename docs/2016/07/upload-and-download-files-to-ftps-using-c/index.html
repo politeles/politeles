@@ -11,28 +11,14 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Upload and download files to FTPs using C#"/>
-<meta name="twitter:description" content="Upload and download files to FTPs using C Some useful links: Check if a file exists: https://msdn.microsoft.com/es-es/library/system.io.file.exists%28v=vs.110%29.aspx
-How to write to a text file: https://msdn.microsoft.com/es-es/library/8bh11f1k.aspx
-How to download files from FTP: https://msdn.microsoft.com/es-es/library/ms229711(v=vs.110).aspx
-How to sleep a thread: https://msdn.microsoft.com/es-es/library/d00bd51t(v=vs.110).aspx
-Problems related to FTP with SSL: Ignore SSL validation for certificates: http://stackoverflow.com/questions/12506575/how-to-ignore-the-certificate-check-when-ssl
-Configure FTP over SSL http://stackoverflow.com/questions/1355341/ftp-over-ssl-for-c-sharp
-Ignore web certificates: http://weblog.west-wind.com/posts/2011/Feb/11/HttpWebRequest-and-Ignoring-SSL-Certificate-Errors
-Library for FTPs on C# http://netftp.codeplex.com/"/>
+<meta name="twitter:description" content="Upload and download files to FTPs using C# Some useful links: Check if a file exists: https://msdn.microsoft.com/es-es/library/system.io.file.exists%28v=vs.110%29.aspxHow to write to a text file: https://msdn.microsoft.com/es-es/library/8bh11f1k.aspxHow to download files from FTP: https://msdn.microsoft.com/es-es/library/ms229711(v=vs.110).aspxHow to sleep a thread: https://msdn.microsoft.com/es-es/library/d00bd51t(v=vs.110).aspxProblems related to FTP with SSL: Ignore SSL validation for certificates: http://stackoverflow.com/questions/12506575/how-to-ignore-the-certificate-check-when-sslConfigure FTP over SSL http://stackoverflow.com/questions/1355341/ftp-over-ssl-for-c-sharpIgnore web certificates: http://weblog.west-wind.com/posts/2011/Feb/11/HttpWebRequest-and-Ignoring-SSL-Certificate-ErrorsLibrary for FTPs on C# http://netftp."/>
 
     <meta property="og:title" content="Upload and download files to FTPs using C#" />
-<meta property="og:description" content="Upload and download files to FTPs using C Some useful links: Check if a file exists: https://msdn.microsoft.com/es-es/library/system.io.file.exists%28v=vs.110%29.aspx
-How to write to a text file: https://msdn.microsoft.com/es-es/library/8bh11f1k.aspx
-How to download files from FTP: https://msdn.microsoft.com/es-es/library/ms229711(v=vs.110).aspx
-How to sleep a thread: https://msdn.microsoft.com/es-es/library/d00bd51t(v=vs.110).aspx
-Problems related to FTP with SSL: Ignore SSL validation for certificates: http://stackoverflow.com/questions/12506575/how-to-ignore-the-certificate-check-when-ssl
-Configure FTP over SSL http://stackoverflow.com/questions/1355341/ftp-over-ssl-for-c-sharp
-Ignore web certificates: http://weblog.west-wind.com/posts/2011/Feb/11/HttpWebRequest-and-Ignoring-SSL-Certificate-Errors
-Library for FTPs on C# http://netftp.codeplex.com/" />
+<meta property="og:description" content="Upload and download files to FTPs using C# Some useful links: Check if a file exists: https://msdn.microsoft.com/es-es/library/system.io.file.exists%28v=vs.110%29.aspxHow to write to a text file: https://msdn.microsoft.com/es-es/library/8bh11f1k.aspxHow to download files from FTP: https://msdn.microsoft.com/es-es/library/ms229711(v=vs.110).aspxHow to sleep a thread: https://msdn.microsoft.com/es-es/library/d00bd51t(v=vs.110).aspxProblems related to FTP with SSL: Ignore SSL validation for certificates: http://stackoverflow.com/questions/12506575/how-to-ignore-the-certificate-check-when-sslConfigure FTP over SSL http://stackoverflow.com/questions/1355341/ftp-over-ssl-for-c-sharpIgnore web certificates: http://weblog.west-wind.com/posts/2011/Feb/11/HttpWebRequest-and-Ignoring-SSL-Certificate-ErrorsLibrary for FTPs on C# http://netftp." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jpons.es/2016/07/upload-and-download-files-to-ftps-using-c/" />
-<meta property="article:published_time" content="2016-07-26T00:09:12&#43;02:00"/>
-<meta property="article:modified_time" content="2016-07-26T00:09:12&#43;02:00"/>
+<meta property="article:published_time" content="2016-07-26T00:09:12+02:00" />
+<meta property="article:modified_time" content="2016-07-26T00:09:12+02:00" />
 
 
     
@@ -67,7 +53,7 @@ Library for FTPs on C# http://netftp.codeplex.com/" />
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.65.3" />
   </head>
 
   <body class=" ">
@@ -146,35 +132,25 @@ Library for FTPs on C# http://netftp.codeplex.com/" />
       </header>
 
       <div>
-        
-
-<h1 id="upload-and-download-files-to-ftps-using-c">Upload and download files to FTPs using C</h1>
-
+        <h1 id="upload-and-download-files-to-ftps-using-c">Upload and download files to FTPs using C#</h1>
 <p>Some useful links:
 Check if a file exists:
-<a href="https://msdn.microsoft.com/es-es/library/system.io.file.exists%28v=vs.110%29.aspx" target="_blank"><a href="https://msdn.microsoft.com/es-es/library/system.io.file.exists%28v=vs.110%29.aspx">https://msdn.microsoft.com/es-es/library/system.io.file.exists%28v=vs.110%29.aspx</a></a></p>
-
+<!-- raw HTML omitted --><a href="https://msdn.microsoft.com/es-es/library/system.io.file.exists%28v=vs.110%29.aspx">https://msdn.microsoft.com/es-es/library/system.io.file.exists%28v=vs.110%29.aspx</a><!-- raw HTML omitted --></p>
 <p>How to write to a text file:
-<a href="https://msdn.microsoft.com/es-es/library/8bh11f1k.aspx" target="_blank"><a href="https://msdn.microsoft.com/es-es/library/8bh11f1k.aspx">https://msdn.microsoft.com/es-es/library/8bh11f1k.aspx</a></a></p>
-
+<!-- raw HTML omitted --><a href="https://msdn.microsoft.com/es-es/library/8bh11f1k.aspx">https://msdn.microsoft.com/es-es/library/8bh11f1k.aspx</a><!-- raw HTML omitted --></p>
 <p>How to download files from FTP:
-<a href="https://msdn.microsoft.com/es-es/library/ms229711(v=vs.110).aspx" target="_blank"><a href="https://msdn.microsoft.com/es-es/library/ms229711(v=vs.110).aspx">https://msdn.microsoft.com/es-es/library/ms229711(v=vs.110).aspx</a></a></p>
-
+<!-- raw HTML omitted --><a href="https://msdn.microsoft.com/es-es/library/ms229711(v=vs.110).aspx">https://msdn.microsoft.com/es-es/library/ms229711(v=vs.110).aspx</a><!-- raw HTML omitted --></p>
 <p>How to sleep a thread:
-<a href="https://msdn.microsoft.com/es-es/library/d00bd51t(v=vs.110).aspx" target="_blank"><a href="https://msdn.microsoft.com/es-es/library/d00bd51t(v=vs.110).aspx">https://msdn.microsoft.com/es-es/library/d00bd51t(v=vs.110).aspx</a></a></p>
-
+<!-- raw HTML omitted --><a href="https://msdn.microsoft.com/es-es/library/d00bd51t(v=vs.110).aspx">https://msdn.microsoft.com/es-es/library/d00bd51t(v=vs.110).aspx</a><!-- raw HTML omitted --></p>
 <p>Problems related to FTP with SSL:
 Ignore SSL validation for certificates:
-<a href="http://stackoverflow.com/questions/12506575/how-to-ignore-the-certificate-check-when-ssl" target="_blank"><a href="http://stackoverflow.com/questions/12506575/how-to-ignore-the-certificate-check-when-ssl">http://stackoverflow.com/questions/12506575/how-to-ignore-the-certificate-check-when-ssl</a></a></p>
-
+<!-- raw HTML omitted --><a href="http://stackoverflow.com/questions/12506575/how-to-ignore-the-certificate-check-when-ssl">http://stackoverflow.com/questions/12506575/how-to-ignore-the-certificate-check-when-ssl</a><!-- raw HTML omitted --></p>
 <p>Configure FTP over SSL
-<a href="http://stackoverflow.com/questions/1355341/ftp-over-ssl-for-c-sharp" target="_blank"><a href="http://stackoverflow.com/questions/1355341/ftp-over-ssl-for-c-sharp">http://stackoverflow.com/questions/1355341/ftp-over-ssl-for-c-sharp</a></a></p>
-
+<!-- raw HTML omitted --><a href="http://stackoverflow.com/questions/1355341/ftp-over-ssl-for-c-sharp">http://stackoverflow.com/questions/1355341/ftp-over-ssl-for-c-sharp</a><!-- raw HTML omitted --></p>
 <p>Ignore web certificates:
-<a href="http://weblog.west-wind.com/posts/2011/Feb/11/HttpWebRequest-and-Ignoring-SSL-Certificate-Errors" target="_blank"><a href="http://weblog.west-wind.com/posts/2011/Feb/11/HttpWebRequest-and-Ignoring-SSL-Certificate-Errors">http://weblog.west-wind.com/posts/2011/Feb/11/HttpWebRequest-and-Ignoring-SSL-Certificate-Errors</a></a></p>
-
+<!-- raw HTML omitted --><a href="http://weblog.west-wind.com/posts/2011/Feb/11/HttpWebRequest-and-Ignoring-SSL-Certificate-Errors">http://weblog.west-wind.com/posts/2011/Feb/11/HttpWebRequest-and-Ignoring-SSL-Certificate-Errors</a><!-- raw HTML omitted --></p>
 <p>Library for FTPs on C#
-<a href="http://netftp.codeplex.com/" target="_blank"><a href="http://netftp.codeplex.com/">http://netftp.codeplex.com/</a></a></p>
+<!-- raw HTML omitted --><a href="http://netftp.codeplex.com/">http://netftp.codeplex.com/</a><!-- raw HTML omitted --></p>
 
       </div>
 
@@ -215,7 +191,7 @@ Ignore SSL validation for certificates:
     
       <p>Welcome to my personal site</p>
     
-     © 2020
+     © 2021
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.

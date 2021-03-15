@@ -12,15 +12,15 @@
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Working with dates in Java"/>
 <meta name="twitter:description" content="I recovered an old post from 2012 on my previous blog. Here I translated and updated the post.
-Working with dates is not an easy task in a programming language. Usually, because there is no standard (like it happens on databases) or sometimes, the standard is not implemented. On 2012 I talked that joda time was planned to be the new data standard on Java, and in fact, in 2015, Joda time is the facto standard ( as they claim on their site): Joda-Time is the de facto standard date and time library for Java."/>
+Working with dates is not an easy task in a programming language. Usually, because there is no standard (like it happens on databases) or sometimes, the standard is not implemented. On 2012 I talked that joda timewas planned to be the new data standard on Java, and in fact, in 2015, Joda time is the facto standard ( as they claim on their site):"/>
 
     <meta property="og:title" content="Working with dates in Java" />
 <meta property="og:description" content="I recovered an old post from 2012 on my previous blog. Here I translated and updated the post.
-Working with dates is not an easy task in a programming language. Usually, because there is no standard (like it happens on databases) or sometimes, the standard is not implemented. On 2012 I talked that joda time was planned to be the new data standard on Java, and in fact, in 2015, Joda time is the facto standard ( as they claim on their site): Joda-Time is the de facto standard date and time library for Java." />
+Working with dates is not an easy task in a programming language. Usually, because there is no standard (like it happens on databases) or sometimes, the standard is not implemented. On 2012 I talked that joda timewas planned to be the new data standard on Java, and in fact, in 2015, Joda time is the facto standard ( as they claim on their site):" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jpons.es/2015/05/working-with-dates-in-java/" />
-<meta property="article:published_time" content="2015-05-11T00:09:12&#43;02:00"/>
-<meta property="article:modified_time" content="2015-05-11T00:09:12&#43;02:00"/>
+<meta property="article:published_time" content="2015-05-11T00:09:12+02:00" />
+<meta property="article:modified_time" content="2015-05-11T00:09:12+02:00" />
 
 
     
@@ -55,7 +55,7 @@ Working with dates is not an easy task in a programming language. Usually, becau
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.65.3" />
   </head>
 
   <body class=" ">
@@ -125,7 +125,7 @@ Working with dates is not an easy task in a programming language. Usually, becau
             </span>
             <span class="reading-time">
               <i class="fas fa-clock"></i>
-              2 minutes read
+              One minute read
             </span>
           </div>
           
@@ -136,49 +136,18 @@ Working with dates is not an easy task in a programming language. Usually, becau
       <div>
         <p>I recovered an old post from 2012 on my previous blog.
 Here I translated and updated the post.</p>
-
 <p>Working with dates is not an easy task in a programming language.
 Usually, because there is no standard (like it happens on databases) or sometimes, the standard is not implemented.
-On 2012 I talked that <a href="http://www.joda.org/joda-time/" target="_blank">joda time</a> was planned to be the new data standard on Java, and in fact, in 2015, Joda time is the facto standard ( as they claim on their site):
-<blockquote>Joda-Time is the de facto standard date and time library for Java. From Java SE 8 onwards, users are asked to migrate to java.time (JSR-310).</blockquote></p>
-
+On 2012 I talked that <!-- raw HTML omitted -->joda time<!-- raw HTML omitted --> was planned to be the new data standard on Java, and in fact, in 2015, Joda time is the facto standard ( as they claim on their site):</p>
+<!-- raw HTML omitted -->
 <p>I was interested in doing some calculations to check if a time point was inside a time interval or not. This is useful when implementing all Allen time operations.
-Here you will find the original paper from the &lsquo;82: <a href="http://www.iscas2007.org/~logan/521_f08/Doc/p832-allen.pdf" target="_blank"><a href="http://www.iscas2007.org/~logan/521_f08/Doc/p832-allen.pdf">http://www.iscas2007.org/~logan/521_f08/Doc/p832-allen.pdf</a></a>
+Here you will find the original paper from the &lsquo;82: <!-- raw HTML omitted --><a href="http://www.iscas2007.org/~logan/521_f08/Doc/p832-allen.pdf">http://www.iscas2007.org/~logan/521_f08/Doc/p832-allen.pdf</a><!-- raw HTML omitted -->
 And some more friendly approaches here:
-<a href="http://en.wikipedia.org/wiki/Allen's_interval_algebra" target="_blank"><a href="http://en.wikipedia.org/wiki/Allen's_interval_algebra">http://en.wikipedia.org/wiki/Allen's_interval_algebra</a></a>
-<a href="http://www.ics.uci.edu/~alspaugh/cls/shr/allen.html" target="_blank"><a href="http://www.ics.uci.edu/~alspaugh/cls/shr/allen.html">http://www.ics.uci.edu/~alspaugh/cls/shr/allen.html</a></a></p>
-
+<!-- raw HTML omitted --><a href="http://en.wikipedia.org/wiki/Allen's_interval_algebra">http://en.wikipedia.org/wiki/Allen's_interval_algebra</a><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><a href="http://www.ics.uci.edu/~alspaugh/cls/shr/allen.html">http://www.ics.uci.edu/~alspaugh/cls/shr/allen.html</a><!-- raw HTML omitted --></p>
 <p>Working with dates on Joda time is really easy:</p>
-
-<pre class="lang:java decode:true " >String startDate = "18/09/2012";
-String endDate = "22/09/2012";
-// datetime formatter, allows to read and write strings
-DateTimeFormatter dtf = new DateTimeFormatterBuilder().
-                appendDayOfMonth(2).
-                appendLiteral("/").
-                appendMonthOfYear(2).
-                appendLiteral("/").
-                appendYear(4, 4).toFormatter();
- 
- 
-DateTime start = dtf.parseDateTime(startDate);
-DateTime end = dtf.parseDateTime(endDate);
-       
-int months = Months.monthsBetween(start, end).getMonths();
-    DateTime newdate = lastRule.plusDays(28);
-    for(int i=0;i&lt;months;i++){
-        newdate = lastRule.plusDays(28);
-            }      
-        Interval interval = new Interval(start,end);
-        if(interval.contains(newdate)){         
-            jTextArea2.setText(
-"That day is included: "
-             + dtf.print(newdate));
-        }else{
-            jTextArea2.setText(
-"The day is not included: "
-           + dtf.print(newdate));
-        }</pre> 
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 
       </div>
 
@@ -219,7 +188,7 @@ int months = Months.monthsBetween(start, end).getMonths();
     
       <p>Welcome to my personal site</p>
     
-     © 2020
+     © 2021
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.

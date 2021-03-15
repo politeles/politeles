@@ -13,16 +13,18 @@
 <meta name="twitter:title" content="SSH authentication with keys"/>
 <meta name="twitter:description" content="SSH authentication with keys Handling errors on ssh authentication.
 If you have ssh authentication with public / private keys, sometimes you might face the issue, that even when the authorized_keys contains your public key on the target host, the system is asking the password.
-Some things you can try: - Copy your public key by using ssh-copy-id command. - Check permissions: the target home folder should be at least 75x, so the group can&rsquo;t write."/>
+Some things you can try:
+ Copy your public key by using ssh-copy-id command. Check permissions: the target home folder should be at least 75x, so the group can&rsquo;t write."/>
 
     <meta property="og:title" content="SSH authentication with keys" />
 <meta property="og:description" content="SSH authentication with keys Handling errors on ssh authentication.
 If you have ssh authentication with public / private keys, sometimes you might face the issue, that even when the authorized_keys contains your public key on the target host, the system is asking the password.
-Some things you can try: - Copy your public key by using ssh-copy-id command. - Check permissions: the target home folder should be at least 75x, so the group can&rsquo;t write." />
+Some things you can try:
+ Copy your public key by using ssh-copy-id command. Check permissions: the target home folder should be at least 75x, so the group can&rsquo;t write." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jpons.es/2016/06/ssh-authentication-with-keys/" />
-<meta property="article:published_time" content="2016-06-08T00:09:12&#43;02:00"/>
-<meta property="article:modified_time" content="2016-06-08T00:09:12&#43;02:00"/>
+<meta property="article:published_time" content="2016-06-08T00:09:12+02:00" />
+<meta property="article:modified_time" content="2016-06-08T00:09:12+02:00" />
 
 
     
@@ -57,7 +59,7 @@ Some things you can try: - Copy your public key by using ssh-copy-id command. - 
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.65.3" />
   </head>
 
   <body class=" ">
@@ -136,25 +138,21 @@ Some things you can try: - Copy your public key by using ssh-copy-id command. - 
       </header>
 
       <div>
-        
-
-<h1 id="ssh-authentication-with-keys">SSH authentication with keys</h1>
-
+        <h1 id="ssh-authentication-with-keys">SSH authentication with keys</h1>
 <p>Handling errors on ssh authentication.</p>
-
 <p>If you have ssh authentication with public / private keys, sometimes you might face the issue,
 that even when the authorized_keys contains your public key on the target host, the system is asking the password.</p>
-
-<p>Some things you can try:
-- Copy your public key by using ssh-copy-id command.
-- Check permissions: the target home folder should be at least 75x, so the group can&rsquo;t write.
-- you can debug the output of the ssh authentication command by:</p>
-
+<p>Some things you can try:</p>
+<ul>
+<li>Copy your public key by using ssh-copy-id command.</li>
+<li>Check permissions: the target home folder should be at least 75x, so the group can&rsquo;t write.</li>
+<li>you can debug the output of the ssh authentication command by:</li>
+</ul>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> ssh -v jpons@example
-OpenSSH_7.2p2, OpenSSL <span style="color:#ff0;font-weight:bold">1</span>.0.2g  <span style="color:#ff0;font-weight:bold">1</span> Mar <span style="color:#ff0;font-weight:bold">2016</span>
+OpenSSH_7.2p2, OpenSSL 1.0.2g  <span style="color:#ff0;font-weight:bold">1</span> Mar <span style="color:#ff0;font-weight:bold">2016</span>
 debug1: Reading configuration data /home/jpons/.ssh/config
 debug1: Reading configuration data /etc/ssh/ssh_config
-debug1: Connecting to example [<span style="color:#ff0;font-weight:bold">10</span>.50.136.10] port <span style="color:#ff0;font-weight:bold">22</span>.
+debug1: Connecting to example [10.50.136.10] port 22.
 debug1: Connection established.
 debug1: identity file /home/jpons/.ssh/id_rsa <span style="color:#fff;font-weight:bold">type</span> <span style="color:#ff0;font-weight:bold">1</span>
 debug1: key_load_public: No such file or directory
@@ -171,9 +169,9 @@ debug1: key_load_public: No such file or directory
 debug1: identity file /home/jpons/.ssh/id_ed25519 <span style="color:#fff;font-weight:bold">type</span> -1
 debug1: key_load_public: No such file or directory
 debug1: identity file /home/jpons/.ssh/id_ed25519-cert <span style="color:#fff;font-weight:bold">type</span> -1
-debug1: Enabling compatibility mode <span style="color:#fff;font-weight:bold">for</span> protocol <span style="color:#ff0;font-weight:bold">2</span>.0
+debug1: Enabling compatibility mode <span style="color:#fff;font-weight:bold">for</span> protocol 2.0
 debug1: Local version string SSH-2.0-OpenSSH_7.2
-debug1: Remote protocol version <span style="color:#ff0;font-weight:bold">2</span>.0, remote software version OpenSSH_6.2
+debug1: Remote protocol version 2.0, remote software version OpenSSH_6.2
 debug1: match: OpenSSH_6.2 pat OpenSSH* compat 0x04000000
 debug1: Authenticating to example:22 as <span style="color:#0ff;font-weight:bold">&#39;orapws&#39;</span>
 debug1: SSH2_MSG_KEXINIT sent
@@ -233,7 +231,7 @@ debug1: SSH2_MSG_SERVICE_ACCEPT received</code></pre></div>
     
       <p>Welcome to my personal site</p>
     
-     © 2020
+     © 2021
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.

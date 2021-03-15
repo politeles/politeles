@@ -11,18 +11,22 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="More on operations with folders on Linux and Windows"/>
-<meta name="twitter:description" content="Hi, recently I&rsquo;ve been working on some issues dealing with folders on windows and on linux. For instance, Replicate Folder Structure on Windows  With robocopy is really easy:
-robocopy &#34;Source&#34; &#34;Target&#34; /e /xf * For example: robocopy &#34;C:\JiveCopy&#34; . /e /xf * Replicate folder structure on Linux This requires a little bit of scripting, on bash it would be something like:
-cd TARGET &amp;&amp; (cd SOURCE; find . -type d !"/>
+<meta name="twitter:description" content="Hi, recently I&rsquo;ve been working on some issues dealing with folders on windows and on linux. For instance,
+For example:
+For instance:
+Recently I had also the need to rename all folders containing a given pattern, that is done with the following script:
+This script renames all folders that contains itfq pattern to itfp."/>
 
     <meta property="og:title" content="More on operations with folders on Linux and Windows" />
-<meta property="og:description" content="Hi, recently I&rsquo;ve been working on some issues dealing with folders on windows and on linux. For instance, Replicate Folder Structure on Windows  With robocopy is really easy:
-robocopy &#34;Source&#34; &#34;Target&#34; /e /xf * For example: robocopy &#34;C:\JiveCopy&#34; . /e /xf * Replicate folder structure on Linux This requires a little bit of scripting, on bash it would be something like:
-cd TARGET &amp;&amp; (cd SOURCE; find . -type d !" />
+<meta property="og:description" content="Hi, recently I&rsquo;ve been working on some issues dealing with folders on windows and on linux. For instance,
+For example:
+For instance:
+Recently I had also the need to rename all folders containing a given pattern, that is done with the following script:
+This script renames all folders that contains itfq pattern to itfp." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jpons.es/2015/05/more-on-operations-with-folders-on-linux-and-windows/" />
-<meta property="article:published_time" content="2015-05-25T00:09:12&#43;02:00"/>
-<meta property="article:modified_time" content="2015-05-25T00:09:12&#43;02:00"/>
+<meta property="article:published_time" content="2015-05-25T00:09:12+02:00" />
+<meta property="article:modified_time" content="2015-05-25T00:09:12+02:00" />
 
 
     
@@ -57,7 +61,7 @@ cd TARGET &amp;&amp; (cd SOURCE; find . -type d !" />
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.65.3" />
   </head>
 
   <body class=" ">
@@ -137,27 +141,17 @@ cd TARGET &amp;&amp; (cd SOURCE; find . -type d !" />
 
       <div>
         <p>Hi, recently I&rsquo;ve been working on some issues dealing with folders on windows and on linux.
-For instance,
-<h2>Replicate Folder Structure on Windows </h2>
-With robocopy is really easy:</p>
-
-<pre class="theme:dark-terminal lang:batch decode:true " title="Robocopy" >robocopy "Source" "Target" /e /xf *</pre> 
-For example:
-<pre class="theme:dark-terminal lang:batch decode:true " >robocopy "C:\JiveCopy" . /e /xf *</pre> 
-
-<p><h2>Replicate folder structure on Linux</h2>
-This requires a little bit of scripting, on bash it would be something like:</p>
-
-<pre class="theme:dark-terminal lang:batch decode:true " >cd TARGET &amp;&amp; (cd SOURCE; find . -type d ! -name .) | xargs -i mkdir -p "{}"</pre> 
-
+For instance,</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>For example:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>For instance:</p>
-
-<pre class="theme:dark-terminal lang:batch decode:true " >cd /interfaces/client1 &amp;&amp; (cd /interfaces/client_orig; find . -type d ! -name .) | xargs -i mkdir -p "{}"</pre> 
-
+<!-- raw HTML omitted -->
 <p>Recently I had also the need to rename all folders containing a given pattern, that is done with the following script:</p>
-
-<pre class="theme:dark-terminal lang:batch decode:true " >find . -iname "itfq*" -type d -execdir bash -c 'mv "$1" "${1//itfq/itfp}"' _ {} \; </pre> 
-
+<!-- raw HTML omitted -->
 <p>This script renames all folders that contains itfq pattern to itfp.</p>
 
       </div>
@@ -199,7 +193,7 @@ This requires a little bit of scripting, on bash it would be something like:</p>
     
       <p>Welcome to my personal site</p>
     
-     © 2020
+     © 2021
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.

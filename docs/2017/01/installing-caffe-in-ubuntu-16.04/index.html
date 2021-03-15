@@ -11,20 +11,20 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Installing caffe in Ubuntu 16.04"/>
-<meta name="twitter:description" content="Caffe is a library used in deep learning and specific to computer vision. They provide an installation guide, which is quite nice. But I experienced problems during the install. You can download the source code in https://github.com/BVLC/caffe
-First follow the installation instructions.
+<meta name="twitter:description" content="Caffeis a library used in deep learning and specific to computer vision. They provide an installation guide, which is quite nice. But I experienced problems during the install. You can download the source code in https://github.com/BVLC/caffeFirst follow the installation instructions.
 I had installed cuda 8 library directly from Nvidia and not from ubuntu default repos.
-Then install the following packages: sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler sudo apt-get install &ndash;no-install-recommends libboost-all-dev"/>
+Then install the following packages:
+And the BLAS library of your choice, I selected by default ATLAS:"/>
 
     <meta property="og:title" content="Installing caffe in Ubuntu 16.04" />
-<meta property="og:description" content="Caffe is a library used in deep learning and specific to computer vision. They provide an installation guide, which is quite nice. But I experienced problems during the install. You can download the source code in https://github.com/BVLC/caffe
-First follow the installation instructions.
+<meta property="og:description" content="Caffeis a library used in deep learning and specific to computer vision. They provide an installation guide, which is quite nice. But I experienced problems during the install. You can download the source code in https://github.com/BVLC/caffeFirst follow the installation instructions.
 I had installed cuda 8 library directly from Nvidia and not from ubuntu default repos.
-Then install the following packages: sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler sudo apt-get install &ndash;no-install-recommends libboost-all-dev" />
+Then install the following packages:
+And the BLAS library of your choice, I selected by default ATLAS:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jpons.es/2017/01/installing-caffe-in-ubuntu-16.04/" />
-<meta property="article:published_time" content="2017-01-03T00:09:12&#43;02:00"/>
-<meta property="article:modified_time" content="2017-01-03T00:09:12&#43;02:00"/>
+<meta property="article:published_time" content="2017-01-03T00:09:12+02:00" />
+<meta property="article:modified_time" content="2017-01-03T00:09:12+02:00" />
 
 
     
@@ -59,7 +59,7 @@ Then install the following packages: sudo apt-get install libprotobuf-dev liblev
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jpons.es/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.65.3" />
   </head>
 
   <body class=" ">
@@ -138,52 +138,32 @@ Then install the following packages: sudo apt-get install libprotobuf-dev liblev
       </header>
 
       <div>
-        <p><a href="http://caffe.berkeleyvision.org">Caffe</a> is a library used in deep learning and specific to computer vision.
+        <p><!-- raw HTML omitted -->Caffe<!-- raw HTML omitted --> is a library used in deep learning and specific to computer vision.
 They provide an installation guide, which is quite nice. But I experienced problems during the install.
-You can download the source code in <a href="https://github.com/BVLC/caffe">https://github.com/BVLC/caffe</a></p>
-
-<p>First follow the <a href="http://caffe.berkeleyvision.org/installation.html">installation instructions</a>.</p>
-
+You can download the source code in <!-- raw HTML omitted --><a href="https://github.com/BVLC/caffe">https://github.com/BVLC/caffe</a><!-- raw HTML omitted --></p>
+<p>First follow the <!-- raw HTML omitted -->installation instructions<!-- raw HTML omitted -->.</p>
 <p>I had installed cuda 8 library directly from Nvidia and not from ubuntu default repos.</p>
-
-<p>Then install the following packages:
-<pre class="lang:sh decode:true " >sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
-sudo apt-get install &ndash;no-install-recommends libboost-all-dev</pre></p>
-
+<p>Then install the following packages:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>And the BLAS library of your choice, I selected by default ATLAS:</p>
-
-<pre class="lang:sh decode:true " >sudo apt-get install libatlas-base-dev </pre> 
-
+<!-- raw HTML omitted -->
 <p>As I&rsquo;m going to work with python, I prepared a virtual environment. This is also because I work with tensorflow and I don&rsquo;t want to mix both.
-Assuming you have installed <a href="https://virtualenv.pypa.io/en/stable/">virtualenv</a>:</p>
-
-<pre class="lang:c# decode:true " >virtualenv caffe_gpu
-source ~/caffe_gpu/bin/activate</pre> 
-Assuming your code is in ~/caffe:
-
- 
-<pre class="lang:c# decode:true " >cd python
-for req in $(cat requirements.txt); do pip install $req; done</pre> 
-
+Assuming you have installed <!-- raw HTML omitted -->virtualenv<!-- raw HTML omitted -->:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Assuming your code is in ~/caffe:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>Then, I had to adapt the make file:</p>
-
-<pre class="lang:sh decode:true " >cp Makefile.config.example Makefile.config
-#adjust:
-USE_CUDNN := 1
-INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
-LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial/</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>finally do a symbolic link:</p>
-
-<pre class="lang:sh decode:true " >sudo ln -s /usr/lib/x86_64-linux-gnu/libhdf5_serial_hl.so /usr/lib/x86_64-linux-gnu/libhdf5_hl.so
-sudo ln -s /usr/lib/x86_64-linux-gnu/libhdf5_serial.so /usr/lib/x86_64-linux-gnu/libhdf5.so</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>Now we can compile as in the instructions:</p>
-
-<pre class="lang:sh decode:true " >make all
-make test
-make runtest</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>Thanks for reading!</p>
 
       </div>
@@ -225,7 +205,7 @@ make runtest</pre>
     
       <p>Welcome to my personal site</p>
     
-     © 2020
+     © 2021
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
