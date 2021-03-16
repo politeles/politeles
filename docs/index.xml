@@ -33,6 +33,50 @@ Position the cursor at the beginning of the text you want to cut/copy.Press v t
     </item>
     
     <item>
+      <title>WebEx Teams</title>
+      <link>https://jpons.es/2021/03/webex-teams/</link>
+      <pubDate>Mon, 01 Mar 2021 00:19:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2021/03/webex-teams/</guid>
+      <description>Webex Teams Today, we will implement some webservices to emulate a bot in webex. First, we need to design two webservices in nodeJS, then we will synchronize them. For that, we will use nodeJS.
+The main site for Webex Teams for developers is here. There you can define integrations, bots and check the documentation for the API.
+required libraries var express = require(&amp;#39;express&amp;#39;);var router = express.Router();var request = require(&amp;#39;request-promise&amp;#39;);We are using express and request-promise.</description>
+    </item>
+    
+    <item>
+      <title>Export excel to csv in python</title>
+      <link>https://jpons.es/2021/02/export-excel-to-csv-in-python/</link>
+      <pubDate>Sat, 20 Feb 2021 00:20:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2021/02/export-excel-to-csv-in-python/</guid>
+      <description>How to export Excel file to csv in python We use the pandas library and the following three lines:
+import pandas as pddf = pd.read_excel(&amp;#34;Libro2.xlsx&amp;#34;,sheet=&amp;#34;questionlist&amp;#34;)df.to_csv(&amp;#39;l2.csv&amp;#39;,index=False,header=False)In case you want to modify a column, you can do the following to replace some characters:
+df.Answers = df.Answers.str.replace(&amp;#34;\&amp;#34;&amp;#34;,&amp;#34;&amp;#34;)</description>
+    </item>
+    
+    <item>
+      <title>Set proxy in conda</title>
+      <link>https://jpons.es/2021/02/set-proxy-in-conda/</link>
+      <pubDate>Mon, 15 Feb 2021 00:10:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2021/02/set-proxy-in-conda/</guid>
+      <description>Set proxy in conda Some companies run within a proxy, to configure conda so you can install packages, take the following file: C:\Users\username.condarc
+Add the line proxy_servers with the IP and port:
+ssl_verify: truechannels:- conda-forge- defaultsproxy_servers:http: http://10.49.1.1:8080/https: http://10.49.1.1:8080/</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting webservice time</title>
+      <link>https://jpons.es/2021/02/troubleshooting-webservice-time/</link>
+      <pubDate>Fri, 05 Feb 2021 00:06:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2021/02/troubleshooting-webservice-time/</guid>
+      <description>Troubleshooting webservice at OS level We are trying to troubleshoot a webservice call that&amp;rsquo;s taking a lot of time. The initial idea it that the processing time in our platform is the issue. Let&amp;rsquo;s use curl at OS level with the configuration as explained here to troubleshoot.
+This is the answer we get from the curl command:
+{&amp;#34;time_redirect&amp;#34;: 0.000,&amp;#34;time_namelookup&amp;#34;: 5.515,&amp;#34;time_connect&amp;#34;: 5.630,&amp;#34;time_appconnect&amp;#34;: 6.008,&amp;#34;time_pretransfer&amp;#34;: 6.008,&amp;#34;time_starttransfer&amp;#34;: 6.385,&amp;#34;time_total&amp;#34;: 6.</description>
+    </item>
+    
+    <item>
       <title>AI and ML position</title>
       <link>https://jpons.es/2019/06/ai-and-ml-position/</link>
       <pubDate>Wed, 05 Jun 2019 00:09:12 +0200</pubDate>
