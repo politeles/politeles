@@ -54,4 +54,24 @@ df.Question.apply(lambda x: " ".join(x.split()))
 df.Answers = df.Answers.str.strip() 
 ```
 
+## Example program in python
+
+```python
+import pandas as pd
+import fire
+
+def to_csv(fileName,sheet,outfile):
+ df = pd.read_excel(fileName,sheet=sheet)
+ for c in df.columns:
+  df[c]= df[c].astype(str)
+  df[c] = df[c].str.replace(r"/\n\r|\n|\r/g",'')
+  df[c] = df[c].str.strip()
+ df.to_csv(outfile,index=False,header=False)
+ 
+
+if __name__ == '__main__':
+  fire.Fire(to_csv)
+
+```
+
 [Documentation from pandas](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.strip.html)

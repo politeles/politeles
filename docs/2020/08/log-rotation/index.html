@@ -10,30 +10,26 @@
     <meta name="keywords" content="blog,developer,personal,ai,ml,artificial intelligence, machine learning">
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Set proxy in conda"/>
-<meta name="twitter:description" content="Set proxy in conda Some companies run within a proxy, to configure conda so you can install packages, take the following file: C:\Users\username.condarc
-Add the line proxy_servers with the IP and port:
-ssl_verify: truechannels:- conda-forge- defaultsproxy_servers:http: http://10.49.1.1:8080/https: http://10.49.1.1:8080/Set proxy in pip (base) C:\Users\x&gt;SET http_proxy=http://10.49.1.1:8080/(base) C:\Users\x&gt;echo %http_proxy%http://10.49.1.1:8080/(base) C:\Users\x&gt;SET https_proxy=http://10.49.1.1:8080/(base) C:\Users\x&gt;pip install fireCollecting fire"/>
+<meta name="twitter:title" content="Log rotation"/>
+<meta name="twitter:description" content="Resources configure log rotate Issues with Log rotate Manage log files"/>
 
-    <meta property="og:title" content="Set proxy in conda" />
-<meta property="og:description" content="Set proxy in conda Some companies run within a proxy, to configure conda so you can install packages, take the following file: C:\Users\username.condarc
-Add the line proxy_servers with the IP and port:
-ssl_verify: truechannels:- conda-forge- defaultsproxy_servers:http: http://10.49.1.1:8080/https: http://10.49.1.1:8080/Set proxy in pip (base) C:\Users\x&gt;SET http_proxy=http://10.49.1.1:8080/(base) C:\Users\x&gt;echo %http_proxy%http://10.49.1.1:8080/(base) C:\Users\x&gt;SET https_proxy=http://10.49.1.1:8080/(base) C:\Users\x&gt;pip install fireCollecting fire" />
+    <meta property="og:title" content="Log rotation" />
+<meta property="og:description" content="Resources configure log rotate Issues with Log rotate Manage log files" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://jpons.es/2021/02/set-proxy-in-conda/" />
-<meta property="article:published_time" content="2021-02-15T00:10:12+02:00" />
-<meta property="article:modified_time" content="2021-02-15T00:10:12+02:00" />
+<meta property="og:url" content="https://jpons.es/2020/08/log-rotation/" />
+<meta property="article:published_time" content="2020-08-15T00:10:12+02:00" />
+<meta property="article:modified_time" content="2020-08-15T00:10:12+02:00" />
 
 
     
-      <base href="https://jpons.es/2021/02/set-proxy-in-conda/">
+      <base href="https://jpons.es/2020/08/log-rotation/">
     
     <title>
-  Set proxy in conda · Jose Enrique Pons Personal Site
+  Log rotation · Jose Enrique Pons Personal Site
 </title>
 
     
-      <link rel="canonical" href="https://jpons.es/2021/02/set-proxy-in-conda/">
+      <link rel="canonical" href="https://jpons.es/2020/08/log-rotation/">
     
 
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
@@ -115,14 +111,14 @@ ssl_verify: truechannels:- conda-forge- defaultsproxy_servers:http: http://
     <article>
       <header>
         <div class="post-title">
-          <h1 class="title">Set proxy in conda</h1>
+          <h1 class="title">Log rotation</h1>
         </div>
         <div class="post-meta">
           <div class="date">
             <span class="posted-on">
               <i class="fas fa-calendar"></i>
-              <time datetime='2021-02-15T00:10:12&#43;02:00'>
-                February 15, 2021
+              <time datetime='2020-08-15T00:10:12&#43;02:00'>
+                August 15, 2020
               </time>
             </span>
             <span class="reading-time">
@@ -136,27 +132,11 @@ ssl_verify: truechannels:- conda-forge- defaultsproxy_servers:http: http://
       </header>
 
       <div>
-        <h1 id="set-proxy-in-conda">Set proxy in conda</h1>
-<p>Some companies run within a proxy, to configure conda so you can install packages, take the following file: <em>C:\Users\username.condarc</em></p>
-<p>Add the line proxy_servers with the IP and port:</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">ssl_verify: true
-channels:
-  - conda-forge
-  - defaults
-proxy_servers:
-  http: http://10.49.1.1:8080/
-  https: http://10.49.1.1:8080/
-</code></pre></div><h1 id="set-proxy-in-pip">Set proxy in pip</h1>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(base) C:\Users\x&gt;SET http_proxy=http://10.49.1.1:8080/
+        <h1 id="resources">Resources</h1>
+<p><a href="https://www.tecmint.com/install-logrotate-to-manage-log-rotation-in-linux/">configure log rotate</a>
+<a href="https://unix.stackexchange.com/questions/15546/logrotate-log-does-not-need-rotating-why">Issues with Log rotate</a>
+<a href="https://www.digitalocean.com/community/tutorials/how-to-manage-logfiles-with-logrotate-on-ubuntu-16-04">Manage log files</a></p>
 
-(base) C:\Users\x&gt;echo %http_proxy%
-http://10.49.1.1:8080/
-
-(base) C:\Users\x&gt;SET https_proxy=http://10.49.1.1:8080/
-
-(base) C:\Users\x&gt;pip install fire
-Collecting fire
-</code></pre></div>
       </div>
 
       <footer>

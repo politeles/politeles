@@ -10,30 +10,30 @@
     <meta name="keywords" content="blog,developer,personal,ai,ml,artificial intelligence, machine learning">
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Set proxy in conda"/>
-<meta name="twitter:description" content="Set proxy in conda Some companies run within a proxy, to configure conda so you can install packages, take the following file: C:\Users\username.condarc
-Add the line proxy_servers with the IP and port:
-ssl_verify: truechannels:- conda-forge- defaultsproxy_servers:http: http://10.49.1.1:8080/https: http://10.49.1.1:8080/Set proxy in pip (base) C:\Users\x&gt;SET http_proxy=http://10.49.1.1:8080/(base) C:\Users\x&gt;echo %http_proxy%http://10.49.1.1:8080/(base) C:\Users\x&gt;SET https_proxy=http://10.49.1.1:8080/(base) C:\Users\x&gt;pip install fireCollecting fire"/>
+<meta name="twitter:title" content="Create CLI for python"/>
+<meta name="twitter:description" content="Create CLI for python using Fire Fire is a really simple library to build CLI. Install it ( you can use conda as well):
+pip install fireAnd then use it in your app, for example here:
+import pandas as pdimport firedef to_csv(fileName,sheet,outfile):df = pd.read_excel(fileName,sheet=sheet)for c in df.columns:df[c]= df[c].astype(str)df[c] = df[c].str.replace(r&#34;/\n\r|\n|\r/g&#34;,&#39;&#39;)df[c] = df[c].str.strip()df.to_csv(outfile,index=False,header=False)if __name__ == &#39;__main__&#39;:fire.Fire(to_csv)"/>
 
-    <meta property="og:title" content="Set proxy in conda" />
-<meta property="og:description" content="Set proxy in conda Some companies run within a proxy, to configure conda so you can install packages, take the following file: C:\Users\username.condarc
-Add the line proxy_servers with the IP and port:
-ssl_verify: truechannels:- conda-forge- defaultsproxy_servers:http: http://10.49.1.1:8080/https: http://10.49.1.1:8080/Set proxy in pip (base) C:\Users\x&gt;SET http_proxy=http://10.49.1.1:8080/(base) C:\Users\x&gt;echo %http_proxy%http://10.49.1.1:8080/(base) C:\Users\x&gt;SET https_proxy=http://10.49.1.1:8080/(base) C:\Users\x&gt;pip install fireCollecting fire" />
+    <meta property="og:title" content="Create CLI for python" />
+<meta property="og:description" content="Create CLI for python using Fire Fire is a really simple library to build CLI. Install it ( you can use conda as well):
+pip install fireAnd then use it in your app, for example here:
+import pandas as pdimport firedef to_csv(fileName,sheet,outfile):df = pd.read_excel(fileName,sheet=sheet)for c in df.columns:df[c]= df[c].astype(str)df[c] = df[c].str.replace(r&#34;/\n\r|\n|\r/g&#34;,&#39;&#39;)df[c] = df[c].str.strip()df.to_csv(outfile,index=False,header=False)if __name__ == &#39;__main__&#39;:fire.Fire(to_csv)" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://jpons.es/2021/02/set-proxy-in-conda/" />
-<meta property="article:published_time" content="2021-02-15T00:10:12+02:00" />
-<meta property="article:modified_time" content="2021-02-15T00:10:12+02:00" />
+<meta property="og:url" content="https://jpons.es/2020/12/create-cli-for-python/" />
+<meta property="article:published_time" content="2020-12-15T00:10:12+02:00" />
+<meta property="article:modified_time" content="2020-12-15T00:10:12+02:00" />
 
 
     
-      <base href="https://jpons.es/2021/02/set-proxy-in-conda/">
+      <base href="https://jpons.es/2020/12/create-cli-for-python/">
     
     <title>
-  Set proxy in conda · Jose Enrique Pons Personal Site
+  Create CLI for python · Jose Enrique Pons Personal Site
 </title>
 
     
-      <link rel="canonical" href="https://jpons.es/2021/02/set-proxy-in-conda/">
+      <link rel="canonical" href="https://jpons.es/2020/12/create-cli-for-python/">
     
 
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
@@ -115,14 +115,14 @@ ssl_verify: truechannels:- conda-forge- defaultsproxy_servers:http: http://
     <article>
       <header>
         <div class="post-title">
-          <h1 class="title">Set proxy in conda</h1>
+          <h1 class="title">Create CLI for python</h1>
         </div>
         <div class="post-meta">
           <div class="date">
             <span class="posted-on">
               <i class="fas fa-calendar"></i>
-              <time datetime='2021-02-15T00:10:12&#43;02:00'>
-                February 15, 2021
+              <time datetime='2020-12-15T00:10:12&#43;02:00'>
+                December 15, 2020
               </time>
             </span>
             <span class="reading-time">
@@ -136,26 +136,25 @@ ssl_verify: truechannels:- conda-forge- defaultsproxy_servers:http: http://
       </header>
 
       <div>
-        <h1 id="set-proxy-in-conda">Set proxy in conda</h1>
-<p>Some companies run within a proxy, to configure conda so you can install packages, take the following file: <em>C:\Users\username.condarc</em></p>
-<p>Add the line proxy_servers with the IP and port:</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">ssl_verify: true
-channels:
-  - conda-forge
-  - defaults
-proxy_servers:
-  http: http://10.49.1.1:8080/
-  https: http://10.49.1.1:8080/
-</code></pre></div><h1 id="set-proxy-in-pip">Set proxy in pip</h1>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">(base) C:\Users\x&gt;SET http_proxy=http://10.49.1.1:8080/
+        <h1 id="create-cli-for-python-using-fire">Create CLI for python using Fire</h1>
+<p><a href="https://github.com/google/python-fire">Fire is a really simple library to build CLI.</a>
+Install it ( you can use conda as well):</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">pip install fire
+</code></pre></div><p>And then use it in your app, for example here:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">import</span> pandas <span style="color:#fff;font-weight:bold">as</span> pd
+<span style="color:#fff;font-weight:bold">import</span> fire
 
-(base) C:\Users\x&gt;echo %http_proxy%
-http://10.49.1.1:8080/
+<span style="color:#fff;font-weight:bold">def</span> to_csv(fileName,sheet,outfile):
+ df = pd.read_excel(fileName,sheet=sheet)
+ <span style="color:#fff;font-weight:bold">for</span> c in df.columns:
+  df[c]= df[c].astype(<span style="color:#fff;font-weight:bold">str</span>)
+  df[c] = df[c].str.replace(<span style="color:#0ff;font-weight:bold">r</span><span style="color:#0ff;font-weight:bold">&#34;/\n\r|\n|\r/g&#34;</span>,<span style="color:#0ff;font-weight:bold">&#39;&#39;</span>)
+  df[c] = df[c].str.strip()
+ df.to_csv(outfile,index=False,header=False)
+ 
 
-(base) C:\Users\x&gt;SET https_proxy=http://10.49.1.1:8080/
-
-(base) C:\Users\x&gt;pip install fire
-Collecting fire
+<span style="color:#fff;font-weight:bold">if</span> __name__ == <span style="color:#0ff;font-weight:bold">&#39;__main__&#39;</span>:
+  fire.Fire(to_csv)
 </code></pre></div>
       </div>
 

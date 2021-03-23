@@ -64,7 +64,7 @@ In case you want to modify a column, you can do the following to replace some ch
       <guid>https://jpons.es/2021/02/set-proxy-in-conda/</guid>
       <description>Set proxy in conda Some companies run within a proxy, to configure conda so you can install packages, take the following file: C:\Users\username.condarc
 Add the line proxy_servers with the IP and port:
-ssl_verify: truechannels:- conda-forge- defaultsproxy_servers:http: http://10.49.1.1:8080/https: http://10.49.1.1:8080/</description>
+ssl_verify: truechannels:- conda-forge- defaultsproxy_servers:http: http://10.49.1.1:8080/https: http://10.49.1.1:8080/Set proxy in pip (base) C:\Users\x&amp;gt;SET http_proxy=http://10.49.1.1:8080/(base) C:\Users\x&amp;gt;echo %http_proxy%http://10.49.1.1:8080/(base) C:\Users\x&amp;gt;SET https_proxy=http://10.49.1.1:8080/(base) C:\Users\x&amp;gt;pip install fireCollecting fire</description>
     </item>
     
     <item>
@@ -86,6 +86,26 @@ This is the answer we get from the curl command:
       <guid>https://jpons.es/2021/01/ssh-check-bits/</guid>
       <description>How do I know the number of bits and encruption of my public key? According to superuser
 ssh-keygen -l -f ~/.ssh/id_rsa.pub</description>
+    </item>
+    
+    <item>
+      <title>Create CLI for python</title>
+      <link>https://jpons.es/2020/12/create-cli-for-python/</link>
+      <pubDate>Tue, 15 Dec 2020 00:10:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2020/12/create-cli-for-python/</guid>
+      <description>Create CLI for python using Fire Fire is a really simple library to build CLI. Install it ( you can use conda as well):
+pip install fireAnd then use it in your app, for example here:
+import pandas as pdimport firedef to_csv(fileName,sheet,outfile):df = pd.read_excel(fileName,sheet=sheet)for c in df.columns:df[c]= df[c].astype(str)df[c] = df[c].str.replace(r&amp;#34;/\n\r|\n|\r/g&amp;#34;,&amp;#39;&amp;#39;)df[c] = df[c].str.strip()df.to_csv(outfile,index=False,header=False)if __name__ == &amp;#39;__main__&amp;#39;:fire.Fire(to_csv)</description>
+    </item>
+    
+    <item>
+      <title>Log rotation</title>
+      <link>https://jpons.es/2020/08/log-rotation/</link>
+      <pubDate>Sat, 15 Aug 2020 00:10:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2020/08/log-rotation/</guid>
+      <description>Resources configure log rotate Issues with Log rotate Manage log files</description>
     </item>
     
     <item>

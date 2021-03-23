@@ -25,3 +25,17 @@ proxy_servers:
   http: http://10.49.1.1:8080/
   https: http://10.49.1.1:8080/
 ```
+
+# Set proxy in pip 
+
+```
+(base) C:\Users\x>SET http_proxy=http://10.49.1.1:8080/
+
+(base) C:\Users\x>echo %http_proxy%
+http://10.49.1.1:8080/
+
+(base) C:\Users\x>SET https_proxy=http://10.49.1.1:8080/
+
+(base) C:\Users\x>pip install fire
+Collecting fire
+```
