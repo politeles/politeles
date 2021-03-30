@@ -3,13 +3,8 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jpons.es/2021/03/how-to-get-times-from-curl/</loc>
-    <lastmod>2021-03-15T00:18:56+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://jpons.es/</loc>
-    <lastmod>2021-03-15T00:18:56+02:00</lastmod>
+    <lastmod>2021-03-29T00:09:12+02:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
@@ -23,7 +18,82 @@
   </url>
   
   <url>
+    <loc>https://jpons.es/2021/03/kore.ai-export-knowledge-base-into-batch-testing/</loc>
+    <lastmod>2021-03-29T00:09:12+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jpons.es/posts/</loc>
+    <lastmod>2021-03-29T00:09:12+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/categories/</loc>
+    <lastmod>2021-03-26T00:08:27+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://jpons.es/es/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://jpons.es/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/series/cli/</loc>
+    <lastmod>2021-03-26T00:08:27+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/categories/databases/</loc>
+    <lastmod>2021-03-26T00:08:27+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/tags/mongodb/</loc>
+    <lastmod>2021-03-26T00:08:27+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/2021/03/mongodb-commands/</loc>
+    <lastmod>2021-03-26T00:08:27+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/series/</loc>
+    <lastmod>2021-03-26T00:08:27+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://jpons.es/es/series/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://jpons.es/series/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/tags/</loc>
+    <lastmod>2021-03-26T00:08:27+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://jpons.es/es/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://jpons.es/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/2021/03/how-to-get-times-from-curl/</loc>
     <lastmod>2021-03-15T00:18:56+02:00</lastmod>
   </url>
   
@@ -65,11 +135,6 @@
   <url>
     <loc>https://jpons.es/2020/08/log-rotation/</loc>
     <lastmod>2020-08-15T00:10:12+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jpons.es/2019/06/ai-and-ml-position/</loc>
-    <lastmod>2019-06-05T00:09:12+02:00</lastmod>
   </url>
   
   <url>
@@ -128,6 +193,21 @@
   </url>
   
   <url>
+    <loc>https://jpons.es/2015/09/choosing-a-graphic-library-for-jscript/</loc>
+    <lastmod>2015-09-25T00:09:12+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/tags/js/</loc>
+    <lastmod>2015-09-25T00:09:12+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/categories/library/</loc>
+    <lastmod>2015-09-25T00:09:12+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jpons.es/2015/08/problems-when-using-webservice-from-javascript-cors/</loc>
     <lastmod>2015-08-26T00:09:12+02:00</lastmod>
   </url>
@@ -153,12 +233,37 @@
   </url>
   
   <url>
+    <loc>https://jpons.es/tags/c#/</loc>
+    <lastmod>2015-06-08T00:09:12+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/2015/06/index-database-using-tipuesearch/</loc>
+    <lastmod>2015-06-08T00:09:12+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/2015/06/interface-check-c/</loc>
+    <lastmod>2015-06-08T00:09:12+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/categories/interfaces/</loc>
+    <lastmod>2015-06-08T00:09:12+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jpons.es/2015/06/scripting-with-python/</loc>
     <lastmod>2015-06-08T00:09:12+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://jpons.es/2015/06/short-administration-guide-for-passenger/</loc>
+    <lastmod>2015-06-08T00:09:12+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/tags/tipuesearch/</loc>
     <lastmod>2015-06-08T00:09:12+02:00</lastmod>
   </url>
   
@@ -178,7 +283,22 @@
   </url>
   
   <url>
+    <loc>https://jpons.es/2015/05/create-folder-structures/</loc>
+    <lastmod>2015-05-07T00:09:12+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jpons.es/2015/05/how-to-automate-folder-creation-and-folders-structure-creation-on-windows/</loc>
+    <lastmod>2015-05-07T00:09:12+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/tags/os/</loc>
+    <lastmod>2015-05-07T00:09:12+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/categories/windows/</loc>
     <lastmod>2015-05-07T00:09:12+02:00</lastmod>
   </url>
   
@@ -188,53 +308,21 @@
   </url>
   
   <url>
+    <loc>https://jpons.es/2015/02/handling-mysql-permissions/</loc>
+    <lastmod>2015-02-07T00:09:12+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jpons.es/tags/mysql/</loc>
+    <lastmod>2015-02-07T00:09:12+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jpons.es/about/</loc>
   </url>
   
   <url>
-    <loc>https://jpons.es/categories/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://jpons.es/es/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://jpons.es/categories/"
-                />
-  </url>
-  
-  <url>
     <loc>https://jpons.es/contact/</loc>
-  </url>
-  
-  <url>
-    <loc>https://jpons.es/series/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://jpons.es/es/series/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://jpons.es/series/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://jpons.es/tags/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://jpons.es/es/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://jpons.es/tags/"
-                />
   </url>
   
 </urlset>

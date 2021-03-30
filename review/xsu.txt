@@ -1,0 +1,4 @@
+Using xsu to authenticate as other user.
+As you might know, xsu has the same functionality as sudo, but with x variables enabled.
+
+you can execute arbitary commands by writting them to a xauth file.

@@ -1,0 +1,175 @@
+Installation and configuration of Vsftpd with virtual users and SSL certificates.
+
+We want to install a ftp server with virtual users and SSL certificates. There are several configuration files that we need to configure.
+The main configuration file for vsftpd is usually located at /etc/vsftpd.conf 
+
+The first point is the configuration of virtual users, that is, no system users will log onto this system.
+To do so, we need to configure an authentication mechanism, we will work with a module from PAM to authenticate virtual users.
+
+We have to create a PAM service using pam_pwdfile.so and the generated /etc/vsftpd/.passwd file. In this example we create a PAM policy for vsftpd with the following content:
+
+/etc/pam.d/vsftpd
+auth required pam_pwdfile.so pwdfile /etc/vsftpd/.passwd
+account required pam_permit.so
+
+Next, the user related configuration on /etc/vsftpd.conf
+
+
+# Virtual users configuration
+# pointing to the correct PAM service file
+pam_service_name=vsftpd
+write_enable=YES
+hide_ids=YES
+listen=YES
+#connect_from_port_20=YES
+anonymous_enable=NO
+local_enable=YES
+dirmessage_enable=YES
+xferlog_enable=YES
+chroot_local_user=YES
+# passwd_chroot_enable=yes
+
+user_config_dir=/etc/vsftpd_user_conf
+guest_enable=YES
+guest_username=virtual
+virtual_use_local_privs=YES
+
+
+With this configuration, we configure each virtual user with two files, one for the passwords and another with the properties, i.e. the home folder.
+So all passwords are encrypted with OpenSSL algorithm:
+
+With this command you get the password:
+
+openssl passwd -1
+
+[root@archpepex /]# openssl passwd -1 -noverify paquillo
+$1$Mueh8aru$ejQWwyL9ZKiT/fe5ubpZE0
+
+then add this info to the password file located in /etc/vsftpd/.passwd That file should looks like:
+
+[root@archpepex /]# cat /etc/vsftpd/.passwd
+paquillo:785DLoWKQK6oU
+manolo:$1$Z8GKEXx7$h5Tq2RWBkEE02uv.xf1pN.
+manolito:ozh3acxyO/Kq2
+
+Then we need a file to configure a user, as stated on the vsftp.conf file, for user paquillo,
+we should edit this file: /etc/vsftpd_user_conf/paquillo
+
+[root@archpepex /]# cat /etc/vsftpd_user_conf/paquillo
+write_enable=YES
+allow_writeable_chroot=YES
+chroot_local_user=YES
+local_root=/srv/ftp/paquillo
+
+You can adapt the local root folder as desired.
+
+To work with SSL but allow only TSL v1 and higher, then we write the following:
+# SSL MANAGEMENT
+ssl_enable=YES
+
+#choose what you like, if you accept anon-connections
+# you may want to enable this
+allow_anon_ssl=YES
+
+#choose what you like,
+# it's a matter of performance i guess
+# force_local_data_ssl=NO
+
+#choose what you like
+force_local_logins_ssl=YES
+
+# Select which SSL ciphers vsftpd will allow for encrypted SSL connections (required by FileZilla)
+ssl_ciphers=HIGH
+# Disable SSL session reuse (required by WinSCP)
+require_ssl_reuse=NO
+
+
+#you should at least enable this if you enable ssl...
+ssl_tlsv1=YES
+#choose what you like
+ssl_sslv2=NO
+#choose what you like
+ssl_sslv3=NO
+#give the correct path to your currently generated *.pem file
+rsa_cert_file=/etc/ssl/certs/vsftpd.pem
+#the *.pem file contains both the key and cert
+rsa_private_key_file=/etc/ssl/certs/vsftpd.pem
+
+
+Note that the certificate files can be created with openSSL. You can generate a certificate by executing this:
+
+openssl req -x509 -nodes -days 7300 -newkey rsa:2048 -keyout /etc/ssl/certs/vsftpd.pem -out /etc/ssl/certs/vsftpd.pem
+
+The full config file is here:
+#
+# vsftpd Configuration File
+# SSL TSL > 1 enabled
+# Virtual users enabled
+# Virtual users chrooted
+# Passive port range 28000 - 28099
+# Listen port: 10021
+############################################
+
+# Virtual users configuration
+# pointing to the correct PAM service file
+pam_service_name=vsftpd
+write_enable=YES
+hide_ids=YES
+listen=YES
+#connect_from_port_20=YES
+anonymous_enable=NO
+local_enable=YES
+dirmessage_enable=YES
+xferlog_enable=YES
+chroot_local_user=YES
+# passwd_chroot_enable=yes
+
+user_config_dir=/etc/vsftpd_user_conf
+guest_enable=YES
+guest_username=virtual
+virtual_use_local_privs=YES
+#local_root=/srv/ftp/$USER
+#user_sub_token=$USER
+
+# Listen port configuration
+listen_port=10021
+
+# Passive port configuration
+pasv_min_port=28000
+pasv_max_port=28099
+pasv_address=192.168.56.101
+
+# SSL MANAGEMENT
+ssl_enable=YES
+
+#choose what you like, if you accept anon-connections
+# you may want to enable this
+allow_anon_ssl=YES
+
+#choose what you like,
+# it's a matter of performance i guess
+# force_local_data_ssl=NO
+
+#choose what you like
+force_local_logins_ssl=YES
+
+# Select which SSL ciphers vsftpd will allow for encrypted SSL connections (required by FileZilla)
+ssl_ciphers=HIGH
+# Disable SSL session reuse (required by WinSCP)
+require_ssl_reuse=NO
+
+
+#you should at least enable this if you enable ssl...
+ssl_tlsv1=YES
+#choose what you like
+ssl_sslv2=NO
+#choose what you like
+ssl_sslv3=NO
+#give the correct path to your currently generated *.pem file
+rsa_cert_file=/etc/ssl/certs/vsftpd.pem
+#the *.pem file contains both the key and cert
+rsa_private_key_file=/etc/ssl/certs/vsftpd.pem
+
+
+
+

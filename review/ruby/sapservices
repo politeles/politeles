@@ -1,0 +1,5 @@
+#!/bin/sh
+LD_LIBRARY_PATH=/usr/sap/EDM/DVEBMGS00/exe:$LD_LIBRARY_PATH; export LD_LIBRARY_PATH; /usr/sap/EDM/DVEBMGS00/exe/sapstartsrv pf=/usr/sap/EDM/SYS/profile/START_DVEBMGS00_eodr3edm -D -u edmadm
+LD_LIBRARY_PATH=/usr/sap/JDM/SCS05/exe:$LD_LIBRARY_PATH; export LD_LIBRARY_PATH; /usr/sap/JDM/SCS05/exe/sapstartsrv pf=/usr/sap/JDM/SYS/profile/START_SCS05_eodr3edm -D -u jdmadm
+
+LD_LIBRARY_PATH=/usr/sap/JDM/JC04/exe:$LD_LIBRARY_PATH; export LD_LIBRARY_PATH; /usr/sap/JDM/JC04/exe/sapstartsrv pf=/usr/sap/JDM/SYS/profile/START_JC04_eodr3edm -D -u jdmadm

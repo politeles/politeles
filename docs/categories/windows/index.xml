@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>windows on Jose Enrique Pons Personal Site</title>
+    <link>https://jpons.es/categories/windows/</link>
+    <description>Recent content in windows on Jose Enrique Pons Personal Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 07 May 2015 00:09:12 +0200</lastBuildDate>
+    
+	<atom:link href="https://jpons.es/categories/windows/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Create folder structures</title>
+      <link>https://jpons.es/2015/05/create-folder-structures/</link>
+      <pubDate>Thu, 07 May 2015 00:09:12 +0200</pubDate>
+      
+      <guid>https://jpons.es/2015/05/create-folder-structures/</guid>
+      <description>Automate folder creation on Windows How to automate folder creation and folders structure creation on windows:
+@ECHO OFFREM Create folders for a new interfaceREM Parameters: GCC HRIS ITFTset basefolder=f:\interfacesset folders=(in out reports staging archive)set argC=0for %%x in (%*) do Set /A argC+=1:parametercheckif -%argC%- lss 3 (goto :wrongcall)echo Creating folder interfaces::folderloopfor %%i in %folders% do (echo mkdir %basefolder%\%1\%2\%3\%%imkdir %basefolder%\%1\%2\%3\%%i)goto :endREM echo f:\interfaces\%1\%2\%3\inREM mkdir f:\interfaces\%1\%2\%3\inREM mkdir :wrongcallecho Wrong call.</description>
+    </item>
+    
+  </channel>
+</rss>
