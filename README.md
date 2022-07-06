@@ -15,8 +15,6 @@
 
 - 📫 How to reach me **jpons@gmail.com**
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=politeles)](https://github.com/politeles/politeles)
-
 ### Blogs posts
 <!-- BLOG-POST-LIST:START -->
 <!-- BLOG-POST-LIST:END -->
