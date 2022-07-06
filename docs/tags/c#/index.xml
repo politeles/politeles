@@ -1,31 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>C# on Jose Enrique Pons Personal Site</title>
-    <link>https://jpons.es/tags/c#/</link>
-    <description>Recent content in C# on Jose Enrique Pons Personal Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Mon, 08 Jun 2015 00:09:12 +0200</lastBuildDate>
-    
-	<atom:link href="https://jpons.es/tags/c#/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>interface check C#</title>
-      <link>https://jpons.es/2015/06/interface-check-c/</link>
-      <pubDate>Mon, 08 Jun 2015 00:09:12 +0200</pubDate>
-      
-      <guid>https://jpons.es/2015/06/interface-check-c/</guid>
-      <description>#A small script to check interfaces on C#
-To reject certificate check:&amp;lt;system.net&amp;gt;&amp;lt;settings&amp;gt;&amp;lt;servicePointManagercheckCertificateName=&amp;#34;false&amp;#34;checkCertificateRevocationList=&amp;#34;false&amp;#34; /&amp;gt;&amp;lt;/settings&amp;gt;&amp;lt;/system.net&amp;gt;In the application config file.
-Some useful links: Check if a file exists: https://msdn.microsoft.com/es-es/library/system.io.file.exists%28v=vs.110%29.aspx
-How to write to a text file: https://msdn.microsoft.com/es-es/library/8bh11f1k.aspx
-How to download files from FTP: https://msdn.microsoft.com/es-es/library/ms229711(v=vs.110).aspx
-How to sleep a thread: https://msdn.microsoft.com/es-es/library/d00bd51t(v=vs.110).aspx
-Problems related to FTP with SSL: Ignore SSL validation for certificates: http://stackoverflow.com/questions/12506575/how-to-ignore-the-certificate-check-when-ssl
-Configure FTP over SSL http://stackoverflow.</description>
-    </item>
-    
-  </channel>
-</rss>

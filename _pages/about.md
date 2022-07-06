@@ -1,0 +1,34 @@
+---
+layout: page
+title: About Me
+permalink: /about/
+---
+
+![]({{site.baseurl}}/images/JE.jpeg )
+
+I love computers and music. And I keep on studying both. Learning never ends.
+
+Over the past 20 years, I worked in multiple companies from small to multinationals in a wide variety of roles. From developer to systems admin to enterprise architect working for the CTO.
+I'm always trying to get the full picture, the end-to-end flow. And I love learning and getting a deep understanding of how something works.
+
+I think Artificial Intelligence (AI) is already playing a strong game in the industry but there is more to come. There are many challenges, besides keeping up with the latest and greatest models and research.
+
+As enterprise architect, I worked with the CTO team to design and implement the technology strategy and worked with multiple teams to bring AI and ML to different business areas. Introducing the cloud, migrating to the cloud, or bringing AI/ML to the cloud is one of my topics. I worked with multiple providers, including AWS, Azure, Google, and Open Telekom Cloud. I'm currently [certified as Associate Architect in AWS](https://www.credly.com/badges/657e2f4a-48b9-4444-a217-2cd720678826/public_url).
+During my journey, I discovered that I love mentoring. I enjoy discovering potential and giving colleagues advice to grow.
+
+In AI, there are three main areas I'm interested in:
+ - Natural Language Processing: Understanding language and classifying or predicting from it. Most companies/businesses have their own jargon and it's a challenge to train a model or implement any kind of knowledge transfer.
+ - Audio processing using AI: Understanding sounds and deriving properties from them so we can classify or even predict them.
+ - MLOps: The lifecycle of the machine learning / AI projects. The main challenges we have today are dealing with data sources, data versioning, data security, data privacy, and the implementation of an effective workflow to work with.
+ - AIOps: Using AI for predictive maintenance, predicting failures, or detecting bugs.
+
+
+I hold a Ph.D. in Artificial Intelligence and Computer Science from the University of Granada (Spain). I studied how to model time. Using ML techniques like Fuzzy Logic and Possibility theory I propose a model to store time-related information in databases. The work was based on the previous research of 
+[Intelligent Databases and Information System (IdBIS)](https://idbis.ugr.es/) in the [DECSAI department](https://decsai.ugr.es/) within the University of Granada. You can [read my thesis here](https://digibug.ugr.es/handle/10481/30346?locale-attribute=en).
+I also hold a Ph.D. in Artificial Intelligence from Ghent University (Belgium). There I studied how to model queries related to time or with time constraints. I extended the bipolar queries developed in Ghent by using time. You can [read my thesis here](https://biblio.ugent.be/publication/4127557).
+
+> youtube: https://youtu.be/EuPerxeI5BQ
+
+I'm also a violinist, and I play in a string quartet [Tres Mas Uno](https://tresmasuno.es/), if you want to see us, [watch our channel](https://www.youtube.com/channel/UCxNhMu5lZP4Nrd5pn4JbLPw) or [follow us on instagram](https://www.instagram.com/cuarteto_tresmasuno/).
+
+If you want to contact me, you can reach me out via [linkedin](www.linkedin.com/in/politeles) or the social media.

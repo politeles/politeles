@@ -1,42 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>databases on Jose Enrique Pons Personal Site</title>
-    <link>https://jpons.es/categories/databases/</link>
-    <description>Recent content in databases on Jose Enrique Pons Personal Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 26 Mar 2021 00:08:27 +0200</lastBuildDate>
-    
-	<atom:link href="https://jpons.es/categories/databases/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>MongoDB commands</title>
-      <link>https://jpons.es/2021/03/mongodb-commands/</link>
-      <pubDate>Fri, 26 Mar 2021 00:08:27 +0200</pubDate>
-      
-      <guid>https://jpons.es/2021/03/mongodb-commands/</guid>
-      <description>Connect to mongo using SSL certificates mongo --host hostname --port 27027 -ssl --sslPEMKeyFile /path/to/file --sslCAFile /path/to/fileLogin as admin user use admindb.auth(&amp;#39;user&amp;#39;,&amp;#39;passwd&amp;#39;)show databases show databasesshow collections show collectionsexplore collections db.collectionname.find()</description>
-    </item>
-    
-    <item>
-      <title>index database using tipuesearch</title>
-      <link>https://jpons.es/2015/06/index-database-using-tipuesearch/</link>
-      <pubDate>Mon, 08 Jun 2015 00:09:12 +0200</pubDate>
-      
-      <guid>https://jpons.es/2015/06/index-database-using-tipuesearch/</guid>
-      <description>Optimizing search on websites with tipuesearch js var tipuesearch = {&amp;#34;pages&amp;#34;: [{&amp;#34;title&amp;#34;: &amp;#34;Welcome to JIVE - Guidelines | ACME&amp;#34;, &amp;#34;text&amp;#34;: &amp;#34;Welcome to the ACME Jive Collaboration platform Please read this document, which contains&amp;#34;,&amp;#34;tags&amp;#34;: &amp;#34;Welcome to JIVE - Guidelines | ACME&amp;#34;,&amp;#34;url&amp;#34;: &amp;#34;http://10.0.82.13/DOC-1001.html&amp;#34;},{&amp;#34;title&amp;#34;: &amp;#34;Datacenter FAQ - ACME ISO Hosting | ACME&amp;#34;, &amp;#34;text&amp;#34;: &amp;#34;Where are the datacenters located? Do you subcontract activities? We have several datacenters around&amp;#34;,&amp;#34;tags&amp;#34;: &amp;#34;Datacenter FAQ - ACME ISO Hosting | ACME&amp;#34;,&amp;#34;url&amp;#34;: &amp;#34;http://10.</description>
-    </item>
-    
-    <item>
-      <title>handling mysql permissions</title>
-      <link>https://jpons.es/2015/02/handling-mysql-permissions/</link>
-      <pubDate>Sat, 07 Feb 2015 00:09:12 +0200</pubDate>
-      
-      <guid>https://jpons.es/2015/02/handling-mysql-permissions/</guid>
-      <description>Handling MySQL users and permissions grant all privileges on &amp;lt;gcc&amp;gt;.* to &amp;#39;&amp;lt;gcc&amp;gt;&amp;#39;@&amp;#39;localhost&amp;#39; identified by &amp;#39;&amp;lt;password&amp;#39;;grant all privileges on &amp;lt;gcc&amp;gt;.* to &amp;#39;&amp;lt;gcc&amp;gt;&amp;#39;@&amp;#39;&amp;lt;FQN_ROR_hostname&amp;gt; &amp;#39; identified by &amp;#39;&amp;lt;password&amp;#39;;Resources 13.7.5.17 SHOW GRANTS Syntax</description>
-    </item>
-    
-  </channel>
-</rss>
