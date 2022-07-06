@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Vim shortcuts | José Enrique Pons blog.</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Vim shortcuts" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Guide to recurrent actions in Vim" />
+<meta property="og:description" content="Guide to recurrent actions in Vim" />
+<link rel="canonical" href="https://jpons.es/2021/03/08/vim" />
+<meta property="og:url" content="https://jpons.es/2021/03/08/vim" />
+<meta property="og:site_name" content="José Enrique Pons blog." />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-08T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Vim shortcuts" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-03-08T00:00:00-06:00","datePublished":"2021-03-08T00:00:00-06:00","description":"Guide to recurrent actions in Vim","headline":"Vim shortcuts","mainEntityOfPage":{"@type":"WebPage","@id":"https://jpons.es/2021/03/08/vim"},"url":"https://jpons.es/2021/03/08/vim"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://jpons.es/feed.xml" title="José Enrique Pons blog." /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RQNWGYTYCC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RQNWGYTYCC');
+</script>
+
+
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">José Enrique Pons blog.</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Vim shortcuts</h1><p class="page-description">Guide to recurrent actions in Vim</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-03-08T00:00:00-06:00" itemprop="datePublished">
+        Mar 8, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#vim">vim</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#cutcopy-and-paste-using-visual-selection">Cut/copy and paste using visual selection</a></li>
+<li class="toc-entry toc-h1"><a href="#comment-and-uncomment">Comment and uncomment</a></li>
+<li class="toc-entry toc-h1"><a href="#replace-all">Replace all</a></li>
+<li class="toc-entry toc-h1"><a href="#references">References</a></li>
+</ul><h1 id="cutcopy-and-paste-using-visual-selection">
+<a class="anchor" href="#cutcopy-and-paste-using-visual-selection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cut/copy and paste using visual selection</h1>
+
+<p>Visual selection is a common feature in applications, but Vim’s visual selection has several benefits.</p>
+
+<p>To cut-and-paste or copy-and-paste:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Position the cursor at the beginning of the text you want to cut/copy.
+Press v to begin character-based visual selection, or V to select whole lines, or Ctrl-v or Ctrl-q to select a block.
+Move the cursor to the end of the text to be cut/copied. While selecting text, you can perform searches and other advanced movement.
+Press d (delete) to cut, or y (yank) to copy.
+Move the cursor to the desired paste location.
+Press p to paste after the cursor, or P to paste before.
+</code></pre></div></div>
+
+<p>Visual selection (steps 1-3) can be performed using a mouse.</p>
+
+<p>If you want to change the selected text, press c instead of d or y in step 4. In a visual selection, pressing c performs a change by deleting the selected text and entering insert mode so you can type the new text.</p>
+
+<h1 id="comment-and-uncomment">
+<a class="anchor" href="#comment-and-uncomment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Comment and uncomment</h1>
+
+<p>Put your cursor on the first # character, press CtrlV (or CtrlQ for gVim), and go down until the last commented line and press x, that will delete all the # characters vertically.</p>
+
+<p>For commenting a block of text is almost the same:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First, go to the first line you want to comment, press CtrlV. This will put the editor in the VISUAL BLOCK mode.
+Then using the arrow key and select until the last line
+Now press ShiftI, which will put the editor in INSERT mode and then press #. This will add a hash to the first line.
+Then press Esc (give it a second), and it will insert a # character on all other selected lines.
+</code></pre></div></div>
+
+<p>For the stripped-down version of vim shipped with debian/ubuntu by default, type : s/^/# in the third step instead (any remaining highlighting of the first character of each line can be removed with :nohl).</p>
+
+<p>Here are two small screen recordings for visual reference.</p>
+
+<h1 id="replace-all">
+<a class="anchor" href="#replace-all" aria-hidden="true"><span class="octicon octicon-link"></span></a>Replace all</h1>
+
+<p>The :substitute command searches for a text pattern, and replaces it with a text string. There are many options, but these are what you probably want:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:s/foo/bar/g
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Find each occurrence of 'foo' (in the current line only), and replace it with 'bar'.
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:%s/foo/bar/g
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Find each occurrence of 'foo' (in all lines), and replace it with 'bar'.
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:%s/foo/bar/gc
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Change each 'foo' to 'bar', but ask for confirmation first.
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:%s/\&lt;foo\&gt;/bar/gc
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Change only whole words exactly matching 'foo' to 'bar'; ask for confirmation.
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:%s/foo/bar/gci
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Change each 'foo' (case insensitive due to the i flag) to 'bar'; ask for confirmation.
+:%s/foo\c/bar/gc is the same because \c makes the search case insensitive.
+This may be wanted after using :set noignorecase to make searches case sensitive (the default).
+</code></pre></div></div>
+
+<h1 id="references">
+<a class="anchor" href="#references" aria-hidden="true"><span class="octicon octicon-link"></span></a>References</h1>
+<p><a href="https://vim.fandom.com/wiki/Cut/copy_and_paste_using_visual_selection">Visual selection</a>
+<a href="https://stackoverflow.com/questions/1676632/whats-a-quick-way-to-comment-uncomment-lines-in-vim">Comment and uncomment</a></p>
+
+  </div><a class="u-url" href="/2021/03/08/vim" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>My tech blog on AI/ML and IT stuff in general.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/politeles" target="_blank" title="politeles"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/jose_e_pons" target="_blank" title="jose_e_pons"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

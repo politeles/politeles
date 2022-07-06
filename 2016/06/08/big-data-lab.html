@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Big Data Lab | José Enrique Pons blog.</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Big Data Lab" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How to set up a big data lab" />
+<meta property="og:description" content="How to set up a big data lab" />
+<link rel="canonical" href="https://jpons.es/2016/06/08/big-data-lab" />
+<meta property="og:url" content="https://jpons.es/2016/06/08/big-data-lab" />
+<meta property="og:site_name" content="José Enrique Pons blog." />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-06-08T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Big Data Lab" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2016-06-08T00:00:00-05:00","datePublished":"2016-06-08T00:00:00-05:00","description":"How to set up a big data lab","headline":"Big Data Lab","mainEntityOfPage":{"@type":"WebPage","@id":"https://jpons.es/2016/06/08/big-data-lab"},"url":"https://jpons.es/2016/06/08/big-data-lab"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://jpons.es/feed.xml" title="José Enrique Pons blog." /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RQNWGYTYCC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RQNWGYTYCC');
+</script>
+
+
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">José Enrique Pons blog.</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Big Data Lab</h1><p class="page-description">How to set up a big data lab</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2016-06-08T00:00:00-05:00" itemprop="datePublished">
+        Jun 8, 2016
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#bigdata lab ubuntu redhat">bigdata lab ubuntu redhat</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#big-data-lab">Big Data Lab</a></li>
+</ul><h1 id="big-data-lab">
+<a class="anchor" href="#big-data-lab" aria-hidden="true"><span class="octicon octicon-link"></span></a>Big Data Lab</h1>
+
+<p>Setting up your (small) Big Data Laboratory</p>
+
+<p>I want to learn and work with some of the newest ‘Big Data’ tools, like Hadoop, Mahout,
+Flume, Elastic, etc. But how to do that? Which tecnology should I work with? Is there like a faction of people that only work with Apache products, other just with Amazon.
+To choose, and experiment with those technologies I’m going to set up a budget lab at home.</p>
+
+<p>I think it’s really important to know what you want to achieve with that lab. 
+First of all, what do you want to do? Data Mining? Machine learning? Classification?
+It’s a great idea to have a toy project to work with.</p>
+
+<p>In my case I want to do the following:</p>
+
+<ul>
+  <li>First, my data set is a collection of terminal outputs with the commands and the output of that commands on different servers.</li>
+  <li>
+    <p>On an early stage I want to do a Data Analysis. I want to check if there are any identifiable relationships among the commands I send to the terminal.
+Is there any pattern? May I identify clearly the steps when installing a component (i.e. Apache web server) than when I’m resolving an issue (i.e. Apache went down)?</p>
+  </li>
+  <li>The possibilities are countless. Maybe after the data analisys I can train a system to learn on how an installation is performed, or how an issue is solved.
+After that I could integrate the system and do some stream mining and get suggestions on real time on how to solve an issue.</li>
+</ul>
+
+<p>But first things first. Taking a look to Data Analysis, there are several popular tools, like R, which provides both user interface and a language and libraries to handle data. A reason to choose R is the quick way to inspect and get some nice plots to explore our data.
+Also, we can consider Hadoop as engine to store our data sets and also to explore them. From my point of view this option is a little bit more complex at the beggining, but more powerful if you want to explore then some solutions with Mahout, Hive or Flume.</p>
+
+<p>What do I need for my labo?
+You need hardware and software products. If you plan to install R, then your laptop would do the job. But if you want to work with hadoop, I recommend you to work with Virtual Machines.
+I always try to work with open source solutions so, to create VM, I’ll use VirtualBox.</p>
+
+<p>Ok, I’m going to installs VMs, which OS should I install?
+There is a great deal of linux flavours to install your VM. I’ll cover this step in more detail,
+but as far as I can see the most used OS on cloud environments are:</p>
+<ul>
+  <li>Ubuntu Server</li>
+  <li>Red Hat (RHEL) / CentOS
+I also like to work with Devian and Arch due to the low footprint.</li>
+</ul>
+
+<p>Some useful links:</p>
+
+<p>Different hadoop installation manuals:
+http://doctuts.readthedocs.io/en/latest/hadoop.html
+http://www.michael-noll.com/tutorials/running-hadoop-on-ubuntu-linux-single-node-cluster/
+http://www.michael-noll.com/tutorials/
+https://wiki.apache.org/hadoop/FrontPage</p>
+
+<p>Data mining using hive:
+http://blog.sqlauthority.com/2013/10/21/big-data-data-mining-with-hive-what-is-hive-what-is-hiveql-hql-day-15-of-21/
+DAta mining hadoop:</p>
+
+<p>https://developer.yahoo.com/hadoop/tutorial/module3.html</p>
+
+<p>Create a recomender with Mahout in 5 minutes:
+https://mahout.apache.org/users/recommender/userbased-5-minutes.html</p>
+
+<p>Apache Flume for streams:
+http://flume.apache.org/</p>
+
+<p>ASterix DB:
+https://wiki.umiacs.umd.edu/ccc/images/3/32/CLuE-Li.pdf
+http://asterix.ics.uci.edu/</p>
+
+  </div><a class="u-url" href="/2016/06/08/big-data-lab" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>My tech blog on AI/ML and IT stuff in general.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/politeles" target="_blank" title="politeles"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/jose_e_pons" target="_blank" title="jose_e_pons"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Getting started with docker in Ubuntu 14.04 LTS | José Enrique Pons blog.</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Getting started with docker in Ubuntu 14.04 LTS" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="First steps after installing ubuntu 14.04" />
+<meta property="og:description" content="First steps after installing ubuntu 14.04" />
+<link rel="canonical" href="https://jpons.es/2016/09/10/getting-started-ubuntu-14-04-lts" />
+<meta property="og:url" content="https://jpons.es/2016/09/10/getting-started-ubuntu-14-04-lts" />
+<meta property="og:site_name" content="José Enrique Pons blog." />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-09-10T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Getting started with docker in Ubuntu 14.04 LTS" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2016-09-10T00:00:00-05:00","datePublished":"2016-09-10T00:00:00-05:00","description":"First steps after installing ubuntu 14.04","headline":"Getting started with docker in Ubuntu 14.04 LTS","mainEntityOfPage":{"@type":"WebPage","@id":"https://jpons.es/2016/09/10/getting-started-ubuntu-14-04-lts"},"url":"https://jpons.es/2016/09/10/getting-started-ubuntu-14-04-lts"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://jpons.es/feed.xml" title="José Enrique Pons blog." /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RQNWGYTYCC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RQNWGYTYCC');
+</script>
+
+
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">José Enrique Pons blog.</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Getting started with docker in Ubuntu 14.04 LTS</h1><p class="page-description">First steps after installing ubuntu 14.04</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2016-09-10T00:00:00-05:00" itemprop="datePublished">
+        Sep 10, 2016
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#linux ubuntu">linux ubuntu</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#getting-started-with-docker-in-ubuntu-1404-lts">Getting started with docker in Ubuntu 14.04 LTS</a></li>
+</ul><h1 id="getting-started-with-docker-in-ubuntu-1404-lts">
+<a class="anchor" href="#getting-started-with-docker-in-ubuntu-1404-lts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting started with docker in Ubuntu 14.04 LTS</h1>
+
+<p>I’m trying to install a small lab system based on Ubuntu. The Docker project is a new step on the virtualization world, which reduces the amount of resources used by the ‘guest O.S’ since there is no such O.S.</p>
+
+<p>To get an overview on Docker, I recommend to get to the project page and get the resources and the free (an really good) training from there (<a href="https://www.docker.com/" target="_blank">https://www.docker.com/</a>)</p>
+
+<p>I’m going to follow the instructions on the site to <a href="http://docs.docker.com/linux/step_one/">install docker for linux</a>, but I’d like to detail here the problems and the full install I did.</p>
+
+<p>Get to a console and install with the Ubuntu script:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo  </span>wget <span class="nt">-qO-</span> https://get.docker.com/ | sh
+</code></pre></div></div>
+
+<p>Next you can add your own user to run Docker without root or sudo.
+To do so:
+If you would like to use Docker as a non-root user, you should now consider adding your user to the “docker” group with something like:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">sudo </span>usermod <span class="nt">-aG</span> docker jpons
+
+Remember that you will have to log out and back <span class="k">in for </span>this to take effect!
+</code></pre></div></div>
+
+<p>Trying to run hello world:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run hello-world
+Post http:///var/run/docker.sock/v1.19/containers/create: dial unix /var/run/docker.sock: no such file or directory. Are you trying to connect to a TLS-enabled daemon without TLS?
+</code></pre></div></div>
+
+<p>Don’t forget to start the Docker server, otherwise even the hello world app won’t start.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jpons@bugambilla:~<span class="nv">$ </span><span class="nb">sudo </span>docker run hello-world
+Unable to find image <span class="s1">'hello-world:latest'</span> locally
+latest: Pulling from hello-world
+a8219747be10: Pull <span class="nb">complete 
+</span>91c95931e552: Already exists 
+hello-world:latest: The image you are pulling has been verified. Important: image verification is a tech preview feature and should not be relied on to provide security.
+Digest: sha256:aa03e5d0d5553b4c3473e89c8619cf79df368babd18681cf5daeb82aab55838d
+Status: Downloaded newer image <span class="k">for </span>hello-world:latest
+Hello from Docker.
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the <span class="s2">"hello-world"</span> image from the Docker Hub.
+    <span class="o">(</span>Assuming it was not already locally available.<span class="o">)</span>
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ <span class="nv">$ </span>docker run <span class="nt">-it</span> ubuntu bash
+
+For more examples and ideas, visit:
+ http://docs.docker.com/userguide/
+</code></pre></div></div>
+
+
+  </div><a class="u-url" href="/2016/09/10/getting-started-ubuntu-14-04-lts" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>My tech blog on AI/ML and IT stuff in general.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/politeles" target="_blank" title="politeles"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/jose_e_pons" target="_blank" title="jose_e_pons"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

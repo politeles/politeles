@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Install MongoDB 3 on windows | José Enrique Pons blog.</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Install MongoDB 3 on windows" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Post showing how to index a website using javascript tipuesearch." />
+<meta property="og:description" content="Post showing how to index a website using javascript tipuesearch." />
+<link rel="canonical" href="https://jpons.es/2015/08/22/install-mongodb-3-0-on-windows" />
+<meta property="og:url" content="https://jpons.es/2015/08/22/install-mongodb-3-0-on-windows" />
+<meta property="og:site_name" content="José Enrique Pons blog." />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-08-22T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Install MongoDB 3 on windows" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2015-08-22T00:00:00-05:00","datePublished":"2015-08-22T00:00:00-05:00","description":"Post showing how to index a website using javascript tipuesearch.","headline":"Install MongoDB 3 on windows","mainEntityOfPage":{"@type":"WebPage","@id":"https://jpons.es/2015/08/22/install-mongodb-3-0-on-windows"},"url":"https://jpons.es/2015/08/22/install-mongodb-3-0-on-windows"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://jpons.es/feed.xml" title="José Enrique Pons blog." /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RQNWGYTYCC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RQNWGYTYCC');
+</script>
+
+
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">José Enrique Pons blog.</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Install MongoDB 3 on windows</h1><p class="page-description">Post showing how to index a website using javascript tipuesearch.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2015-08-22T00:00:00-05:00" itemprop="datePublished">
+        Aug 22, 2015
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#javascript python html">javascript python html</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#install-the-windows-service">Install the windows service</a></li>
+<li class="toc-entry toc-h2"><a href="#run-shell-client-and-connect">Run shell client and connect</a></li>
+</ul><p>Hi again,
+this is going to be a small configuration guide for mongo DB on windows. There are a few steps missing on <a href="https://docs.mongodb.org/getting-started/shell/tutorial/install-mongodb-on-windows/">the official instalation guide</a>.
+To sum up the steps are the following:</p>
+<ul>
+  <li>
+<a href="https://www.mongodb.com/try/download/community">Download the installer</a>.</li>
+  <li><a href="https://support.microsoft.com/es-es/kb/2731284">Install Windows hot fix on your system</a></li>
+  <li>After the installation, create the configuration and data folders on your system. To keep it simple, I created on the same program folder</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>C:<span class="se">\P</span>rogram Files<span class="se">\M</span>ongoDB<span class="se">\d</span>ata
+<span class="nb">mkdir </span>C:<span class="se">\P</span>rogram Files<span class="se">\M</span>ongoDB<span class="se">\d</span>ata<span class="se">\d</span>b
+</code></pre></div></div>
+<ul>
+  <li>If you plan to run MongoDB server as windows service:</li>
+  <li>Open windows firewall for your network for mongoDB</li>
+  <li>Create a configuration file</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">systemLog</span><span class="pi">:</span>
+    <span class="na">destination</span><span class="pi">:</span> <span class="s">file</span>
+    <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">C:/Program</span><span class="nv"> </span><span class="s">Files/MongoDB/data/mongod.log"</span>
+<span class="na">storage</span><span class="pi">:</span>
+    <span class="na">dbPath</span><span class="pi">:</span> <span class="s2">"</span><span class="s">C:/Program</span><span class="nv"> </span><span class="s">Files/MongoDB/data/db"</span>
+</code></pre></div></div>
+<h2 id="install-the-windows-service">
+<a class="anchor" href="#install-the-windows-service" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install the windows service</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>c:<span class="se">\A</span>rchivos de programa<span class="se">\M</span>ongoDB<span class="se">\S</span>erver<span class="se">\3</span>.0<span class="se">\b</span><span class="k">in</span>&amp;gt<span class="p">;</span>mongod.exe <span class="nt">--config</span> <span class="s2">"C:</span><span class="se">\P</span><span class="s2">rogram Files</span><span class="se">\M</span><span class="s2">ongoDB</span><span class="se">\c</span><span class="s2">onfig</span><span class="se">\m</span><span class="s2">ongod.cfg"</span> <span class="nt">--install</span>
+
+c:<span class="se">\A</span>rchivos de programa<span class="se">\M</span>ongoDB<span class="se">\S</span>erver<span class="se">\3</span>.0<span class="se">\b</span><span class="k">in</span><span class="o">&gt;</span>net start mongoDB
+
+El servicio de MongoDB se ha iniciado correctamente.
+</code></pre></div></div>
+
+<p>Beware and check the logs, because even with a successful message you can get errors when trying to connect via the shell client.</p>
+
+<h2 id="run-shell-client-and-connect">
+<a class="anchor" href="#run-shell-client-and-connect" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run shell client and connect</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>c:<span class="se">\A</span>rchivos de programa<span class="se">\M</span>ongoDB<span class="se">\S</span>erver<span class="se">\3</span>.0<span class="se">\b</span><span class="k">in</span><span class="o">&gt;</span>mongo
+2015-08-22T09:33:04.923+0200 I CONTROL  Hotfix KB2731284 or later update is not installed, will zero-out data files MongoDB shell version: 3.0.5
+connecting to: <span class="nb">test
+</span>2015-08-22T09:33:05.988+0200 W NETWORK  Failed to connect to 127.0.0.1:27017, re ason: errno:10061 No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+2015-08-22T09:33:05.991+0200 E QUERY    Error: couldn<span class="s1">'t connect to server 127.0.0.1:27017 (127.0.0.1), connection attempt failed at connect (src/mongo/shell/mongo.js:179:14)
+    at (connect):1:6 at src/mongo/shell/mongo.js:179
+exception: connect failed
+</span></code></pre></div></div>
+
+<p>So you get an error. That’s due to the windows firewall. Allow traffic from mongodb and you will be able to connect.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>c:<span class="se">\A</span>rchivos de programa<span class="se">\M</span>ongoDB<span class="se">\S</span>erver<span class="se">\3</span>.0<span class="se">\b</span><span class="k">in</span><span class="o">&gt;</span>mongo
+2015-08-22T09:39:59.718+0200 I CONTROL  Hotfix KB2731284 or later update is not installed, will zero-out data files MongoDB shell version: 3.0.5 connecting to: <span class="nb">test 
+</span>Welcome to the MongoDB shell.
+For interactive <span class="nb">help</span>, <span class="nb">type</span> <span class="s2">"help"</span><span class="nb">.</span>
+For more comprehensive documentation, see
+        http://docs.mongodb.org/
+Questions? Try the support group
+        http://groups.google.com/group/mongodb-user
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/2015/08/22/install-mongodb-3-0-on-windows" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>My tech blog on AI/ML and IT stuff in general.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/politeles" target="_blank" title="politeles"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/jose_e_pons" target="_blank" title="jose_e_pons"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
