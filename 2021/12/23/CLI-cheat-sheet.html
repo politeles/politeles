@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>AWS commands cheat sheet | José Enrique Pons blog.</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="AWS commands cheat sheet" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="List of commands for AWS CLI and Powershell" />
+<meta property="og:description" content="List of commands for AWS CLI and Powershell" />
+<link rel="canonical" href="https://jpons.es/2021/12/23/CLI-cheat-sheet" />
+<meta property="og:url" content="https://jpons.es/2021/12/23/CLI-cheat-sheet" />
+<meta property="og:site_name" content="José Enrique Pons blog." />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-23T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="AWS commands cheat sheet" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-12-23T00:00:00-06:00","datePublished":"2021-12-23T00:00:00-06:00","description":"List of commands for AWS CLI and Powershell","headline":"AWS commands cheat sheet","mainEntityOfPage":{"@type":"WebPage","@id":"https://jpons.es/2021/12/23/CLI-cheat-sheet"},"url":"https://jpons.es/2021/12/23/CLI-cheat-sheet"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://jpons.es/feed.xml" title="José Enrique Pons blog." /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RQNWGYTYCC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RQNWGYTYCC');
+</script>
+
+
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">José Enrique Pons blog.</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">AWS commands cheat sheet</h1><p class="page-description">List of commands for AWS CLI and Powershell</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-23T00:00:00-06:00" itemprop="datePublished">
+        Dec 23, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#aws cli">aws cli</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#aws-commands-cheat-sheet">AWS commands cheat sheet</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#s3">S3</a></li>
+<li class="toc-entry toc-h2"><a href="#configure">Configure</a></li>
+<li class="toc-entry toc-h2"><a href="#create-a-bucket">Create a bucket</a></li>
+<li class="toc-entry toc-h2"><a href="#list-buckets">list buckets</a></li>
+<li class="toc-entry toc-h2"><a href="#upload-files">upload files</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#list-files">list files</a></li>
+<li class="toc-entry toc-h3"><a href="#change-storage-class">Change storage class</a></li>
+<li class="toc-entry toc-h3"><a href="#set-encryption">Set encryption</a></li>
+<li class="toc-entry toc-h3"><a href="#network-acl-management">Network ACL management</a></li>
+<li class="toc-entry toc-h3"><a href="#security-group-in-the-cli">Security Group in the CLI</a></li>
+<li class="toc-entry toc-h3"><a href="#vpc-creation">VPC creation</a></li>
+<li class="toc-entry toc-h3"><a href="#ec2-instances">EC2 instances</a></li>
+<li class="toc-entry toc-h3"><a href="#rds-on-the-cli">RDS on the CLI</a></li>
+<li class="toc-entry toc-h3"><a href="#iam-create-user">IAM create user</a></li>
+<li class="toc-entry toc-h3"><a href="#iam-add-user-to-group">IAM add user to group</a></li>
+<li class="toc-entry toc-h3"><a href="#iam-get-user-information">IAM get user information</a></li>
+<li class="toc-entry toc-h3"><a href="#iam-list-groups-for-user">IAM list groups for user</a></li>
+<li class="toc-entry toc-h3"><a href="#iam-crete-group">IAM crete group</a></li>
+<li class="toc-entry toc-h3"><a href="#get-group">get group</a></li>
+<li class="toc-entry toc-h3"><a href="#iam-add-user-to-group-1">IAM add user to group</a></li>
+<li class="toc-entry toc-h3"><a href="#explore-costs-using-the-gui">Explore costs using the GUI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#aws-powershell-cli">AWS PowerShell CLI</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#initialize-the-connection">Initialize the connection</a></li>
+<li class="toc-entry toc-h2"><a href="#search-for-a-command">Search for a command</a></li>
+<li class="toc-entry toc-h2"><a href="#create-a-bucket-1">Create a bucket</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#list-buckets-1">list buckets</a></li>
+<li class="toc-entry toc-h3"><a href="#upload-a-file">upload a file</a></li>
+<li class="toc-entry toc-h3"><a href="#list-files-1">list files</a></li>
+<li class="toc-entry toc-h3"><a href="#change-storage-class-1">change storage class</a></li>
+<li class="toc-entry toc-h3"><a href="#set-encryption-1">set encryption</a></li>
+<li class="toc-entry toc-h3"><a href="#network-acl-in-powershell">Network ACL in Powershell</a></li>
+<li class="toc-entry toc-h3"><a href="#security-group">Security group</a></li>
+<li class="toc-entry toc-h3"><a href="#vpc-creation-1">VPC creation</a></li>
+<li class="toc-entry toc-h3"><a href="#ec2-creation">EC2 creation</a></li>
+<li class="toc-entry toc-h3"><a href="#get-status-rds-database">Get Status RDS Database</a></li>
+<li class="toc-entry toc-h3"><a href="#start-rds-instancetype">Start RDS InstanceType</a></li>
+<li class="toc-entry toc-h3"><a href="#iam-create-user-1">IAM create user</a></li>
+<li class="toc-entry toc-h3"><a href="#get-user">Get user</a></li>
+<li class="toc-entry toc-h3"><a href="#iam-add-user-to-group-2">IAM add user to group</a></li>
+<li class="toc-entry toc-h3"><a href="#iam-get-group">IAM get group</a></li>
+<li class="toc-entry toc-h3"><a href="#iam-crete-group-1">IAM crete group</a></li>
+<li class="toc-entry toc-h3"><a href="#iam-get-group-policies">IAM get group policies</a></li>
+<li class="toc-entry toc-h3"><a href="#explore-costs-using-powershell">Explore costs using PowerShell</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><h1 id="aws-commands-cheat-sheet">
+<a class="anchor" href="#aws-commands-cheat-sheet" aria-hidden="true"><span class="octicon octicon-link"></span></a>AWS commands cheat sheet</h1>
+
+<h2 id="s3">
+<a class="anchor" href="#s3" aria-hidden="true"><span class="octicon octicon-link"></span></a>S3</h2>
+<p>Max filesize upload in GUI 160GB.</p>
+
+<p>AWS CLI</p>
+
+<h2 id="configure">
+<a class="anchor" href="#configure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configure</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws configure
+</code></pre></div></div>
+
+<h2 id="create-a-bucket">
+<a class="anchor" href="#create-a-bucket" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create a bucket</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3api create-bucket <span class="nt">--bucket</span> bucketName <span class="nt">--region</span> frankfurt <span class="nt">--create-bucket-configuration</span> <span class="nv">LocationConstraint</span><span class="o">=</span>frankfurt
+</code></pre></div></div>
+
+<h2 id="list-buckets">
+<a class="anchor" href="#list-buckets" aria-hidden="true"><span class="octicon octicon-link"></span></a>list buckets</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3api list-buckets <span class="nt">--query</span> <span class="s2">"Buckets[].Name"</span>
+</code></pre></div></div>
+
+<h2 id="upload-files">
+<a class="anchor" href="#upload-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>upload files</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">cp </span>d:<span class="se">\l</span>ocalfile s3://bucketname <span class="nt">--recursive</span> <span class="nt">--exclude</span> <span class="s2">"*"</span> <span class="nt">--include</span> <span class="s2">"*.txt"</span>
+</code></pre></div></div>
+
+<h3 id="list-files">
+<a class="anchor" href="#list-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>list files</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">ls </span>s3://bucket
+</code></pre></div></div>
+
+<h3 id="change-storage-class">
+<a class="anchor" href="#change-storage-class" aria-hidden="true"><span class="octicon octicon-link"></span></a>Change storage class</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">cp </span>s3://bucketName  s3://bucketName  <span class="nt">--storage-class</span> GLACIER
+</code></pre></div></div>
+
+<h3 id="set-encryption">
+<a class="anchor" href="#set-encryption" aria-hidden="true"><span class="octicon octicon-link"></span></a>Set encryption</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">cp </span>s3://bucketName/file.txt s3://bucketName/file.txt <span class="nt">--sse</span> AES256
+</code></pre></div></div>
+<p>To apply to the entire bucket recursively</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">cp </span>s3://bucketName/ s3://bucketName/ <span class="nt">--recursive</span> <span class="nt">--sse</span> AES256
+</code></pre></div></div>
+
+<h3 id="network-acl-management">
+<a class="anchor" href="#network-acl-management" aria-hidden="true"><span class="octicon octicon-link"></span></a>Network ACL management</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 describe-vpcs <span class="nt">--output</span> table
+
+aws ec2 create-network-acl <span class="nt">--vpc-id</span> vpc-12312321
+</code></pre></div></div>
+
+<p>To give it a name</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 create-tags <span class="nt">--resources</span> acl-asdasd <span class="nt">--tags</span> <span class="nv">Key</span><span class="o">=</span>Name,Value<span class="o">=</span>NetworkACL1
+</code></pre></div></div>
+
+<p>to create a network rule:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 create-network-acl-entry <span class="nt">--network-acl-id</span> acl-afdadf <span class="nt">--ingress</span> <span class="nt">--rule-number</span> 100 <span class="nt">--protocol</span> tcp <span class="nt">--port-range</span> <span class="nv">From</span><span class="o">=</span>22,To<span class="o">=</span>22 <span class="nt">--cidr-block</span> 0.0.0.0/0 <span class="nt">--rule-action</span> allow
+</code></pre></div></div>
+
+<h3 id="security-group-in-the-cli">
+<a class="anchor" href="#security-group-in-the-cli" aria-hidden="true"><span class="octicon octicon-link"></span></a>Security Group in the CLI</h3>
+<p>Get the vpc ID</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 create-security-group <span class="nt">--group-name</span> SecurityGroup1 <span class="nt">--description</span> <span class="s2">"Security Group"</span> <span class="nt">--vpc-id</span> vpc-asdasd
+</code></pre></div></div>
+
+<p>we will get the group id</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 describe-security-groups <span class="nt">--output</span> table
+</code></pre></div></div>
+
+<p>Tag the security group</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 create-tags <span class="nt">--resources</span> sg-asdfasdfasdf <span class="nt">--tags</span> <span class="nv">Key</span><span class="o">=</span>Name,Value<span class="o">=</span>SecGroup1
+
+aws ec2 authorize-security-group-ingress <span class="nt">--group-id</span> sg-asdfasdf <span class="nt">--protocol</span> tcp <span class="nt">--port</span> 3380 <span class="nt">--cidr</span> 100.11.11.0/24
+</code></pre></div></div>
+
+<h3 id="vpc-creation">
+<a class="anchor" href="#vpc-creation" aria-hidden="true"><span class="octicon octicon-link"></span></a>VPC creation</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 create-vpc <span class="nt">--cidr-block</span> 12.0.0.0/16
+</code></pre></div></div>
+
+<p>Get the vpc id:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 describe-vpcs
+</code></pre></div></div>
+
+<p>Add tags</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 create-tags <span class="nt">--resources</span> vpc-idididid <span class="nt">--tags</span> <span class="nv">Key</span><span class="o">=</span>Name,Value<span class="o">=</span>VPC2
+
+aws ec2 create-subnet <span class="nt">--vpc-id</span> vpc-001010101 <span class="nt">--cidr-block</span> 12.0.1.0/24
+</code></pre></div></div>
+
+<p>Add tags to the subnet:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 create-tags <span class="nt">--resources</span> subnet-idididid <span class="nt">--tags</span> <span class="nv">Key</span><span class="o">=</span>Name,Value<span class="o">=</span>Subnet2
+</code></pre></div></div>
+
+<h3 id="ec2-instances">
+<a class="anchor" href="#ec2-instances" aria-hidden="true"><span class="octicon octicon-link"></span></a>EC2 instances</h3>
+<p>We need to get the id of the AMI first</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 run-instances <span class="nt">--image-id</span> ami-asdasda <span class="nt">--count</span> 1 <span class="nt">--instance-type</span> t2.micro <span class="nt">--key-name</span> Keypair1 <span class="nt">--security-groups-ids</span> sg-asdfas <span class="nt">--subnet-id</span> subnet-asdasd
+</code></pre></div></div>
+
+<p>to update the name, we can use the tags.</p>
+
+<h3 id="rds-on-the-cli">
+<a class="anchor" href="#rds-on-the-cli" aria-hidden="true"><span class="octicon octicon-link"></span></a>RDS on the CLI</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws rds <span class="nb">help
+
+</span>aws rds describe-db-instance <span class="nt">--output</span> table | more
+
+aws rds start-db-instance <span class="nt">--db-instance-identifier</span> database-1
+</code></pre></div></div>
+
+<p>To see the current status we can run the previous command</p>
+
+<h3 id="iam-create-user">
+<a class="anchor" href="#iam-create-user" aria-hidden="true"><span class="octicon octicon-link"></span></a>IAM create user</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws create-user <span class="nt">--user-name</span> JGold
+</code></pre></div></div>
+
+<h3 id="iam-add-user-to-group">
+<a class="anchor" href="#iam-add-user-to-group" aria-hidden="true"><span class="octicon octicon-link"></span></a>IAM add user to group</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws iam add-user-to-group <span class="nt">--user-name</span> JGold <span class="nt">---group-name</span> Group1
+</code></pre></div></div>
+
+<h3 id="iam-get-user-information">
+<a class="anchor" href="#iam-get-user-information" aria-hidden="true"><span class="octicon octicon-link"></span></a>IAM get user information</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws iam get-user //For your own user
+aws iam get-user <span class="nt">--user-name</span> JGold
+</code></pre></div></div>
+
+<h3 id="iam-list-groups-for-user">
+<a class="anchor" href="#iam-list-groups-for-user" aria-hidden="true"><span class="octicon octicon-link"></span></a>IAM list groups for user</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws iam list-groups-for-user <span class="nt">--user-name</span> JGold
+</code></pre></div></div>
+
+<h3 id="iam-crete-group">
+<a class="anchor" href="#iam-crete-group" aria-hidden="true"><span class="octicon octicon-link"></span></a>IAM crete group</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws iam create-group <span class="nt">--group-name</span> Group4
+</code></pre></div></div>
+
+<h3 id="get-group">
+<a class="anchor" href="#get-group" aria-hidden="true"><span class="octicon octicon-link"></span></a>get group</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws iam get-group <span class="nt">--group-name</span> Group4
+</code></pre></div></div>
+
+<h3 id="iam-add-user-to-group-1">
+<a class="anchor" href="#iam-add-user-to-group-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>IAM add user to group</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws iam add-user-to-group <span class="nt">--user-name</span> JGold <span class="nt">--group-name</span> Group4
+</code></pre></div></div>
+
+<h3 id="explore-costs-using-the-gui">
+<a class="anchor" href="#explore-costs-using-the-gui" aria-hidden="true"><span class="octicon octicon-link"></span></a>Explore costs using the GUI</h3>
+<p>We have the following config file:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w"> </span><span class="nl">"Dimensions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+	</span><span class="nl">"Key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"SERVICE"</span><span class="p">,</span><span class="w">
+	 </span><span class="nl">"Values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Amazon Elastic Compute Cloud - Compute"</span><span class="p">]</span><span class="w">
+	 </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ce get-cost-and-usage <span class="nt">--time-period</span> <span class="nv">Start</span><span class="o">=</span>2019-09-01,End<span class="o">=</span>2019-12-01 
+<span class="nt">--granularity</span> MONTHLY <span class="nt">--metrics</span> <span class="s2">"BlendedCost"</span> <span class="s2">"UnblendedCost"</span> <span class="s2">"UsageQuantity"</span> 
+<span class="nt">--group-by</span> <span class="nv">Type</span><span class="o">=</span>DIMENSION,Key<span class="o">=</span>SERVICE <span class="nv">Type</span><span class="o">=</span>TAG,Key<span class="o">=</span>Environment 
+<span class="nt">--filter</span> file://aws_cost_filter.json <span class="nt">--output</span> table
+</code></pre></div></div>
+
+<h1 id="aws-powershell-cli">
+<a class="anchor" href="#aws-powershell-cli" aria-hidden="true"><span class="octicon octicon-link"></span></a>AWS PowerShell CLI</h1>
+
+<h2 id="initialize-the-connection">
+<a class="anchor" href="#initialize-the-connection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Initialize the connection</h2>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">initialize-awsdefaults</span><span class="w"> </span><span class="nt">-region</span><span class="w"> </span><span class="nx">us-east-1</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="search-for-a-command">
+<a class="anchor" href="#search-for-a-command" aria-hidden="true"><span class="octicon octicon-link"></span></a>Search for a command</h2>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get-Command</span><span class="w"> </span><span class="o">*</span><span class="nx">s3b</span><span class="o">*</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="create-a-bucket-1">
+<a class="anchor" href="#create-a-bucket-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create a bucket</h2>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">New-S3Bucket</span><span class="w"> </span><span class="nt">-BucketName</span><span class="w"> </span><span class="nx">pp</span><span class="w"> </span><span class="nt">-Region</span><span class="w"> </span><span class="nx">us-west-2</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="list-buckets-1">
+<a class="anchor" href="#list-buckets-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>list buckets</h3>
+
+<pre><code class="language-`powershell">Get-S3Bucket
+</code></pre>
+
+<h3 id="upload-a-file">
+<a class="anchor" href="#upload-a-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>upload a file</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Write-S3Object</span><span class="w"> </span><span class="nt">-BucketName</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="nt">-File</span><span class="w"> </span><span class="nx">filename</span><span class="w"> </span><span class="nt">-Key</span><span class="w"> </span><span class="nx">localfile</span><span class="w"> </span><span class="nt">-CannedACLName</span><span class="w"> </span><span class="nx">Private</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="list-files-1">
+<a class="anchor" href="#list-files-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>list files</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get-S3Object</span><span class="w"> </span><span class="nt">-BucketName</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="nt">-Key</span><span class="w"> </span><span class="nx">parentFolder</span><span class="w">
+
+</span><span class="n">Get-S3Object</span><span class="w"> </span><span class="nt">-BucketName</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="nt">-Key</span><span class="w"> </span><span class="nx">parentFolder</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">select</span><span class="w"> </span><span class="nx">Key</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="change-storage-class-1">
+<a class="anchor" href="#change-storage-class-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>change storage class</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Copy-S3Object</span><span class="w"> </span><span class="nt">-BucketName</span><span class="w"> </span><span class="nx">bucket</span><span class="w"> </span><span class="nt">-Key</span><span class="w"> </span><span class="nx">file.txt</span><span class="w"> </span><span class="nt">-DestinationKey</span><span class="w"> </span><span class="nx">file.txt</span><span class="w"> </span><span class="nt">-StorageClass</span><span class="w"> </span><span class="nx">GLACIER</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="set-encryption-1">
+<a class="anchor" href="#set-encryption-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>set encryption</h3>
+<p>This rule add encryption for new items in the bucket but do not change</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Set-S3BucketEncryption</span><span class="w"> </span><span class="nt">-BucketName</span><span class="w"> </span><span class="nx">bucketName</span><span class="w"> </span><span class="nt">-ServerSideEncryptionConfiguration_ServerSideEnctryptionRule</span><span class="w"> </span><span class="p">@{</span><span class="nx">ServerSideEncryptionByDefault</span><span class="o">=</span><span class="p">@{</span><span class="nx">ServerSideEncryptionAlgorithm</span><span class="o">=</span><span class="s2">"AES256"</span><span class="p">}}</span><span class="w">
+</span></code></pre></div></div>
+<p>`</p>
+<h3 id="network-acl-in-powershell">
+<a class="anchor" href="#network-acl-in-powershell" aria-hidden="true"><span class="octicon octicon-link"></span></a>Network ACL in Powershell</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get-EC2VPC</span><span class="w">
+</span></code></pre></div></div>
+
+<p>to get the VPC ID</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">New-EC2NetworkAcl</span><span class="w"> </span><span class="nt">-VpcId</span><span class="w"> </span><span class="nx">vpc-asdasd</span><span class="w">
+</span></code></pre></div></div>
+
+<p>to get the network ACL ID</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">New-EC2Tag</span><span class="w"> </span><span class="nt">-ResourceId</span><span class="w"> </span><span class="nx">acl-asdasd</span><span class="w"> </span><span class="nt">-Tag</span><span class="w"> </span><span class="p">@{</span><span class="nx">Key</span><span class="o">=</span><span class="s2">"Name"</span><span class="p">;</span><span class="nx">Value</span><span class="o">=</span><span class="s2">"NetworkACL4"</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>to add traffic:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">New-EC2NetworkAclEntry</span><span class="w"> </span><span class="nt">-NetworkAclId</span><span class="w"> </span><span class="nx">acl-sfsdf</span><span class="w"> </span><span class="nt">-Egress</span><span class="w"> </span><span class="bp">$false</span><span class="w"> </span><span class="nt">-RuleNumner</span><span class="w"> </span><span class="nx">100</span><span class="w"> </span><span class="nt">-Protocol</span><span class="w"> </span><span class="nx">6</span><span class="w"> </span><span class="nt">-PortRange_From</span><span class="w"> </span><span class="nx">443</span><span class="w"> </span><span class="nt">-PortRange_To</span><span class="w"> </span><span class="nx">443</span><span class="w"> </span><span class="nx">CidrBlock</span><span class="w"> </span><span class="nx">199.111.111.111/24</span><span class="w"> </span><span class="nt">-RuleAction</span><span class="w"> </span><span class="nx">allow</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Note:</p>
+<ul>
+  <li>protocol 6 is for TCP</li>
+  <li>70 is for UDP</li>
+  <li>1 for ICMP</li>
+</ul>
+
+<h3 id="security-group">
+<a class="anchor" href="#security-group" aria-hidden="true"><span class="octicon octicon-link"></span></a>Security group</h3>
+
+<ul>
+  <li>Get the vpc ID</li>
+  <li>Create the security group</li>
+</ul>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">New-EC2SecurityGroup</span><span class="w"> </span><span class="nt">-GroupName</span><span class="w"> </span><span class="nx">secgroupname</span><span class="w"> </span><span class="nt">-Description</span><span class="w"> </span><span class="s2">"DEscription"</span><span class="w"> </span><span class="nt">-VpcId</span><span class="w"> </span><span class="nx">vpc-asdfasdf</span><span class="w">
+</span></code></pre></div></div>
+
+<p>It returns a sec group id</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">New-EC2Tag</span><span class="w"> </span><span class="nt">-ResourceId</span><span class="w"> </span><span class="nx">sg-asfdasdf</span><span class="w"> </span><span class="nt">-Tag</span><span class="w"> </span><span class="p">@{</span><span class="nx">Key</span><span class="o">=</span><span class="s2">"Name"</span><span class="p">;</span><span class="nx">Value</span><span class="o">=</span><span class="s2">"SecurityGroup3"</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>To create a rule:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$rule1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">@{</span><span class="nx">IPProtocol</span><span class="o">=</span><span class="s2">"tcp"</span><span class="p">;</span><span class="nx">FromPort</span><span class="o">=</span><span class="s2">"22"</span><span class="p">;</span><span class="nx">ToPort</span><span class="o">=</span><span class="s2">"22"</span><span class="p">;</span><span class="nx">IpRanges</span><span class="o">=</span><span class="s2">"199.11.11.0/24"</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>To apply</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Grant-EC2SecurityGroupIngress</span><span class="w"> </span><span class="nt">-GroupId</span><span class="w"> </span><span class="nx">sg-fasfd</span><span class="w"> </span><span class="nt">-IpPermission</span><span class="w"> </span><span class="nv">$rule1</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="vpc-creation-1">
+<a class="anchor" href="#vpc-creation-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>VPC creation</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">New-EC2VPC</span><span class="w"> </span><span class="nt">-CidrBlock</span><span class="w"> </span><span class="nx">13.0.0.0/16</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Give a name with the tags:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">New-EC2Tag</span><span class="w"> </span><span class="nt">-ResourceId</span><span class="w"> </span><span class="nx">vpc-asdasd</span><span class="w"> </span><span class="nt">-Tag</span><span class="w"> </span><span class="p">@{</span><span class="nx">Key</span><span class="o">=</span><span class="s2">"Name"</span><span class="p">;</span><span class="nx">Value</span><span class="o">=</span><span class="s2">"VPC3"</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Create a subnet:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">New-EC2Subnet</span><span class="w"> </span><span class="nt">-VpcId</span><span class="w"> </span><span class="nx">vpc-asda</span><span class="w"> </span><span class="nt">-CidrBlock</span><span class="w"> </span><span class="nx">13.0.1.0/24</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Give a name to the subnet</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">New-EC2Tag</span><span class="w"> </span><span class="nt">-ResourceId</span><span class="w"> </span><span class="nx">subnet-asdasd</span><span class="w"> </span><span class="nt">-Tag</span><span class="w"> </span><span class="p">@{</span><span class="nx">Key</span><span class="o">=</span><span class="s2">"Name"</span><span class="p">;</span><span class="nx">Value</span><span class="o">=</span><span class="s2">"subnet21"</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="ec2-creation">
+<a class="anchor" href="#ec2-creation" aria-hidden="true"><span class="octicon octicon-link"></span></a>EC2 creation</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">New-EC2Instance</span><span class="w"> </span><span class="nt">-ImageId</span><span class="w"> </span><span class="nx">ami-asdfasdf</span><span class="w"> </span><span class="nt">-MinCount</span><span class="w"> </span><span class="nx">1</span><span class="w"> </span><span class="nt">-MaxCount</span><span class="w"> </span><span class="nx">1</span><span class="w"> </span><span class="nt">-KeyName</span><span class="w"> </span><span class="nx">KeyPair1</span><span class="w"> </span><span class="nt">-SecurityGroupId</span><span class="w"> </span><span class="nx">sg-asdf</span><span class="w"> </span><span class="nt">-InstanceType</span><span class="w"> </span><span class="nx">m1.small</span><span class="w"> </span><span class="nt">-SubnetId</span><span class="w"> </span><span class="nx">subnet-asfas</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Add a tag to add a name.</p>
+
+<h3 id="get-status-rds-database">
+<a class="anchor" href="#get-status-rds-database" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get Status RDS Database</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get-RDSDBInstance</span><span class="w">
+</span></code></pre></div></div>
+
+<p>To do a selection</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get-RFSDBInstance</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">select</span><span class="w"> </span><span class="nx">engine</span><span class="p">,</span><span class="nx">dbinstancestatus</span><span class="w">
+
+</span><span class="n">Get-RFSDBInstance</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">select</span><span class="w"> </span><span class="nx">DBInstanceIdentifier</span><span class="p">,</span><span class="nx">Engine</span><span class="p">,</span><span class="nx">EngineVersion</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">where-object</span><span class="w"> </span><span class="p">{</span><span class="bp">$_</span><span class="o">.</span><span class="nf">Engine</span><span class="w"> </span><span class="o">-like</span><span class="w"> </span><span class="s2">"*mysql*"</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="start-rds-instancetype">
+<a class="anchor" href="#start-rds-instancetype" aria-hidden="true"><span class="octicon octicon-link"></span></a>Start RDS InstanceType</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Start-RDSDBInstance</span><span class="w"> 
+</span></code></pre></div></div>
+
+<h3 id="iam-create-user-1">
+<a class="anchor" href="#iam-create-user-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>IAM create user</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">New-IAMUser</span><span class="w"> </span><span class="nt">-UserName</span><span class="w"> </span><span class="nx">MBishop</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="get-user">
+<a class="anchor" href="#get-user" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get user</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get-IAMUser</span><span class="w">
+</span><span class="nx">Get-IAMUer</span><span class="w"> </span><span class="nt">-Username</span><span class="w"> </span><span class="nx">MBishop</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="iam-add-user-to-group-2">
+<a class="anchor" href="#iam-add-user-to-group-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>IAM add user to group</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Add-IAMUserToGroup</span><span class="w"> </span><span class="nt">-UserName</span><span class="w"> </span><span class="nx">MBishop</span><span class="w"> </span><span class="nt">-GroupName</span><span class="w"> </span><span class="nx">Group1</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="iam-get-group">
+<a class="anchor" href="#iam-get-group" aria-hidden="true"><span class="octicon octicon-link"></span></a>IAM get group</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get-AIMGroup</span><span class="w"> </span><span class="nt">-GroupName</span><span class="w"> </span><span class="nx">Group1</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="iam-crete-group-1">
+<a class="anchor" href="#iam-crete-group-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>IAM crete group</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">New-IAMGroup</span><span class="w"> </span><span class="nt">-GroupName</span><span class="w"> </span><span class="nx">Group2</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="iam-get-group-policies">
+<a class="anchor" href="#iam-get-group-policies" aria-hidden="true"><span class="octicon octicon-link"></span></a>IAM get group policies</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get-IAMGroupPolicies</span><span class="w"> </span><span class="nt">-GroupName</span><span class="w"> </span><span class="nx">Group1</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The attched group policies can be obtain here:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Get-IAMattachedgrouppolicies</span><span class="w"> </span><span class="nt">-groupname</span><span class="w"> </span><span class="nx">Group1</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="explore-costs-using-powershell">
+<a class="anchor" href="#explore-costs-using-powershell" aria-hidden="true"><span class="octicon octicon-link"></span></a>Explore costs using PowerShell</h3>
+
+<ul>
+  <li>first, define a time interval:</li>
+</ul>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="nv">$interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">New-Object</span><span class="w"> </span><span class="nx">Amazon.CostExplorer.Model.DateInterval</span><span class="w">
+ </span><span class="nv">$interval</span><span class="o">.</span><span class="nf">Start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get-Date</span><span class="w"> </span><span class="p">(</span><span class="n">Get-Date</span><span class="p">)</span><span class="o">.</span><span class="nf">AddDays</span><span class="p">(</span><span class="nt">-30</span><span class="p">)</span><span class="w"> </span><span class="nt">-Format</span><span class="w"> </span><span class="s1">'yyyy-MM-dd'</span><span class="w">
+ </span><span class="nv">$interval</span><span class="o">.</span><span class="nf">End</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get-Date</span><span class="w"> </span><span class="nt">-Format</span><span class="w"> </span><span class="s1">'yyyy-MM-dd'</span><span class="w">
+</span></code></pre></div></div>
+
+<p>to get the cost:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="nv">$costusage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get-cecostusage</span><span class="w"> </span><span class="nt">-granularity</span><span class="w"> </span><span class="nx">monthly</span><span class="w"> </span><span class="nt">-timeperiod</span><span class="w"> </span><span class="nv">$interval</span><span class="w"> </span><span class="nt">-metric</span><span class="w"> </span><span class="nx">BlendedCost</span><span class="w">
+</span></code></pre></div></div>
+
+<p>To check the values:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="nv">$costusage</span><span class="o">.</span><span class="nf">resultsbytime</span><span class="o">.</span><span class="nf">total</span><span class="o">.</span><span class="nf">values</span><span class="w">
+</span></code></pre></div></div>
+
+  </div><a class="u-url" href="/2021/12/23/CLI-cheat-sheet" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>My tech blog on AI/ML and IT stuff in general.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/politeles" target="_blank" title="politeles"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/jose_e_pons" target="_blank" title="jose_e_pons"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
