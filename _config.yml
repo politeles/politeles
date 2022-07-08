@@ -34,7 +34,7 @@ url: "https://jpons.es" # the base hostname & protocol for your site, e.g. http:
 #
 # 3. You must replace the parameter `baseurl` in _action_files/settings.ini with the same value as you set here but WITHOUT QUOTES.
 #
-baseurl: "" # the subpath of your site, e.g. "/blog".
+# baseurl: "" # the subpath of your site, e.g. "/blog".
 
 # For compatibility with my old Hugo blog, I have to remove the category
 permalink: :year/:month/:day/:title
