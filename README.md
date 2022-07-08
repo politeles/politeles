@@ -17,6 +17,10 @@
 
 ### Blogs posts
 <!-- BLOG-POST-LIST:START -->
+- [AWS commands cheat sheet](https://jpons.es/2021/12/23/CLI-cheat-sheet)
+- [Kore.AI export knowledge base into batch testing](https://jpons.es/2021/03/29/export-knowledge-base-koreai)
+- [MongoDB commands](https://jpons.es/2021/03/26/mongodb-commands)
+- [How to get webservice times from curl](https://jpons.es/2021/03/15/curl)
 <!-- BLOG-POST-LIST:END -->
 
 <h3 align="left">Connect with me:</h3>
