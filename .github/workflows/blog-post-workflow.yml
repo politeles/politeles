@@ -1,7 +1,10 @@
 name: Latest blog post workflow
-on: 
-    schedule:
-        - cron: '0 * * * *'
+on:
+  push:
+    branches:
+      - master # need to filter here so we only deploy when there is a push to master
+
+
 jobs: 
     update-readme-with-blog: 
         name: Update this repo's README with latest blog posts
