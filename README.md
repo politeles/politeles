@@ -1,7 +1,7 @@
 <h1 align="center">Hi 👋, I'm Jose Enrique Pons. </h1>
 <h3 align="center">AI/ML mostly NLP, and sound classification</h3>
 
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=politeles" alt="politeles" /></a> </p>
+<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=politeles&theme=dark_lover" alt="politeles" /></a> </p>
 
 <p align="left"> <a href="https://twitter.com/jose_e_pons" target="blank"><img src="https://img.shields.io/twitter/follow/jose_e_pons?logo=twitter&style=for-the-badge" alt="jose_e_pons" /></a> </p>
 
