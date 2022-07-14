@@ -233,7 +233,65 @@ First, in the state class I create a private attribute called _algoliaClient</p>
   <span class="kd">final</span> <span class="n">Algolia</span> <span class="n">_algoliaClient</span> <span class="o">=</span> <span class="n">Algolia</span><span class="o">.</span><span class="na">init</span><span class="o">(</span>
       <span class="nl">applicationId:</span> <span class="n">AlgoliaOptions</span><span class="o">.</span><span class="na">algoliaOptions</span><span class="o">.</span><span class="na">applicationId</span><span class="o">,</span>
       <span class="nl">apiKey:</span> <span class="n">AlgoliaOptions</span><span class="o">.</span><span class="na">algoliaOptions</span><span class="o">.</span><span class="na">apiKey</span><span class="o">);</span>
+	  <span class="n">TextEditingController</span> <span class="n">_textFieldController</span> <span class="o">=</span> <span class="n">TextEditingController</span><span class="o">();</span>
+
 </code></pre></div></div>
+
+<p>I’m adding a text controller for the filter. I’m also creating a proxy class for the Sheet class:</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">SheetProxy</span> <span class="o">{</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">id</span><span class="o">;</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">obra</span><span class="o">;</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">compositor</span><span class="o">;</span>
+
+  <span class="n">SheetProxy</span><span class="o">({</span><span class="kd">required</span> <span class="k">this</span><span class="o">.</span><span class="na">id</span><span class="o">,</span> <span class="kd">required</span> <span class="k">this</span><span class="o">.</span><span class="na">obra</span><span class="o">,</span> <span class="kd">required</span> <span class="k">this</span><span class="o">.</span><span class="na">compositor</span><span class="o">});</span>
+
+  <span class="kd">static</span> <span class="n">SheetProxy</span> <span class="n">fromJson</span><span class="o">(</span><span class="kt">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">,</span> <span class="kd">dynamic</span><span class="o">&gt;</span> <span class="n">json</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="kt">String</span> <span class="n">id</span> <span class="o">=</span> <span class="n">json</span><span class="o">[</span><span class="s">'path'</span><span class="o">].</span><span class="na">toString</span><span class="o">().</span><span class="na">split</span><span class="o">(</span><span class="s">"/"</span><span class="o">)[</span><span class="mi">1</span><span class="o">];</span>
+    <span class="k">return</span> <span class="n">SheetProxy</span><span class="o">(</span>
+        <span class="nl">id:</span> <span class="n">id</span><span class="o">,</span> <span class="nl">obra:</span> <span class="n">json</span><span class="o">[</span><span class="s">'obra'</span><span class="o">],</span> <span class="nl">compositor:</span> <span class="n">json</span><span class="o">[</span><span class="s">'compositor'</span><span class="o">]);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The function to search the elements is the following, that maps the content to the SheetProxy instance.</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">_getSearchResult</span><span class="o">(</span><span class="kt">String</span> <span class="n">query</span><span class="o">)</span> <span class="kd">async</span> <span class="o">{</span>
+    <span class="n">AlgoliaQuery</span> <span class="n">algoliaQuery</span> <span class="o">=</span>
+        <span class="n">_algoliaClient</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">index</span><span class="o">(</span><span class="s">"sheetIndex"</span><span class="o">).</span><span class="na">query</span><span class="o">(</span><span class="n">query</span><span class="o">);</span>
+    <span class="n">AlgoliaQuerySnapshot</span> <span class="n">snapshot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">algoliaQuery</span><span class="o">.</span><span class="na">getObjects</span><span class="o">();</span>
+    <span class="kd">final</span> <span class="n">rawHits</span> <span class="o">=</span> <span class="n">snapshot</span><span class="o">.</span><span class="na">toMap</span><span class="o">()[</span><span class="s">'hits'</span><span class="o">]</span> <span class="k">as</span> <span class="kt">List</span><span class="o">;</span>
+    <span class="kd">final</span> <span class="n">hits</span> <span class="o">=</span>
+        <span class="kt">List</span><span class="o">&lt;</span><span class="n">SheetProxy</span><span class="o">&gt;.</span><span class="na">from</span><span class="o">(</span><span class="n">rawHits</span><span class="o">.</span><span class="na">map</span><span class="o">((</span><span class="n">hit</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="n">SheetProxy</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">hit</span><span class="o">)));</span>
+
+    <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+      <span class="n">_sheets</span> <span class="o">=</span> <span class="n">hits</span><span class="o">;</span>
+    <span class="o">});</span>
+    <span class="n">print</span><span class="o">(</span><span class="n">rawHits</span><span class="o">);</span>
+  <span class="o">}</span>
+</code></pre></div></div>
+
+<p>Finally, on the init state, we add a listener to the text field controller:</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@override</span>
+  <span class="kt">void</span> <span class="n">initState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="na">initState</span><span class="o">();</span>
+    <span class="n">_textFieldController</span><span class="o">.</span><span class="na">addListener</span><span class="o">(()</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">_query</span> <span class="o">!=</span> <span class="n">_textFieldController</span><span class="o">.</span><span class="na">text</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+          <span class="n">_query</span> <span class="o">=</span> <span class="n">_textFieldController</span><span class="o">.</span><span class="na">text</span><span class="o">;</span>
+        <span class="o">});</span>
+        <span class="n">_getSearchResult</span><span class="o">(</span><span class="n">_query</span><span class="o">);</span>
+      <span class="o">}</span>
+    <span class="o">});</span>
+    <span class="n">_getSearchResult</span><span class="o">(</span><span class="s">''</span><span class="o">);</span>
+  <span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>The application with the filtering looks like this:</p>
+
+<p><img src="/images/2022-02-12-app.gif" alt=""></p>
+
 
   </div><a class="u-url" href="/2022/02/12/Fulltext-search-Firestore-with-Algolia" hidden></a>
 </article>
