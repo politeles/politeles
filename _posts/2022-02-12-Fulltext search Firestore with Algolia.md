@@ -113,4 +113,69 @@ class _PartituraScreenState extends State<PartituraScreen> {
   final Algolia _algoliaClient = Algolia.init(
       applicationId: AlgoliaOptions.algoliaOptions.applicationId,
       apiKey: AlgoliaOptions.algoliaOptions.apiKey);
+	  TextEditingController _textFieldController = TextEditingController();
+
 ```
+
+I'm adding a text controller for the filter. I'm also creating a proxy class for the Sheet class:
+```dart
+class SheetProxy {
+  final String id;
+  final String obra;
+  final String compositor;
+
+  SheetProxy({required this.id, required this.obra, required this.compositor});
+
+  static SheetProxy fromJson(Map<String, dynamic> json) {
+    final String id = json['path'].toString().split("/")[1];
+    return SheetProxy(
+        id: id, obra: json['obra'], compositor: json['compositor']);
+  }
+}
+```
+
+
+
+The function to search the elements is the following, that maps the content to the SheetProxy instance.
+
+```dart
+Future<void> _getSearchResult(String query) async {
+    AlgoliaQuery algoliaQuery =
+        _algoliaClient.instance.index("sheetIndex").query(query);
+    AlgoliaQuerySnapshot snapshot = await algoliaQuery.getObjects();
+    final rawHits = snapshot.toMap()['hits'] as List;
+    final hits =
+        List<SheetProxy>.from(rawHits.map((hit) => SheetProxy.fromJson(hit)));
+
+    setState(() {
+      _sheets = hits;
+    });
+    print(rawHits);
+  }
+```
+
+Finally, on the init state, we add a listener to the text field controller:
+
+```dart
+@override
+  void initState() {
+    super.initState();
+    _textFieldController.addListener(() {
+      if (_query != _textFieldController.text) {
+        setState(() {
+          _query = _textFieldController.text;
+        });
+        _getSearchResult(_query);
+      }
+    });
+    _getSearchResult('');
+  }
+
+```
+
+The application with the filtering looks like this:
+
+![]({{site.baseurl}}/images/2022-02-12-app.gif )
+
+
+
