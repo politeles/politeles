@@ -50,6 +50,24 @@ The process is as follows:
  - Next, [add the Algolia extension to your project. ](https://firebase.google.com/products/extensions/algolia-firestore-algolia-search)
  - After the extension is installed, you will find a cloud function that is triggered every document update. But, if your Firestore database has already some data, you have to create another cloud function (that will be triggered maybe just once) to send all your initial data to Algolia index. [Some tips for that cloud functions are here](https://rsfarias.medium.com/how-to-set-up-firestore-and-algolia-319fcf2c0d37)
  
+## Create an Algolia application and an index name.
+
+![]({{site.baseurl}}/images/2022-02-12-algolia-index-creation.gif )
+
+## Obtain the API key
+![]({{site.baseurl}}/images/2022-02-12-algolia-api-key.gif )
+
+
+## Add Algolia extension to your firebase project
+
+![]({{site.baseurl}}/images/2022-02-12-algolia-extension.gif )
+
+
+![]({{site.baseurl}}/images/2022-02-12-algolia-extension-install.gif )
+
+
+
+
 
 Export all records:
 https://discourse.algolia.com/t/export-all-records-from-firestore-to-indices-with-google-cloud-function/10358/3
@@ -57,3 +75,42 @@ https://discourse.algolia.com/t/export-all-records-from-firestore-to-indices-wit
 Implementation in flutter https://www.algolia.com/doc/guides/building-search-ui/getting-started/how-to/flutter/ios/
 
 
+## Installing Algolia in Flutter project
+
+The first step is to [add the Algolia library in your flutter project.](https://www.algolia.com/doc/guides/building-search-ui/getting-started/how-to/flutter/ios/) [You can do so installing the package.](https://pub.dev/packages/algolia/install)
+
+```shell
+flutter pub add algolia
+```
+
+There are other options, but this one is the fastest for me.
+Next, I'm going to create an algolia_options.dart file to store the api key (in the same fashion as the Firebase Options).
+
+```dart
+import 'package:algolia/algolia.dart';
+
+class AlgoliaOptions {
+  /// The API key that is used to identify an instance of algolia
+  final String apiKey;
+
+  /// The application Id in Algolia
+  final String applicationId;
+
+  const AlgoliaOptions({required this.apiKey, required this.applicationId});
+
+  static const AlgoliaOptions algoliaOptions = AlgoliaOptions(
+      apiKey: "xxxxxxxx2", applicationId: "AAAAAAAAAB");
+}
+```
+
+the values of the api key and appId can be found in your [Algolia settings page.](https://www.algolia.com/account/api-keys/)
+
+Now, I'm going to write the code to search using the algolia index created in the previous steps.
+First, in the state class I create a private attribute called _algoliaClient
+
+```dart
+class _PartituraScreenState extends State<PartituraScreen> {
+  final Algolia _algoliaClient = Algolia.init(
+      applicationId: AlgoliaOptions.algoliaOptions.applicationId,
+      apiKey: AlgoliaOptions.algoliaOptions.apiKey);
+```
