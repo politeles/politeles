@@ -38,7 +38,7 @@ for %%i in (*.heic) do (
 
 ```
 
-I just modified the function called to load the heic files.
+I just modified the function called to load the heic files. Save this as a .bat file and it will transform all your heic files into jpg.
 
 More information in the following sites:
 
