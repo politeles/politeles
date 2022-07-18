@@ -75,6 +75,47 @@ https://discourse.algolia.com/t/export-all-records-from-firestore-to-indices-wit
 Implementation in flutter https://www.algolia.com/doc/guides/building-search-ui/getting-started/how-to/flutter/ios/
 
 
+
+Some references:
+
+https://www.algolia.com/doc/api-reference/api-methods/save-objects/#examples
+
+https://www.algolia.com/doc/api-client/getting-started/install/javascript/?client=javascript
+
+Code to generate the index for the first time:
+```dart
+exports.index_all_sheets = functions.runWith({
+  allowInvalidAppCheckToken: false, // Opt-out: Requests with invalid App
+  // Check tokens continue to your code.
+}).https.onCall((data, context) => {
+  const algolia = algoliasearch("projectID",
+      "secret");
+  const index = algolia.initIndex("sheetIndex");
+
+  functions.logger.info('indexing all sheets');
+  let records = [];
+  admin.firestore().collection("partitura")
+      .get().then((docs)=> {
+        docs.forEach((doc)=>{
+          const obj = doc.data();
+          obj.objectID = doc.id;
+          obj.path = 'partitura/'+doc.id;
+          obj.compositor = doc.compositor;
+          obj.compositor = doc.obra;
+          records.push(obj);
+          functions.logger.info('indexing doc');
+        });
+        functions.logger.info('fetch completed');
+        index.saveObjects(records).then(({objectIDs})=>{
+          functions.logger.info("indexing completed", objectIDs);
+        });
+      });
+  return true;
+});
+
+```
+
+
 ## Installing Algolia in Flutter project
 
 The first step is to [add the Algolia library in your flutter project.](https://www.algolia.com/doc/guides/building-search-ui/getting-started/how-to/flutter/ios/) [You can do so installing the package.](https://pub.dev/packages/algolia/install)
