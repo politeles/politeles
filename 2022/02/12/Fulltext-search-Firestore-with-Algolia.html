@@ -94,7 +94,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      4 min read
+      5 min read
     
 </span></p>
 
@@ -196,6 +196,44 @@ The process is as follows:</p>
 https://discourse.algolia.com/t/export-all-records-from-firestore-to-indices-with-google-cloud-function/10358/3</p>
 
 <p>Implementation in flutter https://www.algolia.com/doc/guides/building-search-ui/getting-started/how-to/flutter/ios/</p>
+
+<p>Some references:</p>
+
+<p>https://www.algolia.com/doc/api-reference/api-methods/save-objects/#examples</p>
+
+<p>https://www.algolia.com/doc/api-client/getting-started/install/javascript/?client=javascript</p>
+
+<p>Code to generate the index for the first time:</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">exports</span><span class="o">.</span><span class="na">index_all_sheets</span> <span class="o">=</span> <span class="n">functions</span><span class="o">.</span><span class="na">runWith</span><span class="o">({</span>
+  <span class="nl">allowInvalidAppCheckToken:</span> <span class="kc">false</span><span class="o">,</span> <span class="c1">// Opt-out: Requests with invalid App</span>
+  <span class="c1">// Check tokens continue to your code.</span>
+<span class="o">}).</span><span class="na">https</span><span class="o">.</span><span class="na">onCall</span><span class="o">((</span><span class="n">data</span><span class="o">,</span> <span class="n">context</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="o">{</span>
+  <span class="kd">const</span> <span class="n">algolia</span> <span class="o">=</span> <span class="n">algoliasearch</span><span class="o">(</span><span class="s">"projectID"</span><span class="o">,</span>
+      <span class="s">"secret"</span><span class="o">);</span>
+  <span class="kd">const</span> <span class="n">index</span> <span class="o">=</span> <span class="n">algolia</span><span class="o">.</span><span class="na">initIndex</span><span class="o">(</span><span class="s">"sheetIndex"</span><span class="o">);</span>
+
+  <span class="n">functions</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">'indexing all sheets'</span><span class="o">);</span>
+  <span class="n">let</span> <span class="n">records</span> <span class="o">=</span> <span class="o">[];</span>
+  <span class="n">admin</span><span class="o">.</span><span class="na">firestore</span><span class="o">().</span><span class="na">collection</span><span class="o">(</span><span class="s">"partitura"</span><span class="o">)</span>
+      <span class="o">.</span><span class="na">get</span><span class="o">().</span><span class="na">then</span><span class="o">((</span><span class="n">docs</span><span class="o">)=&gt;</span> <span class="o">{</span>
+        <span class="n">docs</span><span class="o">.</span><span class="na">forEach</span><span class="o">((</span><span class="n">doc</span><span class="o">)=&gt;{</span>
+          <span class="kd">const</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">data</span><span class="o">();</span>
+          <span class="n">obj</span><span class="o">.</span><span class="na">objectID</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">id</span><span class="o">;</span>
+          <span class="n">obj</span><span class="o">.</span><span class="na">path</span> <span class="o">=</span> <span class="s">'partitura/'</span><span class="o">+</span><span class="n">doc</span><span class="o">.</span><span class="na">id</span><span class="o">;</span>
+          <span class="n">obj</span><span class="o">.</span><span class="na">compositor</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">compositor</span><span class="o">;</span>
+          <span class="n">obj</span><span class="o">.</span><span class="na">compositor</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">obra</span><span class="o">;</span>
+          <span class="n">records</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+          <span class="n">functions</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">'indexing doc'</span><span class="o">);</span>
+        <span class="o">});</span>
+        <span class="n">functions</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">'fetch completed'</span><span class="o">);</span>
+        <span class="n">index</span><span class="o">.</span><span class="na">saveObjects</span><span class="o">(</span><span class="n">records</span><span class="o">).</span><span class="na">then</span><span class="o">(({</span><span class="n">objectIDs</span><span class="o">})=&gt;{</span>
+          <span class="n">functions</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"indexing completed"</span><span class="o">,</span> <span class="n">objectIDs</span><span class="o">);</span>
+        <span class="o">});</span>
+      <span class="o">});</span>
+  <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">});</span>
+
+</code></pre></div></div>
 
 <h2 id="installing-algolia-in-flutter-project">
 <a class="anchor" href="#installing-algolia-in-flutter-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing Algolia in Flutter project</h2>
