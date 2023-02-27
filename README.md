@@ -17,10 +17,10 @@
 
 ### Blogs posts
 <!-- BLOG-POST-LIST:START -->
+- [Firebase emulators cheat sheet](https://jpons.es/2022/07/18/firebase-emulators-cheat-sheet)
 - [Convert Heic files to JPG in windows](https://jpons.es/2022/07/15/Convert-heic-to-jpg-in-windows)
 - [Installing Algolia in Firebase](https://jpons.es/2022/02/12/Fulltext-search-Firestore-with-Algolia)
 - [AWS commands cheat sheet](https://jpons.es/2021/12/23/CLI-cheat-sheet)
-- [Kore.AI export knowledge base into batch testing](https://jpons.es/2021/03/29/export-knowledge-base-koreai)
 <!-- BLOG-POST-LIST:END -->
 
 <h3 align="left">Connect with me:</h3>
