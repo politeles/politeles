@@ -17,10 +17,10 @@
 
 ### Blogs posts
 <!-- BLOG-POST-LIST:START -->
-- [Firebase emulators cheat sheet](https://jpons.es/2022/07/18/firebase-emulators-cheat-sheet)
-- [Convert Heic files to JPG in windows](https://jpons.es/2022/07/15/Convert-heic-to-jpg-in-windows)
-- [Installing Algolia in Firebase](https://jpons.es/2022/02/12/Fulltext-search-Firestore-with-Algolia)
-- [AWS commands cheat sheet](https://jpons.es/2021/12/23/CLI-cheat-sheet)
+- [reusing docker desktop](https://jpons.es/2023/05/25/Reusing-docker-desktop)
+- [Handle odd elements with Hugo](https://jpons.es/2023/02/27/Hugo-handle-odd)
+- [Kubernetes cheat sheet](https://jpons.es/2022/11/05/kubernetes-cheat-sheet)
+- [Hugo template for Adobe XD](https://jpons.es/2022/07/20/Hugo-templates)
 <!-- BLOG-POST-LIST:END -->
 
 <h3 align="left">Connect with me:</h3>
