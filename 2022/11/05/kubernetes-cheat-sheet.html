@@ -1,0 +1,362 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Kubernetes cheat sheet</h1><p class="page-description">Kubernetes cheat sheet</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-11-05T00:00:00-05:00" itemprop="datePublished">
+        Nov 5, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#kubernetes">kubernetes</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#kubernetes-cheat-sheet">Kubernetes cheat sheet</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#get-nodes">Get nodes</a></li>
+<li class="toc-entry toc-h2"><a href="#exploring-types-and-definitions">Exploring types and definitions</a></li>
+<li class="toc-entry toc-h2"><a href="#viewing-details">Viewing details</a></li>
+<li class="toc-entry toc-h2"><a href="#list-of-running-pods">List of running pods</a></li>
+<li class="toc-entry toc-h2"><a href="#namespaces">Namespaces</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#creation--deletion-of-namespaces">Creation / deletion of namespaces</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#kube-public">Kube-public</a></li>
+<li class="toc-entry toc-h2"><a href="#services">Services</a></li>
+<li class="toc-entry toc-h2"><a href="#clusterip-services">ClusterIP services</a></li>
+<li class="toc-entry toc-h2"><a href="#dns-integration">DNS integration</a></li>
+<li class="toc-entry toc-h2"><a href="#starting-a-pod">Starting a pod</a></li>
+<li class="toc-entry toc-h2"><a href="#viewing-logs">viewing logs</a></li>
+<li class="toc-entry toc-h2"><a href="#creating-a-deployment">Creating a deployment</a></li>
+<li class="toc-entry toc-h2"><a href="#what-has-been-created">what has been created?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#pod">Pod</a></li>
+<li class="toc-entry toc-h1"><a href="#replica-set">Replica set</a></li>
+<li class="toc-entry toc-h1"><a href="#deployment">Deployment</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#scaling-the-deployment">Scaling the deployment:</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#scaling-a-replica-set">Scaling a replica set</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#checking-deployment-logs">Checking deployment logs</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#batch-jobs">Batch Jobs</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#creating-a-job">Creating a job</a></li>
+<li class="toc-entry toc-h2"><a href="#scheduling-periodic-background-work-cronjob">Scheduling periodic background work CronJob</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#cronjob-creation">Cronjob creation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#labels-and-annotations">Labels and annotations</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#differences-between-labels-and-annotations">Differences between labels and annotations</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#kube-logs">Kube Logs</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#stern">Stern</a></li>
+</ul>
+</li>
+</ul><h1 id="kubernetes-cheat-sheet">
+<a class="anchor" href="#kubernetes-cheat-sheet" aria-hidden="true"><span class="octicon octicon-link"></span></a>Kubernetes cheat sheet</h1>
+
+<h2 id="get-nodes">
+<a class="anchor" href="#get-nodes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get nodes</h2>
+<p>kubectl get node
+kubectl get no</p>
+
+<p>With more outuput:
+kubectl get nodes -o wide
+kubectl get no -o yaml</p>
+
+<p>With a JSON Query
+kubectl get nodes -o json | jq “.items[] | {name:.metadata.name} + .status.capacity”</p>
+
+<h2 id="exploring-types-and-definitions">
+<a class="anchor" href="#exploring-types-and-definitions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exploring types and definitions</h2>
+
+<p>kubectl explain node
+kubectl explain node.spec</p>
+
+<p>kubectl explain node –recursive</p>
+
+<h2 id="viewing-details">
+<a class="anchor" href="#viewing-details" aria-hidden="true"><span class="octicon octicon-link"></span></a>Viewing details</h2>
+<p>kubectl describe node</p>
+
+<h2 id="list-of-running-pods">
+<a class="anchor" href="#list-of-running-pods" aria-hidden="true"><span class="octicon octicon-link"></span></a>List of running pods</h2>
+
+<p>kubectl get pods</p>
+
+<h2 id="namespaces">
+<a class="anchor" href="#namespaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Namespaces</h2>
+<p>kubectl get namespaces</p>
+
+<p>To get all namespaces</p>
+
+<p>kubectl get pods –all-namespaces
+kubectl get pods -A</p>
+
+<p>Scoping another namespaces</p>
+
+<p>kubectl get pods -n kube-system</p>
+
+<h3 id="creation--deletion-of-namespaces">
+<a class="anchor" href="#creation--deletion-of-namespaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creation / deletion of namespaces</h3>
+<p>kubectl create -n=X
+kubectl delete -n=X
+To add / remove and update labels across multiple namespaces:
+kubectl label</p>
+
+<h2 id="kube-public">
+<a class="anchor" href="#kube-public" aria-hidden="true"><span class="octicon octicon-link"></span></a>Kube-public</h2>
+
+<p>To get the cluster info:
+kubectl -n kube-public get configmaps</p>
+
+<p>kubectl -n kube-public get configmap cluster-info -o yaml</p>
+
+<h2 id="services">
+<a class="anchor" href="#services" aria-hidden="true"><span class="octicon octicon-link"></span></a>Services</h2>
+<p>A service is an endpoint</p>
+
+<p>kubectl get services
+kubectl get svc</p>
+
+<p>Example output:
+PS C:\Users\polit\sources\container.training&gt; kubectl get svc
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   15h</none></p>
+
+<p>We can connect to the API using the CLUSTER-IP value.</p>
+
+<h2 id="clusterip-services">
+<a class="anchor" href="#clusterip-services" aria-hidden="true"><span class="octicon octicon-link"></span></a>ClusterIP services</h2>
+<p>Connections to the CLUSTER-IP can be done only from within the cluster.</p>
+
+<h2 id="dns-integration">
+<a class="anchor" href="#dns-integration" aria-hidden="true"><span class="octicon octicon-link"></span></a>DNS integration</h2>
+<p>Each service gets a DNS record
+The kubernetes DNS resolver is available from within the pods.(and sometimes from nodes depending on config).</p>
+
+<h2 id="starting-a-pod">
+<a class="anchor" href="#starting-a-pod" aria-hidden="true"><span class="octicon octicon-link"></span></a>Starting a pod</h2>
+<p>kubectl run</p>
+
+<p>kubectl run pingpong –image alpine ping 127.0.0.1</p>
+
+<h2 id="viewing-logs">
+<a class="anchor" href="#viewing-logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>viewing logs</h2>
+<p>unless specified it will show the logs of the first container only</p>
+
+<p>kubectl logs pingpong</p>
+
+<p>kubectl logs pingpong –tail 1 -follow</p>
+
+<p>-f/–follow to stream logs in real time
+–tail to indicate how many lines you want to see (from the end)
+–since to get logs only after a given timestamp</p>
+
+<h2 id="creating-a-deployment">
+<a class="anchor" href="#creating-a-deployment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating a deployment</h2>
+
+<p>kubectl create deployment pingpong –image=alpine – ping 127.0.0.1
+The – is to separate the options of kubernetes to the parameters of the container.</p>
+
+<h2 id="what-has-been-created">
+<a class="anchor" href="#what-has-been-created" aria-hidden="true"><span class="octicon octicon-link"></span></a>what has been created?</h2>
+<p>kubectl get all</p>
+
+<p>It doesn’t show everything just the usual suspects.</p>
+
+<h1 id="pod">
+<a class="anchor" href="#pod" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pod</h1>
+<ul>
+  <li>A Pod is not a process; it’s an environment for containers</li>
+  <li>it cannot be “restarted”</li>
+  <li>
+    <p>it cannot “crash”</p>
+  </li>
+  <li>The containers in a Pod can crash</li>
+  <li>They may or may not get restarted (depending on Pod’s restart policy)</li>
+  <li>If all containers exit successfully, the Pod ends in “Succeeded” phase</li>
+  <li>If some containers fail and don’t get restarted, the Pod ends in “Failed” phase</li>
+</ul>
+
+<h1 id="replica-set">
+<a class="anchor" href="#replica-set" aria-hidden="true"><span class="octicon octicon-link"></span></a>Replica set</h1>
+<ul>
+  <li>Set of identical pods.</li>
+  <li>Defined by a pod template + number of desired replicas.</li>
+  <li>When scale up / down:</li>
+  <li>we update the manifest of the replica set.</li>
+  <li>as a consequence, the replica set controller creates / deletes pods.</li>
+</ul>
+
+<h1 id="deployment">
+<a class="anchor" href="#deployment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deployment</h1>
+<p>Deployments roll out different Pods (different image, command, environment vars…)</p>
+<ul>
+  <li>When we update a deployment with a new Pod definition:</li>
+  <li>a new replica set is created with the new pod definition.</li>
+  <li>that new Replica is scaled up.</li>
+  <li>the old replica set is scaled down.</li>
+  <li>This is a rolling update, minimizing application downtime.</li>
+  <li>When we scale up/down a Deployment, it scales up / down its replica set.</li>
+</ul>
+
+<h2 id="scaling-the-deployment">
+<a class="anchor" href="#scaling-the-deployment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scaling the deployment:</h2>
+<p>kubectl scale deployment pingpong –replicas 3</p>
+
+<p>to check we have multiple pods:
+kubectl get pods</p>
+
+<h3 id="scaling-a-replica-set">
+<a class="anchor" href="#scaling-a-replica-set" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scaling a replica set</h3>
+<p>What if we scale the replica set?</p>
+<ul>
+  <li>The deployment will notice and will scale back to the initial level.</li>
+  <li>The replica set makes sure to have the right number of pods.</li>
+  <li>The deployment makes sure the Replica set has the right size.</li>
+</ul>
+
+<h2 id="checking-deployment-logs">
+<a class="anchor" href="#checking-deployment-logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Checking deployment logs</h2>
+<p>kubectl logs deploy/pingpong –tail 2</p>
+
+<h1 id="batch-jobs">
+<a class="anchor" href="#batch-jobs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Batch Jobs</h1>
+<p>Pods don’t get restarted if something goes wrong. Jobs are great for long background jobs.
+CronJobs are for scheduled jobs.</p>
+
+<h2 id="creating-a-job">
+<a class="anchor" href="#creating-a-job" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating a job</h2>
+
+<p>kubectl create job flipcoin –image=alpine – sh -c ‘exit $(($RANDOM%2))’</p>
+
+<p>check the status with name selector:
+kubectl get pods –selector=job-name=flipcoin</p>
+
+<ul>
+  <li>
+    <p>We can specify a number of “completions” (default=1)</p>
+  </li>
+  <li>
+    <p>We can specify the “parallelism” (default=1)</p>
+  </li>
+</ul>
+
+<h2 id="scheduling-periodic-background-work-cronjob">
+<a class="anchor" href="#scheduling-periodic-background-work-cronjob" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scheduling periodic background work CronJob</h2>
+<p>It requires a schedule</p>
+<ul>
+  <li>minute [0,59]</li>
+  <li>hour [0,23]</li>
+  <li>day of the month [1,31]</li>
+  <li>month of the year[1,12]</li>
+  <li>day of the week [0,6] 0= Sunday.
+for example:
+*/3 * * * * means every three minutes.</li>
+</ul>
+
+<h3 id="cronjob-creation">
+<a class="anchor" href="#cronjob-creation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cronjob creation</h3>
+<p>kubectl create cronjob every3mins –schedule=”*/3 * * * *” <br>
+        –image=alpine – sleep 10</p>
+
+<p>To check the job:
+kubectl get cronjobs</p>
+
+<p>The job will create a pod, the job will make sure the pod completes (re-creating another one if it fails).</p>
+
+<p>Setting a time limit:
+This is done with the field spec.activeDeadlineSeconds.
+When the job is older than the limit, all its pods are terminated.
+<strong>Note that there can be also a deadline for the pods</strong>
+They can be set independently with different effect:</p>
+<ul>
+  <li>the deadline of the job will stop the entire job.</li>
+  <li>the deadline of the pod will stop only a pod.</li>
+</ul>
+
+<h1 id="labels-and-annotations">
+<a class="anchor" href="#labels-and-annotations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Labels and annotations</h1>
+<p>Set a label on the clock Deployment:
+kubectl label deployment clock color=blue</p>
+
+<p>kubectl describe deployment clock</p>
+
+<p>List all the labels that we have on pods:</p>
+
+<p>kubectl get pods –show-labels</p>
+
+<p>List the value of label app on these pods:</p>
+
+<p>kubectl get pods -L app</p>
+
+<p><strong>If a selector has multiple labels, it means “match at least these labels”</strong></p>
+
+<p>Example: –selector=app=frontend,release=prod</p>
+
+<p><em>We can use negative selectors</em> 
+–selector=app!=clock</p>
+
+<p>Can be used with most kubectl commands.</p>
+
+<p>Other ways to get the labels:
+kubectl get –show-labels po,rs,deploy,svc,no</p>
+
+<h2 id="differences-between-labels-and-annotations">
+<a class="anchor" href="#differences-between-labels-and-annotations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Differences between labels and annotations</h2>
+<p>The key for both labels and annotations:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>must start and end with a letter or digit
+
+can also have . - _ (but not in first or last position)
+
+can be up to 63 characters, or 253 + / + 63
+</code></pre></div></div>
+
+<p>Label values are up to 63 characters
+Annotations values can have arbitrary characters (yes, even binary)</p>
+
+<p>Maximum length isn’t defined</p>
+
+<h1 id="kube-logs">
+<a class="anchor" href="#kube-logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Kube Logs</h1>
+<p>kubectl logs only shows the logs of one of the pods.
+View the last line of log from all pods with the app=pingpong label:</p>
+
+<p>kubectl logs -l app=pingpong –tail 1
+The logs can only be streamed for 5 pods.
+There are external tools to address these shortcomings.
+Stern https://github.com/wercker/stern</p>
+
+<h2 id="stern">
+<a class="anchor" href="#stern" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stern</h2>
+<p>https://container.training/kube-selfpaced.yml.html#212</p>
+
+  </div><a class="u-url" href="/2022/11/05/kubernetes-cheat-sheet" hidden></a>
+</article>
