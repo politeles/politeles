@@ -42,8 +42,7 @@ permalink: :year/:month/:day/:title
 # Github and twitter are optional:
 minima:
   social_links:
-    twitter: jose_e_pons
-    github: politeles
+   - { platform: github,  user_url: "https://github.com/politeles" }
 
 # Set this to true to get LaTeX math equation support
 use_math: 
