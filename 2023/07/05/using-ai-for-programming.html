@@ -1,0 +1,80 @@
+<h1 id="my-experience-of-using-ai-assistants-for-programming-the-past-month">My experience of using AI assistants for programming the past month</h1>
+
+<p>Last month, I started using two services, ChatGPT and Github Copilot to help me with my coding work. They are very different, but both share the underlying model, using <a href="https://machinelearningmastery.com/what-are-large-language-models/">Large Language Models (LLMs)</a>.</p>
+
+<ul>
+  <li><a href="https://openai.com/blog/chatgpt">ChatGPT</a>: Is a generic model, that’s implemented mainly as a chat bot, but it can answer code questions of various nature.</li>
+  <li><a href="https://github.com/features/copilot">Github Copilot</a>: is a model based on <a href="https://openai.com/blog/openai-codex">Codex</a>, a tuned version of an LLM with the focus on code.</li>
+</ul>
+
+<p>Outside this comparison is <a href="https://aws.amazon.com/es/codewhisperer">Amazon CodeWhisperer</a> but I would like to give it a try soon. According to the demo I watched, the main difference is that Code Whisperer gives you code <em>that is actually</em> in a real open source repo.</p>
+
+<h2 id="configuration">Configuration</h2>
+<p>For my trial I worked with Copilot installed on Visual Studio Code as a plugin, I think this is the most productive way to work with.
+For ChatGPT I’m using the browser and the popular GitHub project called <a href="https://github.com/Significant-Gravitas/Auto-GPT">AutoGPT</a>, that project extends the capabilities of the chat-based interface by using the API of chatGPT and ellaborating a plan based on the user description. Among the capabilities, it can write the files to disk, it can browse the Internet, and you can extend the functionality by using plugins (that’s really a very idealistic description of how it really works).</p>
+
+<h1 id="experiment-writing-code-for-a-flutter-application">Experiment: Writing code for a Flutter Application</h1>
+<p>Yeah, <a href="https://flutter.dev/">Flutter</a> is a framework written in <a href="https://dart.dev/">Dart</a> language by Google with the idea of creating one single codebase for all your mobile / desktop applications. I’m writting a couple of apps using this technology and I have to say it’s really cool and fast to develop.</p>
+
+<p>I want to create an activity tracker, similar to the one from the main page of GitHub, you may have seen it:
+![images/github_activity.png]</p>
+
+<h2 id="using-github-copilot">Using GitHub Copilot:</h2>
+<p>I create an empty file and write the comments in the header of what I want to achieve.
+Here the only output I get from Copilot is the list of imports and after a few of them, it loops again to the first import. 
+<strong>In this example, Copilot wasn’t very useful</strong>.</p>
+
+<h2 id="using-chatgpt">Using ChatGPT</h2>
+<p>This was my prompt: “can you define a widget in flutter to create an activity tracker with squares representing each day, in the style of github front page?”
+And this was the code:</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">ActivityTracker</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="p">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">GridView</span><span class="o">.</span><span class="na">builder</span><span class="p">(</span>
+      <span class="nl">gridDelegate:</span> <span class="n">SliverGridDelegateWithFixedCrossAxisCount</span><span class="p">(</span>
+        <span class="nl">crossAxisCount:</span> <span class="mi">7</span><span class="p">,</span> <span class="c1">// 7 squares per row for each day of the week</span>
+      <span class="p">),</span>
+      <span class="nl">itemCount:</span> <span class="mi">365</span><span class="p">,</span> <span class="c1">// Total number of days in a year</span>
+      <span class="nl">itemBuilder:</span> <span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">ActivitySquare</span><span class="p">();</span> <span class="c1">// Custom widget representing a day's activity square</span>
+      <span class="p">},</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">ActivitySquare</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="p">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">Container</span><span class="p">(</span>
+      <span class="nl">width:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="nl">height:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="nl">margin:</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">all</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+      <span class="nl">decoration:</span> <span class="n">BoxDecoration</span><span class="p">(</span>
+        <span class="nl">color:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">grey</span><span class="p">,</span> <span class="c1">// Set the color based on activity level or data</span>
+        <span class="nl">shape:</span> <span class="n">BoxShape</span><span class="o">.</span><span class="na">rectangle</span><span class="p">,</span>
+      <span class="p">),</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Usage example</span>
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">runApp</span><span class="p">(</span><span class="n">MaterialApp</span><span class="p">(</span>
+    <span class="nl">home:</span> <span class="n">Scaffold</span><span class="p">(</span>
+      <span class="nl">body:</span> <span class="n">ActivityTracker</span><span class="p">(),</span>
+    <span class="p">),</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+<p>You can actually compile this code and with a little bit of wiring up, you can run it, if you see the picture, it’s not perfect, but it fits the description.
+The solution I implemented works with a different component, and does not use any of this code, the base widgets are different, but it helped me think about the solution.</p>
+
+<h1 id="conclusions">Conclusions</h1>
+<p>Using Copilot for not-so-popular languages like Dart, wasn’t really useful. Maybe I have to change the way I ask to the tool. It could be that the language has fewer examples to be trained on. Or it could be just that there is a lot of interaction between different parts of the Flutter framework, which makes very complex for Copilot to write code.</p>
+
+<p>ChatGPT, on the other hand, helped me to get something executable, and like a first iteration, but the final solution was done using a more sophisticated code.</p>
+
