@@ -10,7 +10,7 @@ https://tharangarajapaksha.medium.com/)(elk-stack-in-k8s-cluster-13bb509185e0)
 I'm going to [create a new namespace in the k8s cluster][nsp] for elk stak.
 
 ```powershell
-kubectl create namespace elk
+kubectl create namespace elk 
 ``` 
 
 Because I have Helm, I'm going to [install the ingress controller][ingress] using the following command:
