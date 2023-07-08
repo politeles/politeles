@@ -1,0 +1,1101 @@
+[
+  {
+    "objectID": "posts/2023-07-08 Migration fastpages to Quarto.html",
+    "href": "posts/2023-07-08 Migration fastpages to Quarto.html",
+    "title": "Migration from FastPages to Quarto",
+    "section": "",
+    "text": "Migration from FastPages to Quarto\nI was updating my blog and I found some issues in the GitHub action I configured to automatically build my blog. The Jekill build was failing due to an issue with the minima package. I was getting this error:\n Rendering Liquid: assets/minima-social-icons.liquid\n  Liquid Exception: Invalid syntax for include tag. File contains invalid characters or sequences: social-icons/.svg Valid syntax: {% include file.ext param='value' param2='value' %} in assets/minima-social-icons.liquid\nAfter some research, I discovered that the “minima” package changed the way to specify the social networks. There is a config file “_config.yml” where you can specify the social networks you want to show in your blog. The old way was:\n# Github and twitter are optional:\nminima:\n  social_links:\n    github: politeles\nAnd the new way is:\nminima:\n   - { platform: github,  user_url: \"https://github.com/politeles\" }\nAfter I changed that, the GitHub action was working again. I read the [Fast.AI forum and I found that FastPages is being deprecated in favor of Quarto]. So I decided to migrate my blog to Quarto.\nFirst of all, I have to download and install Quarto CLI for windows. You can find the instructions here.\nI’m using VS code as my main editor, so, I installed the Quarto extension for VS code. You can find the instructions here.\nBasically, we create a new project in a new folder:\n quarto create-project -type website:blog .\n quarto install extension quarto-ext/video\nThen, I started the migration process as described here. I’m copying the blog posts, the notebooks and the images to the post folder. In this case, all my posts are under the politeles folder.\ncopy ..\\politeles\\_posts\\* .\\posts\\\ncopy ..\\politeles\\_notebooks\\* .\\posts\\\ncopy ..\\politeles\\images\\* .\\posts\\\ncopy ..\\politeles\\images\\copied_from_nb\\* .\\posts\\\nThen, I have to change the metadata in the posts. In the guide, they are using nbdev_migrate. The problem is that doesn’t exists in my windows system. The solution is to install nbdev, I’m doing all that using Anaconda prompt in powershell. If you want to install Anaconda in your windows env, you can find the instructions here.\nOnce you have Anaconda installed, I create a new virtual environment and install nbdev:\nconda create --name fastpages\nNow switch to the new environment:\nconda activate fastpages\nFirst we have to install Jupyter Lab:\nconda install -c conda-forge -y jupyterlab\nAnd install nbdev:\nconda install -c fastai nbdev\nFastpages is being deprecated in favor of Quarto. This is a guide to migrate your blog from Fastpages to Quarto."
+  },
+  {
+    "objectID": "posts/2023-07-05-using-ai-for-programming.html",
+    "href": "posts/2023-07-05-using-ai-for-programming.html",
+    "title": "Using AI for programming",
+    "section": "",
+    "text": "Last month, I started using two services, ChatGPT and Github Copilot to help me with my coding work. They are very different, but both share the underlying model, using Large Language Models (LLMs).\n\nChatGPT: Is a generic model, that’s implemented mainly as a chat bot, but it can answer code questions of various nature.\nGithub Copilot: is a model based on Codex, a tuned version of an LLM with the focus on code.\n\nOutside this comparison is Amazon CodeWhisperer but I would like to give it a try soon. According to the demo I watched, the main difference is that Code Whisperer gives you code that is actually in a real open source repo.\n\n\nFor my trial I worked with Copilot installed on Visual Studio Code as a plugin, I think this is the most productive way to work with. For ChatGPT I’m using the browser and the popular GitHub project called AutoGPT, that project extends the capabilities of the chat-based interface by using the API of chatGPT and ellaborating a plan based on the user description. Among the capabilities, it can write the files to disk, it can browse the Internet, and you can extend the functionality by using plugins (that’s really a very idealistic description of how it really works)."
+  },
+  {
+    "objectID": "posts/2023-07-05-using-ai-for-programming.html#configuration",
+    "href": "posts/2023-07-05-using-ai-for-programming.html#configuration",
+    "title": "Using AI for programming",
+    "section": "",
+    "text": "For my trial I worked with Copilot installed on Visual Studio Code as a plugin, I think this is the most productive way to work with. For ChatGPT I’m using the browser and the popular GitHub project called AutoGPT, that project extends the capabilities of the chat-based interface by using the API of chatGPT and ellaborating a plan based on the user description. Among the capabilities, it can write the files to disk, it can browse the Internet, and you can extend the functionality by using plugins (that’s really a very idealistic description of how it really works)."
+  },
+  {
+    "objectID": "posts/2023-07-05-using-ai-for-programming.html#using-github-copilot",
+    "href": "posts/2023-07-05-using-ai-for-programming.html#using-github-copilot",
+    "title": "Using AI for programming",
+    "section": "Using GitHub Copilot:",
+    "text": "Using GitHub Copilot:\nI create an empty file and write the comments in the header of what I want to achieve. Here the only output I get from Copilot is the list of imports and after a few of them, it loops again to the first import. In this example, Copilot wasn’t very useful."
+  },
+  {
+    "objectID": "posts/2023-07-05-using-ai-for-programming.html#using-chatgpt",
+    "href": "posts/2023-07-05-using-ai-for-programming.html#using-chatgpt",
+    "title": "Using AI for programming",
+    "section": "Using ChatGPT",
+    "text": "Using ChatGPT\nThis was my prompt: “can you define a widget in flutter to create an activity tracker with squares representing each day, in the style of github front page?” And this was the code:\nimport 'package:flutter/material.dart';\n\nclass ActivityTracker extends StatelessWidget {\n  @override\n  Widget build(BuildContext context) {\n    return GridView.builder(\n      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(\n        crossAxisCount: 7, // 7 squares per row for each day of the week\n      ),\n      itemCount: 365, // Total number of days in a year\n      itemBuilder: (BuildContext context, int index) {\n        return ActivitySquare(); // Custom widget representing a day's activity square\n      },\n    );\n  }\n}\n\nclass ActivitySquare extends StatelessWidget {\n  @override\n  Widget build(BuildContext context) {\n    return Container(\n      width: 10,\n      height: 10,\n      margin: EdgeInsets.all(2),\n      decoration: BoxDecoration(\n        color: Colors.grey, // Set the color based on activity level or data\n        shape: BoxShape.rectangle,\n      ),\n    );\n  }\n}\n\n// Usage example\nvoid main() {\n  runApp(MaterialApp(\n    home: Scaffold(\n      body: ActivityTracker(),\n    ),\n  ));\n}\nYou can actually compile this code and with a little bit of wiring up, you can run it, if you see the picture, it’s not perfect, but it fits the description. \nThe solution I implemented works with a different component, and does not use any of this code, the base widgets are different, but it helped me think about the solution."
+  },
+  {
+    "objectID": "posts/2023-06-03_utf8_conversion.html",
+    "href": "posts/2023-06-03_utf8_conversion.html",
+    "title": "UTF-8 migration in SQL",
+    "section": "",
+    "text": "Current db is encoded in latin1, the database is mysql 5.7\nThe steps are as follows: - Change the overal character set and collation for mysql. - Update the default values for the date fields for each table. - Alter each table character set and collation. - Dump database.\n\n\nalter database databasename character set utf8 COLLATE utf8_unicode_ci;\n\n\n\nSome documentation from mysql.[https://dev.mysql.com/doc/refman/8.0/en/data-type-defaults.html#data-type-defaults-explicit-old]\nalter table tablename alter column columname set default '2023-06-03';\nyou can update the default value to a formula. In this case, the current date is fine.\n\n\n\nALTER TABLE actuaciones CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;\nexecute as script:\nmysql&gt; source altertables.sql\n\n\n\nmysqldump -u username -p databasename &gt; export.sql\n\n\n\nJust in case you want to convert to utf8 code files. In this example, we are converting php files.\nforeach($i in ls -recurse -filter \"*.php\") {\n    $temp = Get-Content $i.fullname\n    Out-File -filepath $i.fullname -inputobject $temp -encoding utf8 -force\n}\n\n\n\nhttps://cybmeta.com/cannot-modify-header-information-headers-already-sent"
+  },
+  {
+    "objectID": "posts/2023-06-03_utf8_conversion.html#change-db-character-set",
+    "href": "posts/2023-06-03_utf8_conversion.html#change-db-character-set",
+    "title": "UTF-8 migration in SQL",
+    "section": "",
+    "text": "alter database databasename character set utf8 COLLATE utf8_unicode_ci;"
+  },
+  {
+    "objectID": "posts/2023-06-03_utf8_conversion.html#alter-default-date",
+    "href": "posts/2023-06-03_utf8_conversion.html#alter-default-date",
+    "title": "UTF-8 migration in SQL",
+    "section": "",
+    "text": "Some documentation from mysql.[https://dev.mysql.com/doc/refman/8.0/en/data-type-defaults.html#data-type-defaults-explicit-old]\nalter table tablename alter column columname set default '2023-06-03';\nyou can update the default value to a formula. In this case, the current date is fine."
+  },
+  {
+    "objectID": "posts/2023-06-03_utf8_conversion.html#convert-the-table-to-utf8",
+    "href": "posts/2023-06-03_utf8_conversion.html#convert-the-table-to-utf8",
+    "title": "UTF-8 migration in SQL",
+    "section": "",
+    "text": "ALTER TABLE actuaciones CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;\nexecute as script:\nmysql&gt; source altertables.sql"
+  },
+  {
+    "objectID": "posts/2023-06-03_utf8_conversion.html#dump-database",
+    "href": "posts/2023-06-03_utf8_conversion.html#dump-database",
+    "title": "UTF-8 migration in SQL",
+    "section": "",
+    "text": "mysqldump -u username -p databasename &gt; export.sql"
+  },
+  {
+    "objectID": "posts/2023-06-03_utf8_conversion.html#conversion-of-files-in-powershell",
+    "href": "posts/2023-06-03_utf8_conversion.html#conversion-of-files-in-powershell",
+    "title": "UTF-8 migration in SQL",
+    "section": "",
+    "text": "Just in case you want to convert to utf8 code files. In this example, we are converting php files.\nforeach($i in ls -recurse -filter \"*.php\") {\n    $temp = Get-Content $i.fullname\n    Out-File -filepath $i.fullname -inputobject $temp -encoding utf8 -force\n}"
+  },
+  {
+    "objectID": "posts/2023-06-03_utf8_conversion.html#in-php-the-enemy-of-bom",
+    "href": "posts/2023-06-03_utf8_conversion.html#in-php-the-enemy-of-bom",
+    "title": "UTF-8 migration in SQL",
+    "section": "",
+    "text": "https://cybmeta.com/cannot-modify-header-information-headers-already-sent"
+  },
+  {
+    "objectID": "posts/2023-02-27-Hugo handle odd.html",
+    "href": "posts/2023-02-27-Hugo handle odd.html",
+    "title": "Handle odd elements with Hugo",
+    "section": "",
+    "text": "Handle odd elements with Hugo\nWe want to attach a CSS property to some objects\n&lt;div class=\"col-md-4 {{ if (modBool  .Params.weight 2) }}align-self-center wwm-down{{ end }}\"&gt;\n        {{ .Render \"wwm\" }}\n&lt;/div&gt;\n(https://discourse.gohugo.io/t/detect-every-odd-post-in-a-range/6582)[More info here]\n\n\nNot loading elements in the parent folder\nInside the parent pages folder we should have a _index.md file\n(https://github.com/gohugoio/hugo/issues/7362)[Github issue]"
+  },
+  {
+    "objectID": "posts/2022-12-03 Linux commands cheat sheet.html#firewall",
+    "href": "posts/2022-12-03 Linux commands cheat sheet.html#firewall",
+    "title": "Linux commands cheat sheet",
+    "section": "Firewall",
+    "text": "Firewall"
+  },
+  {
+    "objectID": "posts/2022-12-03 Linux commands cheat sheet.html#list-all-rules-in-ip-tables",
+    "href": "posts/2022-12-03 Linux commands cheat sheet.html#list-all-rules-in-ip-tables",
+    "title": "Linux commands cheat sheet",
+    "section": "List all rules in IP tables",
+    "text": "List all rules in IP tables\niptables -L\n\niptables commands\niptables -P INPUT ACCEPT iptables -P OUTPUT ACCEPT iptables -P FORWARD ACCEPT iptables -F\nUncomplicated firewall status / enable https://help.ubuntu.com/community/UFW\nufw status\nExample commands to allow / deny all traffic\nufw default allow incoming\nufw default deny incoming\nAdd port 6443 tcp\nufw allow 6443/tcp\nAllow port ranges:\nufw allow 1000:2000/tcp"
+  },
+  {
+    "objectID": "posts/2022-12-03 Linux commands cheat sheet.html#log-file-locations",
+    "href": "posts/2022-12-03 Linux commands cheat sheet.html#log-file-locations",
+    "title": "Linux commands cheat sheet",
+    "section": "log file locations",
+    "text": "log file locations\n\nAuthorization log\n/var/log/auth.log\n\n\nDaemon Log\n/var/log/daemon.log\n\n\nDebug log\n/var/log/debug\n\n\nKernel log\n/var/log/kern.log\n\n\nSystem log\n/var/log/syslog\nsystemctl status appname\n\n\nApplication logs\n\n\nApache\n/var/log/apache2/\n\n\nX11\n/var/log/Xorg.0.log\n\n\nlogin failures\n/var/log/faillog read with faillog command\n\n\nLast logins log\n/var/log/lastlog read with lastlog command\n\n\nLogin records log\n/var/log/wtmp read with who command"
+  },
+  {
+    "objectID": "posts/2022-12-03 Linux commands cheat sheet.html#containers",
+    "href": "posts/2022-12-03 Linux commands cheat sheet.html#containers",
+    "title": "Linux commands cheat sheet",
+    "section": "Containers",
+    "text": "Containers"
+  },
+  {
+    "objectID": "posts/2022-12-03 Linux commands cheat sheet.html#containerd",
+    "href": "posts/2022-12-03 Linux commands cheat sheet.html#containerd",
+    "title": "Linux commands cheat sheet",
+    "section": "Containerd",
+    "text": "Containerd\nhttps://iximiuz.com/en/posts/containerd-command-line-clients/\n\nlist all namespaces\nsudo ctr namespaces list\n\n\nlist all containers running in kubernetes\nsudo ctr -n k8s.io containers list\n\n\nlist all tasks running\nsudo ctr -n k8s.io task list"
+  },
+  {
+    "objectID": "posts/2022-12-03 Linux commands cheat sheet.html#check-the-content-of-an-interface",
+    "href": "posts/2022-12-03 Linux commands cheat sheet.html#check-the-content-of-an-interface",
+    "title": "Linux commands cheat sheet",
+    "section": "Check the content of an interface",
+    "text": "Check the content of an interface\n sudo tcpdump -i tunl0"
+  },
+  {
+    "objectID": "posts/2022-12-03 Linux commands cheat sheet.html#restart-all-daemons",
+    "href": "posts/2022-12-03 Linux commands cheat sheet.html#restart-all-daemons",
+    "title": "Linux commands cheat sheet",
+    "section": "Restart all daemons",
+    "text": "Restart all daemons\nsudo systemctl daemon-reload"
+  },
+  {
+    "objectID": "posts/2022-12-03 Linux commands cheat sheet.html#check-what-a-command-does",
+    "href": "posts/2022-12-03 Linux commands cheat sheet.html#check-what-a-command-does",
+    "title": "Linux commands cheat sheet",
+    "section": "check what a command does",
+    "text": "check what a command does\nstrace command\n\nstrace kubectl get endpoints"
+  },
+  {
+    "objectID": "posts/2022-12-03 Linux commands cheat sheet.html#crictl",
+    "href": "posts/2022-12-03 Linux commands cheat sheet.html#crictl",
+    "title": "Linux commands cheat sheet",
+    "section": "Crictl",
+    "text": "Crictl\nconfig file in crictl /etc/crictl.yaml config options: https://github.com/kubernetes-sigs/cri-tools/blob/master/docs/crictl.md"
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html",
+    "title": "Kubernetes cheat sheet",
+    "section": "",
+    "text": "kubectl get node kubectl get no\nWith more outuput: kubectl get nodes -o wide kubectl get no -o yaml\nWith a JSON Query kubectl get nodes -o json | jq “.items[] | {name:.metadata.name} + .status.capacity”\n\n\n\nkubectl explain node kubectl explain node.spec\nkubectl explain node –recursive\n\n\n\nkubectl describe node\n\n\n\nkubectl get pods\n\n\n\nkubectl get namespaces\nTo get all namespaces\nkubectl get pods –all-namespaces kubectl get pods -A\nScoping another namespaces\nkubectl get pods -n kube-system\n\n\nkubectl create -n=X kubectl delete -n=X To add / remove and update labels across multiple namespaces: kubectl label\n\n\n\n\nTo get the cluster info: kubectl -n kube-public get configmaps\nkubectl -n kube-public get configmap cluster-info -o yaml\n\n\n\nA service is an endpoint\nkubectl get services kubectl get svc\nExample output: PS C:.training&gt; kubectl get svc NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE kubernetes ClusterIP 10.96.0.1  443/TCP 15h\nWe can connect to the API using the CLUSTER-IP value.\n\n\n\nConnections to the CLUSTER-IP can be done only from within the cluster.\n\n\n\nEach service gets a DNS record The kubernetes DNS resolver is available from within the pods.(and sometimes from nodes depending on config).\n\n\n\nkubectl run\nkubectl run pingpong –image alpine ping 127.0.0.1\n\n\n\nunless specified it will show the logs of the first container only\nkubectl logs pingpong\nkubectl logs pingpong –tail 1 -follow\n-f/–follow to stream logs in real time –tail to indicate how many lines you want to see (from the end) –since to get logs only after a given timestamp\n\n\n\nkubectl create deployment pingpong –image=alpine – ping 127.0.0.1 The – is to separate the options of kubernetes to the parameters of the container.\n\n\n\nkubectl get all\nIt doesn’t show everything just the usual suspects."
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#get-nodes",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#get-nodes",
+    "title": "Kubernetes cheat sheet",
+    "section": "",
+    "text": "kubectl get node kubectl get no\nWith more outuput: kubectl get nodes -o wide kubectl get no -o yaml\nWith a JSON Query kubectl get nodes -o json | jq “.items[] | {name:.metadata.name} + .status.capacity”"
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#exploring-types-and-definitions",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#exploring-types-and-definitions",
+    "title": "Kubernetes cheat sheet",
+    "section": "",
+    "text": "kubectl explain node kubectl explain node.spec\nkubectl explain node –recursive"
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#viewing-details",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#viewing-details",
+    "title": "Kubernetes cheat sheet",
+    "section": "",
+    "text": "kubectl describe node"
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#list-of-running-pods",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#list-of-running-pods",
+    "title": "Kubernetes cheat sheet",
+    "section": "",
+    "text": "kubectl get pods"
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#namespaces",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#namespaces",
+    "title": "Kubernetes cheat sheet",
+    "section": "",
+    "text": "kubectl get namespaces\nTo get all namespaces\nkubectl get pods –all-namespaces kubectl get pods -A\nScoping another namespaces\nkubectl get pods -n kube-system\n\n\nkubectl create -n=X kubectl delete -n=X To add / remove and update labels across multiple namespaces: kubectl label"
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#kube-public",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#kube-public",
+    "title": "Kubernetes cheat sheet",
+    "section": "",
+    "text": "To get the cluster info: kubectl -n kube-public get configmaps\nkubectl -n kube-public get configmap cluster-info -o yaml"
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#services",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#services",
+    "title": "Kubernetes cheat sheet",
+    "section": "",
+    "text": "A service is an endpoint\nkubectl get services kubectl get svc\nExample output: PS C:.training&gt; kubectl get svc NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE kubernetes ClusterIP 10.96.0.1  443/TCP 15h\nWe can connect to the API using the CLUSTER-IP value."
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#clusterip-services",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#clusterip-services",
+    "title": "Kubernetes cheat sheet",
+    "section": "",
+    "text": "Connections to the CLUSTER-IP can be done only from within the cluster."
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#dns-integration",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#dns-integration",
+    "title": "Kubernetes cheat sheet",
+    "section": "",
+    "text": "Each service gets a DNS record The kubernetes DNS resolver is available from within the pods.(and sometimes from nodes depending on config)."
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#starting-a-pod",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#starting-a-pod",
+    "title": "Kubernetes cheat sheet",
+    "section": "",
+    "text": "kubectl run\nkubectl run pingpong –image alpine ping 127.0.0.1"
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#viewing-logs",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#viewing-logs",
+    "title": "Kubernetes cheat sheet",
+    "section": "",
+    "text": "unless specified it will show the logs of the first container only\nkubectl logs pingpong\nkubectl logs pingpong –tail 1 -follow\n-f/–follow to stream logs in real time –tail to indicate how many lines you want to see (from the end) –since to get logs only after a given timestamp"
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#creating-a-deployment",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#creating-a-deployment",
+    "title": "Kubernetes cheat sheet",
+    "section": "",
+    "text": "kubectl create deployment pingpong –image=alpine – ping 127.0.0.1 The – is to separate the options of kubernetes to the parameters of the container."
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#what-has-been-created",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#what-has-been-created",
+    "title": "Kubernetes cheat sheet",
+    "section": "",
+    "text": "kubectl get all\nIt doesn’t show everything just the usual suspects."
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#scaling-the-deployment",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#scaling-the-deployment",
+    "title": "Kubernetes cheat sheet",
+    "section": "Scaling the deployment:",
+    "text": "Scaling the deployment:\nkubectl scale deployment pingpong –replicas 3\nto check we have multiple pods: kubectl get pods\n\nScaling a replica set\nWhat if we scale the replica set? - The deployment will notice and will scale back to the initial level. - The replica set makes sure to have the right number of pods. - The deployment makes sure the Replica set has the right size."
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#checking-deployment-logs",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#checking-deployment-logs",
+    "title": "Kubernetes cheat sheet",
+    "section": "Checking deployment logs",
+    "text": "Checking deployment logs\nkubectl logs deploy/pingpong –tail 2"
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#creating-a-job",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#creating-a-job",
+    "title": "Kubernetes cheat sheet",
+    "section": "Creating a job",
+    "text": "Creating a job\nkubectl create job flipcoin –image=alpine – sh -c ‘exit \\(((\\)RANDOM%2))’\ncheck the status with name selector: kubectl get pods –selector=job-name=flipcoin\n\nWe can specify a number of “completions” (default=1)\nWe can specify the “parallelism” (default=1)"
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#scheduling-periodic-background-work-cronjob",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#scheduling-periodic-background-work-cronjob",
+    "title": "Kubernetes cheat sheet",
+    "section": "Scheduling periodic background work CronJob",
+    "text": "Scheduling periodic background work CronJob\nIt requires a schedule - minute [0,59] - hour [0,23] - day of the month [1,31] - month of the year[1,12] - day of the week [0,6] 0= Sunday. for example: /3  * * * means every three minutes.\n\nCronjob creation\nkubectl create cronjob every3mins –schedule=“/3  * * *”\n–image=alpine – sleep 10\nTo check the job: kubectl get cronjobs\nThe job will create a pod, the job will make sure the pod completes (re-creating another one if it fails).\nSetting a time limit: This is done with the field spec.activeDeadlineSeconds. When the job is older than the limit, all its pods are terminated. Note that there can be also a deadline for the pods They can be set independently with different effect: - the deadline of the job will stop the entire job. - the deadline of the pod will stop only a pod."
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#differences-between-labels-and-annotations",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#differences-between-labels-and-annotations",
+    "title": "Kubernetes cheat sheet",
+    "section": "Differences between labels and annotations",
+    "text": "Differences between labels and annotations\nThe key for both labels and annotations:\nmust start and end with a letter or digit\n\ncan also have . - _ (but not in first or last position)\n\ncan be up to 63 characters, or 253 + / + 63\nLabel values are up to 63 characters Annotations values can have arbitrary characters (yes, even binary)\nMaximum length isn’t defined"
+  },
+  {
+    "objectID": "posts/2022-11-05-kubernetes-cheat-sheet.html#stern",
+    "href": "posts/2022-11-05-kubernetes-cheat-sheet.html#stern",
+    "title": "Kubernetes cheat sheet",
+    "section": "Stern",
+    "text": "Stern\nhttps://container.training/kube-selfpaced.yml.html#212"
+  },
+  {
+    "objectID": "posts/2022-07-18-firebase-emulators-cheat-sheet.html",
+    "href": "posts/2022-07-18-firebase-emulators-cheat-sheet.html",
+    "title": "Firebase emulators cheat sheet",
+    "section": "",
+    "text": "Start emulator localy with saved data\nfirebase emulators:start --import .\\data\\\n\n\nSave data from emulator to file\nfirebase emulators:export ./data/\nSample output\ni  Found running emulator hub for project orfeondegranada-c6f3e at http://localhost:4400\n? The directory C:\\Users\\polit\\sources\\orfeonapp\\data already contains export data. Exporting again to the same director\ny will overwrite all data. Do you want to continue? Yes\ni  Exporting data to: C:\\Users\\polit\\sources\\orfeonapp\\data\n+  Export complete\n\n\npublish the functions to firebase\nfirebase deploy --only functions\nReferences: https://firebase.google.com/docs/functions/manage-functions#modify"
+  },
+  {
+    "objectID": "posts/2022-02-12-Fulltext search Firestore with Algolia.html",
+    "href": "posts/2022-02-12-Fulltext search Firestore with Algolia.html",
+    "title": "Installing Algolia in Firebase",
+    "section": "",
+    "text": "Firebase is a very popular service from Google. They provice authentication services, cloud databases, analytics for your apps, and there is a really cool integration with Dart/Flutter.\nWe are using a document database called Firestore.\nIt’s a cool document database, with some similar concepts to MongoDB, in the sense it groups the elements o the database in documents and collections. What’s different is the grouping of these elements.\nFirst, you define a collection which contains documents. Each document may, at the same time contain attributes and collections.\nFor instance, my user collection contains a set of documents representing each a user. To register the attendance, each user contains a collection with its own attendances (instead of having an attendance collection and somehow linking the collection to the user).\n\nIn the image, you see, that the user collection, contains documents with the info of each user. The so-called attributes like the user name, email, and so on. But at the user level, that’s at the level of the attributes, you can define collections, in this case a collection for the attendance with a set of attributes.\nThe problem with this way of organizing the information, compared to the typical canonical, relational table shape, is the way to query the information.\nHow to query? The search functionality provided with Firestore is quite limited..\nThe set of limitations as described in the previous link are the following:\n\n\nThe following list summarizes Cloud Firestore query limitations:\n- Cloud Firestore provides limited support for logical OR queries. The in, and array-contains-any operators support a logical OR of up to 10 equality (==) or array-contains conditions on a single field. For other cases, create a separate query for each OR condition and merge the query results in your app.\n- In a compound query, range (&lt;, &lt;=, &gt;, &gt;=) and not equals (!=, not-in) comparisons must all filter on the same field.\n- You can use at most one array-contains clause per query. You can't combine array-contains with array-contains-any.\n- You can use at most one in, not-in, or array-contains-any clause per query. You can't combine in , not-in, and array-contains-any in the same query.\n- You can't order your query by a field included in an equality (==) or in clause.\n- The sum of filters, sort orders, and parent document path (1 for a subcollection, 0 for a root collection) in a query cannot exceed 100."
+  },
+  {
+    "objectID": "posts/2022-02-12-Fulltext search Firestore with Algolia.html#query-limitations",
+    "href": "posts/2022-02-12-Fulltext search Firestore with Algolia.html#query-limitations",
+    "title": "Installing Algolia in Firebase",
+    "section": "",
+    "text": "The following list summarizes Cloud Firestore query limitations:\n- Cloud Firestore provides limited support for logical OR queries. The in, and array-contains-any operators support a logical OR of up to 10 equality (==) or array-contains conditions on a single field. For other cases, create a separate query for each OR condition and merge the query results in your app.\n- In a compound query, range (&lt;, &lt;=, &gt;, &gt;=) and not equals (!=, not-in) comparisons must all filter on the same field.\n- You can use at most one array-contains clause per query. You can't combine array-contains with array-contains-any.\n- You can use at most one in, not-in, or array-contains-any clause per query. You can't combine in , not-in, and array-contains-any in the same query.\n- You can't order your query by a field included in an equality (==) or in clause.\n- The sum of filters, sort orders, and parent document path (1 for a subcollection, 0 for a root collection) in a query cannot exceed 100."
+  },
+  {
+    "objectID": "posts/2022-02-12-Fulltext search Firestore with Algolia.html#create-an-algolia-application-and-an-index-name.",
+    "href": "posts/2022-02-12-Fulltext search Firestore with Algolia.html#create-an-algolia-application-and-an-index-name.",
+    "title": "Installing Algolia in Firebase",
+    "section": "Create an Algolia application and an index name.",
+    "text": "Create an Algolia application and an index name."
+  },
+  {
+    "objectID": "posts/2022-02-12-Fulltext search Firestore with Algolia.html#obtain-the-api-key",
+    "href": "posts/2022-02-12-Fulltext search Firestore with Algolia.html#obtain-the-api-key",
+    "title": "Installing Algolia in Firebase",
+    "section": "Obtain the API key",
+    "text": "Obtain the API key"
+  },
+  {
+    "objectID": "posts/2022-02-12-Fulltext search Firestore with Algolia.html#add-algolia-extension-to-your-firebase-project",
+    "href": "posts/2022-02-12-Fulltext search Firestore with Algolia.html#add-algolia-extension-to-your-firebase-project",
+    "title": "Installing Algolia in Firebase",
+    "section": "Add Algolia extension to your firebase project",
+    "text": "Add Algolia extension to your firebase project\n\n\nExport all records: https://discourse.algolia.com/t/export-all-records-from-firestore-to-indices-with-google-cloud-function/10358/3\nImplementation in flutter https://www.algolia.com/doc/guides/building-search-ui/getting-started/how-to/flutter/ios/\nSome references:\nhttps://www.algolia.com/doc/api-reference/api-methods/save-objects/#examples\nhttps://www.algolia.com/doc/api-client/getting-started/install/javascript/?client=javascript\nCode to generate the index for the first time:\nexports.index_all_sheets = functions.runWith({\n  allowInvalidAppCheckToken: false, // Opt-out: Requests with invalid App\n  // Check tokens continue to your code.\n}).https.onCall((data, context) =&gt; {\n  const algolia = algoliasearch(\"projectID\",\n      \"secret\");\n  const index = algolia.initIndex(\"sheetIndex\");\n\n  functions.logger.info('indexing all sheets');\n  let records = [];\n  admin.firestore().collection(\"partitura\")\n      .get().then((docs)=&gt; {\n        docs.forEach((doc)=&gt;{\n          const obj = doc.data();\n          obj.objectID = doc.id;\n          obj.path = 'partitura/'+doc.id;\n          obj.compositor = doc.compositor;\n          obj.compositor = doc.obra;\n          records.push(obj);\n          functions.logger.info('indexing doc');\n        });\n        functions.logger.info('fetch completed');\n        index.saveObjects(records).then(({objectIDs})=&gt;{\n          functions.logger.info(\"indexing completed\", objectIDs);\n        });\n      });\n  return true;\n});"
+  },
+  {
+    "objectID": "posts/2022-02-12-Fulltext search Firestore with Algolia.html#installing-algolia-in-flutter-project",
+    "href": "posts/2022-02-12-Fulltext search Firestore with Algolia.html#installing-algolia-in-flutter-project",
+    "title": "Installing Algolia in Firebase",
+    "section": "Installing Algolia in Flutter project",
+    "text": "Installing Algolia in Flutter project\nThe first step is to add the Algolia library in your flutter project. You can do so installing the package.\nflutter pub add algolia\nThere are other options, but this one is the fastest for me. Next, I’m going to create an algolia_options.dart file to store the api key (in the same fashion as the Firebase Options).\nimport 'package:algolia/algolia.dart';\n\nclass AlgoliaOptions {\n  /// The API key that is used to identify an instance of algolia\n  final String apiKey;\n\n  /// The application Id in Algolia\n  final String applicationId;\n\n  const AlgoliaOptions({required this.apiKey, required this.applicationId});\n\n  static const AlgoliaOptions algoliaOptions = AlgoliaOptions(\n      apiKey: \"xxxxxxxx2\", applicationId: \"AAAAAAAAAB\");\n}\nthe values of the api key and appId can be found in your Algolia settings page.\nNow, I’m going to write the code to search using the algolia index created in the previous steps. First, in the state class I create a private attribute called _algoliaClient\nclass _PartituraScreenState extends State&lt;PartituraScreen&gt; {\n  final Algolia _algoliaClient = Algolia.init(\n      applicationId: AlgoliaOptions.algoliaOptions.applicationId,\n      apiKey: AlgoliaOptions.algoliaOptions.apiKey);\n      TextEditingController _textFieldController = TextEditingController();\nI’m adding a text controller for the filter. I’m also creating a proxy class for the Sheet class:\nclass SheetProxy {\n  final String id;\n  final String obra;\n  final String compositor;\n\n  SheetProxy({required this.id, required this.obra, required this.compositor});\n\n  static SheetProxy fromJson(Map&lt;String, dynamic&gt; json) {\n    final String id = json['path'].toString().split(\"/\")[1];\n    return SheetProxy(\n        id: id, obra: json['obra'], compositor: json['compositor']);\n  }\n}\nThe function to search the elements is the following, that maps the content to the SheetProxy instance.\nFuture&lt;void&gt; _getSearchResult(String query) async {\n    AlgoliaQuery algoliaQuery =\n        _algoliaClient.instance.index(\"sheetIndex\").query(query);\n    AlgoliaQuerySnapshot snapshot = await algoliaQuery.getObjects();\n    final rawHits = snapshot.toMap()['hits'] as List;\n    final hits =\n        List&lt;SheetProxy&gt;.from(rawHits.map((hit) =&gt; SheetProxy.fromJson(hit)));\n\n    setState(() {\n      _sheets = hits;\n    });\n    print(rawHits);\n  }\nFinally, on the init state, we add a listener to the text field controller:\n@override\n  void initState() {\n    super.initState();\n    _textFieldController.addListener(() {\n      if (_query != _textFieldController.text) {\n        setState(() {\n          _query = _textFieldController.text;\n        });\n        _getSearchResult(_query);\n      }\n    });\n    _getSearchResult('');\n  }\nThe application with the filtering looks like this:"
+  },
+  {
+    "objectID": "posts/2021-03-29-export-knowledge-base-koreai.html",
+    "href": "posts/2021-03-29-export-knowledge-base-koreai.html",
+    "title": "Kore.AI export knowledge base into batch testing",
+    "section": "",
+    "text": "How to export the knowledge base and transform into batch testing\nWe need to transform between 2 JSON files. The knowledge base can be extracted from the tool, and the Batch testing only needs some items from there.\nWe will be using the Google Fire library to wrap our code.\nimport json\nimport fire\n\ndef create_test(knowledge_base,outfile):\n    with open(knowledge_base,'r',encoding='utf-8') as f:\n        data = json.load(f)\n\n    tests = {'testCases':[]}\n\n    for term in data['faqs']:\n        key = term['question']\n        tests['testCases'].append({'input':key,'intent':key})\n        for alt in term['alternateQuestions']:\n            if not alt['question'].startswith('||'):\n                tests['testCases'].append({'input':alt['question'],'intent':key})\n\n\n    with open(outfile,'w',encoding='utf-8') as out:\n        json.dump(tests,out)\n\nif __name__ == '__main__':\n  fire.Fire(create_test)\n\n\n\nResources\nprogrammiz\nstackoverflow\nPython Fire\nString comparison"
+  },
+  {
+    "objectID": "posts/2021-03-15-curl.html",
+    "href": "posts/2021-03-15-curl.html",
+    "title": "How to get webservice times from curl",
+    "section": "",
+    "text": "How to get times from curl\nWe want to do a POST query to Webex APIs, and we want to measure the response time. To do that, we need to write a config file:\n{\\n\n\"time_redirect\": %{time_redirect},\\n\n\"time_namelookup\": %{time_namelookup},\\n\n\"time_connect\": %{time_connect},\\n\n\"time_appconnect\": %{time_appconnect},\\n\n\"time_pretransfer\": %{time_pretransfer},\\n\n\"time_starttransfer\": %{time_starttransfer},\\n\n\"time_total\": %{time_total},\\n\n\"size_request\": %{size_request},\\n\n\"size_upload\": %{size_upload},\\n\n\"size_download\": %{size_download},\\n\n\"size_header\": %{size_header}\\n\n}\\n\nSave it as curlFormat.txt, then you can run your curl query as\ncurl -H \"Content-Type: application/json\" \\\n-w \"@curlFormat.txt\" \\\n-H \"Authorization: Bearer xxxxxxxxxx\" \\\n-X POST \\\n-d '{\"roomId\":\"xxxxxxxxxxxx\",\"text\":\"test\"}' \\\n'https://webexapis.com/v1/messages'\n\n\nResources\nStackOverflow https://discuss.devopscube.com/t/how-to-find-response-time-using-curl-request/436"
+  },
+  {
+    "objectID": "posts/2021-03-01-webex-teams.html",
+    "href": "posts/2021-03-01-webex-teams.html",
+    "title": "WebEx Teams",
+    "section": "",
+    "text": "Today, we will implement some webservices to emulate a bot in webex. First, we need to design two webservices in nodeJS, then we will synchronize them. For that, we will use nodeJS.\nThe main site for Webex Teams for developers is here. There you can define integrations, bots and check the documentation for the API.\n\n\nvar express = require('express');\nvar router = express.Router();\nvar request = require('request-promise');\nWe are using express and request-promise.\n\n\n\nWe test two webservices: the people API and the message post. We compose the mesage in two steps: - First, we compose the body (bodyJSON) with the required information for the API call (message content, the toPersonId value, etc). - Then, we create the headers and wrap both headers and body into one single object.\n bodyJson = {\"markdown\": message.replace(/\\n\\r|\\n|\\r/g,'&lt;br&gt;').replace(/-/g,\"&#45;\")};\n to = '123123abmasdf'; // this is your user id\nbodyJson.toPersonId = to;\nThen, the request can be found here:\nvar reqOptions = {\n    url: config.spark.baseUrl + \"messages\",\n    method: \"POST\",\n    headers: {\n        'Authorization': \"Bearer \" + sparkChannel.authToken,\n        'Content-Type': \"application/json; charset=utf-8\"\n    },\n    body: JSON.stringify(bodyJson)\n};\n\n\n\n\nTo synchronize two webservice calls, the first one to the people API and the second one to the messages api, we use javascript promises:\nWe have promise p1 for the check to the people api and p2 to send the message. The logic here is that p1 check for user permissions while p2 just send the message if the user is authorized.\nvar p1 = request(reqOptions1).then(function(result){\n        result = JSON.parse(result);\n\n        var authorized = false;\n        if(result.items[0].orgId === orgId){\n            authorized = true;\n            userMap[to]={};\n        }\n        return authorized;\n    });\n    var p2 = p1.then(function(result){\n\n        if(result){\n        return request(reqOptions);\n        }else{return;}\n        });\n\nreturn Promise.join(p1,p2,function(results1,results2){\n        return;\n\n    });"
+  },
+  {
+    "objectID": "posts/2021-03-01-webex-teams.html#required-libraries",
+    "href": "posts/2021-03-01-webex-teams.html#required-libraries",
+    "title": "WebEx Teams",
+    "section": "",
+    "text": "var express = require('express');\nvar router = express.Router();\nvar request = require('request-promise');\nWe are using express and request-promise."
+  },
+  {
+    "objectID": "posts/2021-03-01-webex-teams.html#messages-and-api-call",
+    "href": "posts/2021-03-01-webex-teams.html#messages-and-api-call",
+    "title": "WebEx Teams",
+    "section": "",
+    "text": "We test two webservices: the people API and the message post. We compose the mesage in two steps: - First, we compose the body (bodyJSON) with the required information for the API call (message content, the toPersonId value, etc). - Then, we create the headers and wrap both headers and body into one single object.\n bodyJson = {\"markdown\": message.replace(/\\n\\r|\\n|\\r/g,'&lt;br&gt;').replace(/-/g,\"&#45;\")};\n to = '123123abmasdf'; // this is your user id\nbodyJson.toPersonId = to;\nThen, the request can be found here:\nvar reqOptions = {\n    url: config.spark.baseUrl + \"messages\",\n    method: \"POST\",\n    headers: {\n        'Authorization': \"Bearer \" + sparkChannel.authToken,\n        'Content-Type': \"application/json; charset=utf-8\"\n    },\n    body: JSON.stringify(bodyJson)\n};"
+  },
+  {
+    "objectID": "posts/2021-03-01-webex-teams.html#webservice-call-sync",
+    "href": "posts/2021-03-01-webex-teams.html#webservice-call-sync",
+    "title": "WebEx Teams",
+    "section": "",
+    "text": "To synchronize two webservice calls, the first one to the people API and the second one to the messages api, we use javascript promises:\nWe have promise p1 for the check to the people api and p2 to send the message. The logic here is that p1 check for user permissions while p2 just send the message if the user is authorized.\nvar p1 = request(reqOptions1).then(function(result){\n        result = JSON.parse(result);\n\n        var authorized = false;\n        if(result.items[0].orgId === orgId){\n            authorized = true;\n            userMap[to]={};\n        }\n        return authorized;\n    });\n    var p2 = p1.then(function(result){\n\n        if(result){\n        return request(reqOptions);\n        }else{return;}\n        });\n\nreturn Promise.join(p1,p2,function(results1,results2){\n        return;\n\n    });"
+  },
+  {
+    "objectID": "posts/2021-02-15-set-proxy-in-conda.html",
+    "href": "posts/2021-02-15-set-proxy-in-conda.html",
+    "title": "Set proxy in conda",
+    "section": "",
+    "text": "Set proxy in conda\nSome companies run within a proxy, to configure conda so you can install packages, take the following file: C:.condarc\nAdd the line proxy_servers with the IP and port:\nssl_verify: true\nchannels:\n  - conda-forge\n  - defaults\nproxy_servers:\n  http: http://10.49.1.1:8080/\n  https: http://10.49.1.1:8080/\n\n\nSet proxy in pip\n(base) C:\\Users\\x&gt;SET http_proxy=http://10.49.1.1:8080/\n\n(base) C:\\Users\\x&gt;echo %http_proxy%\nhttp://10.49.1.1:8080/\n\n(base) C:\\Users\\x&gt;SET https_proxy=http://10.49.1.1:8080/\n\n(base) C:\\Users\\x&gt;pip install fire\nCollecting fire"
+  },
+  {
+    "objectID": "posts/2021-01-30-ssh-check-bits.html",
+    "href": "posts/2021-01-30-ssh-check-bits.html",
+    "title": "How do I know the number of bits and encruption of my public key?",
+    "section": "",
+    "text": "How do I know the number of bits and encruption of my public key?\nAccording to superuser\nssh-keygen -l -f ~/.ssh/id_rsa.pub"
+  },
+  {
+    "objectID": "posts/2020-08-15-log-rotation.html",
+    "href": "posts/2020-08-15-log-rotation.html",
+    "title": "Some links to configure log rotation",
+    "section": "",
+    "text": "Resources\nconfigure log rotate Issues with Log rotate Manage log files"
+  },
+  {
+    "objectID": "posts/2016-09-10-getting-started-ubuntu-14-04-lts.html",
+    "href": "posts/2016-09-10-getting-started-ubuntu-14-04-lts.html",
+    "title": "Getting started with docker in Ubuntu 14.04 LTS",
+    "section": "",
+    "text": "Getting started with docker in Ubuntu 14.04 LTS\nI’m trying to install a small lab system based on Ubuntu. The Docker project is a new step on the virtualization world, which reduces the amount of resources used by the ‘guest O.S’ since there is no such O.S.\nTo get an overview on Docker, I recommend to get to the project page and get the resources and the free (an really good) training from there (https://www.docker.com/)\nI’m going to follow the instructions on the site to install docker for linux, but I’d like to detail here the problems and the full install I did.\nGet to a console and install with the Ubuntu script:\nsudo  wget -qO- https://get.docker.com/ | sh\nNext you can add your own user to run Docker without root or sudo. To do so: If you would like to use Docker as a non-root user, you should now consider adding your user to the “docker” group with something like:\n  sudo usermod -aG docker jpons\n\nRemember that you will have to log out and back in for this to take effect!\nTrying to run hello world:\ndocker run hello-world\nPost http:///var/run/docker.sock/v1.19/containers/create: dial unix /var/run/docker.sock: no such file or directory. Are you trying to connect to a TLS-enabled daemon without TLS?\nDon’t forget to start the Docker server, otherwise even the hello world app won’t start.\njpons@bugambilla:~$ sudo docker run hello-world\nUnable to find image 'hello-world:latest' locally\nlatest: Pulling from hello-world\na8219747be10: Pull complete \n91c95931e552: Already exists \nhello-world:latest: The image you are pulling has been verified. Important: image verification is a tech preview feature and should not be relied on to provide security.\nDigest: sha256:aa03e5d0d5553b4c3473e89c8619cf79df368babd18681cf5daeb82aab55838d\nStatus: Downloaded newer image for hello-world:latest\nHello from Docker.\nThis message shows that your installation appears to be working correctly.\n\nTo generate this message, Docker took the following steps:\n 1. The Docker client contacted the Docker daemon.\n 2. The Docker daemon pulled the \"hello-world\" image from the Docker Hub.\n    (Assuming it was not already locally available.)\n 3. The Docker daemon created a new container from that image which runs the\n    executable that produces the output you are currently reading.\n 4. The Docker daemon streamed that output to the Docker client, which sent it\n    to your terminal.\n\nTo try something more ambitious, you can run an Ubuntu container with:\n $ docker run -it ubuntu bash\n\nFor more examples and ideas, visit:\n http://docs.docker.com/userguide/"
+  },
+  {
+    "objectID": "posts/2016-08-30-testing-pam-service-authentication.html",
+    "href": "posts/2016-08-30-testing-pam-service-authentication.html",
+    "title": "Testing PAM service authentication",
+    "section": "",
+    "text": "Testing PAM service authentication\n#include &lt;stdio.h&gt;\n#include &lt;security/pam_appl.h&gt;\n#include &lt;unistd.h&gt;\n#include &lt;stdlib.h&gt;\n#include &lt;string.h&gt;\n\nstruct pam_response *reply;\n\n// //function used to get user input\nint function_conversation(int num_msg, const struct pam_message **msg, struct pam_response **resp, void *appdata_ptr)\n{\n    *resp = reply;\n        return PAM_SUCCESS;\n}\n\nint authenticate_system(const char *username, const char *password, const char *service_name)  \n{\n    const struct pam_conv local_conversation = { function_conversation, NULL };\n    pam_handle_t *local_auth_handle = NULL; // this gets set by pam_start\n\n    int retval;\n    retval = pam_start(service_name , username, &local_conversation, &local_auth_handle);\n\n    if (retval != PAM_SUCCESS)\n    {\n            printf(\"pam_start returned: %d\\n \", retval);\n            return 0;\n    }\n\n    reply = (struct pam_response *)malloc(sizeof(struct pam_response));\n\n    reply[0].resp = strdup(password);\n    reply[0].resp_retcode = 0;\n    retval = pam_authenticate(local_auth_handle, 0);\n\n    if (retval != PAM_SUCCESS)\n    {\n            if (retval == PAM_AUTH_ERR)\n            {\n                    printf(\"Authentication failure.\\n\");\n            }\n            else\n            {\n                printf(\"pam_authenticate returned %d\\n\", retval);\n            }\n            return 0;\n    }\n\n    printf(\"Authenticated.\\n\");\n    retval = pam_end(local_auth_handle, retval);\n\n    if (retval != PAM_SUCCESS)\n    {\n            printf(\"pam_end returned\\n\");\n            return 0;\n    }\n\n    return 1;\n}\n\nint main(int argc, char** argv)\n{\n    char* login;\n    char* password;\n    char* service_name;\n\n    printf(\"Authentication module\\n\");\n\n    if (argc != 4)\n    {\n        printf(\"Invalid count of arguments %d.\\n\", argc);\n        printf(\"./authModule &lt;username&gt; &lt;password&gt; &lt;service_name&gt;\");\n        return 1;\n    }\n\n    login = argv[1];\n    password = argv[2];\n    service_name = argv[3];\n\n    if (authenticate_system(login, password,service_name) == 1)\n    {\n        printf(\"Authenticate with %s - %s through system\\n\", login, password);\n        return 0;\n    }\n\n    printf(\"Authentication failed!\\n\");\n    return 1;\n}\nNow it’s time to compile it:\n[root@archpepex ~]# gcc -o authModule authModule.c -lpam\n[root@archpepex ~]# ./authModule user pass vsftpd"
+  },
+  {
+    "objectID": "posts/2016-07-26-upload-download-files-ftps-c.html",
+    "href": "posts/2016-07-26-upload-download-files-ftps-c.html",
+    "title": "Upload and download files to FTPs using C#",
+    "section": "",
+    "text": "Check if a file exists How to write to a text file How to download files from FTP How to sleep a thread"
+  },
+  {
+    "objectID": "posts/2016-07-26-upload-download-files-ftps-c.html#upload-and-download-files-to-ftps-using-c",
+    "href": "posts/2016-07-26-upload-download-files-ftps-c.html#upload-and-download-files-to-ftps-using-c",
+    "title": "Upload and download files to FTPs using C#",
+    "section": "",
+    "text": "Check if a file exists How to write to a text file How to download files from FTP How to sleep a thread"
+  },
+  {
+    "objectID": "posts/2016-07-26-upload-download-files-ftps-c.html#problems-related-to-ftp-with-sslignore-ssl-validation-for-certificates",
+    "href": "posts/2016-07-26-upload-download-files-ftps-c.html#problems-related-to-ftp-with-sslignore-ssl-validation-for-certificates",
+    "title": "Upload and download files to FTPs using C#",
+    "section": "Problems related to FTP with SSLIgnore SSL validation for certificates:",
+    "text": "Problems related to FTP with SSLIgnore SSL validation for certificates:\nSSLIgnore\nConfigure FTP over SSL\nIgnore web certificates\nLibrary for FTPs on C#"
+  },
+  {
+    "objectID": "posts/2016-06-08-big-data-lab.html",
+    "href": "posts/2016-06-08-big-data-lab.html",
+    "title": "Big Data Lab",
+    "section": "",
+    "text": "Big Data Lab\nSetting up your (small) Big Data Laboratory\nI want to learn and work with some of the newest ‘Big Data’ tools, like Hadoop, Mahout, Flume, Elastic, etc. But how to do that? Which tecnology should I work with? Is there like a faction of people that only work with Apache products, other just with Amazon. To choose, and experiment with those technologies I’m going to set up a budget lab at home.\nI think it’s really important to know what you want to achieve with that lab. First of all, what do you want to do? Data Mining? Machine learning? Classification? It’s a great idea to have a toy project to work with.\nIn my case I want to do the following:\n\nFirst, my data set is a collection of terminal outputs with the commands and the output of that commands on different servers.\nOn an early stage I want to do a Data Analysis. I want to check if there are any identifiable relationships among the commands I send to the terminal. Is there any pattern? May I identify clearly the steps when installing a component (i.e. Apache web server) than when I’m resolving an issue (i.e. Apache went down)?\nThe possibilities are countless. Maybe after the data analisys I can train a system to learn on how an installation is performed, or how an issue is solved. After that I could integrate the system and do some stream mining and get suggestions on real time on how to solve an issue.\n\nBut first things first. Taking a look to Data Analysis, there are several popular tools, like R, which provides both user interface and a language and libraries to handle data. A reason to choose R is the quick way to inspect and get some nice plots to explore our data. Also, we can consider Hadoop as engine to store our data sets and also to explore them. From my point of view this option is a little bit more complex at the beggining, but more powerful if you want to explore then some solutions with Mahout, Hive or Flume.\nWhat do I need for my labo? You need hardware and software products. If you plan to install R, then your laptop would do the job. But if you want to work with hadoop, I recommend you to work with Virtual Machines. I always try to work with open source solutions so, to create VM, I’ll use VirtualBox.\nOk, I’m going to installs VMs, which OS should I install? There is a great deal of linux flavours to install your VM. I’ll cover this step in more detail, but as far as I can see the most used OS on cloud environments are: - Ubuntu Server - Red Hat (RHEL) / CentOS I also like to work with Devian and Arch due to the low footprint.\nSome useful links:\nDifferent hadoop installation manuals: http://doctuts.readthedocs.io/en/latest/hadoop.html http://www.michael-noll.com/tutorials/running-hadoop-on-ubuntu-linux-single-node-cluster/ http://www.michael-noll.com/tutorials/ https://wiki.apache.org/hadoop/FrontPage\nData mining using hive: http://blog.sqlauthority.com/2013/10/21/big-data-data-mining-with-hive-what-is-hive-what-is-hiveql-hql-day-15-of-21/ DAta mining hadoop:\nhttps://developer.yahoo.com/hadoop/tutorial/module3.html\nCreate a recomender with Mahout in 5 minutes: https://mahout.apache.org/users/recommender/userbased-5-minutes.html\nApache Flume for streams: http://flume.apache.org/\nASterix DB: https://wiki.umiacs.umd.edu/ccc/images/3/32/CLuE-Li.pdf http://asterix.ics.uci.edu/"
+  },
+  {
+    "objectID": "posts/2016-02-19-compass-not-running-with-grunt-on-windows-7.html",
+    "href": "posts/2016-02-19-compass-not-running-with-grunt-on-windows-7.html",
+    "title": "Compass not running with Grunt on Windows 7",
+    "section": "",
+    "text": "I faced the issue that compass was not working on windows 7 64 bits and I solved by installing ruby and then the compass gem. Depending on your system, [you can download ruby here] (http://rubyinstaller.org/downloads/) Then don’t forget to set up the environment variables on windows I think you can do that directly from the installer, but also from Computer -&gt; Control Panel -&gt; Edit Environment Variables. Then on System Variables, add to the Path variable the ruby path,\nFinally open a CMD terminal and write:\ngem install compass\nNow grunt should be working well:\ngrunt serve\nRunning \"compass:server\" (compass) task\ndirectory .tmp/styles \nwrite .tmp/styles/main.css (0.096s)\nwrite .tmp/styles/main.css.map\n\nDone, without errors."
+  },
+  {
+    "objectID": "posts/2015-08-26-problems-when-using-webservice-from-javascript-cors.html",
+    "href": "posts/2015-08-26-problems-when-using-webservice-from-javascript-cors.html",
+    "title": "Problems when using webservice from Javascript CORS",
+    "section": "",
+    "text": "Hi, I’ve been fighting the whole day for the security constraint that makes your browser blocks your JS code when trying to reach an external server. Thas was solved on the standard Cross Origin Resource Sharing. (CORS for short). In my node JS server code I had to adapt the following:\n//enable Cross Origin Resource Sharing\napp.use(function(req, res, next) {\n  res.header(\"Access-Control-Allow-Origin\", \"*\");\n  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');\n  res.header(\"Access-Control-Allow-Headers\", \"Origin, X-Requested-With, Content-Type, Accept\");\n  next();\n});\nand on my Jquery I did:\n//This is how your data looks like:\nvar data = {\"answers\": \n    [\n    {\"testNo\":\"1\",\"answerNo\":\"2\",\"answerValue\":\"answer1\"},\n    {\"testNo\":\"1\",\"answerNo\":\"2\",\"answerValue\":\"answer1\"}\n    ],\n    \"userId\":\"idUser\"};\n\n\n// This is the object for the configuration:\nvar config = {};\n      config.method = \"PUT\";\n      config.url = \"http://localhost:8080/api/users\";\n      config.contentType = \"application/json\";\n      config.data = JSON.stringify(data);\n      config.datatype = \"text\";\n\n      $.ajax(config)\n            .done(function(msg){\n                    console.log(msg != null,\"Function called: \"+msg);\n      });\nThe full code of this is available at my github account"
+  },
+  {
+    "objectID": "posts/2015-08-24-firsts-steps-with-mongodb-mongoose.html",
+    "href": "posts/2015-08-24-firsts-steps-with-mongodb-mongoose.html",
+    "title": "Firsts steps with MongoDB + mongoose",
+    "section": "",
+    "text": "Basically I want to create a database for my JSON documents. Documents have the following format.\nThe steps to be able to store documents on my mongoDB are the following: - Create a collection for my docs.(It’s created implicitly) - Create a power user on that collection&lt; - Do basic CRUD operations on the database to test. i’ll create the collection “answers” and insert a test document."
+  },
+  {
+    "objectID": "posts/2015-08-24-firsts-steps-with-mongodb-mongoose.html#configure-the-connection-in-the-adapter-for-your-app.",
+    "href": "posts/2015-08-24-firsts-steps-with-mongodb-mongoose.html#configure-the-connection-in-the-adapter-for-your-app.",
+    "title": "Firsts steps with MongoDB + mongoose",
+    "section": "Configure the connection in the adapter for your app.",
+    "text": "Configure the connection in the adapter for your app.\nIn my case I will configure mongoose, I’m using Node JS to connect to MongoDB. {% include alert.html text=“Watch out! As of version 3.0, the authentication mechanism by default changed” %}\nSo I was getting this error, mainly due to an old mongoose lib:\n2015-08-22T10:56:22.477+0200 I ACCESS   [conn17] Failed to authenticate adminUser@users with mechanism MONGODB-CR: AuthenticationFailed MONGODB-CR credentials missing in the user document\n2015-08-22T10:56:22.477+0200 I ACCESS   [conn18]  authenticate db: users { authenticate: 1, user: \"adminUser\", nonce: \"xxx\", key: \"xxx\" }\nThe solution is simple, first check the admin user has the role userAdminAnyDatabase. If you already created it:\nuse admin;\ndb.updateUser(\n\"admin\",\n{roles: [ { role: \"userAdminAnyDatabase\", db: \"admin\" } ]  }\n)\nupdate to the lastest mongoose client library, on nodeJS update your package.json:\n{\n    \"name\": \"node-server\",\n    \"main\": \"server.js\",\n    \"dependencies\": {\n        \"express\": \"~4.0.0\",\n        \"mongoose\": \"~4.1.3\",\n        \"body-parser\": \"~1.13.3\"\n    }\n}\nNow you will see your client can authenticate:\n2015-08-22T11:31:53.914+0200 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:51726 #32 (2 connections now open)\n2015-08-22T11:31:54.426+0200 I ACCESS   [conn32] Successfully authenticated as principal adminUser on users\nNow let’s test the user storage: On your nodeJS code:\nvar user = new User(req.body);\n        //try to save the user:\n        user.save(function (err){\n            if(err){\n                res.send(err);\n            }else{\n                res.json({message:\"User created\"});\n            }\n        })\nNotice that the user is stored on database users, on collection users:\n&gt; db.users.find();\n{ \"_id\" : ObjectId(\"55d841a60f8123581f590c58\"), \"userId\" : 1254, \"answers\" : [ { \"testNo\" : 1, \"answerNo\" : 1, \"answerValue\" : \"Myanswer1\", \"_id\" : ObjectId(\"55d841a60f8123581f590c5e\") }, { \"testNo\" : 1, \"answerNo\" : 2, \"answerValue\" : \"Mya\nnswer2\", \"_id\" : ObjectId(\"55d841a60f8123581f590c5d\") }, { \"testNo\" : 1, \"answerNo\" : 3, \"answerValue\" : \"Myanswer3\", \"_id\" : ObjectId(\"55d841a60f8123581f590c5c\") }, { \"testNo\" : 1, \"answerNo\" : 4, \"answerValue\" : \"Myanswer4\", \"_id\" : Objec\ntId(\"55d841a60f8123581f590c5b\") }, { \"testNo\" : 1, \"answerNo\" : 5, \"answerValue\" : \"Myanswer5\", \"_id\" : ObjectId(\"55d841a60f8123581f590c5a\") }, { \"testNo\" : 1,\"answerNo\" : 6, \"answerValue\" : \"Myanswer6\", \"_id\" : ObjectId(\"55d841a60f8123581\nf590c59\") } ], \"__v\" : 0 }\n{ \"_id\" : ObjectId(\"55d845a52b4672c819cc32c6\"), \"userId\" : 1254, \"answers\" : [ { \"testNo\" : 1, \"answerNo\" : 1, \"answerValue\" : \"Myanswer1\", \"_id\" : ObjectId(\"55d845a52b4672c819cc32cc\") }, { \"testNo\" : 1, \"answerNo\" : 2, \"answerValue\" : \"Mya\nnswer2\", \"_id\" : ObjectId(\"55d845a52b4672c819cc32cb\") }, { \"testNo\" : 1, \"answerNo\" : 3, \"answerValue\" : \"Myanswer3\", \"_id\" : ObjectId(\"55d845a52b4672c819cc32ca\") }, { \"testNo\" : 1, \"answerNo\" : 4, \"answerValue\" : \"Myanswer4\", \"_id\" : ObjectId(\"55d845a52b4672c819cc32c9\") }, { \"testNo\" : 1, \"answerNo\" : 5, \"answerValue\"\n : \"Myanswer5\", \"_id\" : ObjectId(\"55d845a52b4672c819cc32c8\") }, { \"testNo\" : 1,\"answerNo\" : 6, \"answerValue\" : \"Myanswer6\", \"_id\" : ObjectId(\"55d845a52b4672c819cc32c7\") } ], \"__v\" : 0 }\nOn my nodeJS server I’ve also set the output of the object, so I can see the MongoID!!\n// show json  request:\n    console.log(\"Request: \"+JSON.stringify(user));\nOn the console output:\nRequest: \n{\"userId\":1254,\"_id\":\"55d84608b0bef9841e7bf5f9\",\"answers\":[{\"testNo\":1,\"answerNo\":1,\"answerValue\":\"Myanswer1\",\"_id\":\"55d84608b0bef9841e7bf5ff\"},{\"testNo\":1,\"answerNo\":2,\"answerValue\":\"Myanswer2\",\"_id\":\"55d84608b0bef9841e7bf5fe\"},{\"testNo\":1,\"answerNo\":3,\"answerValue\":\"Myanswer3\",\"_id\":\"55d84608b0bef9841e7bf5fd\"},{\"testNo\":1,\"answerNo\":4,\"answerValue\":\"Myanswer4\",\"_id\":\"55d84608b0bef9841e7bf5fc\"},{\"testNo\":1,\"answerNo\":5,\"answerValue\":\"Myanswer5\",\"_id\":\"55d84608b0bef9841e7bf5fb\"},{\"testNo\":1,\"answerNo\":6,\"answerValue\":\"Myanswer6\",\"_id\":\"55d84608b0bef9841e7bf5fa\"}]}\nSo I got this _id: “_id”:“55d84608b0bef9841e7bf5f9”"
+  },
+  {
+    "objectID": "posts/2015-06-15-indexing-a-website-using-javascript-search-engine.html",
+    "href": "posts/2015-06-15-indexing-a-website-using-javascript-search-engine.html",
+    "title": "Indexing a website using javascript search engine",
+    "section": "",
+    "text": "Hi, today I’m going to talk about an implementation on Javascript, called tipue search. There are 2 possibilities, one is to perform the search online, that is, to lookup the files and do the search while querying. This is reported as not being as efficient as do an offline index.\nSo I build an index, based on json, using a python script.\nBasically the json I wanted to create looks like this:\nvar tipuesearch = {\"pages\": [\n{\"title\": \"Welcome to JIVE - Guidelines | \", \"text\": \"Welcome to the  Jive Collaboration platform Please read this document, which contains\",\"tags\": \"Welcome to JIVE - Guidelines | \",\"url\": \"http://10.0.82.13/DOC-1001.html\"},\n{\"title\": \"Datacenter FAQ - NGA ISO Hosting | \", \"text\": \"Where are the datacenters located? Do you subcontract activities? We have several datacenters around\",\"tags\": \"Datacenter FAQ - NGA ISO Hosting | \",\"url\": \"http://10.0.82.13/DOC-1002.html\"},\n{\"title\": \"Customer Information template | \", \"text\": \"This document will need to become the template that is used to create the information of the custome\",\"tags\": \"Customer Information template | \",\"url\": \"http://10.0.82.13/DOC-1003.html\"},\n{\"title\": \"ISO Customer List | \", \"text\": \"Please add customers as content is created. Please ensure you add the name alphabetically. Insert fo\",\"tags\": \"ISO Customer List | \",\"url\": \"http://10.0.82.13/DOC-1004.html\"},\n{\"title\": \"Accenture Phillipines/Singapore - APH - Hosted | \", \"text\": \"CustomerAccenture Philippines/Singaporealso known asAPHISO Project CodeAPHContract Start date01 June\",\"tags\": \"Accenture Phillipines/Singapore - APH - Hosted | \",\"url\": \"http://10.0.82.13/DOC-1006.html\"},\n{\"title\": \"KB: SAP logon screen hangs - Oracle | \", \"text\": \"KeywordsORA 257 00257 ORA-00257 Archivelog system hangs logon login screenSymptomSAP logon screen ap\",\"tags\": \"KB: SAP logon screen hangs - Oracle | \",\"url\": \"http://10.0.82.13/DOC-1007.html\"},\n]};\nThe engine needs 3 attributes: - title: The title of the web site. - text:Some of the content of the site. - url: This is important, because on the search results, you will get a link with the url just to click on the results.\nI’m indexing some Jive documents. So my script in python to generate the json looks like this:\nimport urllib2.request\nimport glob, os\nimport codecs\nimport sys\nimport string\nfrom bs4 import BeautifulSoup\n\n\ndef paquillo():\n\n\n    max_lenth = 100\n    tag_start = 11\n\n    output_file = open('D:\\Documentos\\index.json','w+')\n    \n\n    os.chdir(\"D:\\docs\")\n    for file in glob.glob(\"DOC-[0-9][0-9][0-9][0-9].html\"):\n        print('Document: '+file)\n        f = codecs.open(file,encoding='utf-8')\n        doc = BeautifulSoup(f.read())\n        if len(doc.select('.jive-rendered-content'))&gt;0:\n            text = doc.select('.jive-rendered-content')[0]\n            text_lenth = len(text.get_text())\n            if text_lenth&gt;=max_lenth:\n                content_text =  text.get_text()[:max_lenth]\n            elif text_lenth==0:\n                content_text = doc.title.string\n            else :\n                content_text = text.get_text()\n        else :\n            content_text = doc.title.string\n\n        if len(doc.select('.jive-icon-med .jive-icon-folder'))&gt;0:\n            tags = doc.select('.jive-icon-med .jive-icon-folder')[0]\n            tag_lenth = len(tags.get_text())\n            if tag_lenth &gt; tag_start:\n                tag_text = tags[:-tag_start]\n            else :\n                tag_text = doc.title.string\n        else :\n            tag_text = doc.title.string\n\n                    \n                \n        string_to_file =  ('{\\\"title\\\": \\\"'+string.replace(doc.title.string,'\\\"','').strip()+'\\\", \\\"text\\\": \\\"'+\n              string.replace(content_text,'\\\"','').replace('\\n','').strip()+'\\\",'+\n              '\\\"tags\\\": \\\"'+string.replace(tag_text,'\\\"','').strip()+'\\\",'+\n              '\\\"url\\\": \\\"' +  'http://10.0.82.13/' + file +'\\\"},').encode('utf-8')+'\\n'           \n        output_file.write(string_to_file)\n\n    output_file.close()\n    return 0\n\ndef main():\n   # sys.setdefaultencoding('utf-8')\n    #reload(sys)\n    paquillo()\n\nif __name__ == \"__main__\":\n    main()"
+  },
+  {
+    "objectID": "posts/2015-06-08-scripting-with-python.html",
+    "href": "posts/2015-06-08-scripting-with-python.html",
+    "title": "Get html document titles using python",
+    "section": "",
+    "text": "Hi, today I’m going to show you the power of python. I’m working on windows platform, so, I use Idle environment, you can check more here. I wanted to create a script to read a lot of html files and write the title tag to a txt document, I’ll use that document to do an index later.\nBut, it looks like there are no standard functions to parse html files, so I found BeautifulSoup library to process html entities http://www.crummy.com/software/BeautifulSoup/bs4/doc/ I also used the following resources: Reading unicode characters: http://stackoverflow.com/questions/147741/character-reading-from-file-in-python\nhttps://docs.python.org/2/install/\nExtracting text from html tree: http://stackoverflow.com/questions/328356/extracting-text-from-html-file-using-python\nGet a list of files on a directory: http://stackoverflow.com/questions/2225564/get-a-filtered-list-of-files-in-a-directory http://stackoverflow.com/questions/3964681/find-all-files-in-directory-with-extension-txt-with-python\nURLlib2 python: https://docs.python.org/2/library/urllib2.html\nWith that I could write the following script to get the title from each filename that contains a pattern:\n#import urllib2.request\nimport glob, os\nimport codecs\nfrom bs4 import BeautifulSoup\nos.chdir(\"C:\\mydocs\")\nfor file in glob.glob(\"DOC-[0-9][0-9][0-9][0-9].html\"):\n    f = codecs.open(file,encoding='utf-8')\n    doc = BeautifulSoup(f.read())    \n    print(file)\n    print(doc.title.string)"
+  },
+  {
+    "objectID": "posts/2015-06-08-index_database.html",
+    "href": "posts/2015-06-08-index_database.html",
+    "title": "Index database using tipuesearch",
+    "section": "",
+    "text": "Optimizing search on websites with tipuesearch js\nvar tipuesearch = {\"pages\": [\n{\"title\": \"Welcome to JIVE - Guidelines | ACME\", \"text\": \"Welcome to the ACME Jive Collaboration platform Please read this document, which contains\",\"tags\": \"Welcome to JIVE - Guidelines | ACME\",\"url\": \"http://10.0.82.13/DOC-1001.html\"},\n{\"title\": \"Datacenter FAQ - ACME ISO Hosting | ACME\", \"text\": \"Where are the datacenters located? Do you subcontract activities? We have several datacenters around\",\"tags\": \"Datacenter FAQ - ACME ISO Hosting | ACME\",\"url\": \"http://10.0.82.13/DOC-1002.html\"},\n{\"title\": \"Customer Information template | ACME\", \"text\": \"This document will need to become the template that is used to create the information of the custome\",\"tags\": \"Customer Information template | ACME\",\"url\": \"http://10.0.82.13/DOC-1003.html\"},\n{\"title\": \"ISO Customer List | ACME\", \"text\": \"Please add customers as content is created. Please ensure you add the name alphabetically. Insert fo\",\"tags\": \"ISO Customer List | ACME\",\"url\": \"http://10.0.82.13/DOC-1004.html\"},\n{\"title\": \"Accenture Phillipines/SiACMEpore - APH - Hosted | ACME\", \"text\": \"CustomerAccenture Philippines/SiACMEporealso known asAPHISO Project CodeAPHContract Start date01 June\",\"tags\": \"Accenture Phillipines/SiACMEpore - APH - Hosted | ACME\",\"url\": \"http://10.0.82.13/DOC-1006.html\"},\n{\"title\": \"KB: SAP logon screen hangs - Oracle | ACME\", \"text\": \"KeywordsORA 257 00257 ORA-00257 Archivelog system hangs logon login screenSymptomSAP logon screen ap\",\"tags\": \"KB: SAP logon screen hangs - Oracle | ACME\",\"url\": \"http://10.0.82.13/DOC-1007.html\"},\n]};\n\n\nCreation of the index database using python\nimport urllib2.request\nimport glob, os\nimport codecs\nimport sys\nimport string\nfrom bs4 import BeautifulSoup\n#os.chdir(\"D:\\MergedCopies_17042015\\jive.ACME.com\\docs\\DOC-1008.html\")\n\ndef paquillo():\n\n\n    max_lenth = 100\n    tag_start = 11\n\n    output_file = open('D:\\Documentos\\index.json','w+')\n    \n\n    os.chdir(\"D:\\MergedCopies_17042015\\jive.ACME.com\\docs\")\n    for file in glob.glob(\"DOC-[0-9][0-9][0-9][0-9].html\"):\n        print('Document: '+file)\n        f = codecs.open(file,encoding='utf-8')\n        doc = BeautifulSoup(f.read())\n        if len(doc.select('.jive-rendered-content'))&gt;0:\n            text = doc.select('.jive-rendered-content')[0]\n            text_lenth = len(text.get_text())\n            if text_lenth&gt;=max_lenth:\n                content_text =  text.get_text()[:max_lenth]\n            elif text_lenth==0:\n                content_text = doc.title.string\n            else :\n                content_text = text.get_text()\n        else :\n            content_text = doc.title.string\n\n        if len(doc.select('.jive-icon-med .jive-icon-folder'))&gt;0:\n            tags = doc.select('.jive-icon-med .jive-icon-folder')[0]\n            tag_lenth = len(tags.get_text())\n            if tag_lenth &gt; tag_start:\n                tag_text = tags[:-tag_start]\n            else :\n                tag_text = doc.title.string\n        else :\n            tag_text = doc.title.string\n\n                    \n                \n        string_to_file =  ('{\\\"title\\\": \\\"'+string.replace(doc.title.string,'\\\"','').strip()+'\\\", \\\"text\\\": \\\"'+\n              string.replace(content_text,'\\\"','').replace('\\n','').strip()+'\\\",'+\n              '\\\"tags\\\": \\\"'+string.replace(tag_text,'\\\"','').strip()+'\\\",'+\n              '\\\"url\\\": \\\"' +  'http://10.0.82.13/' + file +'\\\"},').encode('utf-8')+'\\n'           \n        output_file.write(string_to_file)\n\n    output_file.close()\n    return 0\n\ndef main():\n   # sys.setdefaultencoding('utf-8')\n    #reload(sys)\n    paquillo()\n\nif __name__ == \"__main__\":\n    main()\n\n\nResources\ntipue search"
+  },
+  {
+    "objectID": "posts/2015-05-11-working-dates-java.html",
+    "href": "posts/2015-05-11-working-dates-java.html",
+    "title": "Working with dates in Java",
+    "section": "",
+    "text": "I recovered an old post from 2012 on my previous blog. Here I translated and updated the post.\nWorking with dates is not an easy task in a programming language. Usually, because there is no standard (like it happens on databases) or sometimes, the standard is not implemented. On 2012 I talked that joda time was planned to be the new data standard on Java, and in fact, in 2015, Joda time is the facto standard ( as they claim on their site):\n\nJoda-Time is the de facto standard date and time library for Java. From Java SE 8 onwards, users are asked to migrate to java.time (JSR-310).\n\nI was interested in doing some calculations to check if a time point was inside a time interval or not. This is useful when implementing all Allen time operations. Here you will find the original paper from the ’82 And some more friendly approaches here: - Allen’s algebra. - More Allen’s time intervals..\nWorking with dates on Joda time is really easy:\nString startDate = \"18/09/2012\";\nString endDate = \"22/09/2012\";\n// datetime formatter, allows to read and write strings\nDateTimeFormatter dtf = new DateTimeFormatterBuilder().\n                appendDayOfMonth(2).\n                appendLiteral(\"/\").\n                appendMonthOfYear(2).\n                appendLiteral(\"/\").\n                appendYear(4, 4).toFormatter();\n \n \nDateTime start = dtf.parseDateTime(startDate);\nDateTime end = dtf.parseDateTime(endDate);\n       \nint months = Months.monthsBetween(start, end).getMonths();\n    DateTime newdate = lastRule.plusDays(28);\n    for(int i=0;i&lt;months;i++){\n        newdate = lastRule.plusDays(28);\n            }      \n        Interval interval = new Interval(start,end);\n        if(interval.contains(newdate)){         \n            jTextArea2.setText(\n\"That day is included: \"\n             + dtf.print(newdate));\n        }else{\n            jTextArea2.setText(\n\"The day is not included: \"\n           + dtf.print(newdate));\n        }"
+  },
+  {
+    "objectID": "posts/2015-05-07-how-to-automate-folder-creation-and-folders-structure-creation-on-windows.html",
+    "href": "posts/2015-05-07-how-to-automate-folder-creation-and-folders-structure-creation-on-windows.html",
+    "title": "How to automate folder creation in windows",
+    "section": "",
+    "text": "In this post I’m going to show some script files using the old batch scripting style that works perfectly on windows 7 an on. You will find very good books and reviews on the internet like Windows_Batch_Scripting.\nIn my case we need to automate the creation of the following folder structure: - Main Folder - Sub Folder - Sub Sub Folder - Folder 1 - Folder 2 - Folder 3 - Folder n\nSo I developed the following a small batch script to create interfaces. First I check the arguments and set some initial variables, like the starting folder and so.\n@ECHO OFF\nREM Create folders for a new interface\nREM Parameters: Folder SubFolder SubSubfolder\n\nset basefolder=c:\\\nset folders=(folder1 folder2 folder3 foldern)\n\nset argC=0\nfor %%x in (%*) do Set /A argC+=1\n\n:parametercheck\nif -%argC%- lss 3 (\ngoto :wrongcall\n)\nThe script loops on the folders variable and create the structure:\necho Creating folder interfaces:\n\n:folderloop\nfor %%i in %folders% do (\necho  mkdir %basefolder%\\%1\\%2\\%3\\%%i\nmkdir %basefolder%\\%1\\%2\\%3\\%%i\n)\ngoto :end\nFinally I handle wrong calls with the following code:\n:wrongcall\n\necho Wrong call.\necho %0 Folder SubFolder SubSubFolder\necho Where\necho Folder : Is the main folder\necho SubFolder : Is the secondary folder\necho SubSubFolder Is the SubSubFolder\necho sample usage:\necho %0 folder1 sfmt int12\nI automated the creation of folders with a call from an external batch file, so I can create multiple folders:\n@ECHO OFF\nREM Create folders sets\n\nset argC=0\nfor %%x in (%*) do Set /A argC+=1\n:parametercheck\nif -%argC%- lss 1 (\ngoto :wrongcall\n)\n\nfor /F \"tokens=*\" %%A in (%1) do CALL new_itf.bat %%A\n\ngoto :end\n\n:wrongcall\n\necho Wrong call.\necho %0 config_file\necho Where\necho config_file: configuration file\necho sample usage:\necho %0 folders.txt\n:end\nWhere new_itf.bat is the name I gave to the other batch file. The aspect of the configuration file is quite simple:\nFolder SubFolder SubSubFolder1\nFolder SubFolder SubSubFolder2\nFolder SubFolder SubSubFolder3\nFolder SubFolder SubSubFolder4"
+  },
+  {
+    "objectID": "posts/2015-05-06-how-to-create-and-modify-admin-users-in-mongo-db.html",
+    "href": "posts/2015-05-06-how-to-create-and-modify-admin-users-in-mongo-db.html",
+    "title": "How to create and modify admin users in Mongo DB",
+    "section": "",
+    "text": "Today’s post is related to some repetitive administrative tasks related to database administration like the setup of a user and grant some permissions on Mongo db. I will perform all activities on the Javascript shell for Mongo.\nFirst of all, it’s important to know whether mongo server is running or not. In windows, you may run it as a service. But in this case, I’ll run it in foreground:\nC:\\Users\\JoseEnriqueP&gt;mongod --dbpath .\n2015-05-06T23:05:03.205+0200\n2015-05-06T23:05:03.222+0200 warning: 32-bit servers don't have journaling enabled by default. Please use --journal if you want durability.&lt;/pre&gt; \nConnect to mongo in the usual way and start it up:\nC:\\Users\\JoseEnriqueP&gt;mongo\nMongoDB shell version: 2.6.5\nconnecting to: test\nChange to use the administration database and create an administration user.\nIn this link you will see how to create an admin user in Mongo DB and also how to manage roles and user profiles in mongo.\n&gt;use admin;\nswitched to db admin\n db.createUser(\n   {\n    user: \"admin\",\n    pwd: \"yourPasswordHere\",\n    roles:\n    [\n    {\n        role: \"dbOwner\",\n        db: \"admin\"\n    }\n    ]\n   }\n )\nNote that the user is now the owner of that db. You will get a confirmation that the user was created successfully:\nSuccessfully added user: {\n        \"user\" : \"admin\",\n        \"roles\" : [\n                {\n                        \"role\" : \"dbOwner\",\n                        \"db\" : \"admin\"\n                }\n        ]\n}\nIn this link you have a complete reference for all users related operations that can be done on Mongo DB.\nTo change the password of a given user in Mongo DB you need an administrative user. After that, you log into the database and change the password in the following way:\n&gt;db.changeUserPassword('user','newpassword');\nYou won’t get any notification that the password was changed, but try to log with the new password and you should get a ‘1’:\n&gt;db.auth('admin','newpass');\n1"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Blog Personal de José Enrique Pons",
+    "section": "",
+    "text": "Migration from FastPages to Quarto\n\n\n\n\n\n\n\nFastPages\n\n\nJekill\n\n\nJupyter\n\n\nQuarto\n\n\nBlog\n\n\n\n\nA guide to migrate fastpages to quarto.\n\n\n\n\n\n\nJul 8, 2023\n\n\n\n\n\n\n  \n\n\n\n\nSetting up ELK stack on Kubernetes in docker for windows.\n\n\n\n\n\n\n\nDocker\n\n\n\n\nA guide to setup ELK stack in k8s in windows.\n\n\n\n\n\n\nJul 6, 2023\n\n\n\n\n\n\n  \n\n\n\n\nUsing AI for programming\n\n\n\n\n\n\n\nDocker\n\n\n\n\nMy experience of using AI assistants for programming the past month\n\n\n\n\n\n\nJul 5, 2023\n\n\n\n\n\n\n  \n\n\n\n\nUpgrading to docker compose v2\n\n\n\n\n\n\n\nDocker\n\n\n\n\nSteps to upgrade docker composer.\n\n\n\n\n\n\nJun 4, 2023\n\n\n\n\n\n\n  \n\n\n\n\nUTF-8 migration in SQL\n\n\n\n\n\n\n\nMysql\n\n\nUTF-8\n\n\n\n\nSteps to migrate an sql database from latin1 to utf8.\n\n\n\n\n\n\nJun 3, 2023\n\n\n\n\n\n\n  \n\n\n\n\nReusing docker desktop for windows.\n\n\n\n\n\n\n\nDocker\n\n\n\n\nCome back to k8s for windows after using k8s in other environment.\n\n\n\n\n\n\nMay 25, 2023\n\n\n\n\n\n\n  \n\n\n\n\nHandle odd elements with Hugo\n\n\n\n\n\n\n\nHugo\n\n\n\n\nHandle odd elements with Hugo\n\n\n\n\n\n\nFeb 27, 2023\n\n\n\n\n\n\n  \n\n\n\n\nKubernetes cheat sheet 2\n\n\n\n\n\n\n\nkubernetes\n\n\n\n\nKubernetes cheat sheet\n\n\n\n\n\n\nDec 16, 2022\n\n\n\n\n\n\n  \n\n\n\n\nLinux commands cheat sheet\n\n\n\n\n\n\n\nlinux\n\n\n\n\nLinux commands cheat sheet\n\n\n\n\n\n\nDec 3, 2022\n\n\n\n\n\n\n  \n\n\n\n\nInstall Kubernetes in Virtual Box\n\n\n\n\n\n\n\nkubernetes\n\n\n\n\nInstall Kubernetes in Virtual Box\n\n\n\n\n\n\nDec 2, 2022\n\n\n\n\n\n\n  \n\n\n\n\nKubernetes cheat sheet\n\n\n\n\n\n\n\nkubernetes\n\n\n\n\nKubernetes cheat sheet\n\n\n\n\n\n\nNov 5, 2022\n\n\n\n\n\n\n  \n\n\n\n\nHugo template for Adobe XD\n\n\n\n\n\n\n\nweb\n\n\nhugo\n\n\n\n\nHow to create an Hugo template for Adobe XD\n\n\n\n\n\n\nJul 20, 2022\n\n\n\n\n\n\n  \n\n\n\n\nFirebase emulators cheat sheet\n\n\n\n\n\n\n\ngcp\n\n\nfirebase\n\n\n\n\nFirebase emulators cheat sheet\n\n\n\n\n\n\nJul 18, 2022\n\n\n\n\n\n\n  \n\n\n\n\nConvert Heic files to JPG in windows\n\n\n\n\n\n\n\nwindows\n\n\n\n\nA ready to use script to convert all your heic images from your phone.\n\n\n\n\n\n\nJul 15, 2022\n\n\n\n\n\n\n  \n\n\n\n\nInstalling Algolia in Firebase\n\n\n\n\n\n\n\ngcp\n\n\nfirebase\n\n\nalgolia\n\n\n\n\nInstalling Algolia as search engine for firebase\n\n\n\n\n\n\nFeb 12, 2022\n\n\n\n\n\n\n  \n\n\n\n\nAWS commands cheat sheet\n\n\n\n\n\n\n\naws\n\n\ncli\n\n\n\n\nList of commands for AWS CLI and Powershell\n\n\n\n\n\n\nDec 23, 2021\n\n\n\n\n\n\n  \n\n\n\n\nKore.AI export knowledge base into batch testing\n\n\n\n\n\n\n\npython\n\n\nKore.AI\n\n\n\n\nSmall script in python to export Kore.AI knowledge base\n\n\n\n\n\n\nMar 29, 2021\n\n\n\n\n\n\n  \n\n\n\n\nMongoDB commands\n\n\n\n\n\n\n\nMongoDB\n\n\ncli\n\n\nlinux\n\n\n\n\nA list of useful MongoDB commands\n\n\n\n\n\n\nMar 26, 2021\n\n\n\n\n\n\n  \n\n\n\n\nHow to get webservice times from curl\n\n\n\n\n\n\n\ncurl\n\n\nlinux\n\n\ndebugging\n\n\nwebex\n\n\n\n\nGet response times from curl for webservice debugging\n\n\n\n\n\n\nMar 15, 2021\n\n\n\n\n\n\n  \n\n\n\n\nVim shortcuts\n\n\n\n\n\n\n\nvim\n\n\n\n\nGuide to recurrent actions in Vim\n\n\n\n\n\n\nMar 8, 2021\n\n\n\n\n\n\n  \n\n\n\n\nWebEx Teams\n\n\n\n\n\n\n\njavascript\n\n\nwebex\n\n\nwebservice\n\n\n\n\nGuide to implement webservices to emulate a bot in webex\n\n\n\n\n\n\nMar 1, 2021\n\n\n\n\n\n\n  \n\n\n\n\nExport excel to csv in python\n\n\n\n\n\n\n\nCSV\n\n\nExcel\n\n\npandas\n\n\nanaconda\n\n\npython\n\n\n\n\nQuick guide to export from Excel file to CSV in python using Pandas\n\n\n\n\n\n\nFeb 20, 2021\n\n\n\n\n\n\n  \n\n\n\n\nSet proxy in conda\n\n\n\n\n\n\n\nwindows\n\n\nanaconda\n\n\npython\n\n\n\n\nQuick guide to set up a proxy for conda\n\n\n\n\n\n\nFeb 15, 2021\n\n\n\n\n\n\n  \n\n\n\n\nTroubleshooting webservice time\n\n\n\n\n\n\n\nlinux\n\n\nwebservice\n\n\n\n\nA quick guide on how to troubleshoot webservice time\n\n\n\n\n\n\nFeb 5, 2021\n\n\n\n\n\n\n  \n\n\n\n\nHow do I know the number of bits and encruption of my public key?\n\n\n\n\n\n\n\nssh\n\n\ncli\n\n\nlinux\n\n\n\n\nCommand line to check the number of bits of your ssh key\n\n\n\n\n\n\nJan 30, 2021\n\n\n\n\n\n\n  \n\n\n\n\nCreate CLI for python\n\n\n\n\n\n\n\nlinux\n\n\nubuntu\n\n\n\n\nUsing google fire lib to create a CLI in python\n\n\n\n\n\n\nDec 15, 2020\n\n\n\n\n\n\n  \n\n\n\n\nSome links to configure log rotation\n\n\n\n\n\n\n\nlog\n\n\nlinux\n\n\n\n\nSome links to configure log rotation\n\n\n\n\n\n\nAug 15, 2020\n\n\n\n\n\n\n  \n\n\n\n\nInstalling caffe in Ubuntu 16.04\n\n\n\n\n\n\n\nlinux\n\n\nubuntu\n\n\n\n\nGuide to install Caffe in ubuntu\n\n\n\n\n\n\nJan 3, 2017\n\n\n\n\n\n\n  \n\n\n\n\nGetting started with docker in Ubuntu 14.04 LTS\n\n\n\n\n\n\n\nlinux\n\n\nubuntu\n\n\n\n\nFirst steps after installing ubuntu 14.04\n\n\n\n\n\n\nSep 10, 2016\n\n\n\n\n\n\n  \n\n\n\n\nCreate an SSL certificate with openSSL\n\n\n\n\n\n\n\nOpenSSL\n\n\nSSL\n\n\n\n\ncommand to create a selfsigned SSL certificate\n\n\n\n\n\n\nSep 5, 2016\n\n\n\n\n\n\n  \n\n\n\n\nTesting PAM service authentication\n\n\n\n\n\n\n\nc\n\n\nPAM\n\n\n\n\nA program writen in C to authenticate using PAM in linux\n\n\n\n\n\n\nAug 30, 2016\n\n\n\n\n\n\n  \n\n\n\n\nRead and write your contacts from your SIM mobile card\n\n\n\n\n\n\n\nsmartcard\n\n\nlinux\n\n\n\n\nIf you have a smart card reader, you can read the contacts from your SIM card from your mobile phone.\n\n\n\n\n\n\nAug 26, 2016\n\n\n\n\n\n\n  \n\n\n\n\nUpload and download files to FTPs using C#\n\n\n\n\n\n\n\nc#\n\n\n\n\nSome links for C# for file upload\n\n\n\n\n\n\nJul 26, 2016\n\n\n\n\n\n\n  \n\n\n\n\nBig Data Lab\n\n\n\n\n\n\n\nbigdata\n\n\nlab\n\n\nubuntu\n\n\nredhat\n\n\n\n\nHow to set up a big data lab\n\n\n\n\n\n\nJun 8, 2016\n\n\n\n\n\n\n  \n\n\n\n\nSSH authentication with keys\n\n\n\n\n\n\n\nssh\n\n\nbash\n\n\nlinux\n\n\n\n\nPasswordless auth from multiple host using SSH keys\n\n\n\n\n\n\nJun 8, 2016\n\n\n\n\n\n\n  \n\n\n\n\nInstall java development tools &gt;= 8 on ubuntu linux &gt;= 14.04\n\n\n\n\n\n\n\njava\n\n\nlinux\n\n\nubuntu\n\n\n\n\nHow to install java dev tools on ubuntu.\n\n\n\n\n\n\nMay 28, 2016\n\n\n\n\n\n\n  \n\n\n\n\nCompass not running with Grunt on Windows 7\n\n\n\n\n\n\n\ngrunt\n\n\nruby\n\n\ncompass\n\n\nwindows\n\n\n\n\nHow to fix the issue of grunt not working on windows 7\n\n\n\n\n\n\nFeb 19, 2016\n\n\n\n\n\n\n  \n\n\n\n\nChoosing a graphic library for javascript\n\n\n\n\n\n\n\njavascript\n\n\ngraphics\n\n\n\n\nA study on the available graphic libraries for javascript\n\n\n\n\n\n\nSep 25, 2015\n\n\n\n\n\n\n  \n\n\n\n\nProblems when using webservice from Javascript CORS\n\n\n\n\n\n\n\nwebservices\n\n\nnodejs\n\n\njavascript\n\n\nCORS\n\n\n\n\nSome ideas on how to solve problems with CORS.\n\n\n\n\n\n\nAug 26, 2015\n\n\n\n\n\n\n  \n\n\n\n\nUsing Git as SCM and exclude configuration files\n\n\n\n\n\n\n\ngit\n\n\n\n\nSome links to work with GIT\n\n\n\n\n\n\nAug 25, 2015\n\n\n\n\n\n\n  \n\n\n\n\nFirsts steps with MongoDB + mongoose\n\n\n\n\n\n\n\npython\n\n\nmongodb\n\n\n\n\nUsing mongoose lib on python to access mongoDB\n\n\n\n\n\n\nAug 24, 2015\n\n\n\n\n\n\n  \n\n\n\n\nInstall MongoDB 3 on windows\n\n\n\n\n\n\n\nmongodb\n\n\ndatabases\n\n\nwindows\n\n\n\n\nPost showing how to index a website using javascript tipuesearch.\n\n\n\n\n\n\nAug 22, 2015\n\n\n\n\n\n\n  \n\n\n\n\nIndexing a website using javascript search engine\n\n\n\n\n\n\n\njavascript\n\n\npython\n\n\nhtml\n\n\n\n\nPost showing how to index a website using javascript tipuesearch.\n\n\n\n\n\n\nJun 15, 2015\n\n\n\n\n\n\n  \n\n\n\n\nIndex database using tipuesearch\n\n\n\n\n\n\n\nsearch\n\n\ndatabase\n\n\njavascript\n\n\n\n\nIndexing a small document database using Tipue Search a small js library.\n\n\n\n\n\n\nJun 8, 2015\n\n\n\n\n\n\n  \n\n\n\n\ninterface check C#\n\n\n\n\n\n\n\nC#\n\n\n\n\nConfiguration details to check certificates in C#\n\n\n\n\n\n\nJun 8, 2015\n\n\n\n\n\n\n  \n\n\n\n\nGet html document titles using python\n\n\n\n\n\n\n\npython\n\n\nhtml\n\n\nBeautifulSoup\n\n\n\n\nUsing BeautifulSoup in python to parse Html files\n\n\n\n\n\n\nJun 8, 2015\n\n\n\n\n\n\n  \n\n\n\n\nShort Administration guide for passenger\n\n\n\n\n\n\n\nserver\n\n\npassenger\n\n\nlinux\n\n\nsysadmin\n\n\n\n\nA quick guide on admin Phusion Passenger, a web sever for Ruby, Python and more!\n\n\n\n\n\n\nJun 8, 2015\n\n\n\n\n\n\n  \n\n\n\n\nMore on operations with folders in windows and linux\n\n\n\n\n\n\n\nfolders\n\n\nwindows\n\n\nlinux\n\n\n\n\nHow to replicate folder structure in windows using robocopy and other commands in linux\n\n\n\n\n\n\nMay 25, 2015\n\n\n\n\n\n\n  \n\n\n\n\nWorking with dates in Java\n\n\n\n\n\n\n\njava\n\n\ndate\n\n\ntime\n\n\n\n\nA post on how to work with dates in Java\n\n\n\n\n\n\nMay 11, 2015\n\n\n\n\n\n\n  \n\n\n\n\nConfigure logging on C# project with Visual Studio\n\n\n\n\n\n\n\nwindows\n\n\nvisualStudio\n\n\nC#\n\n\n\n\nConfiguration of Visual Studio Logging for a C# project\n\n\n\n\n\n\nMay 8, 2015\n\n\n\n\n\n\n  \n\n\n\n\nAutomate folder creation on Windows\n\n\n\n\n\n\n\nwindows\n\n\ncli\n\n\nfolder\n\n\n\n\nCommands to automate folder creation in windows using CLI\n\n\n\n\n\n\nMay 7, 2015\n\n\n\n\n\n\n  \n\n\n\n\nHow to automate folder creation in windows\n\n\n\n\n\n\n\nwindows\n\n\ncli\n\n\nfolder\n\n\n\n\nPractical example using the script to automate folder creation\n\n\n\n\n\n\nMay 7, 2015\n\n\n\n\n\n\n  \n\n\n\n\nHow to create and modify admin users in Mongo DB\n\n\n\n\n\n\n\nmongoDB\n\n\ndatabases\n\n\n\n\nCommands for user creation in MongoDB\n\n\n\n\n\n\nMay 6, 2015\n\n\n\n\n\n\n  \n\n\n\n\nHandling Mysql permissions\n\n\n\n\n\n\n\nmysql\n\n\ndatabases\n\n\n\n\nSome useful SQL commands to handle permissions\n\n\n\n\n\n\nFeb 7, 2015\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I love computers and music. And I keep on studying both. Learning never ends.\nOver the past 20 years, I worked in multiple companies from small to multinationals in a wide variety of roles. From developer to systems admin to enterprise architect working for the CTO. I’m always trying to get the full picture, the end-to-end flow. And I love learning and getting a deep understanding of how something works.\nI think Artificial Intelligence (AI) is already playing a strong game in the industry but there is more to come. There are many challenges, besides keeping up with the latest and greatest models and research.\nAs enterprise architect, I worked with the CTO team to design and implement the technology strategy and worked with multiple teams to bring AI and ML to different business areas. Introducing the cloud, migrating to the cloud, or bringing AI/ML to the cloud is one of my topics. I worked with multiple providers, including AWS, Azure, Google, and Open Telekom Cloud. I’m currently certified as Associate Architect in AWS. During my journey, I discovered that I love mentoring. I enjoy discovering potential and giving colleagues advice to grow.\nIn AI, there are three main areas I’m interested in: - Natural Language Processing: Understanding language and classifying or predicting from it. Most companies/businesses have their own jargon and it’s a challenge to train a model or implement any kind of knowledge transfer. - Audio processing using AI: Understanding sounds and deriving properties from them so we can classify or even predict them. - MLOps: The lifecycle of the machine learning / AI projects. The main challenges we have today are dealing with data sources, data versioning, data security, data privacy, and the implementation of an effective workflow to work with. - AIOps: Using AI for predictive maintenance, predicting failures, or detecting bugs.\nI hold a Ph.D. in Artificial Intelligence and Computer Science from the University of Granada (Spain). I studied how to model time. Using ML techniques like Fuzzy Logic and Possibility theory I propose a model to store time-related information in databases. The work was based on the previous research of Intelligent Databases and Information System (IdBIS) in the DECSAI department within the University of Granada. You can read my thesis here. I also hold a Ph.D. in Artificial Intelligence from Ghent University (Belgium). There I studied how to model queries related to time or with time constraints. I extended the bipolar queries developed in Ghent by using time. You can read my thesis here.\n\nI’m also a violinist, and I play in a string quartet Tres Mas Uno, if you want to see us, watch our channel or follow us on instagram.\nIf you want to contact me, you can reach me out via linkedin or the social media."
+  },
+  {
+    "objectID": "posts/2015-02-07-handle mysql user permissions.html",
+    "href": "posts/2015-02-07-handle mysql user permissions.html",
+    "title": "Handling Mysql permissions",
+    "section": "",
+    "text": "This is for an old version of MySQL but it may work on your current version\n\nHandling MySQL users and permissions\nWe are going to grant permissions for a given database to a specific user on a specific host. In the example we grant usage to localhost and a hostname to allow external access.\ngrant all privileges on dbname.* to 'dbname'@'localhost' identified by 'password';\ngrant all privileges on dbname.* to 'dbname'@'&lt;FQN_hostname&gt; ' identified by 'password';\n\n\nResources\n13.7.5.17 SHOW GRANTS Syntax"
+  },
+  {
+    "objectID": "posts/2015-05-07-create_folders structures.html",
+    "href": "posts/2015-05-07-create_folders structures.html",
+    "title": "Automate folder creation on Windows",
+    "section": "",
+    "text": "Replicate folder creation on Windows\nHow to automate folder creation and folders structure creation on windows:\n@ECHO OFF\nREM Create folders for a new interface\nREM Parameters: GCC HRIS ITFT\n\nset basefolder=f:\\interfaces\nset folders=(in out reports staging archive)\n\nset argC=0\nfor %%x in (%*) do Set /A argC+=1\n\n:parametercheck\nif -%argC%- lss 3 (\ngoto :wrongcall\n)\n\necho Creating folder interfaces:\n\n:folderloop\nfor %%i in %folders% do (\necho  mkdir %basefolder%\\%1\\%2\\%3\\%%i\nmkdir %basefolder%\\%1\\%2\\%3\\%%i\n)\ngoto :end\n\nREM echo f:\\interfaces\\%1\\%2\\%3\\in\nREM mkdir  f:\\interfaces\\%1\\%2\\%3\\in\nREM mkdir \n\n:wrongcall\n\necho Wrong call.\necho %0 GCC HRIS ITFTxx\necho Where\necho GCC: Global Customer Name\necho HRIS: third party name\necho ITFTxx interface number. Example: itft01\necho sample usage:\necho %0 abv sfsf itfq01\n\n:end"
+  },
+  {
+    "objectID": "posts/2015-05-08-configure-logging-c-project-visual-studio.html",
+    "href": "posts/2015-05-08-configure-logging-c-project-visual-studio.html",
+    "title": "Configure logging on C# project with Visual Studio",
+    "section": "",
+    "text": "In this post I’m going to talk about the configuration of two loggers for Visual Studio 2013 C# project. I work with the free community edition. In this case we want one log for errors and another one for the actions that our program will be doing.\nThe first thing to do is to download and install the Apache log4net library. You can follow the instructions on the Apache project’s page.\nThere are three thing we have to do to configure the logger: - Configure the logger on the application. Usually an XML file. - Create the (singleton) classes for loggers. - Start logging in the application.\nFirst things first. There are several ways to configure the logger in the application. Some people prefer the configuration of the logger in the application config file. Your project’s .config file will look something like this:\n&lt;!-- &lt;log4net configSource=\"log4net.config\" /&gt; --&gt;\n  &lt;log4net&gt;\n    &lt;appender name=\"FileAppender\" type=\"log4net.Appender.FileAppender\"&gt;\n      &lt;file value=\"MyAppLog.log\" /&gt;\n      &lt;appendToFile value=\"true\" /&gt;\n      &lt;layout type=\"log4net.Layout.PatternLayout\"&gt;\n        &lt;conversionPattern value=\"%date [%thread] %-5level %logger [%property{NDC}] - %message%newline\" /&gt;\n      &lt;/layout&gt;\n    &lt;/appender&gt;\n    &lt;appender name=\"ConsoleAppender\" type=\"log4net.Appender.ConsoleAppender\" &gt;\n      &lt;layout type=\"log4net.Layout.PatternLayout\"&gt;\n        &lt;param name=\"Header\" value=\"[Header]\\r\\n\" /&gt;\n        &lt;param name=\"Footer\" value=\"[Footer]\\r\\n\" /&gt;\n        &lt;param name=\"ConversionPattern\" value=\"%date [%thread] %-5level %logger [%property{NDC}] - %message%newline\" /&gt;\n      &lt;/layout&gt;\n    &lt;/appender&gt;\n    &lt;appender name=\"RollingFileAppender\" type=\"log4net.Appender.RollingFileAppender\"&gt;\n      &lt;file value=\"MyAppRollingLog.log\" /&gt;\n      &lt;appendToFile value=\"true\" /&gt;\n      &lt;rollingStyle value=\"Size\" /&gt;\n      &lt;maxSizeRollBackups value=\"10\" /&gt;\n      &lt;maximumFileSize value=\"1MB\" /&gt;\n      &lt;staticLogFileName value=\"true\" /&gt;\n      &lt;layout type=\"log4net.Layout.PatternLayout\"&gt;\n        &lt;conversionPattern value=\"%date [%thread] %level %logger - %message%newline\" /&gt;\n      &lt;/layout&gt;\n    &lt;/appender&gt;\n    &lt;root&gt;\n      &lt;level value=\"ALL\" /&gt;\n      &lt;appender-ref ref=\"FileAppender\" /&gt;\n      &lt;appender-ref ref=\"ConsoleAppender\"/&gt;\n      &lt;appender-ref ref=\"RollingFileAppender\"/&gt;\n    &lt;/root&gt;\n  &lt;/log4net&gt;\nIn this sample configuration file there are configured three appenders, one for console and two for file output, the RollingFileAppender is configured to roll the log file every 1MB in a maximum of 10 extensions. I think a RollingFileAppender is the more appropriate thing for an error log in an application. Anyway I prefer the configuration of the logger in an XML file. The log4net offers the possibility to scan an XML configuration file and adapt the loggers based on that file. To do that, just write in your C# app:\nstatic void Main(string[] args)\n        {\n            try { \n            XmlConfigurator.ConfigureAndWatch(new System.IO.FileInfo(\"lognet_config.txt\"));  \n            }\n            catch (Exception e)\n            {\n                // handle the exception here\n            }\n}\nThe other thing to do is to create a singleton class for each logger you want to use. For instance, in my app I will use 2 loggers, and the C# class is something like:\nusing log4net;\nusing System;\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Reflection;\nusing System.Text;\nusing System.Threading.Tasks;\n\nnamespace MyApp.utils\n{\n    class Logger\n    {\n        public static readonly ILog Log = LogManager.GetLogger(\"ErrorLog\");\n        public static readonly ILog ActionInfo = LogManager.GetLogger(\"ActionInfo\");\n    }\n}\nNow we are ready to use the logger in our application, all that uses the Log logger will be written in an error log and all that uses ActionInfo log will be written to an action log. So for instance you may have this code to convert a String value into an Int32 value:\nprotected Int32 readIntValue(String field, Object val)\n        {\n            Int32 res = new Int32();\n            try\n            {\n                String str = val.ToString();\n                if (str.CompareTo(\"\") != 0) res = Convert.ToInt32(str);\nMyApp.utils.ActionInfo.Info(\"Field Parsed\");\n            }\n            catch (Exception)\n            {\n                MyApp.utils.Logger.Log.Debug(\"Error converting field:\" + field);\n\n            }\n            return res;\n        }\nOn line 8 we will write the output to the actionInfo logger (that will be written into a rolling logger file) and the errors to the Log file, that will be written into another rolling file. Let’s take a look at the final XML configuration file:\n&lt;log4net&gt;\n    &lt;appender name=\"Console\" type=\"log4net.Appender.ConsoleAppender\"&gt;\n        &lt;layout type=\"log4net.Layout.PatternLayout\"&gt;\n            &lt;!-- Pattern to output the caller's file name and line number --&gt;\n            &lt;conversionPattern value=\"%d %5level [%thread] (%file:%line) - %message%newline\" /&gt;\n        &lt;/layout&gt;\n    &lt;/appender&gt;\n    \n    &lt;appender name=\"ErrorLog\" type=\"log4net.Appender.RollingFileAppender\"&gt;\n        &lt;file value=\"error.log\" /&gt;\n        &lt;appendToFile value=\"true\" /&gt;\n        &lt;maximumFileSize value=\"100KB\" /&gt;\n        &lt;maxSizeRollBackups value=\"2\" /&gt;\n\n        &lt;layout type=\"log4net.Layout.PatternLayout\"&gt;\n            &lt;conversionPattern value=\"%d %level %thread %logger - %message%newline\" /&gt;\n        &lt;/layout&gt;\n    &lt;/appender&gt;\n    &lt;appender name=\"ActionInfo\" type=\"log4net.Appender.RollingFileAppender\"&gt;\n        &lt;file value=\"actionInfo.log\" /&gt;\n        &lt;appendToFile value=\"true\" /&gt;\n        &lt;maximumFileSize value=\"1000KB\" /&gt;\n        &lt;maxSizeRollBackups value=\"2\" /&gt;\n\n        &lt;layout type=\"log4net.Layout.PatternLayout\"&gt;\n            &lt;conversionPattern value=\"%d %level %thread %logger - %message%newline\" /&gt;\n        &lt;/layout&gt;\n    &lt;/appender&gt;\n    &lt;logger additivity=\"false\" name=\"ActionInfo\"&gt;\n    &lt;level value=\"INFO\"/&gt;\n    &lt;appender-ref ref=\"ActionInfo\" /&gt;\n  &lt;/logger&gt;\n   &lt;logger additivity=\"false\" name=\"ErrorLog\"&gt;\n    &lt;level value=\"DEBUG\"/&gt;\n    &lt;appender-ref ref=\"ErrorLog\" /&gt;\n  &lt;/logger&gt;\n    &lt;root&gt;\n        &lt;appender-ref ref=\"Console\" /&gt;\n        &lt;appender-ref ref=\"ErrorLog\" /&gt;\n        \n    &lt;/root&gt;\n&lt;/log4net&gt;"
+  },
+  {
+    "objectID": "posts/2015-05-25-more-on-operations-with-folders-on-linux-and-windows.html",
+    "href": "posts/2015-05-25-more-on-operations-with-folders-on-linux-and-windows.html",
+    "title": "More on operations with folders in windows and linux",
+    "section": "",
+    "text": "Hi, recently I’ve been working on some issues dealing with folders on windows and on linux. For instance, ## Replicate Folder Structure on Windows With robocopy is really easy:\nFor example:"
+  },
+  {
+    "objectID": "posts/2015-05-25-more-on-operations-with-folders-on-linux-and-windows.html#replicate-folder-structure-on-linux",
+    "href": "posts/2015-05-25-more-on-operations-with-folders-on-linux-and-windows.html#replicate-folder-structure-on-linux",
+    "title": "More on operations with folders in windows and linux",
+    "section": "Replicate folder structure on Linux",
+    "text": "Replicate folder structure on Linux\nThis requires a little bit of scripting, on bash it would be something like:\ncd TARGET && (cd SOURCE; find . -type d ! -name .) | xargs -i mkdir -p \"{}\"\nFor instance:\ncd /interfaces/client1 && (cd /interfaces/client_orig; find . -type d ! -name .) | xargs -i mkdir -p \"{}\"\nRecently I had also the need to rename all folders containing a given pattern, that is done with the following script:\nfind . -iname \"itfq*\" -type d -execdir bash -c 'mv \"$1\" \"${1//itfq/itfp}\"' _ {} \\; \nThis script renames all folders that contains itfq pattern to itfp."
+  },
+  {
+    "objectID": "posts/2015-06-08-interfacecheck.html",
+    "href": "posts/2015-06-08-interfacecheck.html",
+    "title": "interface check C#",
+    "section": "",
+    "text": "#A small script to check interfaces on C#\nTo avoid certificate check:\n&lt;system.net&gt;\n    &lt;settings&gt;\n      &lt;servicePointManager\n          checkCertificateName=\"false\"\n          checkCertificateRevocationList=\"false\"         \n      /&gt;\n    &lt;/settings&gt;\n  &lt;/system.net&gt;\nIn the application config file.\nSome useful links: - Check if a file exists\n\nHow to write to a text file\nHow to download files from FTP\nHow to sleep a thread\nProblems related to FTP with SSL:\nIgnore SSL validation for certificates\n[Configure FTP over SSL] (http://stackoverflow.com/questions/1355341/ftp-over-ssl-for-c-sharp)\n[Ignore web certificates] (http://weblog.west-wind.com/posts/2011/Feb/11/HttpWebRequest-and-Ignoring-SSL-Certificate-Errors)\nLibrary for FTPs on C#\n[Enabling SSL on c#] (https://msdn.microsoft.com/en-us/library/system.net.ftpwebrequest.enablessl.aspx)\n[Microsoft forums, How to accept SSL certificate of FTPS server] (https://social.msdn.microsoft.com/Forums/en-US/56a10641-4504-4f8b-8434-86156f8104be/how-to-accept-ssl-certificate-of-ftps-server?forum=netfxnetcom)"
+  },
+  {
+    "objectID": "posts/2015-06-08-short-administration-guide-for-passenger.html",
+    "href": "posts/2015-06-08-short-administration-guide-for-passenger.html",
+    "title": "Short Administration guide for passenger",
+    "section": "",
+    "text": "Hi, I’m working on several projects with Phusion Passenger software. The administration is not really well documented and also is not so powerful.\nThere are some tools to analyze the memory usage like passenger-memory-stats. In my system the output is something like:\npassenger-memory-stats\nVersion: 4.0.59\nDate   : 2015-05-12 16:07:11 +0200\n------------- Apache processes -------------\n*** WARNING: The Apache executable cannot be found.\nPlease set the APXS2 environment variable to your 'apxs2' executable's filename,                                                              or set the HTTPD environment variable to your 'httpd' or 'apache2' executable's                                                              filename.\n\n\n---------- Nginx processes ----------\nPID    PPID   VMSize   Private  Name\n-------------------------------------\n20463  1      24.3 MB  ?        nginx: master process /usr/sbin/nginx -c /etc/ng                                                             inx/nginx.conf\n26826  20463  30.5 MB  ?        nginx: worker process\n### Processes: 2\n### Total private dirty RSS: 0.00 MB (?)\n\n\n------ Passenger processes -------\nPID    VMSize     Private    Name\n----------------------------------\n12284  83.5 MB    0.3 MB     PassengerWatchdog\n12287  117.9 MB   1.1 MB     PassengerHelperAgent\n12292  26.7 MB    0.5 MB     PassengerLoggingAgent\n12302  26.0 MB    0.2 MB     PassengerWebHelper: master process /home/project                                                            1/.passenger-enterprise/standalone/4.0.59/webhelper-1.6.2-x86_64-linux/Passenger                                                             WebHelper -c /tmp/passenger-standalone.1r1zr19/config -p /tmp/passenger-standalo                                                             ne.1r1zr19/\n\n15170  26.4 MB    0.6 MB     PassengerWebHelper: worker process\n16390  504.5 MB   230.2 MB   Passenger RackApp: /home/myproject/curren                                                      \n16676  438.2 MB   260.4 MB   Passenger RackApp: /home/test/curren                                                            \n                                                          \n### Processes: 95\n### Total private dirty RSS: 8074.19 MB\n*** WARNING: Please run this tool with sudo. Otherwise the private dirty RSS (a                                                              reliable metric for real memory usage) of processes cannot be determined.\nThe other tool for the administration is passenger-status:\npassenger-status\nIt appears that multiple Passenger instances are running. Please select a specific one by running:\n\n  passenger-status &lt;PID&gt;\n\nThe following Passenger instances are running:\n  PID: 12494\n  PID: 14656\n  PID: 12302\n  PID: 15169\n  PID: 13833\n  PID: 15000\n  PID: 13441\n  PID: 12370\n  PID: 12896\n  PID: 12656\n  PID: 14192\n  PID: 14018\n  PID: 13672\n  PID: 13614\n  PID: 14395\n  PID: 12438\nOnce you select the passenger process, you can dig in deeper:\npassenger-status 12494 --verbose\nVersion : 4.0.59\nDate    : 2015-05-12 16:15:21 +0200\nInstance: 12494\n----------- General information -----------\nMax pool size : 3\nProcesses     : 1\nRequests in top-level queue : 0\n\n----------- Application groups -----------\n/homeproject/current#default:\n  App root: /home/myproject/current\n  Requests in queue: 0\n  * PID: 17563   Sessions: 0       Processed: 30      Uptime: 4h 0m 31s\n    CPU: 0%      Memory  : 235M    Last used: 19m 10s a\n    URL     : http://127.0.0.1:53765\n    Password: DTwE2g0zvvELqdDyviXrzi3FvNADc0PVc1l03TX084R\n\nlocalhost:~&gt; curl -H \"X-Passenger-Connect-Password: DTwE2g0zvvELqdDyviXrzi3FvNADc0PVc1l03TX084R\" http://127.0.0.1:53765\nyou can connect to the administration console, via curl. If you don’t get any answer, that means that your server is frozen. If you want to see a trace in the logs, you need to kill it sending one of those signals: SIGQUIT, SIGTERM.\nYou can find more information about this on the following sites:\nhttps://www.phusionpassenger.com/documentation/Users%20guide%20Apache.html: On Point 9: 9. Analysis and system maintenance\nURL scheme\nPassenger optimization guide:"
+  },
+  {
+    "objectID": "posts/2015-08-22-install-mongodb-3-0-on-windows.html",
+    "href": "posts/2015-08-22-install-mongodb-3-0-on-windows.html",
+    "title": "Install MongoDB 3 on windows",
+    "section": "",
+    "text": "Hi again, this is going to be a small configuration guide for mongo DB on windows. There are a few steps missing on the official instalation guide. To sum up the steps are the following: - Download the installer. - Install Windows hot fix on your system - After the installation, create the configuration and data folders on your system. To keep it simple, I created on the same program folder"
+  },
+  {
+    "objectID": "posts/2015-08-22-install-mongodb-3-0-on-windows.html#install-the-windows-service",
+    "href": "posts/2015-08-22-install-mongodb-3-0-on-windows.html#install-the-windows-service",
+    "title": "Install MongoDB 3 on windows",
+    "section": "Install the windows service",
+    "text": "Install the windows service\nc:\\Archivos de programa\\MongoDB\\Server\\3.0\\bin&gt;mongod.exe --config \"C:\\Program Files\\MongoDB\\config\\mongod.cfg\" --install\n\nc:\\Archivos de programa\\MongoDB\\Server\\3.0\\bin&gt;net start mongoDB\n\nEl servicio de MongoDB se ha iniciado correctamente.\nBeware and check the logs, because even with a successful message you can get errors when trying to connect via the shell client."
+  },
+  {
+    "objectID": "posts/2015-08-22-install-mongodb-3-0-on-windows.html#run-shell-client-and-connect",
+    "href": "posts/2015-08-22-install-mongodb-3-0-on-windows.html#run-shell-client-and-connect",
+    "title": "Install MongoDB 3 on windows",
+    "section": "Run shell client and connect",
+    "text": "Run shell client and connect\nc:\\Archivos de programa\\MongoDB\\Server\\3.0\\bin&gt;mongo\n2015-08-22T09:33:04.923+0200 I CONTROL  Hotfix KB2731284 or later update is not installed, will zero-out data files MongoDB shell version: 3.0.5\nconnecting to: test\n2015-08-22T09:33:05.988+0200 W NETWORK  Failed to connect to 127.0.0.1:27017, re ason: errno:10061 No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.\n2015-08-22T09:33:05.991+0200 E QUERY    Error: couldn't connect to server 127.0.0.1:27017 (127.0.0.1), connection attempt failed at connect (src/mongo/shell/mongo.js:179:14)\n    at (connect):1:6 at src/mongo/shell/mongo.js:179\nexception: connect failed\nSo you get an error. That’s due to the windows firewall. Allow traffic from mongodb and you will be able to connect.\nc:\\Archivos de programa\\MongoDB\\Server\\3.0\\bin&gt;mongo\n2015-08-22T09:39:59.718+0200 I CONTROL  Hotfix KB2731284 or later update is not installed, will zero-out data files MongoDB shell version: 3.0.5 connecting to: test \nWelcome to the MongoDB shell.\nFor interactive help, type \"help\".\nFor more comprehensive documentation, see\n        http://docs.mongodb.org/\nQuestions? Try the support group\n        http://groups.google.com/group/mongodb-user"
+  },
+  {
+    "objectID": "posts/2015-08-25-using-git-as-scm-and-exclude-configuration-files.html",
+    "href": "posts/2015-08-25-using-git-as-scm-and-exclude-configuration-files.html",
+    "title": "Using Git as SCM and exclude configuration files",
+    "section": "",
+    "text": "Hi, this post is devoted to explain how do I deal with configuration files when I post them to GIT. There are very sofisticated proposals: - Git Tools - Interactive Staging - when you have secret key in your project, how can pushing to GitHub be possible?\nBut the working thing to me is the following: 1. First push the empty config file to your repo. 1. Then tell git to ignore the updates on that file\nJose Enrique@MORTIMER /C/Users/Jose Enrique/Documents/nodejs_mongo/nodejs_mongo_server (master)\n$ git update-index --assume-unchanged config/config.js&lt;/pre&gt;"
+  },
+  {
+    "objectID": "posts/2015-09-25-javascript.html",
+    "href": "posts/2015-09-25-javascript.html",
+    "title": "Choosing a graphic library for javascript",
+    "section": "",
+    "text": "there are several options:\n\n\nhttp://raphaeljs.com/ Light weight and highly compatible crossbrowsers.\n\n\n\nhttp://paperjs.org/ Looks really powerfull\n\n\n\nhttp://fabricjs.com/\nFaster than raphael and supports touch devices. Sample html with fabrik:\n&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n  &lt;head&gt;\n    &lt;meta charset=\"utf-8\"&gt;\n    &lt;script src=\"https://rawgit.com/kangax/fabric.js/master/dist/fabric.js\"&gt;&lt;/script&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;canvas id=\"c\" width=\"300\" height=\"300\" style=\"border:1px solid #ccc\"&gt;&lt;/canvas&gt;\n    &lt;script&gt;\n      (function() {\n\n        var canvas = new fabric.Canvas('c');\n\n      })();\n    &lt;/script&gt;\n  &lt;/body&gt;\n&lt;/html&gt;"
+  },
+  {
+    "objectID": "posts/2015-09-25-javascript.html#raphael",
+    "href": "posts/2015-09-25-javascript.html#raphael",
+    "title": "Choosing a graphic library for javascript",
+    "section": "",
+    "text": "http://raphaeljs.com/ Light weight and highly compatible crossbrowsers."
+  },
+  {
+    "objectID": "posts/2015-09-25-javascript.html#paper.js",
+    "href": "posts/2015-09-25-javascript.html#paper.js",
+    "title": "Choosing a graphic library for javascript",
+    "section": "",
+    "text": "http://paperjs.org/ Looks really powerfull"
+  },
+  {
+    "objectID": "posts/2015-09-25-javascript.html#fabric.js",
+    "href": "posts/2015-09-25-javascript.html#fabric.js",
+    "title": "Choosing a graphic library for javascript",
+    "section": "",
+    "text": "http://fabricjs.com/\nFaster than raphael and supports touch devices. Sample html with fabrik:\n&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n  &lt;head&gt;\n    &lt;meta charset=\"utf-8\"&gt;\n    &lt;script src=\"https://rawgit.com/kangax/fabric.js/master/dist/fabric.js\"&gt;&lt;/script&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;canvas id=\"c\" width=\"300\" height=\"300\" style=\"border:1px solid #ccc\"&gt;&lt;/canvas&gt;\n    &lt;script&gt;\n      (function() {\n\n        var canvas = new fabric.Canvas('c');\n\n      })();\n    &lt;/script&gt;\n  &lt;/body&gt;\n&lt;/html&gt;"
+  },
+  {
+    "objectID": "posts/2016-05-28-install-java-development-tools-8-on-ubuntu-linux-14-04.html",
+    "href": "posts/2016-05-28-install-java-development-tools-8-on-ubuntu-linux-14-04.html",
+    "title": "Install java development tools >= 8 on ubuntu linux >= 14.04",
+    "section": "",
+    "text": "Hi there, I’m trying to install java development tools on my ubuntu, I skim through several guides, but none of them convinced me. All links I saw just consist on adding a repository to your apt, and then install with apt from there. But I prefer to have a deep understanding. So I went to the official download page for Java 8. And I downloaded the image called linux-x64.tar.gz The release instructions are here\nOnce you have the file downloaded, you have to unzip it and then move to the corresponding folder. To do so:\n:~/Descargas$ tar -xvf jdk-8u92-linux-x64.tar.gz \n$ sudo mv ~/Descargas/jdk1.8.0_92 /usr/lib/jvm/\nBut then we need to update-alternatives to tell ubuntu that we want to work with that java. For the installation of a new program, you can check the man page for update-alternatives. To install java with symbolic link under /usr/bin/java:\nsudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.8.0_92/bin/java  1\nTo install javac:\nsudo update-alternatives --install /usr/bin/javac java /usr/lib/jvm/jdk1.8.0_92/bin/javac 1 \nNow you can check in console the installed versions:\njava version \"1.8.0_92\"\nJava(TM) SE Runtime Environment (build 1.8.0_92-b14)\nJava HotSpot(TM) 64-Bit Server VM (build 25.92-b14, mixed mode)\njpons@bugambilla:/usr/lib/jvm/jdk1.8.0_92/bin$ javac -version\njavac 1.8.0_92"
+  },
+  {
+    "objectID": "posts/2016-06-08-ssh-authentication-with-keys.html",
+    "href": "posts/2016-06-08-ssh-authentication-with-keys.html",
+    "title": "SSH authentication with keys",
+    "section": "",
+    "text": "SSH authentication with keys\nHandling errors on ssh authentication.\nIf you have ssh authentication with public / private keys, sometimes you might face the issue, that even when the authorized_keys contains your public key on the target host, the system is asking the password.\nSome things you can try: - Copy your public key by using ssh-copy-id command. - Check permissions: the target home folder should be at least 75x, so the group can’t write. - you can debug the output of the ssh authentication command by:\n ssh -v jpons@example\nOpenSSH_7.2p2, OpenSSL 1.0.2g  1 Mar 2016\ndebug1: Reading configuration data /home/jpons/.ssh/config\ndebug1: Reading configuration data /etc/ssh/ssh_config\ndebug1: Connecting to example [10.50.136.10] port 22.\ndebug1: Connection established.\ndebug1: identity file /home/jpons/.ssh/id_rsa type 1\ndebug1: key_load_public: No such file or directory\ndebug1: identity file /home/jpons/.ssh/id_rsa-cert type -1\ndebug1: key_load_public: No such file or directory\ndebug1: identity file /home/jpons/.ssh/id_dsa type -1\ndebug1: key_load_public: No such file or directory\ndebug1: identity file /home/jpons/.ssh/id_dsa-cert type -1\ndebug1: key_load_public: No such file or directory\ndebug1: identity file /home/jpons/.ssh/id_ecdsa type -1\ndebug1: key_load_public: No such file or directory\ndebug1: identity file /home/jpons/.ssh/id_ecdsa-cert type -1\ndebug1: key_load_public: No such file or directory\ndebug1: identity file /home/jpons/.ssh/id_ed25519 type -1\ndebug1: key_load_public: No such file or directory\ndebug1: identity file /home/jpons/.ssh/id_ed25519-cert type -1\ndebug1: Enabling compatibility mode for protocol 2.0\ndebug1: Local version string SSH-2.0-OpenSSH_7.2\ndebug1: Remote protocol version 2.0, remote software version OpenSSH_6.2\ndebug1: match: OpenSSH_6.2 pat OpenSSH* compat 0x04000000\ndebug1: Authenticating to example:22 as 'orapws'\ndebug1: SSH2_MSG_KEXINIT sent\ndebug1: SSH2_MSG_KEXINIT received\ndebug1: kex: algorithm: ecdh-sha2-nistp256\ndebug1: kex: host key algorithm: ecdsa-sha2-nistp256\ndebug1: kex: server-&gt;client cipher: aes128-ctr MAC: umac-64-etm@openssh.com compression: none\ndebug1: kex: client-&gt;server cipher: aes128-ctr MAC: umac-64-etm@openssh.com compression: none\ndebug1: sending SSH2_MSG_KEX_ECDH_INIT\ndebug1: expecting SSH2_MSG_KEX_ECDH_REPLY\ndebug1: Server host key: ecdsa-sha2-nistp256 SHA256:ig7JOjjK6WgLs0FG/OonjCtoU8fyQjFpN45KkCwnIUA\ndebug1: Host 'example' is known and matches the ECDSA host key.\ndebug1: Found key in /home/jpons/.ssh/known_hosts:12\ndebug1: rekey after 4294967296 blocks\ndebug1: SSH2_MSG_NEWKEYS sent\ndebug1: expecting SSH2_MSG_NEWKEYS\ndebug1: rekey after 4294967296 blocks\ndebug1: SSH2_MSG_NEWKEYS received\ndebug1: SSH2_MSG_SERVICE_ACCEPT received"
+  },
+  {
+    "objectID": "posts/2016-08-26-read-write-contacts-sim-mobile-card.html",
+    "href": "posts/2016-08-26-read-write-contacts-sim-mobile-card.html",
+    "title": "Read and write your contacts from your SIM mobile card",
+    "section": "",
+    "text": "Read and write your contacts from your SIM mobile card\nIf you have a smart card reader, you can read the contacts from your SIM card from your mobile phone"
+  },
+  {
+    "objectID": "posts/2016-09-05-Create-an-SSL-certificate-with-openSSL.html",
+    "href": "posts/2016-09-05-Create-an-SSL-certificate-with-openSSL.html",
+    "title": "Create an SSL certificate with openSSL",
+    "section": "",
+    "text": "Create an SSL certificate with openSSL\nCreate a selfsigned SSL certificate\nWith openssl:\nopenssl req -x509 -nodes -days 7300 -newkey rsa:2048 -keyout /etc/ssl/certs/vsftpd.pem -out /etc/ssl/certs/vsftpd.pem"
+  },
+  {
+    "objectID": "posts/2017-01-03-installing-caffe-in-ubuntu-16-04.html",
+    "href": "posts/2017-01-03-installing-caffe-in-ubuntu-16-04.html",
+    "title": "Installing caffe in Ubuntu 16.04",
+    "section": "",
+    "text": "Caffe is a library used in deep learning and specific to computer vision. They provide an installation guide, which is quite nice. But I experienced problems during the install. You can download the source code here\nFirst follow the installation instructions.\nI had installed cuda 8 library directly from Nvidia and not from ubuntu default repos.\nThen install the following packages:\nsudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler\nsudo apt-get install --no-install-recommends libboost-all-dev\nAnd the BLAS library of your choice, I selected by default ATLAS:\nsudo apt-get install libatlas-base-dev\nAs I’m going to work with python, I prepared a virtual environment. This is also because I work with tensorflow and I don’t want to mix both. Assuming you have installed virtualenv:\nvirtualenv caffe_gpu\nsource ~/caffe_gpu/bin/activate\nAssuming your code is in ~/caffe:\ncd python\nfor req in $(cat requirements.txt); do pip install $req; done\nThen, I had to adapt the make file:\ncp Makefile.config.example Makefile.config\nadjust:\nUSE_CUDNN := 1\nINCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/\nLIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial/\nfinally do a symbolic link:\nsudo ln -s /usr/lib/x86_64-linux-gnu/libhdf5_serial_hl.so /usr/lib/x86_64-linux-gnu/libhdf5_hl.so\nsudo ln -s /usr/lib/x86_64-linux-gnu/libhdf5_serial.so /usr/lib/x86_64-linux-gnu/libhdf5.so\nNow we can compile as in the instructions:\nmake all\nmake test\nmake runtest\nThanks for reading!"
+  },
+  {
+    "objectID": "posts/2020-12-15-create-cli-for-python.html",
+    "href": "posts/2020-12-15-create-cli-for-python.html",
+    "title": "Create CLI for python",
+    "section": "",
+    "text": "Create CLI for python using Fire\nFire is a really simple library to build CLI. Install it ( you can use conda as well):\npip install fire\nAnd then use it in your app, for example here:\nimport pandas as pd\nimport fire\n\ndef to_csv(fileName,sheet,outfile):\n df = pd.read_excel(fileName,sheet=sheet)\n for c in df.columns:\n  df[c]= df[c].astype(str)\n  df[c] = df[c].str.replace(r\"/\\n\\r|\\n|\\r/g\",'')\n  df[c] = df[c].str.strip()\n df.to_csv(outfile,index=False,header=False)\n \n\nif __name__ == '__main__':\n  fire.Fire(to_csv)"
+  },
+  {
+    "objectID": "posts/2021-02-05-troubleshooting-webservice-time.html",
+    "href": "posts/2021-02-05-troubleshooting-webservice-time.html",
+    "title": "Troubleshooting webservice time",
+    "section": "",
+    "text": "Troubleshooting webservice at OS level\nWe are trying to troubleshoot a webservice call that’s taking a lot of time. The initial idea it that the processing time in our platform is the issue. Let’s use curl at OS level with the configuration as explained here to troubleshoot.\nThis is the answer we get from the curl command:\n{\n\"time_redirect\": 0.000,\n\"time_namelookup\": 5.515,\n\"time_connect\": 5.630,\n\"time_appconnect\": 6.008,\n\"time_pretransfer\": 6.008,\n\"time_starttransfer\": 6.385,\n\"time_total\": 6.385,\n\"size_request\": 375,\n\"size_upload\": 103,\n\"size_download\": 375,\n\"size_header\": 343\n}\nHere we see 5+ seconds in the name resolution. A first workaround is to get the IP address of the target and bypass the name server by using the hostname file:\nnslookup webexapis.com\nwe will get several answers:\nServer:     100.125.4.25\nAddress:    100.125.4.25#53\n\nNon-authoritative answer:\nName:   webexapis.com\nAddress: 3.130.32.130\nName:   webexapis.com\nAddress: 3.139.30.165\nName:   webexapis.com\nAddress: 3.140.133.193\nwe edit the /etc/hosts file and add that IP and host:\n3.140.133.193 webexapis.com\nif now we issue again the command, then let’s see if the issue is solved:\n{\n\"time_redirect\": 0.000,\n\"time_namelookup\": 0.005,\n\"time_connect\": 0.118,\n\"time_appconnect\": 0.507,\n\"time_pretransfer\": 0.507,\n\"time_starttransfer\": 0.877,\n\"time_total\": 0.877,\n\"size_request\": 375,\n\"size_upload\": 103,\n\"size_download\": 375,\n\"size_header\": 343\n}\n\nIt seems the issue is related to the name server. Next step would be to troubleshoot the name server and see why it’s taking 5 seconds to resolve that url."
+  },
+  {
+    "objectID": "posts/2021-02-20-export-excel-to-csv-in-python.html",
+    "href": "posts/2021-02-20-export-excel-to-csv-in-python.html",
+    "title": "Export excel to csv in python",
+    "section": "",
+    "text": "We use the pandas library and the following three lines:\n import pandas as pd\n df = pd.read_excel(\"Libro2.xlsx\",sheet=\"questionlist\")\n df.to_csv('l2.csv',index=False,header=False)\nSometimes we need to do some formatting before we export the excel to csv file.\n\n\ndf.Answers = df.Answers.astype(str)\nCheck the original in stackoverflow.\n\n\n\ndf.Answers = df.Answers.str.replace(r\"/\\n\\r|\\n|\\r/g\",'') \nCheck the syntax of replace here.\nIn case you want to modify a column, you can do the following to replace some characters:\ndf.Answers = df.Answers.str.replace(\"\\\"\",\"\")\n\n\n\ndf.Question.apply(lambda x: \" \".join(x.split())) \n\n\n\ndf.Answers = df.Answers.str.strip() \n\n\n\nimport pandas as pd\nimport fire\n\ndef to_csv(fileName,sheet,outfile):\n df = pd.read_excel(fileName,sheet=sheet)\n for c in df.columns:\n  df[c]= df[c].astype(str)\n  df[c] = df[c].str.replace(r\"/\\n\\r|\\n|\\r/g\",'')\n  df[c] = df[c].str.strip()\n df.to_csv(outfile,index=False,header=False)\n \n\nif __name__ == '__main__':\n  fire.Fire(to_csv)\nDocumentation from pandas"
+  },
+  {
+    "objectID": "posts/2021-02-20-export-excel-to-csv-in-python.html#convert-a-column-to-string-type",
+    "href": "posts/2021-02-20-export-excel-to-csv-in-python.html#convert-a-column-to-string-type",
+    "title": "Export excel to csv in python",
+    "section": "",
+    "text": "df.Answers = df.Answers.astype(str)\nCheck the original in stackoverflow."
+  },
+  {
+    "objectID": "posts/2021-02-20-export-excel-to-csv-in-python.html#remove-new-lines",
+    "href": "posts/2021-02-20-export-excel-to-csv-in-python.html#remove-new-lines",
+    "title": "Export excel to csv in python",
+    "section": "",
+    "text": "df.Answers = df.Answers.str.replace(r\"/\\n\\r|\\n|\\r/g\",'') \nCheck the syntax of replace here.\nIn case you want to modify a column, you can do the following to replace some characters:\ndf.Answers = df.Answers.str.replace(\"\\\"\",\"\")"
+  },
+  {
+    "objectID": "posts/2021-02-20-export-excel-to-csv-in-python.html#remove-all-spaces",
+    "href": "posts/2021-02-20-export-excel-to-csv-in-python.html#remove-all-spaces",
+    "title": "Export excel to csv in python",
+    "section": "",
+    "text": "df.Question.apply(lambda x: \" \".join(x.split()))"
+  },
+  {
+    "objectID": "posts/2021-02-20-export-excel-to-csv-in-python.html#remove-trailing-spaces",
+    "href": "posts/2021-02-20-export-excel-to-csv-in-python.html#remove-trailing-spaces",
+    "title": "Export excel to csv in python",
+    "section": "",
+    "text": "df.Answers = df.Answers.str.strip()"
+  },
+  {
+    "objectID": "posts/2021-02-20-export-excel-to-csv-in-python.html#example-program-in-python",
+    "href": "posts/2021-02-20-export-excel-to-csv-in-python.html#example-program-in-python",
+    "title": "Export excel to csv in python",
+    "section": "",
+    "text": "import pandas as pd\nimport fire\n\ndef to_csv(fileName,sheet,outfile):\n df = pd.read_excel(fileName,sheet=sheet)\n for c in df.columns:\n  df[c]= df[c].astype(str)\n  df[c] = df[c].str.replace(r\"/\\n\\r|\\n|\\r/g\",'')\n  df[c] = df[c].str.strip()\n df.to_csv(outfile,index=False,header=False)\n \n\nif __name__ == '__main__':\n  fire.Fire(to_csv)\nDocumentation from pandas"
+  },
+  {
+    "objectID": "posts/2021-03-08-vim.html",
+    "href": "posts/2021-03-08-vim.html",
+    "title": "Vim shortcuts",
+    "section": "",
+    "text": "Cut/copy and paste using visual selection\nVisual selection is a common feature in applications, but Vim’s visual selection has several benefits.\nTo cut-and-paste or copy-and-paste:\nPosition the cursor at the beginning of the text you want to cut/copy.\nPress v to begin character-based visual selection, or V to select whole lines, or Ctrl-v or Ctrl-q to select a block.\nMove the cursor to the end of the text to be cut/copied. While selecting text, you can perform searches and other advanced movement.\nPress d (delete) to cut, or y (yank) to copy.\nMove the cursor to the desired paste location.\nPress p to paste after the cursor, or P to paste before.\nVisual selection (steps 1-3) can be performed using a mouse.\nIf you want to change the selected text, press c instead of d or y in step 4. In a visual selection, pressing c performs a change by deleting the selected text and entering insert mode so you can type the new text.\n\n\nComment and uncomment\nPut your cursor on the first # character, press CtrlV (or CtrlQ for gVim), and go down until the last commented line and press x, that will delete all the # characters vertically.\nFor commenting a block of text is almost the same:\nFirst, go to the first line you want to comment, press CtrlV. This will put the editor in the VISUAL BLOCK mode.\nThen using the arrow key and select until the last line\nNow press ShiftI, which will put the editor in INSERT mode and then press #. This will add a hash to the first line.\nThen press Esc (give it a second), and it will insert a # character on all other selected lines.\nFor the stripped-down version of vim shipped with debian/ubuntu by default, type : s/^/# in the third step instead (any remaining highlighting of the first character of each line can be removed with :nohl).\nHere are two small screen recordings for visual reference.\n\n\nReplace all\nThe :substitute command searches for a text pattern, and replaces it with a text string. There are many options, but these are what you probably want:\n:s/foo/bar/g\nFind each occurrence of 'foo' (in the current line only), and replace it with 'bar'.\n:%s/foo/bar/g\nFind each occurrence of 'foo' (in all lines), and replace it with 'bar'.\n:%s/foo/bar/gc\nChange each 'foo' to 'bar', but ask for confirmation first.\n:%s/\\&lt;foo\\&gt;/bar/gc\nChange only whole words exactly matching 'foo' to 'bar'; ask for confirmation.\n:%s/foo/bar/gci\nChange each 'foo' (case insensitive due to the i flag) to 'bar'; ask for confirmation.\n:%s/foo\\c/bar/gc is the same because \\c makes the search case insensitive.\nThis may be wanted after using :set noignorecase to make searches case sensitive (the default).\n\n\nReferences\nVisual selection Comment and uncomment"
+  },
+  {
+    "objectID": "posts/2021-03-26-mongodb-commands.html",
+    "href": "posts/2021-03-26-mongodb-commands.html",
+    "title": "MongoDB commands",
+    "section": "",
+    "text": "Connect to mongo using SSL certificates\nmongo --host hostname --port 27027 -ssl --sslPEMKeyFile /path/to/file --sslCAFile /path/to/file\n\n\nLogin as admin user\nuse admin\ndb.auth('user','passwd')\n\n\nshow databases\nshow databases\n\n\nshow collections\nshow collections\n\n\nexplore collections\ndb.collectionname.find()"
+  },
+  {
+    "objectID": "posts/2021-12-23-CLI cheat sheet.html",
+    "href": "posts/2021-12-23-CLI cheat sheet.html",
+    "title": "AWS commands cheat sheet",
+    "section": "",
+    "text": "Max filesize upload in GUI 160GB.\nAWS CLI\n\n\n\naws configure\n\n\n\naws s3api create-bucket --bucket bucketName --region frankfurt --create-bucket-configuration LocationConstraint=frankfurt\n\n\n\naws s3api list-buckets --query \"Buckets[].Name\"\n\n\n\naws s3 cp d:\\localfile s3://bucketname --recursive --exclude \"*\" --include \"*.txt\"\n\n\naws s3 ls s3://bucket\n\n\n\naws s3 cp s3://bucketName  s3://bucketName  --storage-class GLACIER\n\n\n\naws s3 cp s3://bucketName/file.txt s3://bucketName/file.txt --sse AES256\nTo apply to the entire bucket recursively\naws s3 cp s3://bucketName/ s3://bucketName/ --recursive --sse AES256\n\n\n\naws ec2 describe-vpcs --output table\n\naws ec2 create-network-acl --vpc-id vpc-12312321\nTo give it a name\naws ec2 create-tags --resources acl-asdasd --tags Key=Name,Value=NetworkACL1\nto create a network rule:\naws ec2 create-network-acl-entry --network-acl-id acl-afdadf --ingress --rule-number 100 --protocol tcp --port-range From=22,To=22 --cidr-block 0.0.0.0/0 --rule-action allow\n\n\n\nGet the vpc ID\naws ec2 create-security-group --group-name SecurityGroup1 --description \"Security Group\" --vpc-id vpc-asdasd\nwe will get the group id\naws ec2 describe-security-groups --output table\nTag the security group\naws ec2 create-tags --resources sg-asdfasdfasdf --tags Key=Name,Value=SecGroup1\n\naws ec2 authorize-security-group-ingress --group-id sg-asdfasdf --protocol tcp --port 3380 --cidr 100.11.11.0/24\n\n\n\naws ec2 create-vpc --cidr-block 12.0.0.0/16\nGet the vpc id:\naws ec2 describe-vpcs\nAdd tags\naws ec2 create-tags --resources vpc-idididid --tags Key=Name,Value=VPC2\n\naws ec2 create-subnet --vpc-id vpc-001010101 --cidr-block 12.0.1.0/24\nAdd tags to the subnet:\naws ec2 create-tags --resources subnet-idididid --tags Key=Name,Value=Subnet2\n\n\n\nWe need to get the id of the AMI first\naws ec2 run-instances --image-id ami-asdasda --count 1 --instance-type t2.micro --key-name Keypair1 --security-groups-ids sg-asdfas --subnet-id subnet-asdasd\nto update the name, we can use the tags.\n\n\n\naws rds help\n\naws rds describe-db-instance --output table | more\n\naws rds start-db-instance --db-instance-identifier database-1\nTo see the current status we can run the previous command\n\n\n\naws create-user --user-name JGold\n\n\n\naws iam add-user-to-group --user-name JGold ---group-name Group1\n\n\n\naws iam get-user //For your own user\naws iam get-user --user-name JGold\n\n\n\naws iam list-groups-for-user --user-name JGold\n\n\n\naws iam create-group --group-name Group4\n\n\n\naws iam get-group --group-name Group4\n\n\n\naws iam add-user-to-group --user-name JGold --group-name Group4\n\n\n\nWe have the following config file:\n{ \"Dimensions\": {\n    \"Key\" : \"SERVICE\",\n     \"Values\": [ \"Amazon Elastic Compute Cloud - Compute\"]\n     }\n}\naws ce get-cost-and-usage --time-period Start=2019-09-01,End=2019-12-01 \n--granularity MONTHLY --metrics \"BlendedCost\" \"UnblendedCost\" \"UsageQuantity\" \n--group-by Type=DIMENSION,Key=SERVICE Type=TAG,Key=Environment \n--filter file://aws_cost_filter.json --output table"
+  },
+  {
+    "objectID": "posts/2021-12-23-CLI cheat sheet.html#s3",
+    "href": "posts/2021-12-23-CLI cheat sheet.html#s3",
+    "title": "AWS commands cheat sheet",
+    "section": "",
+    "text": "Max filesize upload in GUI 160GB.\nAWS CLI"
+  },
+  {
+    "objectID": "posts/2021-12-23-CLI cheat sheet.html#configure",
+    "href": "posts/2021-12-23-CLI cheat sheet.html#configure",
+    "title": "AWS commands cheat sheet",
+    "section": "",
+    "text": "aws configure"
+  },
+  {
+    "objectID": "posts/2021-12-23-CLI cheat sheet.html#create-a-bucket",
+    "href": "posts/2021-12-23-CLI cheat sheet.html#create-a-bucket",
+    "title": "AWS commands cheat sheet",
+    "section": "",
+    "text": "aws s3api create-bucket --bucket bucketName --region frankfurt --create-bucket-configuration LocationConstraint=frankfurt"
+  },
+  {
+    "objectID": "posts/2021-12-23-CLI cheat sheet.html#list-buckets",
+    "href": "posts/2021-12-23-CLI cheat sheet.html#list-buckets",
+    "title": "AWS commands cheat sheet",
+    "section": "",
+    "text": "aws s3api list-buckets --query \"Buckets[].Name\""
+  },
+  {
+    "objectID": "posts/2021-12-23-CLI cheat sheet.html#upload-files",
+    "href": "posts/2021-12-23-CLI cheat sheet.html#upload-files",
+    "title": "AWS commands cheat sheet",
+    "section": "",
+    "text": "aws s3 cp d:\\localfile s3://bucketname --recursive --exclude \"*\" --include \"*.txt\"\n\n\naws s3 ls s3://bucket\n\n\n\naws s3 cp s3://bucketName  s3://bucketName  --storage-class GLACIER\n\n\n\naws s3 cp s3://bucketName/file.txt s3://bucketName/file.txt --sse AES256\nTo apply to the entire bucket recursively\naws s3 cp s3://bucketName/ s3://bucketName/ --recursive --sse AES256\n\n\n\naws ec2 describe-vpcs --output table\n\naws ec2 create-network-acl --vpc-id vpc-12312321\nTo give it a name\naws ec2 create-tags --resources acl-asdasd --tags Key=Name,Value=NetworkACL1\nto create a network rule:\naws ec2 create-network-acl-entry --network-acl-id acl-afdadf --ingress --rule-number 100 --protocol tcp --port-range From=22,To=22 --cidr-block 0.0.0.0/0 --rule-action allow\n\n\n\nGet the vpc ID\naws ec2 create-security-group --group-name SecurityGroup1 --description \"Security Group\" --vpc-id vpc-asdasd\nwe will get the group id\naws ec2 describe-security-groups --output table\nTag the security group\naws ec2 create-tags --resources sg-asdfasdfasdf --tags Key=Name,Value=SecGroup1\n\naws ec2 authorize-security-group-ingress --group-id sg-asdfasdf --protocol tcp --port 3380 --cidr 100.11.11.0/24\n\n\n\naws ec2 create-vpc --cidr-block 12.0.0.0/16\nGet the vpc id:\naws ec2 describe-vpcs\nAdd tags\naws ec2 create-tags --resources vpc-idididid --tags Key=Name,Value=VPC2\n\naws ec2 create-subnet --vpc-id vpc-001010101 --cidr-block 12.0.1.0/24\nAdd tags to the subnet:\naws ec2 create-tags --resources subnet-idididid --tags Key=Name,Value=Subnet2\n\n\n\nWe need to get the id of the AMI first\naws ec2 run-instances --image-id ami-asdasda --count 1 --instance-type t2.micro --key-name Keypair1 --security-groups-ids sg-asdfas --subnet-id subnet-asdasd\nto update the name, we can use the tags.\n\n\n\naws rds help\n\naws rds describe-db-instance --output table | more\n\naws rds start-db-instance --db-instance-identifier database-1\nTo see the current status we can run the previous command\n\n\n\naws create-user --user-name JGold\n\n\n\naws iam add-user-to-group --user-name JGold ---group-name Group1\n\n\n\naws iam get-user //For your own user\naws iam get-user --user-name JGold\n\n\n\naws iam list-groups-for-user --user-name JGold\n\n\n\naws iam create-group --group-name Group4\n\n\n\naws iam get-group --group-name Group4\n\n\n\naws iam add-user-to-group --user-name JGold --group-name Group4\n\n\n\nWe have the following config file:\n{ \"Dimensions\": {\n    \"Key\" : \"SERVICE\",\n     \"Values\": [ \"Amazon Elastic Compute Cloud - Compute\"]\n     }\n}\naws ce get-cost-and-usage --time-period Start=2019-09-01,End=2019-12-01 \n--granularity MONTHLY --metrics \"BlendedCost\" \"UnblendedCost\" \"UsageQuantity\" \n--group-by Type=DIMENSION,Key=SERVICE Type=TAG,Key=Environment \n--filter file://aws_cost_filter.json --output table"
+  },
+  {
+    "objectID": "posts/2021-12-23-CLI cheat sheet.html#initialize-the-connection",
+    "href": "posts/2021-12-23-CLI cheat sheet.html#initialize-the-connection",
+    "title": "AWS commands cheat sheet",
+    "section": "Initialize the connection",
+    "text": "Initialize the connection\ninitialize-awsdefaults -region us-east-1"
+  },
+  {
+    "objectID": "posts/2021-12-23-CLI cheat sheet.html#search-for-a-command",
+    "href": "posts/2021-12-23-CLI cheat sheet.html#search-for-a-command",
+    "title": "AWS commands cheat sheet",
+    "section": "Search for a command",
+    "text": "Search for a command\nGet-Command *s3b*"
+  },
+  {
+    "objectID": "posts/2021-12-23-CLI cheat sheet.html#create-a-bucket-1",
+    "href": "posts/2021-12-23-CLI cheat sheet.html#create-a-bucket-1",
+    "title": "AWS commands cheat sheet",
+    "section": "Create a bucket",
+    "text": "Create a bucket\nNew-S3Bucket -BucketName pp -Region us-west-2\n\nlist buckets\n`powershell Get-S3Bucket\n\n\nupload a file\nWrite-S3Object -BucketName name -File filename -Key localfile -CannedACLName Private\n\n\nlist files\nGet-S3Object -BucketName name -Key parentFolder\n\nGet-S3Object -BucketName name -Key parentFolder | select Key\n\n\nchange storage class\nCopy-S3Object -BucketName bucket -Key file.txt -DestinationKey file.txt -StorageClass GLACIER\n\n\nset encryption\nThis rule add encryption for new items in the bucket but do not change\nSet-S3BucketEncryption -BucketName bucketName -ServerSideEncryptionConfiguration_ServerSideEnctryptionRule @{ServerSideEncryptionByDefault=@{ServerSideEncryptionAlgorithm=\"AES256\"}}\n` ### Network ACL in Powershell\nGet-EC2VPC\nto get the VPC ID\nNew-EC2NetworkAcl -VpcId vpc-asdasd\nto get the network ACL ID\nNew-EC2Tag -ResourceId acl-asdasd -Tag @{Key=\"Name\";Value=\"NetworkACL4\"}\nto add traffic:\nNew-EC2NetworkAclEntry -NetworkAclId acl-sfsdf -Egress $false -RuleNumner 100 -Protocol 6 -PortRange_From 443 -PortRange_To 443 CidrBlock 199.111.111.111/24 -RuleAction allow\nNote: - protocol 6 is for TCP - 70 is for UDP - 1 for ICMP\n\n\nSecurity group\n\nGet the vpc ID\nCreate the security group\n\nNew-EC2SecurityGroup -GroupName secgroupname -Description \"DEscription\" -VpcId vpc-asdfasdf\nIt returns a sec group id\nNew-EC2Tag -ResourceId sg-asfdasdf -Tag @{Key=\"Name\";Value=\"SecurityGroup3\"}\nTo create a rule:\n$rule1 = @{IPProtocol=\"tcp\";FromPort=\"22\";ToPort=\"22\";IpRanges=\"199.11.11.0/24\"}\nTo apply\nGrant-EC2SecurityGroupIngress -GroupId sg-fasfd -IpPermission $rule1\n\n\nVPC creation\nNew-EC2VPC -CidrBlock 13.0.0.0/16\nGive a name with the tags:\nNew-EC2Tag -ResourceId vpc-asdasd -Tag @{Key=\"Name\";Value=\"VPC3\"}\nCreate a subnet:\nNew-EC2Subnet -VpcId vpc-asda -CidrBlock 13.0.1.0/24\nGive a name to the subnet\nNew-EC2Tag -ResourceId subnet-asdasd -Tag @{Key=\"Name\";Value=\"subnet21\"}\n\n\nEC2 creation\nNew-EC2Instance -ImageId ami-asdfasdf -MinCount 1 -MaxCount 1 -KeyName KeyPair1 -SecurityGroupId sg-asdf -InstanceType m1.small -SubnetId subnet-asfas\nAdd a tag to add a name.\n\n\nGet Status RDS Database\nGet-RDSDBInstance\nTo do a selection\nGet-RFSDBInstance | select engine,dbinstancestatus\n\nGet-RFSDBInstance | select DBInstanceIdentifier,Engine,EngineVersion | where-object {$_.Engine -like \"*mysql*\"}\n\n\nStart RDS InstanceType\nStart-RDSDBInstance \n\n\nIAM create user\nNew-IAMUser -UserName MBishop\n\n\nGet user\nGet-IAMUser\nGet-IAMUer -Username MBishop\n\n\nIAM add user to group\nAdd-IAMUserToGroup -UserName MBishop -GroupName Group1\n\n\nIAM get group\nGet-AIMGroup -GroupName Group1\n\n\nIAM crete group\nNew-IAMGroup -GroupName Group2\n\n\nIAM get group policies\nGet-IAMGroupPolicies -GroupName Group1\nThe attched group policies can be obtain here:\nGet-IAMattachedgrouppolicies -groupname Group1\n\n\nExplore costs using PowerShell\n\nfirst, define a time interval:\n\n $interval = New-Object Amazon.CostExplorer.Model.DateInterval\n $interval.Start = Get-Date (Get-Date).AddDays(-30) -Format 'yyyy-MM-dd'\n $interval.End = Get-Date -Format 'yyyy-MM-dd'\nto get the cost:\n $costusage = get-cecostusage -granularity monthly -timeperiod $interval -metric BlendedCost\nTo check the values:\n $costusage.resultsbytime.total.values"
+  },
+  {
+    "objectID": "posts/2022-07-15-Convert heic to jpg in windows.html",
+    "href": "posts/2022-07-15-Convert heic to jpg in windows.html",
+    "title": "Convert Heic files to JPG in windows",
+    "section": "",
+    "text": "Convert Heic files to JPG in windows\nHeic format is a proprietary format for images. We can convert it in windows using Gimp software and some batch scripting. Once you installed Gimp, you can use the following batch script on windows to convert all images into jpg.\n@echo off\n\n\nREM Find Gimp in the registry\nfor /f \"tokens=2*\" %%a in ('reg query \"HKCR\\GIMP2.svg\\shell\\open\\command\" /ve 2^&gt;^&1^|find \"REG_\"') do @set gimp=%%b\n\nREM Calculate console exe\nset gimp=%gimp:gimp-=gimp-console-%\n\nREM Isolate exe\nfor %%i in (%gimp%) do (\n    @set gimp=%%i\n    goto :found\n)\n\n:found\necho Found Gimp console: %gimp%\n\nREM Process files (change to \"for /r %%i\" for recursion)\nfor %%i in (*.heic) do (\n    echo - Converting [ %%i --^&gt; %%~ni.jpg] \n    %gimp% -i -b \"(let* ((image (car (file-heif-load RUN-NONINTERACTIVE \\\"%%i\\\" \\\"\\\" ))) (drawable (car (gimp-image-get-active-layer image)))) (plug-in-autocrop RUN-NONINTERACTIVE image drawable) (gimp-file-save RUN-NONINTERACTIVE image drawable \\\"%%~ni.jpg\\\" \\\"%%~ni.jpg\\\") (gimp-image-delete image))\" -b \"(gimp-quit 0)\"\n)\n\nI just modified the function called to load the heic files. Save this as a .bat file and it will transform all your heic files into jpg.\nMore information in the following sites:\nSuperUser Gimp manual"
+  },
+  {
+    "objectID": "posts/2022-07-20-Hugo templates.html",
+    "href": "posts/2022-07-20-Hugo templates.html",
+    "title": "Hugo template for Adobe XD",
+    "section": "",
+    "text": "Creation of a new theme\nhttps://retrolog.io/blog/creating-a-hugo-theme-from-scratch/\nhttps://gohugo.io/commands/hugo_new_theme/#hugo-new-theme"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "",
+    "text": "First we install ubuntu server on virtutal box\n\n\nhttps://cambiatealinux.com/instalar-las-guest-additions-virtualbox-ubuntu-server\nsudo apt install gcc make perl\n\n\n\n\nNAT address to the outside world\nHost only address with dhcp\n\n\n\n\nsudo dhclient -v enp0s8\n\n\n\nhttps://fabiofernandesx.medium.com/preparing-virtual-box-vms-to-run-kubernetes-a31c7c851566\n/etc/netplan\nsudo -i vim /etc/netplan/01-netcfg.yaml\ncreate the following yaml file\nnetwork: version: 2 renderer: networkd ethernets: enp0s8: dhcp4: no addresses: [192.168.56.101/24]\nnetplan generate sudo netplan apply\n\n\n\nhttps://linuxize.com/post/how-to-enable-ssh-on-ubuntu-20-04/\nsudo systemctl status ssh\nenable firewall\nsudo ufw allow ssh\nufw default allow incoming\n\n\nsudo ufw allow 179/tcp sudo ufw allow 4789/tcp sudo ufw allow 5473/tcp sudo ufw allow 443/tcp sudo ufw allow 6443/tcp sudo ufw allow 2379/tcp sudo ufw allow 4149/tcp sudo ufw allow 10250/tcp sudo ufw allow 10255/tcp sudo ufw allow 10256/tcp sudo ufw allow 9099/tcp\n\n\n\n\nhostnamectl set-hostname \nhostnamectl status\n\n\n\nsudo apt-get update sudo apt-get upgrade -y\n\n\n\nsudo apt-get install vim\n\n\n\nsudo -i"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#guest-additions-intallation",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#guest-additions-intallation",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "",
+    "text": "https://cambiatealinux.com/instalar-las-guest-additions-virtualbox-ubuntu-server\nsudo apt install gcc make perl"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#prepare-networking",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#prepare-networking",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "",
+    "text": "NAT address to the outside world\nHost only address with dhcp"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#renew-ip-address-from-host-only-network",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#renew-ip-address-from-host-only-network",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "",
+    "text": "sudo dhclient -v enp0s8"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#permanent-option-for-host-only",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#permanent-option-for-host-only",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "",
+    "text": "https://fabiofernandesx.medium.com/preparing-virtual-box-vms-to-run-kubernetes-a31c7c851566\n/etc/netplan\nsudo -i vim /etc/netplan/01-netcfg.yaml\ncreate the following yaml file\nnetwork: version: 2 renderer: networkd ethernets: enp0s8: dhcp4: no addresses: [192.168.56.101/24]\nnetplan generate sudo netplan apply"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#configure-access-to-ssh-server",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#configure-access-to-ssh-server",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "",
+    "text": "https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-20-04/\nsudo systemctl status ssh\nenable firewall\nsudo ufw allow ssh\nufw default allow incoming\n\n\nsudo ufw allow 179/tcp sudo ufw allow 4789/tcp sudo ufw allow 5473/tcp sudo ufw allow 443/tcp sudo ufw allow 6443/tcp sudo ufw allow 2379/tcp sudo ufw allow 4149/tcp sudo ufw allow 10250/tcp sudo ufw allow 10255/tcp sudo ufw allow 10256/tcp sudo ufw allow 9099/tcp"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#change-the-hostname-on-the-cloned-vm",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#change-the-hostname-on-the-cloned-vm",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "",
+    "text": "hostnamectl set-hostname \nhostnamectl status"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#upgrade-system",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#upgrade-system",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "",
+    "text": "sudo apt-get update sudo apt-get upgrade -y"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#install-vim",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#install-vim",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "",
+    "text": "sudo apt-get install vim"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#run-sudo-commands-without-password",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#run-sudo-commands-without-password",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "",
+    "text": "sudo -i"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#packages",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#packages",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "Packages:",
+    "text": "Packages:\nsudo apt install curl apt-transport-https vim git wget gnupg2 software-properties-common apt-transport-https ca-certificates uidmap -y"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#disable-swap",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#disable-swap",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "Disable swap",
+    "text": "Disable swap\nswapoff -a"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#test-modules",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#test-modules",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "test modules",
+    "text": "test modules\n modprobe overlay\n modprobe br_netfilter"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#update-kernel-networking",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#update-kernel-networking",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "update kernel networking",
+    "text": "update kernel networking\ncat &lt;&lt; EOF | tee /etc/sysctl.d/kubernetes.conf\n&gt; net.bridge.bridge-nf-call-ip6tables = 1\n&gt; net.bridge.bridge-nf-call-iptables = 1\n&gt; net.ipv4.ip_forward = 1\n&gt; EOF\noutput: net.bridge.bridge-nf-call-ip6tables = 1 net.bridge.bridge-nf-call-iptables = 1 net.ipv4.ip_forward = 1\nensure to apply changes:\nsysctl --system"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#install-software",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#install-software",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "install software",
+    "text": "install software\ncurl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -\napt install containerd -y\nvim /etc/apt/sources.list.d/kubernetes.list add line: deb http://apt.kubernetes.io/ kubernetes-xenial main\nupdate key\ncurl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -\n apt-get update"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#kubernetes-installation-here-for-the-workernode",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#kubernetes-installation-here-for-the-workernode",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "Kubernetes installation (here for the workernode)",
+    "text": "Kubernetes installation (here for the workernode)\napt-get install -y kubeadm=1.24.1-00 kubelet=1.24.1-00 kubectl=1.24.1-00\napt-mark hold kubeadm kubelet kubectl\nkubeadm set on hold. kubelet set on hold. kubectl set on hold."
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#network-installation-calico",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#network-installation-calico",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "network installation CALICO",
+    "text": "network installation CALICO\nwget https://docs.projectcalico.org/manifests/calico.yaml\nip addr show\n10.0.2.15\ncreate an alias in the /etc/hosts 10.0.2.15 k8scp\nkubeadm config file (kubeadm-config.yaml) apiVersion: kubeadm.k8s.io/v1beta3 kind: ClusterConfiguration kubernetesVersion: 1.24.1 controlPlaneEndpoint: “k8scp:6443” networking: podSubnet: 192.168.0.0/16"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#initialize-the-control-plane",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#initialize-the-control-plane",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "initialize the control plane",
+    "text": "initialize the control plane\nkubeadm init --config=kubeadm-config.yaml --upload-certs | tee kubeadm-ini.out\nexit and run as regular user:\n mkdir -p $HOME/.kube\n sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config\n sudo chown $(id -u):$(id -g) $HOME/.kube/config"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#network-configuration",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#network-configuration",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "network configuration",
+    "text": "network configuration\ncopy the calico file into the current user.\nsudo cp /root/calico.yaml .\napply the config:\n kubectl apply -f calico.yaml"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#enable-bash-autocompletion",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#enable-bash-autocompletion",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "enable bash autocompletion",
+    "text": "enable bash autocompletion\nsudo apt-get install bash-completion -y\nsource &lt; (kubectl completion bash) echo “source &lt;(kubectl completion bash)” &gt;&gt; $HOME/.bashrc\n## view config sudo kubeadm config print init-defaults\napiVersion: kubeadm.k8s.io/v1beta3 bootstrapTokens: - groups: - system:bootstrappers:kubeadm:default-node-token token: abcdef.0123456789abcdef ttl: 24h0m0s usages: - signing - authentication kind: InitConfiguration localAPIEndpoint: advertiseAddress: 1.2.3.4 bindPort: 6443 nodeRegistration: criSocket: unix:///var/run/containerd/containerd.sock imagePullPolicy: IfNotPresent name: node taints: null\n\napiServer: timeoutForControlPlane: 4m0s apiVersion: kubeadm.k8s.io/v1beta3 certificatesDir: /etc/kubernetes/pki clusterName: kubernetes"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#network-config",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#network-config",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "network config",
+    "text": "network config\ncat /etc/netplan/01-netcfg.yaml network: version: 2 renderer: networkd ethernets: enp0s8: dhcp4: no addresses: [192.168.56.103/24]\nnetplan generate netplan apply\nupdate hostname file with ens4 ip ip addr show enp0s3 | grep inet inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic enp0s3 inet6 fe80::a00:27ff:fe31:54bd/64 scope link"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#on-the-control-plane",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#on-the-control-plane",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "on the control plane",
+    "text": "on the control plane\n\nget the token politeles@cp:~$ sudo kubeadm token create qsm8ss.g8vf8w8qbro4z1vo politeles@cp:~$ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed ‘s/^.* //’ dce22f3d49e94e10e282e64024b9b5fddaa6ed78a635a8a744e4c55446e3a328"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#on-the-worker-node",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#on-the-worker-node",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "on the worker node",
+    "text": "on the worker node\nupdate /etc/hosts with the hostname of the control plane\nroot@worker1:~# cat /etc/hosts\n10.0.2.15 k8scp\nJoin the cluster"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#untaint-the-control-plane-just-for-non-prod",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#untaint-the-control-plane-just-for-non-prod",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "untaint the control plane (just for non-prod)",
+    "text": "untaint the control plane (just for non-prod)\nkubectl taint nodes --all node-role.kubernetes.io/control-plane-\nnode/cp untainted error: taint “node-role.kubernetes.io/control-plane” not found"
+  },
+  {
+    "objectID": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#update-containerd-config",
+    "href": "posts/2022-12-02 Installing kubernetes in Virtual Box.html#update-containerd-config",
+    "title": "Install Kubernetes in Virtual Box",
+    "section": "update containerd config",
+    "text": "update containerd config\n sudo crictl config --set runtime-endpoint=unix:///run/containerd/containterd.sock --set image-endpoint=unix:///run/containerd/containerd.sock"
+  },
+  {
+    "objectID": "posts/2022-12-16 Kubernetes cheat sheet.html",
+    "href": "posts/2022-12-16 Kubernetes cheat sheet.html",
+    "title": "Kubernetes cheat sheet 2",
+    "section": "",
+    "text": "kubectl get events\n\n\n\nsudo systemctl restart kubelet\n\n\n\npoliteles@cp:~$ kubectl get node NAME STATUS ROLES AGE VERSION cp Ready,SchedulingDisabled control-plane 33h v1.25.1 worker1 Ready  32h v1.24.1 politeles@cp:~$ kubectl uncordon cp node/cp uncordoned politeles@cp:~$ kubectl get node NAME STATUS ROLES AGE VERSION cp Ready control-plane 33h v1.25.1 worker1 Ready  32h v1.24.1\n\n\n\nkubectl replace -f first.yaml\n\n\n\npoliteles@cp:~$ kubectl describe pod nginx-6c8b449b8f-87d4t | grep Node:\nNode:         worker1/10.0.2.5\n\n\n\nkubectl expose deployment nginx –type=LoadBalancer"
+  },
+  {
+    "objectID": "posts/2022-12-16 Kubernetes cheat sheet.html#check-all-k8s-actions",
+    "href": "posts/2022-12-16 Kubernetes cheat sheet.html#check-all-k8s-actions",
+    "title": "Kubernetes cheat sheet 2",
+    "section": "",
+    "text": "kubectl get events"
+  },
+  {
+    "objectID": "posts/2022-12-16 Kubernetes cheat sheet.html#restart-kubelet",
+    "href": "posts/2022-12-16 Kubernetes cheat sheet.html#restart-kubelet",
+    "title": "Kubernetes cheat sheet 2",
+    "section": "",
+    "text": "sudo systemctl restart kubelet"
+  },
+  {
+    "objectID": "posts/2022-12-16 Kubernetes cheat sheet.html#uncordon-a-node",
+    "href": "posts/2022-12-16 Kubernetes cheat sheet.html#uncordon-a-node",
+    "title": "Kubernetes cheat sheet 2",
+    "section": "",
+    "text": "politeles@cp:~$ kubectl get node NAME STATUS ROLES AGE VERSION cp Ready,SchedulingDisabled control-plane 33h v1.25.1 worker1 Ready  32h v1.24.1 politeles@cp:~$ kubectl uncordon cp node/cp uncordoned politeles@cp:~$ kubectl get node NAME STATUS ROLES AGE VERSION cp Ready control-plane 33h v1.25.1 worker1 Ready  32h v1.24.1"
+  },
+  {
+    "objectID": "posts/2022-12-16 Kubernetes cheat sheet.html#replace-a-deployment",
+    "href": "posts/2022-12-16 Kubernetes cheat sheet.html#replace-a-deployment",
+    "title": "Kubernetes cheat sheet 2",
+    "section": "",
+    "text": "kubectl replace -f first.yaml"
+  },
+  {
+    "objectID": "posts/2022-12-16 Kubernetes cheat sheet.html#in-which-node-is-executing-a-pod",
+    "href": "posts/2022-12-16 Kubernetes cheat sheet.html#in-which-node-is-executing-a-pod",
+    "title": "Kubernetes cheat sheet 2",
+    "section": "",
+    "text": "politeles@cp:~$ kubectl describe pod nginx-6c8b449b8f-87d4t | grep Node:\nNode:         worker1/10.0.2.5"
+  },
+  {
+    "objectID": "posts/2022-12-16 Kubernetes cheat sheet.html#deploy-with-a-load-balancer",
+    "href": "posts/2022-12-16 Kubernetes cheat sheet.html#deploy-with-a-load-balancer",
+    "title": "Kubernetes cheat sheet 2",
+    "section": "",
+    "text": "kubectl expose deployment nginx –type=LoadBalancer"
+  },
+  {
+    "objectID": "posts/2022-12-16 Kubernetes cheat sheet.html#backup-data-dir",
+    "href": "posts/2022-12-16 Kubernetes cheat sheet.html#backup-data-dir",
+    "title": "Kubernetes cheat sheet 2",
+    "section": "backup data dir",
+    "text": "backup data dir\npoliteles@cp:~$ sudo grep data-dir /etc/kubernetes/manifests/etcd.yaml\n[sudo] password for politeles:\n    - --data-dir=/var/lib/etcd\nHealth check:\n kubectl -n kube-system exec -it etcd-cp -- sh \\\n&gt; -c \"ETCDCTL_API=3 \\\n&gt; ETCDCTL_CACERT=/etc/kubernetes/pki/etcd/ca.crt \\\n&gt; ETCDCTL_CERT=/etc/kubernetes/pki/etcd/server.crt \\\n&gt; ETCDCTL_KEY=/etc/kubernetes/pki/etcd/server.key \\\n&gt; etcdctl endpoint health\"\nkubectl -n kube-system exec -it etcd-cp – sh\n&gt; -c “ETCDCTL_API=3\n&gt; ETCDCTL_CACERT=/etc/kubernetes/pki/etcd/ca.crt\n&gt; ETCDCTL_CERT=/etc/kubernetes/pki/etcd/server.crt\n&gt; ETCDCTL_KEY=/etc/kubernetes/pki/etcd/server.key\n&gt; etcdctl –endpoints=https://127.0.0.1:2379 member list”\nSave snapshot of etcd:\npoliteles@cp:~$ kubectl -n kube-system exec -it etcd-cp -- sh -c \"ETCDCTL_API=3 \\\nETCDCTL_CACERT=/etc/kubernetes/pki/etcd/ca.crt \\\nETCDCTL_CERT=/etc/kubernetes/pki/etcd/server.crt \\\nETCDCTL_KEY=/etc/kubernetes/pki/etcd/server.key \\\netcdctl --endpoints=https://127.0.0.1:2379 snapshot save /var/lib/etcd/snapshot.db\""
+  },
+  {
+    "objectID": "posts/2022-12-16 Kubernetes cheat sheet.html#log-file-locations",
+    "href": "posts/2022-12-16 Kubernetes cheat sheet.html#log-file-locations",
+    "title": "Kubernetes cheat sheet 2",
+    "section": "Log file locations",
+    "text": "Log file locations\njournalctl -u kubelet | less\n\nControl plane\nsudo find / -name “apiserverlog”\n/var/log/kube-apiserver.log /var/log/kube-scheduler.log /var/log/kube-controller-manager.log\n/var/log/containers\n/var/log/pods\n\n\nWorker nodes\n/var/log/kubelet.log /var/log/kube-proxy.log"
+  },
+  {
+    "objectID": "posts/2023-05-25- Reusing docker desktop.html",
+    "href": "posts/2023-05-25- Reusing docker desktop.html",
+    "title": "Reusing docker desktop for windows.",
+    "section": "",
+    "text": "Reusing docker desktop\nAfter some time doing experiments on kubernetes, I want to work in docker for windows using kubernetes. Docker for desktop documentation.\nOpen a terminal\nPS C:\\Users\\polit&gt; kubectl config get-contexts\nCURRENT   NAME             CLUSTER          AUTHINFO         NAMESPACE\n          docker-desktop   docker-desktop   docker-desktop\n*         dppizza          dppizza          dppizza          default\n\n\nand change the current to point to docker-desktop.\nPS C:\\Users\\polit&gt; kubectl config use-context docker-desktop\nSwitched to context \"docker-desktop\"."
+  },
+  {
+    "objectID": "posts/2023-06-04_upgrade_composer.html",
+    "href": "posts/2023-06-04_upgrade_composer.html",
+    "title": "Upgrading to docker compose v2",
+    "section": "",
+    "text": "There are several ways, but one of them is to update docker desktop.\n\n\njust add a volumes tag, like in the example:\nversion: '3.9'\nservices:\n  orfeon:\n    build:\n     context: .\n     dockerfile: dockerfile_updated\n    volumes:\n      - .:/var/www/html\n    ports:\n      - \"8090:80\"\n    depends_on:\n      - db\n  db:\n    image: \"mysql:8.0.33\" \n    ports:\n      - \"3306:3306\"\n    volumes:\n      - ./db/:/docker-entrypoint-initdb.d/\n    restart: always\n    environment:\n      MYSQL_ROOT_PASSWORD: supersafepass\n      MYSQL_DATABASE: youruser\n      MYSQL_USER: youruser\n      MYSQL_PASSWORD: supersafepass\nvolumes:\n  reserved:"
+  },
+  {
+    "objectID": "posts/2023-06-04_upgrade_composer.html#automatically-update-the-code",
+    "href": "posts/2023-06-04_upgrade_composer.html#automatically-update-the-code",
+    "title": "Upgrading to docker compose v2",
+    "section": "",
+    "text": "just add a volumes tag, like in the example:\nversion: '3.9'\nservices:\n  orfeon:\n    build:\n     context: .\n     dockerfile: dockerfile_updated\n    volumes:\n      - .:/var/www/html\n    ports:\n      - \"8090:80\"\n    depends_on:\n      - db\n  db:\n    image: \"mysql:8.0.33\" \n    ports:\n      - \"3306:3306\"\n    volumes:\n      - ./db/:/docker-entrypoint-initdb.d/\n    restart: always\n    environment:\n      MYSQL_ROOT_PASSWORD: supersafepass\n      MYSQL_DATABASE: youruser\n      MYSQL_USER: youruser\n      MYSQL_PASSWORD: supersafepass\nvolumes:\n  reserved:"
+  },
+  {
+    "objectID": "posts/2023-07-06-elk-docker-kubernetes-for-windows.html",
+    "href": "posts/2023-07-06-elk-docker-kubernetes-for-windows.html",
+    "title": "Setting up ELK stack on Kubernetes in docker for windows.",
+    "section": "",
+    "text": "First of all, I’m installing Helm from the releases page, the windows version. I copied to the typical windows program files folder and updated the PATH environment variable to check the new helm folder. So now I can use it in console. I studied the following tutorials: (https://blog.knoldus.com/how-to-deploy-elk-stack-on-kubernetes/ https://tharangarajapaksha.medium.com/)(elk-stack-in-k8s-cluster-13bb509185e0) (https://www.cloudsigma.com/installing-software-on-kubernetes-with-helm-3-package-manager-on-windows/)\nI’m going to create a new namespace in the k8s cluster for elk stak.\nkubectl create namespace elk \nBecause I have Helm, I’m going to install the ingress controller using the following command:\nhelm upgrade --install ingress-nginx ingress-nginx   --repo https://kubernetes.github.io/ingress-nginx   --namespace ingress-nginx --create-namespace\nNow I’m going to install the helm chart for elasticsearch, I’m using the default values, but I’m going to change the name of the release to elk.\nI’m using the guide from elastic.co here\nkubectl create -f https://download.elastic.co/downloads/eck/2.8.0/crds.yaml\nNow, I’m going to install the operator, which is the one that will create the elasticsearch cluster.\nkubectl apply -f https://download.elastic.co/downloads/eck/2.8.0/operator.yaml\nMonitor the operator deployment until it is ready:\nkubectl -n elastic-system logs -f statefulset.apps/elastic-operator\nNow, I’m going to apply the operator configuration, which is the one that will create the elasticsearch cluster.\nCreate a file with the following content:\napiVersion: elasticsearch.k8s.elastic.co/v1\nkind: Elasticsearch\nmetadata:\n  name: quickstart\nspec:\n  version: 8.8.2\n  nodeSets:\n  - name: default\n    count: 1\n    config:\n      node.store.allow_mmap: false\nand now apply it:\nkubectl apply -f elasticsearch.yaml\nIt will take a while to be available, you can check the status with the following command:\nkubectl get elasticsearch\nand the output:\nNAME         HEALTH    NODES   VERSION   PHASE             AGE\nquickstart   unknown           8.8.2     ApplyingChanges   46s\nwhen it’s ready, the output will be:\nNAME         HEALTH   NODES   VERSION   PHASE   AGE\nquickstart   green    1       8.8.2     Ready   2m38s\nYou can check the pods with the following command:\nkubectl get pods --selector='elasticsearch.k8s.elastic.co/cluster-name=quickstart'\n\n\nfirst, check the cluster IP:\nkubectl get service quickstart-es-http\nNext, get the credentials (you can use powershell)\n$PASSWORD = kubectl get secret quickstart-es-elastic-user -o go-template='{{.data.elastic | base64decode}}'\nor you can use cmd:\ncurl -u \"elastic:$PASSWORD\" -k \"https://localhost:9200\"\n{\n  \"name\" : \"quickstart-es-default-0\",\n  \"cluster_name\" : \"quickstart\",\n  \"cluster_uuid\" : \"WWtwSzimREaMT38n65lghA\",\n  \"version\" : {\n    \"number\" : \"8.8.2\",\n    \"build_flavor\" : \"default\",\n    \"build_type\" : \"docker\",\n    \"build_hash\" : \"98e1271edf932a480e4262a471281f1ee295ce6b\",\n    \"build_date\" : \"2023-06-26T05:16:16.196344851Z\",\n    \"build_snapshot\" : false,\n    \"lucene_version\" : \"9.6.0\",\n    \"minimum_wire_compatibility_version\" : \"7.17.0\",\n    \"minimum_index_compatibility_version\" : \"7.0.0\"\n  },\n  \"tagline\" : \"You Know, for Search\"\n}\n\n\n\nTo deploy Kibana, we use the following file:\napiVersion: kibana.k8s.elastic.co/v1\nkind: Kibana\nmetadata:\n  name: quickstart\nspec:\n  version: 8.8.2\n  count: 1\n  elasticsearchRef:\n    name: quickstart\nThe command to apply it is:\nkubectl apply -f .\\kibana.yaml\nCheck the status and wait until it’s ready:\nkubectl get kibana\nThe output will be:\nNAME         HEALTH   NODES   VERSION   AGE\nquickstart   red              8.8.2     38s\nWhen it’s ready, the output will be:\nquickstart   green    1       8.8.2     4m9s\nCheck the pods:\nkubectl get pod --selector='kibana.k8s.elastic.co/name=quickstart'\nThe output will be:\nNAME                             READY   STATUS    RESTARTS   AGE\nquickstart-kb-66fb9f8b65-bsdp7   1/1     Running   0          5m20s\nNow, check the service:\nkubectl get service quickstart-kb-http\nThe output will be:\nNAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE\nquickstart-kb-http   ClusterIP   10.111.153.143   &lt;none&gt;        5601/TCP   5m40s\nYou can now forward the port\nkubectl port-forward service/quickstart-kb-http 5601\nGet the password:\nkubectl get secret quickstart-es-elastic-user -o=jsonpath='{.data.elastic}' | %{[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_))};\nIt’s the same as the elasticsearch password. Anyway, let’s connect to the web interface, open a browser and go to http://localhost:5601"
+  },
+  {
+    "objectID": "posts/2023-07-06-elk-docker-kubernetes-for-windows.html#request-elasticsearch-access",
+    "href": "posts/2023-07-06-elk-docker-kubernetes-for-windows.html#request-elasticsearch-access",
+    "title": "Setting up ELK stack on Kubernetes in docker for windows.",
+    "section": "",
+    "text": "first, check the cluster IP:\nkubectl get service quickstart-es-http\nNext, get the credentials (you can use powershell)\n$PASSWORD = kubectl get secret quickstart-es-elastic-user -o go-template='{{.data.elastic | base64decode}}'\nor you can use cmd:\ncurl -u \"elastic:$PASSWORD\" -k \"https://localhost:9200\"\n{\n  \"name\" : \"quickstart-es-default-0\",\n  \"cluster_name\" : \"quickstart\",\n  \"cluster_uuid\" : \"WWtwSzimREaMT38n65lghA\",\n  \"version\" : {\n    \"number\" : \"8.8.2\",\n    \"build_flavor\" : \"default\",\n    \"build_type\" : \"docker\",\n    \"build_hash\" : \"98e1271edf932a480e4262a471281f1ee295ce6b\",\n    \"build_date\" : \"2023-06-26T05:16:16.196344851Z\",\n    \"build_snapshot\" : false,\n    \"lucene_version\" : \"9.6.0\",\n    \"minimum_wire_compatibility_version\" : \"7.17.0\",\n    \"minimum_index_compatibility_version\" : \"7.0.0\"\n  },\n  \"tagline\" : \"You Know, for Search\"\n}"
+  },
+  {
+    "objectID": "posts/2023-07-06-elk-docker-kubernetes-for-windows.html#kibana",
+    "href": "posts/2023-07-06-elk-docker-kubernetes-for-windows.html#kibana",
+    "title": "Setting up ELK stack on Kubernetes in docker for windows.",
+    "section": "",
+    "text": "To deploy Kibana, we use the following file:\napiVersion: kibana.k8s.elastic.co/v1\nkind: Kibana\nmetadata:\n  name: quickstart\nspec:\n  version: 8.8.2\n  count: 1\n  elasticsearchRef:\n    name: quickstart\nThe command to apply it is:\nkubectl apply -f .\\kibana.yaml\nCheck the status and wait until it’s ready:\nkubectl get kibana\nThe output will be:\nNAME         HEALTH   NODES   VERSION   AGE\nquickstart   red              8.8.2     38s\nWhen it’s ready, the output will be:\nquickstart   green    1       8.8.2     4m9s\nCheck the pods:\nkubectl get pod --selector='kibana.k8s.elastic.co/name=quickstart'\nThe output will be:\nNAME                             READY   STATUS    RESTARTS   AGE\nquickstart-kb-66fb9f8b65-bsdp7   1/1     Running   0          5m20s\nNow, check the service:\nkubectl get service quickstart-kb-http\nThe output will be:\nNAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE\nquickstart-kb-http   ClusterIP   10.111.153.143   &lt;none&gt;        5601/TCP   5m40s\nYou can now forward the port\nkubectl port-forward service/quickstart-kb-http 5601\nGet the password:\nkubectl get secret quickstart-es-elastic-user -o=jsonpath='{.data.elastic}' | %{[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_))};\nIt’s the same as the elasticsearch password. Anyway, let’s connect to the web interface, open a browser and go to http://localhost:5601"
+  }
+]

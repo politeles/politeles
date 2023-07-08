@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2022-12-03">
+<meta name="description" content="Linux commands cheat sheet">
+
+<title>José Enrique Pons Website - Linux commands cheat sheet</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">José Enrique Pons Website</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/politeles" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Linux commands cheat sheet</h1>
+                  <div>
+        <div class="description">
+          Linux commands cheat sheet
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">linux</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 3, 2022</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#linux-commands-cheat-sheet" id="toc-linux-commands-cheat-sheet" class="nav-link active" data-scroll-target="#linux-commands-cheat-sheet">Linux commands cheat sheet</a></li>
+  <li><a href="#swap-management" id="toc-swap-management" class="nav-link" data-scroll-target="#swap-management">SWAP management</a></li>
+  <li><a href="#networking" id="toc-networking" class="nav-link" data-scroll-target="#networking">Networking</a>
+  <ul class="collapse">
+  <li><a href="#firewall" id="toc-firewall" class="nav-link" data-scroll-target="#firewall">Firewall</a></li>
+  <li><a href="#list-all-rules-in-ip-tables" id="toc-list-all-rules-in-ip-tables" class="nav-link" data-scroll-target="#list-all-rules-in-ip-tables">List all rules in IP tables</a>
+  <ul class="collapse">
+  <li><a href="#iptables-commands" id="toc-iptables-commands" class="nav-link" data-scroll-target="#iptables-commands">iptables commands</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#hostname" id="toc-hostname" class="nav-link" data-scroll-target="#hostname">Hostname</a></li>
+  <li><a href="#system-logging" id="toc-system-logging" class="nav-link" data-scroll-target="#system-logging">System logging</a>
+  <ul class="collapse">
+  <li><a href="#log-file-locations" id="toc-log-file-locations" class="nav-link" data-scroll-target="#log-file-locations">log file locations</a>
+  <ul class="collapse">
+  <li><a href="#authorization-log" id="toc-authorization-log" class="nav-link" data-scroll-target="#authorization-log">Authorization log</a></li>
+  <li><a href="#daemon-log" id="toc-daemon-log" class="nav-link" data-scroll-target="#daemon-log">Daemon Log</a></li>
+  <li><a href="#debug-log" id="toc-debug-log" class="nav-link" data-scroll-target="#debug-log">Debug log</a></li>
+  <li><a href="#kernel-log" id="toc-kernel-log" class="nav-link" data-scroll-target="#kernel-log">Kernel log</a></li>
+  <li><a href="#system-log" id="toc-system-log" class="nav-link" data-scroll-target="#system-log">System log</a></li>
+  <li><a href="#application-logs" id="toc-application-logs" class="nav-link" data-scroll-target="#application-logs">Application logs</a></li>
+  <li><a href="#apache" id="toc-apache" class="nav-link" data-scroll-target="#apache">Apache</a></li>
+  <li><a href="#x11" id="toc-x11" class="nav-link" data-scroll-target="#x11">X11</a></li>
+  <li><a href="#login-failures" id="toc-login-failures" class="nav-link" data-scroll-target="#login-failures">login failures</a></li>
+  <li><a href="#last-logins-log" id="toc-last-logins-log" class="nav-link" data-scroll-target="#last-logins-log">Last logins log</a></li>
+  <li><a href="#login-records-log" id="toc-login-records-log" class="nav-link" data-scroll-target="#login-records-log">Login records log</a></li>
+  </ul></li>
+  <li><a href="#containers" id="toc-containers" class="nav-link" data-scroll-target="#containers">Containers</a></li>
+  <li><a href="#containerd" id="toc-containerd" class="nav-link" data-scroll-target="#containerd">Containerd</a>
+  <ul class="collapse">
+  <li><a href="#list-all-namespaces" id="toc-list-all-namespaces" class="nav-link" data-scroll-target="#list-all-namespaces">list all namespaces</a></li>
+  <li><a href="#list-all-containers-running-in-kubernetes" id="toc-list-all-containers-running-in-kubernetes" class="nav-link" data-scroll-target="#list-all-containers-running-in-kubernetes">list all containers running in kubernetes</a></li>
+  <li><a href="#list-all-tasks-running" id="toc-list-all-tasks-running" class="nav-link" data-scroll-target="#list-all-tasks-running">list all tasks running</a></li>
+  </ul></li>
+  <li><a href="#check-the-content-of-an-interface" id="toc-check-the-content-of-an-interface" class="nav-link" data-scroll-target="#check-the-content-of-an-interface">Check the content of an interface</a></li>
+  <li><a href="#restart-all-daemons" id="toc-restart-all-daemons" class="nav-link" data-scroll-target="#restart-all-daemons">Restart all daemons</a></li>
+  <li><a href="#check-what-a-command-does" id="toc-check-what-a-command-does" class="nav-link" data-scroll-target="#check-what-a-command-does">check what a command does</a></li>
+  <li><a href="#crictl" id="toc-crictl" class="nav-link" data-scroll-target="#crictl">Crictl</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="linux-commands-cheat-sheet" class="level1">
+<h1>Linux commands cheat sheet</h1>
+</section>
+<section id="swap-management" class="level1">
+<h1>SWAP management</h1>
+<p>Disable Swap memory</p>
+<pre><code>swapoff -a</code></pre>
+</section>
+<section id="networking" class="level1">
+<h1>Networking</h1>
+<p>Get the ip</p>
+<pre><code>ip addr show</code></pre>
+<p>Get Dhcp lease for interface ethx</p>
+<pre><code>dhclient -v ethx</code></pre>
+<p>Configure a network interface Use netplan:</p>
+<pre><code> cat /etc/netplan/01-netcfg.yaml</code></pre>
+<p>Output:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">network</span><span class="kw">:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">renderer</span><span class="kw">:</span><span class="at"> networkd</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">ethernets</span><span class="kw">:</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">enp0s8</span><span class="kw">:</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">dhcp4</span><span class="kw">:</span><span class="at"> </span><span class="ch">no</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">addresses</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">192.168.56.103/</span><span class="dv">24</span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Commands to generate and apply the updates to the network config</p>
+<pre><code>netplan generate
+netplan apply</code></pre>
+<section id="firewall" class="level2">
+<h2 class="anchored" data-anchor-id="firewall">Firewall</h2>
+</section>
+<section id="list-all-rules-in-ip-tables" class="level2">
+<h2 class="anchored" data-anchor-id="list-all-rules-in-ip-tables">List all rules in IP tables</h2>
+<p>iptables -L</p>
+<section id="iptables-commands" class="level3">
+<h3 class="anchored" data-anchor-id="iptables-commands">iptables commands</h3>
+<p>iptables -P INPUT ACCEPT iptables -P OUTPUT ACCEPT iptables -P FORWARD ACCEPT iptables -F</p>
+<p>Uncomplicated firewall status / enable https://help.ubuntu.com/community/UFW</p>
+<pre><code>ufw status</code></pre>
+<p>Example commands to allow / deny all traffic</p>
+<pre><code>ufw default allow incoming
+ufw default deny incoming</code></pre>
+<p>Add port 6443 tcp</p>
+<pre><code>ufw allow 6443/tcp</code></pre>
+<p>Allow port ranges:</p>
+<pre><code>ufw allow 1000:2000/tcp</code></pre>
+</section>
+</section>
+</section>
+<section id="hostname" class="level1">
+<h1>Hostname</h1>
+<p>Get the current data for the current host:</p>
+<pre><code>hostnamectl status</code></pre>
+<p>get the hostname</p>
+<pre><code>hostname</code></pre>
+<p>set hostname:</p>
+<pre><code>hostnamectl set-hostname &lt;yourhostname here&gt;</code></pre>
+</section>
+<section id="system-logging" class="level1">
+<h1>System logging</h1>
+<p>Kernel log:</p>
+<pre><code>dmesg | tail</code></pre>
+<section id="log-file-locations" class="level2">
+<h2 class="anchored" data-anchor-id="log-file-locations">log file locations</h2>
+<section id="authorization-log" class="level3">
+<h3 class="anchored" data-anchor-id="authorization-log">Authorization log</h3>
+<p>/var/log/auth.log</p>
+</section>
+<section id="daemon-log" class="level3">
+<h3 class="anchored" data-anchor-id="daemon-log">Daemon Log</h3>
+<p>/var/log/daemon.log</p>
+</section>
+<section id="debug-log" class="level3">
+<h3 class="anchored" data-anchor-id="debug-log">Debug log</h3>
+<p>/var/log/debug</p>
+</section>
+<section id="kernel-log" class="level3">
+<h3 class="anchored" data-anchor-id="kernel-log">Kernel log</h3>
+<p>/var/log/kern.log</p>
+</section>
+<section id="system-log" class="level3">
+<h3 class="anchored" data-anchor-id="system-log">System log</h3>
+<p>/var/log/syslog</p>
+<p>systemctl status appname</p>
+</section>
+<section id="application-logs" class="level3">
+<h3 class="anchored" data-anchor-id="application-logs">Application logs</h3>
+</section>
+<section id="apache" class="level3">
+<h3 class="anchored" data-anchor-id="apache">Apache</h3>
+<p>/var/log/apache2/</p>
+</section>
+<section id="x11" class="level3">
+<h3 class="anchored" data-anchor-id="x11">X11</h3>
+<p>/var/log/Xorg.0.log</p>
+</section>
+<section id="login-failures" class="level3">
+<h3 class="anchored" data-anchor-id="login-failures">login failures</h3>
+<p>/var/log/faillog read with faillog command</p>
+</section>
+<section id="last-logins-log" class="level3">
+<h3 class="anchored" data-anchor-id="last-logins-log">Last logins log</h3>
+<p>/var/log/lastlog read with lastlog command</p>
+</section>
+<section id="login-records-log" class="level3">
+<h3 class="anchored" data-anchor-id="login-records-log">Login records log</h3>
+<p>/var/log/wtmp read with who command</p>
+</section>
+</section>
+<section id="containers" class="level2">
+<h2 class="anchored" data-anchor-id="containers">Containers</h2>
+</section>
+<section id="containerd" class="level2">
+<h2 class="anchored" data-anchor-id="containerd">Containerd</h2>
+<p>https://iximiuz.com/en/posts/containerd-command-line-clients/</p>
+<section id="list-all-namespaces" class="level3">
+<h3 class="anchored" data-anchor-id="list-all-namespaces">list all namespaces</h3>
+<pre><code>sudo ctr namespaces list</code></pre>
+</section>
+<section id="list-all-containers-running-in-kubernetes" class="level3">
+<h3 class="anchored" data-anchor-id="list-all-containers-running-in-kubernetes">list all containers running in kubernetes</h3>
+<pre><code>sudo ctr -n k8s.io containers list</code></pre>
+</section>
+<section id="list-all-tasks-running" class="level3">
+<h3 class="anchored" data-anchor-id="list-all-tasks-running">list all tasks running</h3>
+<pre><code>sudo ctr -n k8s.io task list</code></pre>
+</section>
+</section>
+<section id="check-the-content-of-an-interface" class="level2">
+<h2 class="anchored" data-anchor-id="check-the-content-of-an-interface">Check the content of an interface</h2>
+<pre><code> sudo tcpdump -i tunl0</code></pre>
+</section>
+<section id="restart-all-daemons" class="level2">
+<h2 class="anchored" data-anchor-id="restart-all-daemons">Restart all daemons</h2>
+<pre><code>sudo systemctl daemon-reload</code></pre>
+</section>
+<section id="check-what-a-command-does" class="level2">
+<h2 class="anchored" data-anchor-id="check-what-a-command-does">check what a command does</h2>
+<pre><code>strace command
+
+strace kubectl get endpoints</code></pre>
+</section>
+<section id="crictl" class="level2">
+<h2 class="anchored" data-anchor-id="crictl">Crictl</h2>
+<p>config file in crictl /etc/crictl.yaml config options: https://github.com/kubernetes-sigs/cri-tools/blob/master/docs/crictl.md</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

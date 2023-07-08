@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2022-12-02">
+<meta name="description" content="Install Kubernetes in Virtual Box">
+
+<title>José Enrique Pons Website - Install Kubernetes in Virtual Box</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">José Enrique Pons Website</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/politeles" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Install Kubernetes in Virtual Box</h1>
+                  <div>
+        <div class="description">
+          Install Kubernetes in Virtual Box
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">kubernetes</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 2, 2022</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#install-kubernetes-in-virtual-box" id="toc-install-kubernetes-in-virtual-box" class="nav-link active" data-scroll-target="#install-kubernetes-in-virtual-box">Install Kubernetes in Virtual Box</a>
+  <ul class="collapse">
+  <li><a href="#guest-additions-intallation" id="toc-guest-additions-intallation" class="nav-link" data-scroll-target="#guest-additions-intallation">Guest additions intallation</a></li>
+  <li><a href="#prepare-networking" id="toc-prepare-networking" class="nav-link" data-scroll-target="#prepare-networking">Prepare networking</a></li>
+  <li><a href="#renew-ip-address-from-host-only-network" id="toc-renew-ip-address-from-host-only-network" class="nav-link" data-scroll-target="#renew-ip-address-from-host-only-network">Renew ip address from host only network</a></li>
+  <li><a href="#permanent-option-for-host-only" id="toc-permanent-option-for-host-only" class="nav-link" data-scroll-target="#permanent-option-for-host-only">permanent option for host only</a></li>
+  <li><a href="#configure-access-to-ssh-server" id="toc-configure-access-to-ssh-server" class="nav-link" data-scroll-target="#configure-access-to-ssh-server">Configure access to ssh server</a>
+  <ul class="collapse">
+  <li><a href="#allow-connection-to-k8s-ports" id="toc-allow-connection-to-k8s-ports" class="nav-link" data-scroll-target="#allow-connection-to-k8s-ports">allow connection to k8s ports</a></li>
+  </ul></li>
+  <li><a href="#change-the-hostname-on-the-cloned-vm" id="toc-change-the-hostname-on-the-cloned-vm" class="nav-link" data-scroll-target="#change-the-hostname-on-the-cloned-vm">Change the hostname on the cloned VM</a></li>
+  <li><a href="#upgrade-system" id="toc-upgrade-system" class="nav-link" data-scroll-target="#upgrade-system">upgrade system</a></li>
+  <li><a href="#install-vim" id="toc-install-vim" class="nav-link" data-scroll-target="#install-vim">install vim</a></li>
+  <li><a href="#run-sudo-commands-without-password" id="toc-run-sudo-commands-without-password" class="nav-link" data-scroll-target="#run-sudo-commands-without-password">run sudo commands without password</a></li>
+  </ul></li>
+  <li><a href="#kubernetes-pre-steps" id="toc-kubernetes-pre-steps" class="nav-link" data-scroll-target="#kubernetes-pre-steps">Kubernetes pre steps</a>
+  <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages:</a></li>
+  <li><a href="#disable-swap" id="toc-disable-swap" class="nav-link" data-scroll-target="#disable-swap">Disable swap</a></li>
+  <li><a href="#test-modules" id="toc-test-modules" class="nav-link" data-scroll-target="#test-modules">test modules</a></li>
+  <li><a href="#update-kernel-networking" id="toc-update-kernel-networking" class="nav-link" data-scroll-target="#update-kernel-networking">update kernel networking</a></li>
+  <li><a href="#install-software" id="toc-install-software" class="nav-link" data-scroll-target="#install-software">install software</a></li>
+  <li><a href="#kubernetes-installation-here-for-the-workernode" id="toc-kubernetes-installation-here-for-the-workernode" class="nav-link" data-scroll-target="#kubernetes-installation-here-for-the-workernode">Kubernetes installation (here for the workernode)</a></li>
+  <li><a href="#network-installation-calico" id="toc-network-installation-calico" class="nav-link" data-scroll-target="#network-installation-calico">network installation CALICO</a></li>
+  <li><a href="#initialize-the-control-plane" id="toc-initialize-the-control-plane" class="nav-link" data-scroll-target="#initialize-the-control-plane">initialize the control plane</a></li>
+  <li><a href="#network-configuration" id="toc-network-configuration" class="nav-link" data-scroll-target="#network-configuration">network configuration</a></li>
+  <li><a href="#enable-bash-autocompletion" id="toc-enable-bash-autocompletion" class="nav-link" data-scroll-target="#enable-bash-autocompletion">enable bash autocompletion</a></li>
+  </ul></li>
+  <li><a href="#configure-worker-node" id="toc-configure-worker-node" class="nav-link" data-scroll-target="#configure-worker-node">Configure worker node</a>
+  <ul class="collapse">
+  <li><a href="#network-config" id="toc-network-config" class="nav-link" data-scroll-target="#network-config">network config</a></li>
+  <li><a href="#on-the-control-plane" id="toc-on-the-control-plane" class="nav-link" data-scroll-target="#on-the-control-plane">on the control plane</a></li>
+  <li><a href="#on-the-worker-node" id="toc-on-the-worker-node" class="nav-link" data-scroll-target="#on-the-worker-node">on the worker node</a></li>
+  <li><a href="#untaint-the-control-plane-just-for-non-prod" id="toc-untaint-the-control-plane-just-for-non-prod" class="nav-link" data-scroll-target="#untaint-the-control-plane-just-for-non-prod">untaint the control plane (just for non-prod)</a></li>
+  <li><a href="#update-containerd-config" id="toc-update-containerd-config" class="nav-link" data-scroll-target="#update-containerd-config">update containerd config</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="install-kubernetes-in-virtual-box" class="level1">
+<h1>Install Kubernetes in Virtual Box</h1>
+<p>First we install ubuntu server on virtutal box</p>
+<section id="guest-additions-intallation" class="level2">
+<h2 class="anchored" data-anchor-id="guest-additions-intallation">Guest additions intallation</h2>
+<p>https://cambiatealinux.com/instalar-las-guest-additions-virtualbox-ubuntu-server</p>
+<p>sudo apt install gcc make perl</p>
+</section>
+<section id="prepare-networking" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-networking">Prepare networking</h2>
+<ul>
+<li>NAT address to the outside world</li>
+<li>Host only address with dhcp</li>
+</ul>
+</section>
+<section id="renew-ip-address-from-host-only-network" class="level2">
+<h2 class="anchored" data-anchor-id="renew-ip-address-from-host-only-network">Renew ip address from host only network</h2>
+<p>sudo dhclient -v enp0s8</p>
+</section>
+<section id="permanent-option-for-host-only" class="level2">
+<h2 class="anchored" data-anchor-id="permanent-option-for-host-only">permanent option for host only</h2>
+<p>https://fabiofernandesx.medium.com/preparing-virtual-box-vms-to-run-kubernetes-a31c7c851566</p>
+<p>/etc/netplan</p>
+<p>sudo -i vim /etc/netplan/01-netcfg.yaml</p>
+<p>create the following yaml file</p>
+<p>network: version: 2 renderer: networkd ethernets: enp0s8: dhcp4: no addresses: [192.168.56.101/24]</p>
+<p>netplan generate sudo netplan apply</p>
+</section>
+<section id="configure-access-to-ssh-server" class="level2">
+<h2 class="anchored" data-anchor-id="configure-access-to-ssh-server">Configure access to ssh server</h2>
+<p>https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-20-04/</p>
+<pre><code>sudo systemctl status ssh</code></pre>
+<p>enable firewall</p>
+<pre><code>sudo ufw allow ssh</code></pre>
+<p>ufw default allow incoming</p>
+<section id="allow-connection-to-k8s-ports" class="level3">
+<h3 class="anchored" data-anchor-id="allow-connection-to-k8s-ports">allow connection to k8s ports</h3>
+<p>sudo ufw allow 179/tcp sudo ufw allow 4789/tcp sudo ufw allow 5473/tcp sudo ufw allow 443/tcp sudo ufw allow 6443/tcp sudo ufw allow 2379/tcp sudo ufw allow 4149/tcp sudo ufw allow 10250/tcp sudo ufw allow 10255/tcp sudo ufw allow 10256/tcp sudo ufw allow 9099/tcp</p>
+</section>
+</section>
+<section id="change-the-hostname-on-the-cloned-vm" class="level2">
+<h2 class="anchored" data-anchor-id="change-the-hostname-on-the-cloned-vm">Change the hostname on the cloned VM</h2>
+<p>hostnamectl set-hostname <yourhostname here=""></yourhostname></p>
+<p>hostnamectl status</p>
+</section>
+<section id="upgrade-system" class="level2">
+<h2 class="anchored" data-anchor-id="upgrade-system">upgrade system</h2>
+<p>sudo apt-get update sudo apt-get upgrade -y</p>
+</section>
+<section id="install-vim" class="level2">
+<h2 class="anchored" data-anchor-id="install-vim">install vim</h2>
+<p>sudo apt-get install vim</p>
+</section>
+<section id="run-sudo-commands-without-password" class="level2">
+<h2 class="anchored" data-anchor-id="run-sudo-commands-without-password">run sudo commands without password</h2>
+<p>sudo -i</p>
+</section>
+</section>
+<section id="kubernetes-pre-steps" class="level1">
+<h1>Kubernetes pre steps</h1>
+<section id="packages" class="level2">
+<h2 class="anchored" data-anchor-id="packages">Packages:</h2>
+<pre><code>sudo apt install curl apt-transport-https vim git wget gnupg2 software-properties-common apt-transport-https ca-certificates uidmap -y</code></pre>
+</section>
+<section id="disable-swap" class="level2">
+<h2 class="anchored" data-anchor-id="disable-swap">Disable swap</h2>
+<pre><code>swapoff -a</code></pre>
+</section>
+<section id="test-modules" class="level2">
+<h2 class="anchored" data-anchor-id="test-modules">test modules</h2>
+<pre><code> modprobe overlay
+ modprobe br_netfilter</code></pre>
+</section>
+<section id="update-kernel-networking" class="level2">
+<h2 class="anchored" data-anchor-id="update-kernel-networking">update kernel networking</h2>
+<pre><code>cat &lt;&lt; EOF | tee /etc/sysctl.d/kubernetes.conf
+&gt; net.bridge.bridge-nf-call-ip6tables = 1
+&gt; net.bridge.bridge-nf-call-iptables = 1
+&gt; net.ipv4.ip_forward = 1
+&gt; EOF</code></pre>
+<p>output: net.bridge.bridge-nf-call-ip6tables = 1 net.bridge.bridge-nf-call-iptables = 1 net.ipv4.ip_forward = 1</p>
+<p>ensure to apply changes:</p>
+<pre><code>sysctl --system</code></pre>
+</section>
+<section id="install-software" class="level2">
+<h2 class="anchored" data-anchor-id="install-software">install software</h2>
+<pre><code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</code></pre>
+<pre><code>apt install containerd -y</code></pre>
+<p>vim /etc/apt/sources.list.d/kubernetes.list add line: deb http://apt.kubernetes.io/ kubernetes-xenial main</p>
+<p>update key</p>
+<pre><code>curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -</code></pre>
+<pre><code> apt-get update</code></pre>
+</section>
+<section id="kubernetes-installation-here-for-the-workernode" class="level2">
+<h2 class="anchored" data-anchor-id="kubernetes-installation-here-for-the-workernode">Kubernetes installation (here for the workernode)</h2>
+<pre><code>apt-get install -y kubeadm=1.24.1-00 kubelet=1.24.1-00 kubectl=1.24.1-00</code></pre>
+<pre><code>apt-mark hold kubeadm kubelet kubectl</code></pre>
+<p>kubeadm set on hold. kubelet set on hold. kubectl set on hold.</p>
+</section>
+<section id="network-installation-calico" class="level2">
+<h2 class="anchored" data-anchor-id="network-installation-calico">network installation CALICO</h2>
+<pre><code>wget https://docs.projectcalico.org/manifests/calico.yaml</code></pre>
+<pre><code>ip addr show</code></pre>
+<p>10.0.2.15</p>
+<p>create an alias in the /etc/hosts 10.0.2.15 k8scp</p>
+<p>kubeadm config file (kubeadm-config.yaml) apiVersion: kubeadm.k8s.io/v1beta3 kind: ClusterConfiguration kubernetesVersion: 1.24.1 controlPlaneEndpoint: “k8scp:6443” networking: podSubnet: 192.168.0.0/16</p>
+</section>
+<section id="initialize-the-control-plane" class="level2">
+<h2 class="anchored" data-anchor-id="initialize-the-control-plane">initialize the control plane</h2>
+<pre><code>kubeadm init --config=kubeadm-config.yaml --upload-certs | tee kubeadm-ini.out</code></pre>
+<p>exit and run as regular user:</p>
+<pre><code> mkdir -p $HOME/.kube
+ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+ sudo chown $(id -u):$(id -g) $HOME/.kube/config</code></pre>
+</section>
+<section id="network-configuration" class="level2">
+<h2 class="anchored" data-anchor-id="network-configuration">network configuration</h2>
+<p>copy the calico file into the current user.</p>
+<pre><code>sudo cp /root/calico.yaml .</code></pre>
+<p>apply the config:</p>
+<pre><code> kubectl apply -f calico.yaml</code></pre>
+</section>
+<section id="enable-bash-autocompletion" class="level2">
+<h2 class="anchored" data-anchor-id="enable-bash-autocompletion">enable bash autocompletion</h2>
+<p>sudo apt-get install bash-completion -y</p>
+<p>source &lt; (kubectl completion bash) echo “source &lt;(kubectl completion bash)” &gt;&gt; $HOME/.bashrc</p>
+<p>## view config sudo kubeadm config print init-defaults</p>
+<p>apiVersion: kubeadm.k8s.io/v1beta3 bootstrapTokens: - groups: - system:bootstrappers:kubeadm:default-node-token token: abcdef.0123456789abcdef ttl: 24h0m0s usages: - signing - authentication kind: InitConfiguration localAPIEndpoint: advertiseAddress: 1.2.3.4 bindPort: 6443 nodeRegistration: criSocket: unix:///var/run/containerd/containerd.sock imagePullPolicy: IfNotPresent name: node taints: null</p>
+<hr>
+<p>apiServer: timeoutForControlPlane: 4m0s apiVersion: kubeadm.k8s.io/v1beta3 certificatesDir: /etc/kubernetes/pki clusterName: kubernetes</p>
+</section>
+</section>
+<section id="configure-worker-node" class="level1">
+<h1>Configure worker node</h1>
+<section id="network-config" class="level2">
+<h2 class="anchored" data-anchor-id="network-config">network config</h2>
+<p>cat /etc/netplan/01-netcfg.yaml network: version: 2 renderer: networkd ethernets: enp0s8: dhcp4: no addresses: [192.168.56.103/24]</p>
+<p>netplan generate netplan apply</p>
+<p>update hostname file with ens4 ip ip addr show enp0s3 | grep inet inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic enp0s3 inet6 fe80::a00:27ff:fe31:54bd/64 scope link</p>
+</section>
+<section id="on-the-control-plane" class="level2">
+<h2 class="anchored" data-anchor-id="on-the-control-plane">on the control plane</h2>
+<ul>
+<li>get the token politeles@cp:~$ sudo kubeadm token create qsm8ss.g8vf8w8qbro4z1vo politeles@cp:~$ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed ‘s/^.* //’ dce22f3d49e94e10e282e64024b9b5fddaa6ed78a635a8a744e4c55446e3a328</li>
+</ul>
+</section>
+<section id="on-the-worker-node" class="level2">
+<h2 class="anchored" data-anchor-id="on-the-worker-node">on the worker node</h2>
+<p>update /etc/hosts with the hostname of the control plane</p>
+<pre><code>root@worker1:~# cat /etc/hosts
+10.0.2.15 k8scp</code></pre>
+<p>Join the cluster</p>
+</section>
+<section id="untaint-the-control-plane-just-for-non-prod" class="level2">
+<h2 class="anchored" data-anchor-id="untaint-the-control-plane-just-for-non-prod">untaint the control plane (just for non-prod)</h2>
+<pre><code>kubectl taint nodes --all node-role.kubernetes.io/control-plane-</code></pre>
+<p>node/cp untainted error: taint “node-role.kubernetes.io/control-plane” not found</p>
+</section>
+<section id="update-containerd-config" class="level2">
+<h2 class="anchored" data-anchor-id="update-containerd-config">update containerd config</h2>
+<pre><code> sudo crictl config --set runtime-endpoint=unix:///run/containerd/containterd.sock --set image-endpoint=unix:///run/containerd/containerd.sock</code></pre>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

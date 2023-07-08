@@ -1,220 +1,227 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>https://jpons.es/2015/02/07/handle-mysql-user-permissions</loc>
-<lastmod>2015-02-07T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/05/06/how-to-create-and-modify-admin-users-in-mongo-db</loc>
-<lastmod>2015-05-06T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/05/07/create_folders-structures</loc>
-<lastmod>2015-05-07T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/05/07/how-to-automate-folder-creation-and-folders-structure-creation-on-windows</loc>
-<lastmod>2015-05-07T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/05/08/configure-logging-c-project-visual-studio</loc>
-<lastmod>2015-05-08T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/05/11/working-dates-java</loc>
-<lastmod>2015-05-11T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/05/25/more-on-operations-with-folders-on-linux-and-windows</loc>
-<lastmod>2015-05-25T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/06/08/index_database</loc>
-<lastmod>2015-06-08T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/06/08/interfacecheck</loc>
-<lastmod>2015-06-08T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/06/08/scripting-with-python</loc>
-<lastmod>2015-06-08T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/06/08/short-administration-guide-for-passenger</loc>
-<lastmod>2015-06-08T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/06/15/indexing-a-website-using-javascript-search-engine</loc>
-<lastmod>2015-06-15T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/08/22/install-mongodb-3-0-on-windows</loc>
-<lastmod>2015-08-22T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/08/24/firsts-steps-with-mongodb-mongoose</loc>
-<lastmod>2015-08-24T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/08/25/using-git-as-scm-and-exclude-configuration-files</loc>
-<lastmod>2015-08-25T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/08/26/problems-when-using-webservice-from-javascript-cors</loc>
-<lastmod>2015-08-26T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2015/09/25/javascript</loc>
-<lastmod>2015-09-25T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2016/02/19/compass-not-running-with-grunt-on-windows-7</loc>
-<lastmod>2016-02-19T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2016/05/28/install-java-development-tools-8-on-ubuntu-linux-14-04</loc>
-<lastmod>2016-05-28T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2016/06/08/big-data-lab</loc>
-<lastmod>2016-06-08T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2016/06/08/ssh-authentication-with-keys</loc>
-<lastmod>2016-06-08T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2016/07/26/upload-download-files-ftps-c</loc>
-<lastmod>2016-07-26T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2016/08/26/read-write-contacts-sim-mobile-card</loc>
-<lastmod>2016-08-26T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2016/08/30/testing-pam-service-authentication</loc>
-<lastmod>2016-08-30T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2016/09/05/Create-an-SSL-certificate-with-openSSL</loc>
-<lastmod>2016-09-05T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2016/09/10/getting-started-ubuntu-14-04-lts</loc>
-<lastmod>2016-09-10T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2017/01/03/installing-caffe-in-ubuntu-16-04</loc>
-<lastmod>2017-01-03T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2020/02/20/test</loc>
-<lastmod>2020-02-20T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2020/08/15/log-rotation</loc>
-<lastmod>2020-08-15T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2020/12/15/create-cli-for-python</loc>
-<lastmod>2020-12-15T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2021/01/30/ssh-check-bits</loc>
-<lastmod>2021-01-30T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2021/02/05/troubleshooting-webservice-time</loc>
-<lastmod>2021-02-05T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2021/02/15/set-proxy-in-conda</loc>
-<lastmod>2021-02-15T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2021/02/20/export-excel-to-csv-in-python</loc>
-<lastmod>2021-02-20T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2021/03/01/webex-teams</loc>
-<lastmod>2021-03-01T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2021/03/08/vim</loc>
-<lastmod>2021-03-08T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2021/03/15/curl</loc>
-<lastmod>2021-03-15T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2021/03/26/mongodb-commands</loc>
-<lastmod>2021-03-26T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2021/03/29/export-knowledge-base-koreai</loc>
-<lastmod>2021-03-29T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2021/12/23/CLI-cheat-sheet</loc>
-<lastmod>2021-12-23T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2022/02/12/Fulltext-search-Firestore-with-Algolia</loc>
-<lastmod>2022-02-12T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2022/07/15/Convert-heic-to-jpg-in-windows</loc>
-<lastmod>2022-07-15T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2022/07/18/firebase-emulators-cheat-sheet</loc>
-<lastmod>2022-07-18T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2022/07/20/Hugo-templates</loc>
-<lastmod>2022-07-20T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2022/11/05/kubernetes-cheat-sheet</loc>
-<lastmod>2022-11-05T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2023/02/27/Hugo-handle-odd</loc>
-<lastmod>2023-02-27T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2023/05/25/Reusing-docker-desktop</loc>
-<lastmod>2023-05-25T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2023/07/05/using-ai-for-programming</loc>
-<lastmod>2023-07-05T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/2023/07/06/elk-docker-kubernetes-for-windows</loc>
-<lastmod>2023-07-06T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://jpons.es/about/</loc>
-</url>
-<url>
-<loc>https://jpons.es/</loc>
-</url>
-<url>
-<loc>https://jpons.es/search/</loc>
-</url>
-<url>
-<loc>https://jpons.es/categories/</loc>
-</url>
-<url>
-<loc>https://jpons.es/page2/</loc>
-</url>
-<url>
-<loc>https://jpons.es/page3/</loc>
-</url>
-<url>
-<loc>https://jpons.es/page4/</loc>
-</url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2023-07-08 Migration fastpages to Quarto.html</loc>
+    <lastmod>2023-07-08T11:56:14.607Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2023-07-05-using-ai-for-programming.html</loc>
+    <lastmod>2023-07-08T11:56:13.524Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2023-06-03_utf8_conversion.html</loc>
+    <lastmod>2023-07-08T11:56:12.691Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2023-02-27-Hugo handle odd.html</loc>
+    <lastmod>2023-07-08T11:56:11.633Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2022-12-03 Linux commands cheat sheet.html</loc>
+    <lastmod>2023-07-08T11:56:10.872Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2022-11-05-kubernetes-cheat-sheet.html</loc>
+    <lastmod>2023-07-08T11:56:09.998Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2022-07-18-firebase-emulators-cheat-sheet.html</loc>
+    <lastmod>2023-07-08T11:56:08.893Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2022-02-12-Fulltext search Firestore with Algolia.html</loc>
+    <lastmod>2023-07-08T11:56:07.822Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2021-03-29-export-knowledge-base-koreai.html</loc>
+    <lastmod>2023-07-08T11:56:06.450Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2021-03-15-curl.html</loc>
+    <lastmod>2023-07-08T11:56:05.518Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2021-03-01-webex-teams.html</loc>
+    <lastmod>2023-07-08T11:56:04.593Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2021-02-15-set-proxy-in-conda.html</loc>
+    <lastmod>2023-07-08T11:56:03.596Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2021-01-30-ssh-check-bits.html</loc>
+    <lastmod>2023-07-08T11:56:02.446Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2020-08-15-log-rotation.html</loc>
+    <lastmod>2023-07-08T11:56:01.257Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2016-09-10-getting-started-ubuntu-14-04-lts.html</loc>
+    <lastmod>2023-07-08T11:56:00.168Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2016-08-30-testing-pam-service-authentication.html</loc>
+    <lastmod>2023-07-08T11:55:58.941Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2016-07-26-upload-download-files-ftps-c.html</loc>
+    <lastmod>2023-07-08T11:55:57.985Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2016-06-08-big-data-lab.html</loc>
+    <lastmod>2023-07-08T11:55:56.918Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2016-02-19-compass-not-running-with-grunt-on-windows-7.html</loc>
+    <lastmod>2023-07-08T11:55:55.915Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-08-26-problems-when-using-webservice-from-javascript-cors.html</loc>
+    <lastmod>2023-07-08T11:55:54.998Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-08-24-firsts-steps-with-mongodb-mongoose.html</loc>
+    <lastmod>2023-07-08T11:55:54.029Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-06-15-indexing-a-website-using-javascript-search-engine.html</loc>
+    <lastmod>2023-07-08T11:55:52.836Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-06-08-scripting-with-python.html</loc>
+    <lastmod>2023-07-08T11:55:51.838Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-06-08-index_database.html</loc>
+    <lastmod>2023-07-08T11:55:51.077Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-05-11-working-dates-java.html</loc>
+    <lastmod>2023-07-08T11:55:50.079Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-05-07-how-to-automate-folder-creation-and-folders-structure-creation-on-windows.html</loc>
+    <lastmod>2023-07-08T11:55:49.172Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-05-06-how-to-create-and-modify-admin-users-in-mongo-db.html</loc>
+    <lastmod>2023-07-08T11:55:48.152Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/index.html</loc>
+    <lastmod>2023-07-08T11:55:47.172Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/about.html</loc>
+    <lastmod>2023-07-08T11:55:42.788Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-02-07-handle mysql user permissions.html</loc>
+    <lastmod>2023-07-08T11:55:47.578Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-05-07-create_folders structures.html</loc>
+    <lastmod>2023-07-08T11:55:48.693Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-05-08-configure-logging-c-project-visual-studio.html</loc>
+    <lastmod>2023-07-08T11:55:49.668Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-05-25-more-on-operations-with-folders-on-linux-and-windows.html</loc>
+    <lastmod>2023-07-08T11:55:50.661Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-06-08-interfacecheck.html</loc>
+    <lastmod>2023-07-08T11:55:51.450Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-06-08-short-administration-guide-for-passenger.html</loc>
+    <lastmod>2023-07-08T11:55:52.424Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-08-22-install-mongodb-3-0-on-windows.html</loc>
+    <lastmod>2023-07-08T11:55:53.413Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-08-25-using-git-as-scm-and-exclude-configuration-files.html</loc>
+    <lastmod>2023-07-08T11:55:54.595Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2015-09-25-javascript.html</loc>
+    <lastmod>2023-07-08T11:55:55.370Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2016-05-28-install-java-development-tools-8-on-ubuntu-linux-14-04.html</loc>
+    <lastmod>2023-07-08T11:55:56.476Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2016-06-08-ssh-authentication-with-keys.html</loc>
+    <lastmod>2023-07-08T11:55:57.571Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2016-08-26-read-write-contacts-sim-mobile-card.html</loc>
+    <lastmod>2023-07-08T11:55:58.362Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2016-09-05-Create-an-SSL-certificate-with-openSSL.html</loc>
+    <lastmod>2023-07-08T11:55:59.557Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2017-01-03-installing-caffe-in-ubuntu-16-04.html</loc>
+    <lastmod>2023-07-08T11:56:00.876Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2020-12-15-create-cli-for-python.html</loc>
+    <lastmod>2023-07-08T11:56:01.899Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2021-02-05-troubleshooting-webservice-time.html</loc>
+    <lastmod>2023-07-08T11:56:03.046Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2021-02-20-export-excel-to-csv-in-python.html</loc>
+    <lastmod>2023-07-08T11:56:03.998Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2021-03-08-vim.html</loc>
+    <lastmod>2023-07-08T11:56:04.969Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2021-03-26-mongodb-commands.html</loc>
+    <lastmod>2023-07-08T11:56:06.066Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2021-12-23-CLI cheat sheet.html</loc>
+    <lastmod>2023-07-08T11:56:07.171Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2022-07-15-Convert heic to jpg in windows.html</loc>
+    <lastmod>2023-07-08T11:56:08.361Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2022-07-20-Hugo templates.html</loc>
+    <lastmod>2023-07-08T11:56:09.349Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2022-12-02 Installing kubernetes in Virtual Box.html</loc>
+    <lastmod>2023-07-08T11:56:10.459Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2022-12-16 Kubernetes cheat sheet.html</loc>
+    <lastmod>2023-07-08T11:56:11.263Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2023-05-25- Reusing docker desktop.html</loc>
+    <lastmod>2023-07-08T11:56:12.306Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2023-06-04_upgrade_composer.html</loc>
+    <lastmod>2023-07-08T11:56:13.058Z</lastmod>
+  </url>
+  <url>
+    <loc>https://politeles.github.io/politeles/posts/2023-07-06-elk-docker-kubernetes-for-windows.html</loc>
+    <lastmod>2023-07-08T11:56:14.178Z</lastmod>
+  </url>
 </urlset>

@@ -1,1 +1,1 @@
-Sitemap: https://jpons.es/sitemap.xml
+Sitemap: https://politeles.github.io/politeles/sitemap.xml

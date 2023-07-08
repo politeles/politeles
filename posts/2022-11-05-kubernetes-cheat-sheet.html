@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2022-11-05">
+<meta name="description" content="Kubernetes cheat sheet">
+
+<title>José Enrique Pons Website - Kubernetes cheat sheet</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">José Enrique Pons Website</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/politeles" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Kubernetes cheat sheet</h1>
+                  <div>
+        <div class="description">
+          Kubernetes cheat sheet
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">kubernetes</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 5, 2022</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#kubernetes-cheat-sheet" id="toc-kubernetes-cheat-sheet" class="nav-link active" data-scroll-target="#kubernetes-cheat-sheet">Kubernetes cheat sheet</a>
+  <ul class="collapse">
+  <li><a href="#get-nodes" id="toc-get-nodes" class="nav-link" data-scroll-target="#get-nodes">Get nodes</a></li>
+  <li><a href="#exploring-types-and-definitions" id="toc-exploring-types-and-definitions" class="nav-link" data-scroll-target="#exploring-types-and-definitions">Exploring types and definitions</a></li>
+  <li><a href="#viewing-details" id="toc-viewing-details" class="nav-link" data-scroll-target="#viewing-details">Viewing details</a></li>
+  <li><a href="#list-of-running-pods" id="toc-list-of-running-pods" class="nav-link" data-scroll-target="#list-of-running-pods">List of running pods</a></li>
+  <li><a href="#namespaces" id="toc-namespaces" class="nav-link" data-scroll-target="#namespaces">Namespaces</a>
+  <ul class="collapse">
+  <li><a href="#creation-deletion-of-namespaces" id="toc-creation-deletion-of-namespaces" class="nav-link" data-scroll-target="#creation-deletion-of-namespaces">Creation / deletion of namespaces</a></li>
+  </ul></li>
+  <li><a href="#kube-public" id="toc-kube-public" class="nav-link" data-scroll-target="#kube-public">Kube-public</a></li>
+  <li><a href="#services" id="toc-services" class="nav-link" data-scroll-target="#services">Services</a></li>
+  <li><a href="#clusterip-services" id="toc-clusterip-services" class="nav-link" data-scroll-target="#clusterip-services">ClusterIP services</a></li>
+  <li><a href="#dns-integration" id="toc-dns-integration" class="nav-link" data-scroll-target="#dns-integration">DNS integration</a></li>
+  <li><a href="#starting-a-pod" id="toc-starting-a-pod" class="nav-link" data-scroll-target="#starting-a-pod">Starting a pod</a></li>
+  <li><a href="#viewing-logs" id="toc-viewing-logs" class="nav-link" data-scroll-target="#viewing-logs">viewing logs</a></li>
+  <li><a href="#creating-a-deployment" id="toc-creating-a-deployment" class="nav-link" data-scroll-target="#creating-a-deployment">Creating a deployment</a></li>
+  <li><a href="#what-has-been-created" id="toc-what-has-been-created" class="nav-link" data-scroll-target="#what-has-been-created">what has been created?</a></li>
+  </ul></li>
+  <li><a href="#pod" id="toc-pod" class="nav-link" data-scroll-target="#pod">Pod</a></li>
+  <li><a href="#replica-set" id="toc-replica-set" class="nav-link" data-scroll-target="#replica-set">Replica set</a></li>
+  <li><a href="#deployment" id="toc-deployment" class="nav-link" data-scroll-target="#deployment">Deployment</a>
+  <ul class="collapse">
+  <li><a href="#scaling-the-deployment" id="toc-scaling-the-deployment" class="nav-link" data-scroll-target="#scaling-the-deployment">Scaling the deployment:</a>
+  <ul class="collapse">
+  <li><a href="#scaling-a-replica-set" id="toc-scaling-a-replica-set" class="nav-link" data-scroll-target="#scaling-a-replica-set">Scaling a replica set</a></li>
+  </ul></li>
+  <li><a href="#checking-deployment-logs" id="toc-checking-deployment-logs" class="nav-link" data-scroll-target="#checking-deployment-logs">Checking deployment logs</a></li>
+  </ul></li>
+  <li><a href="#batch-jobs" id="toc-batch-jobs" class="nav-link" data-scroll-target="#batch-jobs">Batch Jobs</a>
+  <ul class="collapse">
+  <li><a href="#creating-a-job" id="toc-creating-a-job" class="nav-link" data-scroll-target="#creating-a-job">Creating a job</a></li>
+  <li><a href="#scheduling-periodic-background-work-cronjob" id="toc-scheduling-periodic-background-work-cronjob" class="nav-link" data-scroll-target="#scheduling-periodic-background-work-cronjob">Scheduling periodic background work CronJob</a>
+  <ul class="collapse">
+  <li><a href="#cronjob-creation" id="toc-cronjob-creation" class="nav-link" data-scroll-target="#cronjob-creation">Cronjob creation</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#labels-and-annotations" id="toc-labels-and-annotations" class="nav-link" data-scroll-target="#labels-and-annotations">Labels and annotations</a>
+  <ul class="collapse">
+  <li><a href="#differences-between-labels-and-annotations" id="toc-differences-between-labels-and-annotations" class="nav-link" data-scroll-target="#differences-between-labels-and-annotations">Differences between labels and annotations</a></li>
+  </ul></li>
+  <li><a href="#kube-logs" id="toc-kube-logs" class="nav-link" data-scroll-target="#kube-logs">Kube Logs</a>
+  <ul class="collapse">
+  <li><a href="#stern" id="toc-stern" class="nav-link" data-scroll-target="#stern">Stern</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="kubernetes-cheat-sheet" class="level1">
+<h1>Kubernetes cheat sheet</h1>
+<section id="get-nodes" class="level2">
+<h2 class="anchored" data-anchor-id="get-nodes">Get nodes</h2>
+<p>kubectl get node kubectl get no</p>
+<p>With more outuput: kubectl get nodes -o wide kubectl get no -o yaml</p>
+<p>With a JSON Query kubectl get nodes -o json | jq “.items[] | {name:.metadata.name} + .status.capacity”</p>
+</section>
+<section id="exploring-types-and-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-types-and-definitions">Exploring types and definitions</h2>
+<p>kubectl explain node kubectl explain node.spec</p>
+<p>kubectl explain node –recursive</p>
+</section>
+<section id="viewing-details" class="level2">
+<h2 class="anchored" data-anchor-id="viewing-details">Viewing details</h2>
+<p>kubectl describe node</p>
+</section>
+<section id="list-of-running-pods" class="level2">
+<h2 class="anchored" data-anchor-id="list-of-running-pods">List of running pods</h2>
+<p>kubectl get pods</p>
+</section>
+<section id="namespaces" class="level2">
+<h2 class="anchored" data-anchor-id="namespaces">Namespaces</h2>
+<p>kubectl get namespaces</p>
+<p>To get all namespaces</p>
+<p>kubectl get pods –all-namespaces kubectl get pods -A</p>
+<p>Scoping another namespaces</p>
+<p>kubectl get pods -n kube-system</p>
+<section id="creation-deletion-of-namespaces" class="level3">
+<h3 class="anchored" data-anchor-id="creation-deletion-of-namespaces">Creation / deletion of namespaces</h3>
+<p>kubectl create -n=X kubectl delete -n=X To add / remove and update labels across multiple namespaces: kubectl label</p>
+</section>
+</section>
+<section id="kube-public" class="level2">
+<h2 class="anchored" data-anchor-id="kube-public">Kube-public</h2>
+<p>To get the cluster info: kubectl -n kube-public get configmaps</p>
+<p>kubectl -n kube-public get configmap cluster-info -o yaml</p>
+</section>
+<section id="services" class="level2">
+<h2 class="anchored" data-anchor-id="services">Services</h2>
+<p>A service is an endpoint</p>
+<p>kubectl get services kubectl get svc</p>
+<p>Example output: PS C:.training&gt; kubectl get svc NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE kubernetes ClusterIP 10.96.0.1 <none> 443/TCP 15h</none></p>
+<p>We can connect to the API using the CLUSTER-IP value.</p>
+</section>
+<section id="clusterip-services" class="level2">
+<h2 class="anchored" data-anchor-id="clusterip-services">ClusterIP services</h2>
+<p>Connections to the CLUSTER-IP can be done only from within the cluster.</p>
+</section>
+<section id="dns-integration" class="level2">
+<h2 class="anchored" data-anchor-id="dns-integration">DNS integration</h2>
+<p>Each service gets a DNS record The kubernetes DNS resolver is available from within the pods.(and sometimes from nodes depending on config).</p>
+</section>
+<section id="starting-a-pod" class="level2">
+<h2 class="anchored" data-anchor-id="starting-a-pod">Starting a pod</h2>
+<p>kubectl run</p>
+<p>kubectl run pingpong –image alpine ping 127.0.0.1</p>
+</section>
+<section id="viewing-logs" class="level2">
+<h2 class="anchored" data-anchor-id="viewing-logs">viewing logs</h2>
+<p>unless specified it will show the logs of the first container only</p>
+<p>kubectl logs pingpong</p>
+<p>kubectl logs pingpong –tail 1 -follow</p>
+<p>-f/–follow to stream logs in real time –tail to indicate how many lines you want to see (from the end) –since to get logs only after a given timestamp</p>
+</section>
+<section id="creating-a-deployment" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-deployment">Creating a deployment</h2>
+<p>kubectl create deployment pingpong –image=alpine – ping 127.0.0.1 The – is to separate the options of kubernetes to the parameters of the container.</p>
+</section>
+<section id="what-has-been-created" class="level2">
+<h2 class="anchored" data-anchor-id="what-has-been-created">what has been created?</h2>
+<p>kubectl get all</p>
+<p>It doesn’t show everything just the usual suspects.</p>
+</section>
+</section>
+<section id="pod" class="level1">
+<h1>Pod</h1>
+<ul>
+<li><p>A Pod is not a process; it’s an environment for containers</p></li>
+<li><p>it cannot be “restarted”</p></li>
+<li><p>it cannot “crash”</p></li>
+<li><p>The containers in a Pod can crash</p></li>
+<li><p>They may or may not get restarted (depending on Pod’s restart policy)</p></li>
+<li><p>If all containers exit successfully, the Pod ends in “Succeeded” phase</p></li>
+<li><p>If some containers fail and don’t get restarted, the Pod ends in “Failed” phase</p></li>
+</ul>
+</section>
+<section id="replica-set" class="level1">
+<h1>Replica set</h1>
+<ul>
+<li>Set of identical pods.</li>
+<li>Defined by a pod template + number of desired replicas.</li>
+<li>When scale up / down:</li>
+<li>we update the manifest of the replica set.</li>
+<li>as a consequence, the replica set controller creates / deletes pods.</li>
+</ul>
+</section>
+<section id="deployment" class="level1">
+<h1>Deployment</h1>
+<p>Deployments roll out different Pods (different image, command, environment vars…) - When we update a deployment with a new Pod definition: - a new replica set is created with the new pod definition. - that new Replica is scaled up. - the old replica set is scaled down. - This is a rolling update, minimizing application downtime. - When we scale up/down a Deployment, it scales up / down its replica set.</p>
+<section id="scaling-the-deployment" class="level2">
+<h2 class="anchored" data-anchor-id="scaling-the-deployment">Scaling the deployment:</h2>
+<p>kubectl scale deployment pingpong –replicas 3</p>
+<p>to check we have multiple pods: kubectl get pods</p>
+<section id="scaling-a-replica-set" class="level3">
+<h3 class="anchored" data-anchor-id="scaling-a-replica-set">Scaling a replica set</h3>
+<p>What if we scale the replica set? - The deployment will notice and will scale back to the initial level. - The replica set makes sure to have the right number of pods. - The deployment makes sure the Replica set has the right size.</p>
+</section>
+</section>
+<section id="checking-deployment-logs" class="level2">
+<h2 class="anchored" data-anchor-id="checking-deployment-logs">Checking deployment logs</h2>
+<p>kubectl logs deploy/pingpong –tail 2</p>
+</section>
+</section>
+<section id="batch-jobs" class="level1">
+<h1>Batch Jobs</h1>
+<p>Pods don’t get restarted if something goes wrong. Jobs are great for long background jobs. CronJobs are for scheduled jobs.</p>
+<section id="creating-a-job" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-job">Creating a job</h2>
+<p>kubectl create job flipcoin –image=alpine – sh -c ‘exit <span class="math inline">\(((\)</span>RANDOM%2))’</p>
+<p>check the status with name selector: kubectl get pods –selector=job-name=flipcoin</p>
+<ul>
+<li><p>We can specify a number of “completions” (default=1)</p></li>
+<li><p>We can specify the “parallelism” (default=1)</p></li>
+</ul>
+</section>
+<section id="scheduling-periodic-background-work-cronjob" class="level2">
+<h2 class="anchored" data-anchor-id="scheduling-periodic-background-work-cronjob">Scheduling periodic background work CronJob</h2>
+<p>It requires a schedule - minute [0,59] - hour [0,23] - day of the month [1,31] - month of the year[1,12] - day of the week [0,6] 0= Sunday. for example: <em>/3 </em> * * * means every three minutes.</p>
+<section id="cronjob-creation" class="level3">
+<h3 class="anchored" data-anchor-id="cronjob-creation">Cronjob creation</h3>
+<p>kubectl create cronjob every3mins –schedule=“<em>/3 </em> * * *”<br>
+–image=alpine – sleep 10</p>
+<p>To check the job: kubectl get cronjobs</p>
+<p>The job will create a pod, the job will make sure the pod completes (re-creating another one if it fails).</p>
+<p>Setting a time limit: This is done with the field spec.activeDeadlineSeconds. When the job is older than the limit, all its pods are terminated. <strong>Note that there can be also a deadline for the pods</strong> They can be set independently with different effect: - the deadline of the job will stop the entire job. - the deadline of the pod will stop only a pod.</p>
+</section>
+</section>
+</section>
+<section id="labels-and-annotations" class="level1">
+<h1>Labels and annotations</h1>
+<p>Set a label on the clock Deployment: kubectl label deployment clock color=blue</p>
+<p>kubectl describe deployment clock</p>
+<p>List all the labels that we have on pods:</p>
+<p>kubectl get pods –show-labels</p>
+<p>List the value of label app on these pods:</p>
+<p>kubectl get pods -L app</p>
+<p><strong>If a selector has multiple labels, it means “match at least these labels”</strong></p>
+<p>Example: –selector=app=frontend,release=prod</p>
+<p><em>We can use negative selectors</em> –selector=app!=clock</p>
+<p>Can be used with most kubectl commands.</p>
+<p>Other ways to get the labels: kubectl get –show-labels po,rs,deploy,svc,no</p>
+<section id="differences-between-labels-and-annotations" class="level2">
+<h2 class="anchored" data-anchor-id="differences-between-labels-and-annotations">Differences between labels and annotations</h2>
+<p>The key for both labels and annotations:</p>
+<pre><code>must start and end with a letter or digit
+
+can also have . - _ (but not in first or last position)
+
+can be up to 63 characters, or 253 + / + 63</code></pre>
+<p>Label values are up to 63 characters Annotations values can have arbitrary characters (yes, even binary)</p>
+<p>Maximum length isn’t defined</p>
+</section>
+</section>
+<section id="kube-logs" class="level1">
+<h1>Kube Logs</h1>
+<p>kubectl logs only shows the logs of one of the pods. View the last line of log from all pods with the app=pingpong label:</p>
+<p>kubectl logs -l app=pingpong –tail 1 The logs can only be streamed for 5 pods. There are external tools to address these shortcomings. Stern https://github.com/wercker/stern</p>
+<section id="stern" class="level2">
+<h2 class="anchored" data-anchor-id="stern">Stern</h2>
+<p>https://container.training/kube-selfpaced.yml.html#212</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
