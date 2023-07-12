@@ -1,0 +1,27 @@
+---
+categories:
+- orquesta
+- música
+- Il Pagliacci
+date: '2020-09-25'
+description: Comentario sobre Il Pagliacci
+layout: post
+title: Comentario sobre Il Pagliacci
+toc: true
+
+---
+# Comentario sobre Il Pagliacci
+
+Es un drama en dos actos, de corta duración, aproximadamente una hora. Se trata de una ópera bastante parca en cuanto a la historia en sí,  número de personajes (5 solistas) y coro (que sólo actúa en contadas escenas). A pesar de ello tiene rasgos originales, por ejemplo el hecho de que parte de la acción sucede durante la representación de una obra dentro de la ópera. Otro rasgo bastante llamativo es la fuente de inspiración, en este caso, los personajes no son héroes o personajes mitológicos ni la historia es una trama compleja en la que se entremezclan historias paralelas. La obra es un ejemplo de las corrientes literarias de la época, el naturalismo literario (verismo) en el que el drama está inspirado en la realidad, con personajes reales. Podríamos decir también que esta obra sigue la línea de la Commedia dell’Arte italiana, surgida a mediados del XVI, en la que se mezclan las tradiciones carnavalescas (máscaras y vestuario) con la simplicidad de la historia y una serie de personajes fijos. En Il Paggliacci, las máscaras de carnaval son sustituidas por el maquillaje de los payasos.
+
+La introducción musical presenta los tres grandes temas de la ópera, el primer tema en forma de danza y es utilizado para presentar la llegada de los payasos, el segundo tema, más trágico, es el que se utiliza en el aria de Canio, el tercer tema, más tranquilo y melódico se utiliza en las escenas de Nedda, la protagonista.
+
+Ambientada en un entorno rústico, la ópera nos cuenta la historia de un matrimonio de payasos, Nedda es la protagonista, harta de su vida actual, casada con quien descubriremos más tarde, fue su protector en la juventud, Canio. Éste es el protagonista de la compañía de payasos que acaba de llegar a la ciudad.
+
+La protagonista es, en una primera escena, acosada por uno de los miembros de la compañía, Tonio, enamorado platónicamente de la protagonista. Nadda rechaza su amor y a su vez tiene una relación amorosa con un jóven del pueblo, Silvio. Tonio presencia la escena y avisa al marido de Nedda, Canio, quien entra en cólera.
+Pero antes que pueda actuar, es la hora de la actuación, así que los protagonistas comienzan el espectáculo, que trata precisamente de eso, una infidelidad de la protagonista a su esposo.
+
+El final de la obra se ve alterado por el trágico desenlace, en el que Canio, termina con la vida de su mujer y de su amante.
+Musicalmente, el tema que destaca es el aria del payaso, con un tono trágico, de gran lirismo en el que el tenor es acompañado por la orquesta a unísono con la melodía.
+
+Como hemos estudiado, esta ópera es uno de los exponentes del verismo, junto con Cavalleria Rusticana de Mascagni.
