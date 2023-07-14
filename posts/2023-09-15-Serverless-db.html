@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-07-08">
-<meta name="description" content="A guide to migrate fastpages to quarto.">
+<meta name="dcterms.date" content="2023-07-15">
+<meta name="description" content="Implementing serverless databases in your architecture.">
 
-<title>José Enrique Pons Website - Migration from FastPages to Quarto</title>
+<title>José Enrique Pons Website - Implementing serverless databases in your architecture.</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -137,18 +103,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Migration from FastPages to Quarto</h1>
+      <h1 class="title">Implementing serverless databases in your architecture.</h1>
                   <div>
         <div class="description">
-          A guide to migrate fastpages to quarto.
+          Implementing serverless databases in your architecture.
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">FastPages</div>
-                <div class="quarto-category">Jekill</div>
-                <div class="quarto-category">Jupyter</div>
-                <div class="quarto-category">Quarto</div>
-                <div class="quarto-category">Blog</div>
+                <div class="quarto-category">DB</div>
+                <div class="quarto-category">Serverless</div>
+                <div class="quarto-category">Firebase</div>
+                <div class="quarto-category">FireStore</div>
               </div>
                   </div>
   </div>
@@ -160,7 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 8, 2023</p>
+        <p class="date">July 15, 2023</p>
       </div>
     </div>
     
@@ -172,13 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#migration-from-fastpages-to-quarto" id="toc-migration-from-fastpages-to-quarto" class="nav-link active" data-scroll-target="#migration-from-fastpages-to-quarto">Migration from FastPages to Quarto</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -186,47 +145,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="migration-from-fastpages-to-quarto" class="level1">
-<h1>Migration from FastPages to Quarto</h1>
-<p>I was updating my blog and I found some issues in the GitHub action I configured to automatically build my blog. The Jekill build was failing due to an issue with the minima package. I was getting this error:</p>
-<pre><code> Rendering Liquid: assets/minima-social-icons.liquid
-  Liquid Exception: Invalid syntax for include tag. File contains invalid characters or sequences: social-icons/.svg Valid syntax: {% include file.ext param='value' param2='value' %} in assets/minima-social-icons.liquid</code></pre>
-<p>After some research, I discovered that the “minima” package changed the way to specify the social networks. There is a config file “_config.yml” where you can specify the social networks you want to show in your blog. The old way was:</p>
-<pre><code># Github and twitter are optional:
-minima:
-  social_links:
-    github: politeles</code></pre>
-<p>And the new way is:</p>
-<pre><code>minima:
-   - { platform: github,  user_url: "https://github.com/politeles" }</code></pre>
-<p>After I changed that, the GitHub action was working again. I read the [Fast.AI forum and I found that FastPages is being deprecated in favor of Quarto]. So I decided to migrate my blog to Quarto.</p>
-<p>First of all, I have to download and install Quarto CLI for windows. You can find the instructions <a href="https://quarto.org/docs/getting-started/installation.html#installing-quarto-cli">here</a>.</p>
-<p>I’m using VS code as my main editor, so, I installed the Quarto extension for VS code. You can find the instructions <a href="https://quarto.org/docs/get-started/hello/vscode.html">here</a>.</p>
-<p>Basically, we create a new project in a new folder:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> quarto create<span class="op">-</span>project <span class="op">-</span>type website<span class="op">:</span>blog <span class="op">.</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> quarto install extension quarto<span class="op">-</span>ext<span class="op">/</span>video</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then, I started the migration process as described <a href="https://nbdev.fast.ai/tutorials/blogging.html">here</a>. I’m copying the blog posts, the notebooks and the images to the post folder. In this case, all my posts are under the politeles folder.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">copy</span> <span class="op">..</span>\politeles\_posts\<span class="op">*</span> <span class="op">.</span>\posts\</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">copy</span> <span class="op">..</span>\politeles\_notebooks\<span class="op">*</span> <span class="op">.</span>\posts\</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">copy</span> <span class="op">..</span>\politeles\images\<span class="op">*</span> <span class="op">.</span>\posts\</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">copy</span> <span class="op">..</span>\politeles\images\copied_from_nb\<span class="op">*</span> <span class="op">.</span>\posts\</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then, I have to change the metadata in the posts. In the guide, they are using nbdev_migrate. The problem is that doesn’t exists in my windows system. The solution is to install nbdev, I’m doing all that using Anaconda prompt in powershell. If you want to install Anaconda in your windows env, you can find the instructions <a href="https://docs.anaconda.com/free/anaconda/install/windows/">here</a>.</p>
-<p>Once you have Anaconda installed, I create a new <a href="https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">virtual environment</a> and install nbdev:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>conda create <span class="op">--</span>name fastpages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now switch to the new environment:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>conda activate fastpages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>First we have to install Jupyter Lab:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>conda install <span class="op">-</span>c conda<span class="op">-</span>forge <span class="op">-</span>y jupyterlab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>And install nbdev:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>conda install <span class="op">-</span>c fastai nbdev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><a href="https://forums.fast.ai/t/fastpages-deprecating-fastpages-in-favor-of-quarto/99095">Fastpages is being deprecated in favor of Quarto</a>. This is a guide to migrate your blog from Fastpages to Quarto.</p>
-<p><a href="https://github.com/quarto-dev/quarto-cli/issues/4941#issuecomment-1482565364">If you have a custom domain</a>, like I do, then, you have to update your quarto config file “_quarto.yml” to include the following line:</p>
-<pre><code>resources:
-  - CNAME</code></pre>
-<p>inside the CNAME file, you should include your domain name.</p>
+<p>Storing and querying data is the main job for a database. Don’t let the serverless hype to force you redesign the query component of your data!</p>
+<p>In this short article, I’m going to describe my journey with serverless databases, why I started using them in the first place and what are the major issues you have to take into account when working with them.</p>
+<p>I started my journey with serverless databases due to a mobile project developed in flutter: a relatively new technology developed by Google. While learning it, I discovered Firebase, the serverless suite from Google that integrates seamlessly with the <a href="https://flutter.dev/">Flutter framework</a>.</p>
+<p>There are many eye-catching components in the <a href="https://firebase.google.com/">Firebase</a> suite: for instance a serverless Auth service that provides integrations with all the well-known providers like Google, Apple, Twitter, etc.</p>
+<p>Among others, Firebase offers a serverless database called <a href="https://firebase.google.com/docs/firestore">FireStore</a>. It’s a document database, where you can define collections inside documents. It offers a minimal interface to insert some test documents and a part where you can define the access control rules for the database and the documents in the database.</p>
+<p>The querying capabilitites are very interesting, they provide operators and functions to filter data, although there is not a proper query language (like for example in MongoDB).</p>
+<blockquote class="blockquote">
+<p>I discovered later the main disappointment: it is not possible to run a wildcard search on the database. You can filter by intervals, but you can’t search values inside a string. Was I reading right? It seems so. I just wanted to run a query to filter all names starting with Ba*.</p>
+</blockquote>
+<p>There is a solution to implement that, but it requires you to update or redesign the architecture of your serverless app. I’ll describe the details later during the post, but you can find them in the documentation of firebase.</p>
+<p>Why should anyone want to migrate a database to a serverless database? There are some advantages, if you ask me: - No maintenance tasks: you don’t have access to any management console. - Planetary scale from scratch: I think this is the main selling point. You can start small and with a really small quote and scale without any upfront investment neither in your architecture nor in the infrastructure. - You pay for what you use. (this could be a double-edged sword).</p>
+<p>The basic plan of Firebase is free and includes a considerable amount of requests both reads and writes.</p>
+<p>The integration between Firebase products and Flutter is so good that the library handles the presentation layer in your app, the caching and even the content being available when the device doesn’t have network connection.</p>
+<p>Returning back to the main issue: how do you run a wildcard search in FireStore?</p>
+<p>Well, you must add another component to your architecture. An indexing engine. There are several in the market, but one of them is Algolia. Also, you need to create a trigger everytime you create / delete a new document.</p>
+<p>The indexing engine is a cloud service that works like a typical index, you define a few fields that are part of the index, and in this case, it’s the responsability of the programmer to update the index. Then, you can query that index, which returns your object ID, and then asks FireBase to return that object or the list of objects.</p>
+<p>The trigger part must be implemented using a serverless function (and to use that capability from Firebase you need to enable a pay plan). There are some out-of-the-box functions to create this trigger as a serverless function. I’m going to define the triggers that I’m using here.</p>
+<p>The overall architecture of the solution running with this indexing system looks like the following:</p>
+<p>Again, we have to choose carefully the balance between the functionals, non-functionals and the need for a serverless solution. Depending on the size of your project it might be worthy to run an old-school traditional relational database, or a document-oriented database.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
