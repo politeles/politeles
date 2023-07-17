@@ -3,12 +3,14 @@ project:
 
 website:
   title: "José Enrique Pons Website"
+
   navbar:
     right:
       - about.qmd
       - icon: github
         href: https://github.com/politeles
-
+resources:
+  - "CNAME"
 format:
   html:
     theme: cosmo
