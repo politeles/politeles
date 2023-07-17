@@ -14,12 +14,12 @@ toc: true
 
 First of all, I'm installing [Helm][helm] from the releases page, the windows version. I copied to the typical windows program files folder and updated the PATH environment variable to check the new helm folder. So now I can use it in console.
 I studied the following tutorials: 
-(https://blog.knoldus.com/how-to-deploy-elk-stack-on-kubernetes/
-https://tharangarajapaksha.medium.com/)(elk-stack-in-k8s-cluster-13bb509185e0)
-(https://www.cloudsigma.com/installing-software-on-kubernetes-with-helm-3-package-manager-on-windows/)
+ - https://blog.knoldus.com/how-to-deploy-elk-stack-on-kubernetes/
+ - https://tharangarajapaksha.medium.com/elk-stack-in-k8s-cluster-13bb509185e0
+ - https://www.cloudsigma.com/installing-software-on-kubernetes-with-helm-3-package-manager-on-windows/
 
 
-I'm going to [create a new namespace in the k8s cluster][nsp] for elk stak.
+I'm going to [create a new namespace in the k8s cluster][nsp] for elk stack.
 
 ```powershell
 kubectl create namespace elk 
@@ -116,6 +116,7 @@ $PASSWORD = kubectl get secret quickstart-es-elastic-user -o go-template='{{.dat
 ```
 
 or you can use cmd:
+
 ```cmd
 curl -u "elastic:$PASSWORD" -k "https://localhost:9200"
 {
@@ -213,8 +214,9 @@ Get the password:
 ```powershell
 kubectl get secret quickstart-es-elastic-user -o=jsonpath='{.data.elastic}' | %{[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_))};
 ```
+
 It's the same as the elasticsearch password.
-Anyway, let's connect to the web interface, open a browser and go to http://localhost:5601
+Anyway, let's connect to the web interface, open a browser and go to https://localhost:5601
 
 
 
