@@ -3,6 +3,8 @@ project:
 
 website:
   title: "José Enrique Pons Website"
+  google-analytics: "G-RQNWGYTYCC"
+  open-graph: true
 
   navbar:
     right:
